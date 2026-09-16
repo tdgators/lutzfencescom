@@ -4,7 +4,7 @@ from pathlib import Path
 from data import SITE, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, TOWNS
 from templates import page, page_hero, faq_accordion, town_chips, cta_banner, map_section
 
-OUT = Path(__file__).resolve().parent.parent
+OUT = Path("/mnt/user-data/outputs/lutz-fences-site")
 
 def write(path, html):
     p = OUT / path
@@ -18,11 +18,11 @@ def build_materials():
 <div class="card">
   <div class="tile-img" style="aspect-ratio:16/10;margin-bottom:14px"><div class="ph {m['img']}"></div></div>
   <h3>{m['name']}</h3><p>{m['tagline']}</p>
-  <a class="more" href="/{m['slug']}.html">Learn More &rarr;</a>
+  <a class="more" href="{m['slug']}.html">Learn More &rarr;</a>
 </div>''' for m in MATERIALS)
     content = page_hero("Residential", "Fence Materials",
         f"We install every major fence material — here's how to choose the right one for your {SITE['city']}-area property.",
-        [("Home", "/index.html"), ("Fence Materials", None)])
+        [("Home", "index.html"), ("Fence Materials", None)])
     content += f'<section class="section"><div class="container"><div class="grid grid-3">{tiles}</div></div></section>{cta_banner()}'
     write("fence-materials.html", page(f"Fence Materials | {SITE['full_brand']}",
         "Compare vinyl, wood, aluminum, chain link, composite, and steel fence materials installed by 76 FENCE Lutz.",
@@ -37,11 +37,11 @@ def build_materials():
 <div class="card">
   <div class="tile-img" style="aspect-ratio:16/10;margin-bottom:14px"><div class="ph {x['img']}"></div></div>
   <h3>{x['name']}</h3><p>{x['tagline']}</p>
-  <a class="more" href="/{x['slug']}.html">Learn More &rarr;</a>
+  <a class="more" href="{x['slug']}.html">Learn More &rarr;</a>
 </div>''' for x in other_mats)
 
         content = page_hero("Fence Materials", m["name"], m["tagline"],
-            [("Home", "/index.html"), ("Fence Materials", "/fence-materials.html"), (m["name"], None)])
+            [("Home", "index.html"), ("Fence Materials", "fence-materials.html"), (m["name"], None)])
         content += f'''
 <section class="section">
   <div class="container">
@@ -79,9 +79,9 @@ def build_materials():
 def build_styles():
     tiles = "".join(f'''
 <div class="card"><h3>{s['name']}</h3><p>{s['desc']}</p>
-<a class="more" href="/{s['slug']}.html">Learn More &rarr;</a></div>''' for s in STYLES)
+<a class="more" href="{s['slug']}.html">Learn More &rarr;</a></div>''' for s in STYLES)
     content = page_hero("Residential", "Fence Styles", "The most common fence styles we build for homeowners across the Tampa Bay area.",
-        [("Home", "/index.html"), ("Fence Styles", None)])
+        [("Home", "index.html"), ("Fence Styles", None)])
     content += f'<section class="section"><div class="container"><div class="grid grid-3">{tiles}</div></div></section>{cta_banner()}'
     write("fence-styles.html", page(f"Fence Styles | {SITE['full_brand']}",
         "Privacy, semi-privacy, horizontal, picket, and split rail fence styles installed by 76 FENCE Lutz.",
@@ -90,9 +90,9 @@ def build_styles():
     for s in STYLES:
         mat_tiles = "".join(f'''<div class="card">
 <div class="tile-img" style="aspect-ratio:16/10;margin-bottom:14px"><div class="ph {m['img']}"></div></div>
-<h3>{m['name']}</h3><a class="more" href="/{m['slug']}.html">Learn More &rarr;</a></div>''' for m in MATERIALS[:4])
+<h3>{m['name']}</h3><a class="more" href="{m['slug']}.html">Learn More &rarr;</a></div>''' for m in MATERIALS[:4])
         content = page_hero("Fence Styles", s["name"], s["desc"],
-            [("Home", "/index.html"), ("Fence Styles", "/fence-styles.html"), (s["name"], None)])
+            [("Home", "index.html"), ("Fence Styles", "fence-styles.html"), (s["name"], None)])
         content += f'''
 <section class="section">
   <div class="container">
@@ -117,10 +117,10 @@ def build_styles():
 
 def build_commercial():
     tiles = "".join(f'''<div class="card"><h3>{c['name']}</h3><p>{c['desc']}</p>
-<a class="more" href="/{c['slug']}.html">Learn More &rarr;</a></div>''' for c in COMMERCIAL)
+<a class="more" href="{c['slug']}.html">Learn More &rarr;</a></div>''' for c in COMMERCIAL)
     content = page_hero("Commercial", "Commercial Fence Contractor",
         f"We handle commercial and industrial fencing projects of every size across {SITE['city']} and the {SITE['region']} area — from a single gate repair to a full-site security perimeter.",
-        [("Home", "/index.html"), ("Commercial Fencing", None)])
+        [("Home", "index.html"), ("Commercial Fencing", None)])
     content += f'''
 <section class="section">
   <div class="container">
@@ -136,7 +136,7 @@ def build_commercial():
 
     for c in COMMERCIAL:
         content = page_hero("Commercial", c["name"], c["desc"],
-            [("Home", "/index.html"), ("Commercial Fencing", "/commercial-fencing.html"), (c["name"], None)])
+            [("Home", "index.html"), ("Commercial Fencing", "commercial-fencing.html"), (c["name"], None)])
         content += f'''
 <section class="section">
   <div class="container">
@@ -156,7 +156,7 @@ def build_other_services():
     for o in OTHER_SERVICES:
         body_html = "".join(f"<p>{p_}</p>" for p_ in o["body"])
         content = page_hero("Services", o["name"], o["tagline"],
-            [("Home", "/index.html"), ("Other Services", None), (o["name"], None)])
+            [("Home", "index.html"), ("Other Services", None), (o["name"], None)])
         content += f'''
 <section class="section">
   <div class="container">

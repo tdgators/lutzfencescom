@@ -4,7 +4,7 @@ from pathlib import Path
 from data import SITE, TOWNS, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, PRICING_TABLE
 from templates import page, page_hero, faq_accordion, mini_quote_form, contact_form_card, map_section, town_chips, cta_banner
 
-OUT = Path(__file__).resolve().parent.parent
+OUT = Path("/mnt/user-data/outputs/lutz-fences-site")
 
 def write(path, html):
     p = OUT / path
@@ -19,7 +19,7 @@ def build_home():
   <div class="tile-img" style="aspect-ratio:16/10;margin-bottom:14px"><div class="ph {m['img']}"></div></div>
   <h3>{m['name']}</h3>
   <p>{m['tagline']}</p>
-  <a class="more" href="/{m['slug']}.html">Learn More &rarr;</a>
+  <a class="more" href="{m['slug']}.html">Learn More &rarr;</a>
 </div>''' for m in MATERIALS)
 
     gallery_tiles = "".join(f'''
@@ -49,7 +49,7 @@ def build_home():
 <div class="card">
   <h3>{c['name']}</h3>
   <p>{c['desc']}</p>
-  <a class="more" href="/{c['slug']}.html">Learn More &rarr;</a>
+  <a class="more" href="{c['slug']}.html">Learn More &rarr;</a>
 </div>''' for c in COMMERCIAL)
 
     pricing_rows = ""
@@ -79,7 +79,7 @@ def build_home():
       <h1>The Trusted Fence Company in {SITE['city']}, {SITE['state']}</h1>
       <p class="lead">Residential &amp; commercial fence installation built on quality, trust, and proven results. Vinyl, wood, aluminum, chain link, composite &amp; steel — installed, repaired, and maintained by a locally owned {SITE['region']} team.</p>
       <div class="cta-row">
-        <a class="btn btn-red" href="/contact-us.html">Get a Free Estimate</a>
+        <a class="btn btn-red" href="contact-us.html">Get a Free Estimate</a>
         <a class="btn btn-outline" href="tel:{SITE['phone_tel']}">Call {SITE['phone']}</a>
       </div>
       <div class="hero-badges">
@@ -111,7 +111,7 @@ def build_home():
       <p>We're building out our full photo gallery of local installs — in the meantime, here's a look at the styles and materials we install most.</p>
     </div>
     <div class="grid grid-4">{gallery_tiles}</div>
-    <div class="center" style="margin-top:28px"><a class="btn btn-navy-outline" href="/fence-gallery.html">View Full Gallery</a></div>
+    <div class="center" style="margin-top:28px"><a class="btn btn-navy-outline" href="fence-gallery.html">View Full Gallery</a></div>
   </div>
 </section>
 
@@ -133,7 +133,7 @@ def build_home():
         <div class="eyebrow">Pricing</div>
         <h2>What Does a Fence Cost?</h2>
         <p>Every project is different, but here's a general idea of what {SITE['city']}-area homeowners typically invest based on yard size and material. Get a free, no-obligation quote for exact pricing on your property.</p>
-        <a class="btn btn-blue" href="/fence-pricing.html">See Full Pricing Breakdown</a>
+        <a class="btn btn-blue" href="fence-pricing.html">See Full Pricing Breakdown</a>
       </div>
       <div>
         <table class="pricing">
@@ -154,7 +154,7 @@ def build_home():
       <p>We handle commercial fencing projects of every size — from a single dumpster enclosure to a full industrial security perimeter.</p>
     </div>
     <div class="grid grid-4">{commercial_tiles}</div>
-    <div class="center" style="margin-top:28px"><a class="btn btn-navy-outline" href="/commercial-fencing.html">See All Commercial Services</a></div>
+    <div class="center" style="margin-top:28px"><a class="btn btn-navy-outline" href="commercial-fencing.html">See All Commercial Services</a></div>
   </div>
 </section>
 
@@ -166,7 +166,7 @@ def build_home():
       <p>Not every project needs a full install — here's how we can help without taking over the whole job.</p>
     </div>
     <div class="grid grid-3">{diy_tiles}</div>
-    <div class="center" style="margin-top:24px"><a class="btn btn-blue" href="/diy-fence.html">Ask About DIY</a></div>
+    <div class="center" style="margin-top:24px"><a class="btn btn-blue" href="diy-fence.html">Ask About DIY</a></div>
   </div>
 </section>
 
@@ -193,7 +193,7 @@ def build_home():
         <h2>Proudly Serving {SITE['city']} &amp; the {SITE['region']} Area</h2>
         <p>We install and repair fences throughout {SITE['city']} and dozens of surrounding communities.</p>
         {town_chips(limit=14)}
-        <div style="margin-top:20px"><a class="btn btn-blue" href="/service-areas.html">See All Cities We Serve</a></div>
+        <div style="margin-top:20px"><a class="btn btn-blue" href="service-areas.html">See All Cities We Serve</a></div>
       </div>
     </div>
   </div>
@@ -207,7 +207,7 @@ def build_home():
     </div>
     <div style="max-width:800px;margin:0 auto">
       {faq_accordion(FAQS[:6], open_first=True)}
-      <div class="center" style="margin-top:24px"><a class="btn btn-navy-outline" href="/faq.html">See All FAQs</a></div>
+      <div class="center" style="margin-top:24px"><a class="btn btn-navy-outline" href="faq.html">See All FAQs</a></div>
     </div>
   </div>
 </section>
@@ -224,7 +224,7 @@ def build_home():
 def build_about():
     content = page_hero("About Us", f"Meet the {SITE['full_brand']} Team",
         f"{SITE['full_brand']} is a locally owned and operated fence company, proudly part of the national {SITE['brand']} network.",
-        [("Home", "/index.html"), ("About", None)])
+        [("Home", "index.html"), ("About", None)])
     content += f'''
 <section class="section">
   <div class="container">
@@ -283,7 +283,7 @@ def build_about():
 def build_service_areas():
     content = page_hero("Service Areas", f"Cities We Serve Near {SITE['city']}, {SITE['state']}",
         f"{SITE['full_brand']} provides fence installation, repair, and maintenance across {SITE['city']} and the entire {SITE['region']} region.",
-        [("Home", "/index.html"), ("Service Areas", None)])
+        [("Home", "index.html"), ("Service Areas", None)])
     content += f'''
 <section class="section">
   <div class="container">
@@ -308,7 +308,7 @@ def build_service_areas():
 def build_contact():
     content = page_hero("Contact Us", "Get Your Free Fence Estimate",
         f"Call, text, or send us a message and the {SITE['full_brand']} team will get back to you fast.",
-        [("Home", "/index.html"), ("Contact", None)])
+        [("Home", "index.html"), ("Contact", None)])
     content += f'''
 <section class="section">
   <div class="container">
@@ -340,7 +340,7 @@ def build_contact():
 def build_faq():
     content = page_hero("FAQ", "Frequently Asked Questions",
         "Answers to the questions we hear most from Lutz-area homeowners and businesses.",
-        [("Home", "/index.html"), ("FAQ", None)])
+        [("Home", "index.html"), ("FAQ", None)])
     content += f'''
 <section class="section">
   <div class="container">
@@ -365,7 +365,7 @@ def build_gallery():
 </div>''' for i, cat in enumerate(cats * 3))
     content = page_hero("Gallery", "Fence Gallery",
         f"A look at the fence styles and materials we install across {SITE['city']} and the {SITE['region']} area. Real project photos coming soon.",
-        [("Home", "/index.html"), ("Gallery", None)])
+        [("Home", "index.html"), ("Gallery", None)])
     content += f'''
 <section class="section">
   <div class="container">
@@ -390,7 +390,7 @@ def build_pricing():
 
     content = page_hero("Pricing", "What Does a Fence Cost?",
         f"General pricing guidance for fence installation in {SITE['city']} and the {SITE['region']} area. Get a free quote for exact pricing.",
-        [("Home", "/index.html"), ("Pricing", None)])
+        [("Home", "index.html"), ("Pricing", None)])
     content += f'''
 <section class="section">
   <div class="container">
@@ -419,7 +419,7 @@ def build_pricing():
 # ---------------------------------------------------------------- PRIVACY POLICY
 def build_privacy():
     content = page_hero("Legal", "Privacy Policy", f"Last updated {SITE['year']}.",
-        [("Home", "/index.html"), ("Privacy Policy", None)])
+        [("Home", "index.html"), ("Privacy Policy", None)])
     content += f'''
 <section class="section">
   <div class="container" style="max-width:800px">

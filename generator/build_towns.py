@@ -4,7 +4,7 @@ from pathlib import Path
 from data import SITE, TOWNS, MATERIALS, FAQS
 from templates import page, page_hero, faq_accordion, town_chips, cta_banner, map_section
 
-OUT = Path(__file__).resolve().parent.parent
+OUT = Path("/mnt/user-data/outputs/lutz-fences-site")
 
 def write(path, html):
     p = OUT / path
@@ -52,21 +52,21 @@ def build_towns():
         why = WHY_VARIANTS[i % len(WHY_VARIANTS)].format(town=name, brand=SITE['full_brand'])
         permit = PERMIT_VARIANTS[i % len(PERMIT_VARIANTS)].format(town=name, state=SITE['state_full'])
         near = neighbors(i)
-        near_links = ", ".join(f'<a href="/fence-company-{s}-fl.html">{n}</a>' for n, s in near)
+        near_links = ", ".join(f'<a href="fence-company-{s}-fl.html">{n}</a>' for n, s in near)
 
         mat_cards = "".join(f'''
 <div class="card">
   <div class="tile-img" style="aspect-ratio:16/10;margin-bottom:14px"><div class="ph {m['img']}"></div></div>
   <h3>{m['name']}</h3>
   <p>{MATERIAL_SNIPPETS.get(m['slug'], m['tagline'])}, installed for {name} properties.</p>
-  <a class="more" href="/{m['slug']}.html">Learn More &rarr;</a>
+  <a class="more" href="{m['slug']}.html">Learn More &rarr;</a>
 </div>''' for m in MATERIALS[:6])
 
         town_faqs = [FAQS[5], FAQS[16], FAQS[22], FAQS[24]]
 
         content = page_hero(f"Serving {name}, {SITE['state']}", f"Fence Company in {name}, {SITE['state']}",
             f"Residential &amp; commercial fence installation, repair, and maintenance for {name} and the surrounding {SITE['region']} area.",
-            [("Home", "/index.html"), ("Service Areas", "/service-areas.html"), (name, None)])
+            [("Home", "index.html"), ("Service Areas", "service-areas.html"), (name, None)])
 
         content += f'''
 <section class="section">
@@ -100,7 +100,7 @@ def build_towns():
         <h2>Also Serving Nearby</h2>
         <p>Along with {name}, we regularly work in {near_links}, and dozens of other {SITE['region']}-area communities.</p>
         {town_chips(exclude_slug=slug, limit=12)}
-        <div style="margin-top:16px"><a class="btn btn-navy-outline" href="/service-areas.html">See All Cities We Serve</a></div>
+        <div style="margin-top:16px"><a class="btn btn-navy-outline" href="service-areas.html">See All Cities We Serve</a></div>
       </div>
     </div>
   </div>

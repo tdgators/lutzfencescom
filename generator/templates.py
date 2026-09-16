@@ -12,29 +12,29 @@ def nav_html(active=""):
               <div class="dropdown">{dropdown}</div></li>'''
         return f'<li><a href="{href}">{label}</a></li>'
 
-    materials_links = "".join(f'<a href="/{m["slug"]}.html">{m["name"]}</a>' for m in MATERIALS)
-    styles_links = "".join(f'<a href="/{s["slug"]}.html">{s["name"]}</a>' for s in STYLES)
+    materials_links = "".join(f'<a href="{m["slug"]}.html">{m["name"]}</a>' for m in MATERIALS)
+    styles_links = "".join(f'<a href="{s["slug"]}.html">{s["name"]}</a>' for s in STYLES)
     residential_dd = f'''
       <div class="dd-head">Fence Materials</div>
       {materials_links}
       <div class="dd-head">Fence Styles</div>
       {styles_links}
       <div class="dd-head">More</div>
-      <a href="/fence-gallery.html">Fence Gallery</a>
-      <a href="/fence-pricing.html">Pricing</a>
+      <a href="fence-gallery.html">Fence Gallery</a>
+      <a href="fence-pricing.html">Pricing</a>
     '''
-    commercial_dd = "".join(f'<a href="/{c["slug"]}.html">{c["name"]}</a>' for c in COMMERCIAL)
-    commercial_dd = f'<a href="/commercial-fencing.html">Commercial Fencing (All)</a>' + commercial_dd
-    other_dd = "".join(f'<a href="/{o["slug"]}.html">{o["name"]}</a>' for o in OTHER_SERVICES)
-    about_dd = '<a href="/about-us.html">Meet the Team</a><a href="/service-areas.html">Service Areas</a>'
-    contact_dd = '<a href="/contact-us.html">Contact Us</a><a href="/faq.html">FAQs</a>'
+    commercial_dd = "".join(f'<a href="{c["slug"]}.html">{c["name"]}</a>' for c in COMMERCIAL)
+    commercial_dd = f'<a href="commercial-fencing.html">Commercial Fencing (All)</a>' + commercial_dd
+    other_dd = "".join(f'<a href="{o["slug"]}.html">{o["name"]}</a>' for o in OTHER_SERVICES)
+    about_dd = '<a href="about-us.html">Meet the Team</a><a href="service-areas.html">Service Areas</a>'
+    contact_dd = '<a href="contact-us.html">Contact Us</a><a href="faq.html">FAQs</a>'
 
     items = [
-        li("Home", "/index.html", "home"),
+        li("Home", "index.html", "home"),
         li("Residential", "#", "residential", residential_dd),
         li("Commercial", "#", "commercial", commercial_dd),
         li("Other Services", "#", "other", other_dd),
-        li("Fence Gallery", "/fence-gallery.html", "gallery"),
+        li("Fence Gallery", "fence-gallery.html", "gallery"),
         li("About", "#", "about", about_dd),
         li("Contact", "#", "contact", contact_dd),
     ]
@@ -51,8 +51,8 @@ def header_html(active=""):
 </div>
 <header class="site-header">
   <div class="container nav-wrap">
-    <a class="brand" href="/index.html">
-      <img src="/assets/images/logo.png" alt="{SITE['full_brand']} logo" width="54" height="54">
+    <a class="brand" href="index.html">
+      <img src="assets/images/logo.png" alt="{SITE['full_brand']} logo" width="54" height="54">
       <span>{SITE['brand']}<small>{SITE['city']}, {SITE['state']}</small></span>
     </a>
     <nav class="primary-nav">
@@ -60,7 +60,7 @@ def header_html(active=""):
     </nav>
     <div class="header-cta">
       <a class="header-phone" href="tel:{SITE['phone_tel']}"><span>Call or Text</span>{SITE['phone']}</a>
-      <a class="btn btn-red" href="/contact-us.html">Get Free Quote</a>
+      <a class="btn btn-red" href="contact-us.html">Get Free Quote</a>
       <button class="menu-toggle" aria-label="Menu">&#9776;</button>
     </div>
   </div>
@@ -72,15 +72,15 @@ def header_html(active=""):
 
 def footer_html():
     popular_towns = TOWNS[:10]
-    town_links = "".join(f'<li><a href="/fence-company-{slug}-fl.html">{name}, FL</a></li>' for name, slug in popular_towns)
-    material_links = "".join(f'<li><a href="/{m["slug"]}.html">{m["name"]}</a></li>' for m in MATERIALS[:6])
+    town_links = "".join(f'<li><a href="fence-company-{slug}-fl.html">{name}, FL</a></li>' for name, slug in popular_towns)
+    material_links = "".join(f'<li><a href="{m["slug"]}.html">{m["name"]}</a></li>' for m in MATERIALS[:6])
     return f'''
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
       <div>
         <div class="footer-brand">
-          <img src="/assets/images/logo.png" alt="{SITE['full_brand']} logo" width="46" height="46">
+          <img src="assets/images/logo.png" alt="{SITE['full_brand']} logo" width="46" height="46">
           <span>{SITE['full_brand']}</span>
         </div>
         <p>{SITE['name']} ({SITE['domain']}) is a marketing website for {SITE['brand']}&trade;, serving {SITE['city']}, {SITE['state']} and the surrounding {SITE['region']} area with residential and commercial fence installation, repair, and maintenance.</p>
@@ -93,37 +93,37 @@ def footer_html():
       <div>
         <h4>Company</h4>
         <ul>
-          <li><a href="/about-us.html">Meet the Team</a></li>
-          <li><a href="/service-areas.html">Service Areas</a></li>
-          <li><a href="/fence-gallery.html">Fence Gallery</a></li>
-          <li><a href="/fence-pricing.html">Pricing</a></li>
-          <li><a href="/faq.html">FAQs</a></li>
-          <li><a href="/contact-us.html">Contact Us</a></li>
+          <li><a href="about-us.html">Meet the Team</a></li>
+          <li><a href="service-areas.html">Service Areas</a></li>
+          <li><a href="fence-gallery.html">Fence Gallery</a></li>
+          <li><a href="fence-pricing.html">Pricing</a></li>
+          <li><a href="faq.html">FAQs</a></li>
+          <li><a href="contact-us.html">Contact Us</a></li>
         </ul>
       </div>
       <div>
         <h4>Popular Services</h4>
         <ul>
           {material_links}
-          <li><a href="/commercial-fencing.html">Commercial Fencing</a></li>
-          <li><a href="/fence-repair.html">Fence Repair</a></li>
+          <li><a href="commercial-fencing.html">Commercial Fencing</a></li>
+          <li><a href="fence-repair.html">Fence Repair</a></li>
         </ul>
       </div>
       <div>
         <h4>Popular Service Areas</h4>
         <ul>
           {town_links}
-          <li><a href="/service-areas.html"><strong>See All Cities &rarr;</strong></a></li>
+          <li><a href="service-areas.html"><strong>See All Cities &rarr;</strong></a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <div>&copy; {SITE['year']} {SITE['brand']}&trade;. All rights reserved. {SITE['name']} is a registered DBA in the State of {SITE['state_full']}.</div>
-      <div><a href="/privacy-policy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="tel:{SITE['phone_tel']}">{SITE['phone']}</a> &nbsp;|&nbsp; <a href="mailto:{SITE['email']}">{SITE['email']}</a></div>
+      <div><a href="privacy-policy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="tel:{SITE['phone_tel']}">{SITE['phone']}</a> &nbsp;|&nbsp; <a href="mailto:{SITE['email']}">{SITE['email']}</a></div>
     </div>
   </div>
 </footer>
-<script src="/assets/js/main.js"></script>
+<script src="assets/js/main.js"></script>
 '''
 
 
@@ -137,15 +137,15 @@ def page(title, description, path, content, canonical=None):
 <title>{title}</title>
 <meta name="description" content="{description}">
 <link rel="canonical" href="{canonical}">
-<link rel="icon" href="/assets/images/favicon.png">
-<link rel="apple-touch-icon" href="/assets/images/logo.png">
+<link rel="icon" href="assets/images/favicon.png">
+<link rel="apple-touch-icon" href="assets/images/logo.png">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
-<meta property="og:image" content="/assets/images/logo.png">
+<meta property="og:image" content="assets/images/logo.png">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/styles.css">
+<link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 {header_html()}
@@ -175,7 +175,7 @@ def page_hero(eyebrow, title, lead, breadcrumbs_items=None):
     <h1>{title}</h1>
     <p class="lead">{lead}</p>
     <div class="cta-row">
-      <a class="btn btn-red" href="/contact-us.html">Get a Free Estimate</a>
+      <a class="btn btn-red" href="contact-us.html">Get a Free Estimate</a>
       <a class="btn btn-outline" href="tel:{SITE['phone_tel']}">Call {SITE['phone']}</a>
     </div>
   </div>
@@ -287,7 +287,7 @@ def town_chips(exclude_slug=None, limit=None):
     if limit:
         towns = towns[:limit]
     return '<div class="chip-grid">' + "".join(
-        f'<a class="chip" href="/fence-company-{s}-fl.html">{n}, FL</a>' for n, s in towns
+        f'<a class="chip" href="fence-company-{s}-fl.html">{n}, FL</a>' for n, s in towns
     ) + '</div>'
 
 
@@ -298,7 +298,7 @@ def cta_banner(title="Ready to Get Started?", sub="Get a free, no-obligation fen
     <h2>{title}</h2>
     <p style="max-width:560px;margin:0 auto 24px">{sub}</p>
     <div class="cta-row" style="justify-content:center">
-      <a class="btn btn-red" href="/contact-us.html">Get a Free Estimate</a>
+      <a class="btn btn-red" href="contact-us.html">Get a Free Estimate</a>
       <a class="btn btn-outline" href="tel:{SITE['phone_tel']}">Call {SITE['phone']}</a>
     </div>
   </div>
