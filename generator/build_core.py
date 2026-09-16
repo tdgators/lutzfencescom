@@ -360,14 +360,18 @@ def build_faq():
 
 # ---------------------------------------------------------------- GALLERY
 def build_gallery():
-    cats = [("Vinyl", "vinyl"), ("Wood", "wood"), ("Aluminum", "aluminum"),
-            ("Chain Link", "chain-link"), ("Composite", "composite"), ("Commercial", "security")]
+    cats = [
+        ("Vinyl Privacy", "vinyl"), ("Wood Stockade", "wood"), ("Aluminum", "aluminum"),
+        ("Chain Link", "chain-link"), ("Composite", "composite"), ("Commercial / Security", "security"),
+        ("Picket", "picket"), ("Split Rail", "split-rail"), ("Horizontal", "horizontal"),
+        ("Steel & Wrought Iron", "steel"),
+    ]
     tiles = "".join(f'''
 <div class="tile-img">{fence_illustration(kind)}
   <div class="tile-label">{cat} Fence — {SITE['city']}, {SITE['state']} area</div>
-</div>''' for cat, kind in cats * 3)
+</div>''' for cat, kind in cats)
     content = page_hero("Gallery", "Fence Gallery",
-        f"A look at the fence styles and materials we install across {SITE['city']} and the {SITE['region']} area. Real project photos coming soon.",
+        f"A look at the fence materials and styles we install across {SITE['city']} and the {SITE['region']} area.",
         [("Home", "index.html"), ("Gallery", None)])
     content += f'''
 <section class="section">

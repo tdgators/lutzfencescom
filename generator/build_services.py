@@ -88,7 +88,7 @@ def build_styles():
         "fence-styles.html", content))
 
     style_kind = {
-        "privacy-fence": "vinyl", "semi-privacy-fence": "composite", "horizontal-fence": "wood",
+        "privacy-fence": "vinyl", "semi-privacy-fence": "composite", "horizontal-fence": "horizontal",
         "picket-fence": "picket", "split-rail-fence": "split-rail",
     }
     for s in STYLES:

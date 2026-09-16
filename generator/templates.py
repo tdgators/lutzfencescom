@@ -409,8 +409,27 @@ _SVG_KINDS = {
     "split-rail": svg_split_rail,
 }
 
+# Real installed-fence photos, keyed by the same "kind" strings used above.
+# Any kind not listed here (currently just "steel") falls back to the SVG
+# illustration since no real photo is available for it yet.
+_PHOTO_KINDS = {
+    "vinyl": "vinyl-fence.jpg",
+    "wood": "wood-fence.jpg",
+    "aluminum": "aluminum-fence.jpg",
+    "chain-link": "chain-link-fence.jpg",
+    "composite": "composite-fence.jpg",
+    "security": "security-fence.jpg",
+    "picket": "picket-fence.jpg",
+    "split-rail": "split-rail-fence.jpg",
+    "horizontal": "horizontal-fence.jpg",
+}
+
 
 def fence_illustration(kind):
+    photo = _PHOTO_KINDS.get(kind)
+    if photo:
+        return (f'<img src="assets/images/materials/{photo}" alt="{kind.replace("-", " ").title()} fence" '
+                f'loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">')
     fn = _SVG_KINDS.get(kind, svg_vinyl)
     return fn()
 
