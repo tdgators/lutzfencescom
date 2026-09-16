@@ -291,6 +291,130 @@ def town_chips(exclude_slug=None, limit=None):
     ) + '</div>'
 
 
+def _svg_wrap(inner, sky="#e7edf6", ground="#d7e6d4"):
+    return f'''<svg viewBox="0 0 480 240" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:100%;display:block;">
+  <rect x="0" y="0" width="480" height="240" fill="{sky}"/>
+  <rect x="0" y="185" width="480" height="55" fill="{ground}"/>
+  {inner}
+</svg>'''
+
+
+def _posts(xs, top=95, bottom=205, w=8, color="#5a6470"):
+    return "".join(f'<rect x="{x-w/2:.1f}" y="{top}" width="{w}" height="{bottom-top}" fill="{color}"/>' for x in xs)
+
+
+def svg_vinyl():
+    posts_x = [30, 165, 300, 435]
+    boards = "".join(
+        f'<rect x="{x:.1f}" y="105" width="12" height="90" rx="2" fill="{"#f6f3ea" if i % 2 == 0 else "#efece0"}" stroke="#d8d3c2" stroke-width="1"/>'
+        for i, x in enumerate([20 + n * 15.2 for n in range(30)])
+    )
+    caps = "".join(f'<rect x="{x-9}" y="88" width="18" height="10" rx="2" fill="#e7e2d2"/>' for x in posts_x)
+    rails = '<rect x="10" y="118" width="460" height="8" fill="#e2ddcb"/><rect x="10" y="178" width="460" height="8" fill="#e2ddcb"/>'
+    return _svg_wrap(boards + rails + _posts(posts_x, top=90, color="#c9c2ab") + caps)
+
+
+def svg_wood():
+    boards = "".join(
+        f'<rect x="{x:.1f}" y="{100+(4 if i%3==0 else 0)}" width="13" height="{100-(4 if i%3==0 else 0)}" fill="{["#b9895a","#a97845","#c39569"][i%3]}" stroke="#8f6236" stroke-width="1"/>'
+        for i, x in enumerate([18 + n * 15 for n in range(31)])
+    )
+    posts_x = [30, 165, 300, 435]
+    return _svg_wrap(boards + _posts(posts_x, top=92, bottom=205, w=12, color="#7c5330"))
+
+
+def svg_composite():
+    boards = "".join(
+        f'<rect x="{x:.1f}" y="100" width="13" height="100" fill="{"#8a7361" if i % 2 == 0 else "#93806e"}" stroke="#6f5c4c" stroke-width="1"/>'
+        for i, x in enumerate([18 + n * 15 for n in range(31)])
+    )
+    posts_x = [30, 165, 300, 435]
+    rail = '<rect x="10" y="96" width="460" height="7" fill="#6f5c4c"/>'
+    return _svg_wrap(boards + rail + _posts(posts_x, top=92, bottom=205, w=12, color="#5f4d3f"))
+
+
+def svg_aluminum():
+    xs = [24 + n * 11.5 for n in range(40)]
+    pickets = "".join(f'<rect x="{x-2.5:.1f}" y="100" width="5" height="100" fill="#262b31"/>' for x in xs)
+    finials = "".join(f'<circle cx="{x:.1f}" cy="97" r="4" fill="#262b31"/>' for x in xs)
+    rails = '<rect x="10" y="112" width="460" height="6" fill="#1d2126"/><rect x="10" y="178" width="460" height="6" fill="#1d2126"/>'
+    posts_x = [30, 165, 300, 435]
+    return _svg_wrap(pickets + rails + finials + _posts(posts_x, top=88, bottom=205, w=9, color="#181c20"))
+
+
+def svg_steel():
+    xs = [24 + n * 13.5 for n in range(34)]
+    pickets = "".join(f'<rect x="{x-2.2:.1f}" y="98" width="4.4" height="102" fill="#1a1d21"/>' for x in xs)
+    finials = "".join(
+        f'<path d="M {x-5:.1f} 98 L {x:.1f} 84 L {x+5:.1f} 98 Z" fill="#1a1d21"/><circle cx="{x:.1f}" cy="82" r="2.6" fill="#c9a227"/>'
+        for x in xs
+    )
+    scroll = "".join(f'<circle cx="{x:.1f}" cy="150" r="6" fill="none" stroke="#1a1d21" stroke-width="3"/>' for x in xs[::3])
+    rails = '<rect x="10" y="110" width="460" height="6" fill="#101215"/><rect x="10" y="188" width="460" height="6" fill="#101215"/>'
+    posts_x = [30, 165, 300, 435]
+    return _svg_wrap(pickets + rails + scroll + finials + _posts(posts_x, top=78, bottom=210, w=9, color="#101215"))
+
+
+def svg_chain_link(security=False):
+    lines = []
+    step = 16
+    for i in range(-2, 32):
+        x0 = i * step
+        lines.append(f'<path d="M {x0} 205 L {x0+step*4} 100" stroke="#9aa4ad" stroke-width="2" fill="none"/>')
+        lines.append(f'<path d="M {x0} 100 L {x0+step*4} 205" stroke="#9aa4ad" stroke-width="2" fill="none"/>')
+    mesh = f'<clipPath id="meshclip"><rect x="10" y="100" width="460" height="105"/></clipPath><g clip-path="url(#meshclip)">{"".join(lines)}</g>'
+    posts_x = [30, 165, 300, 435]
+    top_y = 92 if security else 100
+    rail = f'<rect x="10" y="{top_y-4}" width="460" height="6" fill="#7c858d"/><rect x="10" y="201" width="460" height="6" fill="#7c858d"/>'
+    barbs = ""
+    if security:
+        barbs = "".join(
+            f'<path d="M {x} 92 L {x+22} 80 M {x+6} 88 L {x+2} 94 M {x+12} 84 L {x+8} 90 M {x+18} 81 L {x+14} 87" stroke="#7c858d" stroke-width="2" fill="none"/>'
+            for x in [20, 130, 240, 350]
+        )
+    return _svg_wrap(mesh + rail + barbs + _posts(posts_x, top=(80 if security else 90), bottom=205, w=8, color="#5a6470"))
+
+
+def svg_picket():
+    xs = [20 + n * 13.2 for n in range(34)]
+    pickets = "".join(
+        f'<path d="M {x-5:.1f} 205 L {x-5:.1f} 128 L {x:.1f} 115 L {x+5:.1f} 128 L {x+5:.1f} 205 Z" fill="{"#fbfaf5" if i%2==0 else "#f2f0e6"}" stroke="#d8d3c2" stroke-width="1"/>'
+        for i, x in enumerate(xs)
+    )
+    rails = '<rect x="10" y="150" width="460" height="7" fill="#e2ddcb"/><rect x="10" y="185" width="460" height="7" fill="#e2ddcb"/>'
+    posts_x = [30, 165, 300, 435]
+    return _svg_wrap(pickets + rails + _posts(posts_x, top=100, bottom=205, w=10, color="#c9c2ab"))
+
+
+def svg_split_rail():
+    posts_x = [30, 130, 230, 330, 430]
+    posts = _posts(posts_x, top=110, bottom=205, w=13, color="#8a6a42")
+    rails = ""
+    for i in range(len(posts_x) - 1):
+        x1, x2 = posts_x[i], posts_x[i + 1]
+        rails += f'<rect x="{x1}" y="128" width="{x2-x1}" height="11" rx="4" fill="#a9814f"/>'
+        rails += f'<rect x="{x1}" y="168" width="{x2-x1}" height="11" rx="4" fill="#a9814f"/>'
+    return _svg_wrap(rails + posts)
+
+
+_SVG_KINDS = {
+    "vinyl": svg_vinyl,
+    "wood": svg_wood,
+    "composite": svg_composite,
+    "aluminum": svg_aluminum,
+    "steel": svg_steel,
+    "chain-link": svg_chain_link,
+    "security": lambda: svg_chain_link(security=True),
+    "picket": svg_picket,
+    "split-rail": svg_split_rail,
+}
+
+
+def fence_illustration(kind):
+    fn = _SVG_KINDS.get(kind, svg_vinyl)
+    return fn()
+
+
 def cta_banner(title="Ready to Get Started?", sub="Get a free, no-obligation fence estimate today."):
     return f'''
 <section class="section section-navy">

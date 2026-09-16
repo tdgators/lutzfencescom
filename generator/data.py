@@ -43,7 +43,7 @@ TOWNS = [
 MATERIALS = [
     dict(slug="vinyl-fence", name="Vinyl Fence", short="Vinyl",
          tagline="Vinyl fencing that never needs painting, staining, or sealing.",
-         img="ph-2",
+         img="vinyl",
          body=[
             "Vinyl is one of the most popular fence materials we install across the Tampa Bay area, and for good reason: it never needs to be painted, stained, or sealed, it won't rot, splinter, or rust, and Florida's heat and humidity barely touch it. We install vinyl in solid-board privacy panels, semi-privacy (spaced-picket) panels, and classic picket, lattice-top, and scalloped styles, in heights from 4' to 6'.",
             "Every vinyl fence we install uses reinforced rails and posts engineered to resist sagging and warping in our heat, with color that's built into the material rather than painted on, so it won't chalk, fade, or peel in the Florida sun the way painted wood can. Popular color options include white, almond/tan, and clay.",
@@ -54,7 +54,7 @@ MATERIALS = [
                     "4', 5', and 6' heights available", "Pool-code-compliant gate hardware available"]),
     dict(slug="wood-fence", name="Wood Fence", short="Wood",
          tagline="Classic cedar and pressure-treated pine, built the right way.",
-         img="ph-1",
+         img="wood",
          body=[
             "There's nothing like a wood fence for warmth and classic curb appeal, and we install both cedar and pressure-treated pine across Lutz and the surrounding communities. Pressure-treated pine is our most budget-friendly option and holds up well to Florida's climate when properly sealed; cedar offers a richer grain and natural insect resistance at a step up in price.",
             "We build wood fences in stockade (tight board-to-board), board-on-board, shadowbox, picket, horizontal, and split-rail styles, so whether you want full privacy or a more open, decorative look, we can build it. Because Florida's humidity is tough on any wood fence, we recommend staining or sealing within the first year and re-staining every 2–3 years — we offer that service too.",
@@ -64,7 +64,7 @@ MATERIALS = [
                     "Concrete-set posts for stability", "Staining & sealing service available", "Budget-friendly option available"]),
     dict(slug="aluminum-fence", name="Aluminum Fence", short="Aluminum",
          tagline="Decorative, rust-proof, and the go-to choice for pool enclosures.",
-         img="ph-3",
+         img="aluminum",
          body=[
             "Aluminum is a Florida favorite — it's decorative, virtually maintenance-free, and because it's rust-proof, it holds up beautifully to our humidity and coastal air without ever needing to be repainted. It's also the material most homeowners choose for pool enclosures, since open-style aluminum panels meet Florida's pool safety code while still giving you a clear view of the water.",
             "We install powder-coated aluminum in black, bronze, and white, in flat-top, spear-top, and puppy-picket (extra bottom rail for pets) styles, at 4', 5', and 6' heights. Aluminum won't warp, crack, or fade, and every panel we install carries a manufacturer warranty.",
@@ -73,7 +73,7 @@ MATERIALS = [
                     "Flat-top, spear-top, and puppy-picket styles", "Manufacturer warranty included"]),
     dict(slug="chain-link-fence", name="Chain Link Fence", short="Chain Link",
          tagline="The most budget-friendly way to secure a large property.",
-         img="ph-3",
+         img="chain-link",
          body=[
             "Chain link is the most cost-effective fencing material we install, and it's still one of the best options when you need to enclose a large yard, dog run, or commercial lot quickly and affordably. We install galvanized chain link as well as black and green vinyl-coated chain link, which blends in far better against landscaping than bare galvanized steel.",
             "Heights typically run 4' for residential and 6'–10' for commercial and security applications, with options for privacy slats, barbed wire, and commercial-grade gate hardware including cantilever slide gates.",
@@ -82,7 +82,7 @@ MATERIALS = [
                     "Privacy slat inserts available", "Fast installation"]),
     dict(slug="composite-fence", name="Composite Fence", short="Composite",
          tagline="Premium, nearly maintenance-free, built to outlast wood.",
-         img="ph-2",
+         img="composite",
          body=[
             "Composite fencing is the highest-end material we offer — a blend of wood fiber and recycled plastic that gives you the look of a rich wood fence without the rot, splintering, insect damage, or repeated staining. It's an especially good match for Florida's heat and humidity, since composite won't warp, crack, or fade the way natural wood can over time.",
             "Composite carries the longest manufacturer warranties of any material we install, and it's available in a range of wood-tone colors and privacy, semi-privacy, and horizontal styles.",
@@ -91,7 +91,7 @@ MATERIALS = [
                     "Multiple wood-tone colors", "Privacy, semi-privacy & horizontal styles"]),
     dict(slug="steel-wrought-iron-fence", name="Steel & Wrought Iron Fence", short="Steel & Wrought Iron",
          tagline="Ornamental strength for estates, pools, and commercial security.",
-         img="ph-1",
+         img="steel",
          body=[
             "For homeowners and businesses who want a fence that makes a statement while adding real security, we install ornamental steel and wrought-iron-style fencing. It's a common choice for estate entrances, pool enclosures that need a more upscale look than standard aluminum, and commercial properties that need a serious security perimeter.",
             "All steel fencing we install is powder-coated to resist rust and corrosion in Florida's humid, salt-air climate, and can be custom-fabricated with finials, scrollwork, and matching gates.",

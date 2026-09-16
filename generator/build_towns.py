@@ -2,7 +2,7 @@
 """Builds one landing page per service-area town."""
 from pathlib import Path
 from data import SITE, TOWNS, MATERIALS, FAQS
-from templates import page, page_hero, faq_accordion, town_chips, cta_banner, map_section
+from templates import page, page_hero, faq_accordion, town_chips, cta_banner, map_section, fence_illustration
 
 OUT = Path("/mnt/user-data/outputs/lutz-fences-site")
 
@@ -45,6 +45,9 @@ def neighbors(idx):
     return [TOWNS[(idx - 1) % n], TOWNS[(idx + 1) % n], TOWNS[(idx + 2) % n]]
 
 
+TOWN_HERO_KINDS = ["vinyl", "wood", "aluminum", "chain-link", "composite", "steel", "picket", "split-rail"]
+
+
 def build_towns():
     for i, (name, slug) in enumerate(TOWNS):
         intro = INTRO_VARIANTS[i % len(INTRO_VARIANTS)].format(
@@ -56,7 +59,7 @@ def build_towns():
 
         mat_cards = "".join(f'''
 <div class="card">
-  <div class="tile-img" style="aspect-ratio:16/10;margin-bottom:14px"><div class="ph {m['img']}"></div></div>
+  <div class="tile-img" style="aspect-ratio:16/10;margin-bottom:14px">{fence_illustration(m['img'])}</div>
   <h3>{m['name']}</h3>
   <p>{MATERIAL_SNIPPETS.get(m['slug'], m['tagline'])}, installed for {name} properties.</p>
   <a class="more" href="{m['slug']}.html">Learn More &rarr;</a>
@@ -77,7 +80,7 @@ def build_towns():
         <p>{why}</p>
         <p>{permit}</p>
       </div>
-      <div class="tile-img"><div class="ph ph-{(i % 4) + 1}"></div></div>
+      <div class="tile-img">{fence_illustration(TOWN_HERO_KINDS[i % len(TOWN_HERO_KINDS)])}</div>
     </div>
   </div>
 </section>

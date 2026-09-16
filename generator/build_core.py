@@ -2,7 +2,7 @@
 """Builds: homepage, about, service-areas, contact, faq, gallery, pricing, privacy-policy"""
 from pathlib import Path
 from data import SITE, TOWNS, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, PRICING_TABLE
-from templates import page, page_hero, faq_accordion, mini_quote_form, contact_form_card, map_section, town_chips, cta_banner
+from templates import page, page_hero, faq_accordion, mini_quote_form, contact_form_card, map_section, town_chips, cta_banner, fence_illustration
 
 OUT = Path("/mnt/user-data/outputs/lutz-fences-site")
 
@@ -16,19 +16,21 @@ def write(path, html):
 def build_home():
     service_tiles = "".join(f'''
 <div class="card">
-  <div class="tile-img" style="aspect-ratio:16/10;margin-bottom:14px"><div class="ph {m['img']}"></div></div>
+  <div class="tile-img" style="aspect-ratio:16/10;margin-bottom:14px">{fence_illustration(m['img'])}</div>
   <h3>{m['name']}</h3>
   <p>{m['tagline']}</p>
   <a class="more" href="{m['slug']}.html">Learn More &rarr;</a>
 </div>''' for m in MATERIALS)
 
     gallery_tiles = "".join(f'''
-<div class="tile-img"><div class="ph ph-{(i%4)+1}"></div>
+<div class="tile-img">{fence_illustration(kind)}
   <div class="tile-label">{label}</div>
-</div>''' for i, label in enumerate([
-        "Vinyl Privacy Fence", "Aluminum Pool Enclosure", "Wood Privacy Fence", "Chain Link Install",
-        "Composite Fence", "Commercial Security Fence", "Picket Fence", "HOA Community Fencing",
-    ]))
+</div>''' for label, kind in [
+        ("Vinyl Privacy Fence", "vinyl"), ("Aluminum Pool Enclosure", "aluminum"),
+        ("Wood Privacy Fence", "wood"), ("Chain Link Install", "chain-link"),
+        ("Composite Fence", "composite"), ("Commercial Security Fence", "security"),
+        ("Picket Fence", "picket"), ("HOA Community Fencing", "steel"),
+    ])
 
     why_items = [
         ("Licensed, Bonded &amp; Insured", "76 FENCE is licensed, bonded, and insured in all 50 states, on every job we do."),
@@ -235,7 +237,7 @@ def build_about():
         <p>{SITE['full_brand']} brings the training, purchasing power, and manufacturer relationships of the national {SITE['brand']} network to a business that's owned and run right here in the Tampa Bay area. The {SITE['brand']} name is a nod to 1776 — American craftsmanship, straightforward dealing, and standing behind the work.</p>
         <p>We install and repair fencing for homeowners, HOAs, and businesses across {SITE['city']} and the surrounding communities, and we handle the permitting process, the installation, and anything that needs fixing down the road.</p>
       </div>
-      <div class="tile-img"><div class="ph ph-1"></div></div>
+      <div class="tile-img">{fence_illustration('wood')}</div>
     </div>
   </div>
 </section>
@@ -248,12 +250,12 @@ def build_about():
     </div>
     <div class="grid grid-2">
       <div class="card">
-        <div class="tile-img" style="aspect-ratio:1/1;margin-bottom:16px"><div class="ph ph-2"></div></div>
+        <div class="tile-img" style="aspect-ratio:1/1;margin-bottom:16px">{fence_illustration('steel')}</div>
         <h3>Tom Donnelly &mdash; Owner</h3>
         <p>Tom brings over 20 years of experience in information technology within the finance and banking industries, having served as both a principal engineer and a people leader managing global teams. As owner of {SITE['full_brand']}, Tom is focused on building a trusted, locally operated business that delivers exceptional craftsmanship and customer service, bringing the strength and professionalism of the {SITE['brand']} brand to the {SITE['city']} community.</p>
       </div>
       <div class="card">
-        <div class="tile-img" style="aspect-ratio:1/1;margin-bottom:16px"><div class="ph ph-3"></div></div>
+        <div class="tile-img" style="aspect-ratio:1/1;margin-bottom:16px">{fence_illustration('aluminum')}</div>
         <h3>Kate Donnelly &mdash; Owner</h3>
         <p>Kate brings over 20 years of experience serving the federal government as an intelligence analyst, with a master's degree and deep experience in strategic analysis and attention to detail. As owner of {SITE['full_brand']}, Kate is committed to building a business grounded in integrity, operational excellence, and outstanding customer service for every {SITE['city']}-area project.</p>
       </div>
@@ -358,11 +360,12 @@ def build_faq():
 
 # ---------------------------------------------------------------- GALLERY
 def build_gallery():
-    cats = ["Vinyl", "Wood", "Aluminum", "Chain Link", "Composite", "Commercial"]
+    cats = [("Vinyl", "vinyl"), ("Wood", "wood"), ("Aluminum", "aluminum"),
+            ("Chain Link", "chain-link"), ("Composite", "composite"), ("Commercial", "security")]
     tiles = "".join(f'''
-<div class="tile-img"><div class="ph ph-{(i%4)+1}"></div>
+<div class="tile-img">{fence_illustration(kind)}
   <div class="tile-label">{cat} Fence — {SITE['city']}, {SITE['state']} area</div>
-</div>''' for i, cat in enumerate(cats * 3))
+</div>''' for cat, kind in cats * 3)
     content = page_hero("Gallery", "Fence Gallery",
         f"A look at the fence styles and materials we install across {SITE['city']} and the {SITE['region']} area. Real project photos coming soon.",
         [("Home", "index.html"), ("Gallery", None)])
