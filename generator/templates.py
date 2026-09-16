@@ -422,6 +422,7 @@ _PHOTO_KINDS = {
     "picket": "picket-fence.jpg",
     "split-rail": "split-rail-fence.jpg",
     "horizontal": "horizontal-fence.jpg",
+    "steel": "steel-fence.jpg",
 }
 
 
