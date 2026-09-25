@@ -5,6 +5,10 @@ SITE = dict(
     full_brand="76 FENCE Lutz",
     phone="813-669-4511",
     phone_tel="+18136694511",
+    # Parent company — Lutz and Tampa are both locations of 76 FENCE Tampa
+    parent="76 FENCE Tampa",
+    tampa_phone="813-669-4555",
+    tampa_phone_tel="+18136694555",
     email="tampa@76fence.com",
     city="Lutz",
     state="FL",
@@ -216,6 +220,7 @@ PRICING_TABLE = {
 # 76-Week Limited Workmanship Warranty — the single source for every warranty
 # mention on the site. Edit here and re-run build_all.py.
 WARRANTY = dict(
+    issuer="76 FENCE Tampa",  # the company that issues and honors the warranty
     weeks=76,
     name="76-Week Limited Workmanship Warranty",
     short="76-Week Workmanship Warranty",
@@ -225,7 +230,7 @@ WARRANTY = dict(
         "Posts that were improperly set, aligned, or installed",
         "Panels, rails, pickets, and fence fabric that were improperly assembled or attached",
         "Gates that were improperly hung, including hinges and latches we installed",
-        "Fasteners and other components installed by 76 FENCE",
+        "Fasteners and other components installed by 76 FENCE Tampa",
     ],
     not_covered=[
         "Normal wear and tear",
@@ -233,25 +238,25 @@ WARRANTY = dict(
         "Soil settlement, erosion, ground movement, or drainage conditions",
         "Trees, roots, vegetation, animals, insects, vehicles, lawn equipment, or accidents",
         "Improper maintenance or misuse",
-        "Alterations, repairs, adjustments, or modifications by anyone other than 76 FENCE",
+        "Alterations, repairs, adjustments, or modifications by anyone other than 76 FENCE Tampa",
         "Material conditions such as fading, rust, warping, cracking, or splitting (see manufacturer warranty)",
     ],
     terms=[
         ("Coverage Period",
-         "76 FENCE warrants the workmanship and assembly of your fence installation for 76 weeks from the installation completion date, as recorded in 76 FENCE's records."),
+         "76 FENCE Tampa warrants the workmanship and assembly of your fence installation for 76 weeks from the installation completion date, as recorded in 76 FENCE Tampa's records."),
         ("Eligibility",
-         "This warranty is conditioned on payment in full of the contract price for the installation. 76 FENCE is not obligated to perform warranty service on any project with an outstanding balance. The warranty period begins on the installation completion date regardless of when payment is received, and is not extended by any delay in payment."),
+         "This warranty is conditioned on payment in full of the contract price for the installation. 76 FENCE Tampa is not obligated to perform warranty service on any project with an outstanding balance. The warranty period begins on the installation completion date regardless of when payment is received, and is not extended by any delay in payment."),
         ("What Is Covered",
-         "This warranty covers defects resulting directly from the workmanship or installation performed by 76 FENCE. Covered workmanship may include improper installation or assembly of posts, panels, rails, pickets, fence fabric, gates, hinges, latches, fasteners, and other components installed by 76 FENCE."),
+         "This warranty covers defects resulting directly from the workmanship or installation performed by 76 FENCE Tampa. Covered workmanship may include improper installation or assembly of posts, panels, rails, pickets, fence fabric, gates, hinges, latches, fasteners, and other components installed by 76 FENCE Tampa."),
         ("Our Remedy",
-         "If a covered workmanship defect is identified during the warranty period, 76 FENCE will inspect the affected area and, if determined to be covered by this warranty, repair or correct the workmanship at no charge to the customer."),
+         "If a covered workmanship defect is identified during the warranty period, 76 FENCE Tampa will inspect the affected area and, if determined to be covered by this warranty, repair or correct the workmanship at no charge to the customer."),
         ("Material &amp; Product Warranties",
-         "This warranty applies only to workmanship and installation performed by 76 FENCE. Product defects, deterioration, fading, discoloration, corrosion, rust, warping, cracking, splitting, shrinking, expansion, or other material-related conditions are not covered by the 76 FENCE workmanship warranty. Such issues may be covered separately by the product manufacturer's warranty, where applicable."),
+         "This warranty applies only to workmanship and installation performed by 76 FENCE Tampa. Product defects, deterioration, fading, discoloration, corrosion, rust, warping, cracking, splitting, shrinking, expansion, or other material-related conditions are not covered by the 76 FENCE Tampa workmanship warranty. Such issues may be covered separately by the product manufacturer's warranty, where applicable."),
         ("Exclusions",
-         "This warranty does not cover damage or changes resulting from normal wear and tear; storms, hurricanes, high winds, flooding, lightning, or other weather events; soil settlement, erosion, ground movement, or drainage conditions; trees, roots, vegetation, animals, insects, vehicles, lawn equipment, or accidents; improper maintenance or misuse; or alterations, repairs, adjustments, or modifications performed by anyone other than 76 FENCE."),
+         "This warranty does not cover damage or changes resulting from normal wear and tear; storms, hurricanes, high winds, flooding, lightning, or other weather events; soil settlement, erosion, ground movement, or drainage conditions; trees, roots, vegetation, animals, insects, vehicles, lawn equipment, or accidents; improper maintenance or misuse; or alterations, repairs, adjustments, or modifications performed by anyone other than 76 FENCE Tampa."),
         ("Scope",
-         "This warranty applies to the original installation performed by 76 FENCE at the original installation property and is limited to correcting covered workmanship defects."),
+         "This warranty applies to the original installation performed by 76 FENCE Tampa at the original installation property and is limited to correcting covered workmanship defects."),
         ("Requesting Warranty Service",
-         "To request warranty service, contact 76 FENCE and provide the installation address and a description or photographs of the issue. 76 FENCE will evaluate the condition to determine whether it is covered under this workmanship warranty."),
+         "To request warranty service, contact 76 FENCE Tampa and provide the installation address and a description or photographs of the issue. 76 FENCE Tampa will evaluate the condition to determine whether it is covered under this workmanship warranty."),
     ],
 )

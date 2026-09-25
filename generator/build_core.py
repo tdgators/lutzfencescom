@@ -451,9 +451,9 @@ def build_warranty():
         ("Is storm or hurricane damage covered?",
          f"No. Weather events like storms, hurricanes, high winds, and flooding aren't covered by the workmanship warranty — check your homeowner's insurance. We do offer <a href=\"fence-repair.html\">fence repair</a> if you need storm damage fixed."),
         ("Does the warranty cover fence repairs or DIY services?",
-         f"The {W['short']} applies to fence installations performed by {SITE['brand']}. Ask us about coverage for any other service when you get your estimate."),
+         f"The {W['short']} applies to fence installations performed by {W['issuer']}. Ask us about coverage for any other service when you get your estimate."),
         ("How do I file a warranty claim?",
-         f"Call or text <a href=\"tel:{SITE['phone_tel']}\">{SITE['phone']}</a> or email <a href=\"mailto:{SITE['email']}\">{SITE['email']}</a> with your installation address and a description or photos of the issue. We'll follow up to evaluate it."),
+         f"Call or text our Tampa line at <a href=\"tel:{SITE['tampa_phone_tel']}\">{SITE['tampa_phone']}</a> or our Lutz line at <a href=\"tel:{SITE['phone_tel']}\">{SITE['phone']}</a>, or email <a href=\"mailto:{SITE['email']}\">{SITE['email']}</a> with your installation address and a description or photos of the issue. We'll follow up to evaluate it."),
     ]
     content = f'''
 <section class="page-hero">
@@ -462,10 +462,11 @@ def build_warranty():
       <div class="breadcrumbs"><a href="index.html">Home</a> &rsaquo; <span>Our Warranty</span></div>
       <div class="eyebrow" style="color:#ff8a94">{W['tagline']}</div>
       <h1>{W['name']}</h1>
-      <p class="lead">Every fence {SITE['full_brand']} installs is backed for {W['weeks']} weeks ({W['approx']}) against defects in our installation and assembly. If it's our workmanship, we'll make it right.</p>
+      <p class="lead">Every fence we install is backed by {W['issuer']} for {W['weeks']} weeks ({W['approx']}) against defects in our installation and assembly. If it's our workmanship, we'll make it right.</p>
       <div class="cta-row">
         <a class="btn btn-red" href="contact-us.html">Get a Free Estimate</a>
         <a class="btn btn-outline" href="#request-service">Request Warranty Service</a>
+        <a class="btn btn-outline" href="assets/docs/76-fence-warranty.pdf" download>Download PDF</a>
       </div>
     </div>
     {warranty_seal("lg")}
@@ -475,7 +476,7 @@ def build_warranty():
 <section class="section">
   <div class="container">
     <div class="section-head">
-      <div class="eyebrow">Built to Last. Backed by {SITE['brand']}.</div>
+      <div class="eyebrow">Built to Last. Backed by {W['issuer']}.</div>
       <h2>What Our Warranty Means for You</h2>
     </div>
     <div class="grid grid-3">{pillars_html}</div>
@@ -507,7 +508,7 @@ def build_warranty():
       <h2>How to Request Warranty Service</h2>
     </div>
     <div class="grid grid-3 steps">
-      <div class="card"><h3>Contact Us</h3><p>Call or text <a href="tel:{SITE['phone_tel']}">{SITE['phone']}</a> or email <a href="mailto:{SITE['email']}">{SITE['email']}</a>.</p></div>
+      <div class="card"><h3>Contact Us</h3><p>Call or text Tampa at <a href="tel:{SITE['tampa_phone_tel']}">{SITE['tampa_phone']}</a> or Lutz at <a href="tel:{SITE['phone_tel']}">{SITE['phone']}</a>, or email <a href="mailto:{SITE['email']}">{SITE['email']}</a>.</p></div>
       <div class="card"><h3>Share the Details</h3><p>Send your installation address and a description or photos of the issue.</p></div>
       <div class="card"><h3>We Inspect &amp; Fix It</h3><p>We evaluate the condition, and if it's covered, we repair or correct the workmanship at no charge.</p></div>
     </div>
@@ -526,15 +527,16 @@ def build_warranty():
 <section class="section">
   <div class="container terms" style="max-width:800px">
     <div class="eyebrow">Full Terms</div>
-    <h2>{SITE['brand']} &mdash; {W['name']}</h2>
+    <h2>{W['issuer']} &mdash; {W['name']}</h2>
     {terms}
+    <p style="margin-top:24px"><a class="btn btn-navy-outline" href="assets/docs/76-fence-warranty.pdf" download>Download Warranty (PDF)</a></p>
   </div>
 </section>
 
 {cta_banner("Get a Fence That's Built to Last", f"Every installation comes with our {W['short']}. Get your free estimate today.")}
 '''
-    write("warranty.html", page(f"{W['name']} | {SITE['full_brand']}",
-        f"Every fence installed by {SITE['full_brand']} is backed by our {W['name']}. See what's covered, what's not, and how to request warranty service.",
+    write("warranty.html", page(f"{W['name']} | {W['issuer']}",
+        f"Every fence installed by {SITE['full_brand']} is backed by the {W['issuer']} {W['name']}. See what's covered, what's not, and how to request warranty service.",
         "warranty.html", content))
 
 

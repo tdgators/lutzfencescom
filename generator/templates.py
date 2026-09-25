@@ -455,7 +455,7 @@ def warranty_callout(context="your fence"):
       <div>
         <div class="eyebrow">{WARRANTY['tagline']}</div>
         <h2>Backed by Our {WARRANTY['short']}</h2>
-        <p>Every installation comes with our {WARRANTY['name']}. If there's a defect in how we installed or assembled {context} within {WARRANTY['weeks']} weeks ({WARRANTY['approx']}) of your installation date, we'll inspect it and make it right at no charge. Materials are also covered separately by the manufacturer's warranty.</p>
+        <p>Every installation comes with the {WARRANTY['issuer']} {WARRANTY['name']}. If there's a defect in how we installed or assembled {context} within {WARRANTY['weeks']} weeks ({WARRANTY['approx']}) of your installation date, we'll inspect it and make it right at no charge. Materials are also covered separately by the manufacturer's warranty.</p>
         <a class="btn btn-navy-outline" href="warranty.html">See Warranty Details</a>
       </div>
     </div>
