@@ -157,9 +157,9 @@ FAQS = [
     ("Do you obtain the necessary permits for fence installation?",
      "In most cases, yes — we handle the local permitting process on your behalf as part of the installation price."),
     ("How do you handle repairs or maintenance after installation?",
-     "We handle fence repair, re-staining, and general maintenance long after your original installation — you don't have to go find a different contractor later."),
+     "Workmanship issues on your installation are covered by our <a href=\"warranty.html\">76-week workmanship warranty</a>. Beyond that, we handle fence repair, re-staining, and general maintenance long after your original installation — you don't have to go find a different contractor later."),
     ("What is your warranty or guarantee for fence installation?",
-     "You get the manufacturer's material warranty plus our own workmanship guarantee on every installation."),
+     "Every fence we install is backed by our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a>. If there's a defect in our installation or assembly within 76 weeks of your installation date, we'll inspect it and make it right at no charge. Materials are covered separately by the manufacturer's warranty."),
     ("Do you offer financing or payment options?",
      "Yes — we offer flexible financing options in addition to standard payment terms."),
     ("How do you handle issues or disputes after installation?",
@@ -212,3 +212,46 @@ PRICING_TABLE = {
         "Vinyl": "$26,000+",
     },
 }
+
+# 76-Week Limited Workmanship Warranty — the single source for every warranty
+# mention on the site. Edit here and re-run build_all.py.
+WARRANTY = dict(
+    weeks=76,
+    name="76-Week Limited Workmanship Warranty",
+    short="76-Week Workmanship Warranty",
+    approx="about 17&frac12; months",
+    tagline="We stand behind our work.",
+    covered=[
+        "Posts that were improperly set, aligned, or installed",
+        "Panels, rails, pickets, and fence fabric that were improperly assembled or attached",
+        "Gates that were improperly hung, including hinges and latches we installed",
+        "Fasteners and other components installed by 76 FENCE",
+    ],
+    not_covered=[
+        "Normal wear and tear",
+        "Storms, hurricanes, high winds, flooding, lightning, or other weather events",
+        "Soil settlement, erosion, ground movement, or drainage conditions",
+        "Trees, roots, vegetation, animals, insects, vehicles, lawn equipment, or accidents",
+        "Improper maintenance or misuse",
+        "Alterations, repairs, adjustments, or modifications by anyone other than 76 FENCE",
+        "Material conditions such as fading, rust, warping, cracking, or splitting (see manufacturer warranty)",
+    ],
+    terms=[
+        ("Coverage Period",
+         "76 FENCE warrants the workmanship and assembly of your fence installation for 76 weeks from the installation completion date, as recorded in 76 FENCE's records."),
+        ("Eligibility",
+         "This warranty is conditioned on payment in full of the contract price for the installation. 76 FENCE is not obligated to perform warranty service on any project with an outstanding balance. The warranty period begins on the installation completion date regardless of when payment is received, and is not extended by any delay in payment."),
+        ("What Is Covered",
+         "This warranty covers defects resulting directly from the workmanship or installation performed by 76 FENCE. Covered workmanship may include improper installation or assembly of posts, panels, rails, pickets, fence fabric, gates, hinges, latches, fasteners, and other components installed by 76 FENCE."),
+        ("Our Remedy",
+         "If a covered workmanship defect is identified during the warranty period, 76 FENCE will inspect the affected area and, if determined to be covered by this warranty, repair or correct the workmanship at no charge to the customer."),
+        ("Material &amp; Product Warranties",
+         "This warranty applies only to workmanship and installation performed by 76 FENCE. Product defects, deterioration, fading, discoloration, corrosion, rust, warping, cracking, splitting, shrinking, expansion, or other material-related conditions are not covered by the 76 FENCE workmanship warranty. Such issues may be covered separately by the product manufacturer's warranty, where applicable."),
+        ("Exclusions",
+         "This warranty does not cover damage or changes resulting from normal wear and tear; storms, hurricanes, high winds, flooding, lightning, or other weather events; soil settlement, erosion, ground movement, or drainage conditions; trees, roots, vegetation, animals, insects, vehicles, lawn equipment, or accidents; improper maintenance or misuse; or alterations, repairs, adjustments, or modifications performed by anyone other than 76 FENCE."),
+        ("Scope",
+         "This warranty applies to the original installation performed by 76 FENCE at the original installation property and is limited to correcting covered workmanship defects."),
+        ("Requesting Warranty Service",
+         "To request warranty service, contact 76 FENCE and provide the installation address and a description or photographs of the issue. 76 FENCE will evaluate the condition to determine whether it is covered under this workmanship warranty."),
+    ],
+)

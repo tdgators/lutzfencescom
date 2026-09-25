@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """Builds: homepage, about, service-areas, contact, faq, gallery, pricing, privacy-policy"""
 from pathlib import Path
-from data import SITE, TOWNS, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, PRICING_TABLE
-from templates import page, page_hero, faq_accordion, mini_quote_form, contact_form_card, map_section, town_chips, cta_banner, fence_illustration
+from data import SITE, TOWNS, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, PRICING_TABLE, WARRANTY
+from templates import page, page_hero, faq_accordion, mini_quote_form, contact_form_card, map_section, town_chips, cta_banner, fence_illustration, warranty_seal, warranty_callout
 
-OUT = Path("/mnt/user-data/outputs/lutz-fences-site")
+OUT = Path(__file__).resolve().parent.parent
 
 def write(path, html):
     p = OUT / path
@@ -35,7 +35,7 @@ def build_home():
     why_items = [
         ("Licensed, Bonded &amp; Insured", "76 FENCE is licensed, bonded, and insured in all 50 states, on every job we do."),
         ("Free Estimates", "Every estimate is free, with no obligation and no pressure."),
-        ("Manufacturer Warranty", "Every material we install is backed by the manufacturer's warranty, plus our own workmanship guarantee."),
+        ("76-Week Workmanship Warranty", "Every installation is backed by our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a>, plus the manufacturer's warranty on materials."),
         ("Family Owned &amp; Locally Operated", "76 FENCE Lutz is owned and run by Tom &amp; Kate Donnelly, right here in the Tampa Bay area."),
         ("We Handle Your Permit", "In most cases we manage the local permitting process for you, included in your price."),
         ("Flexible Financing", "Ask about flexible financing options to make your project fit your budget."),
@@ -87,6 +87,7 @@ def build_home():
       <div class="hero-badges">
         <div class="hero-badge"><span class="dot"></span>Licensed, Bonded &amp; Insured (All 50 States)</div>
         <div class="hero-badge"><span class="dot"></span>Free Estimates</div>
+        <div class="hero-badge"><span class="dot"></span><a href="warranty.html" style="color:inherit">76-Week Workmanship Warranty</a></div>
         <div class="hero-badge"><span class="dot"></span>Family Owned &amp; Locally Operated</div>
       </div>
     </div>
@@ -127,6 +128,8 @@ def build_home():
     <div class="grid grid-3">{why_html}</div>
   </div>
 </section>
+
+{warranty_callout().replace('section warranty-strip', 'section section-alt warranty-strip')}
 
 <section class="section section-alt">
   <div class="container">
@@ -237,7 +240,7 @@ def build_about():
         <p>{SITE['full_brand']} brings the training, purchasing power, and manufacturer relationships of the national {SITE['brand']} network to a business that's owned and run right here in the Tampa Bay area. The {SITE['brand']} name is a nod to 1776 — American craftsmanship, straightforward dealing, and standing behind the work.</p>
         <p>We install and repair fencing for homeowners, HOAs, and businesses across {SITE['city']} and the surrounding communities, and we handle the permitting process, the installation, and anything that needs fixing down the road.</p>
       </div>
-      <div class="tile-img">{fence_illustration('wood')}</div>
+      <div class="tile-img"><img src="assets/images/team/tom-kate-donnelly.jpg" alt="Tom and Kate Donnelly, owners of {SITE['full_brand']}, in front of their branded truck" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
     </div>
   </div>
 </section>
@@ -250,12 +253,10 @@ def build_about():
     </div>
     <div class="grid grid-2">
       <div class="card">
-        <div class="tile-img" style="aspect-ratio:1/1;margin-bottom:16px">{fence_illustration('steel')}</div>
         <h3>Tom Donnelly &mdash; Owner</h3>
         <p>Tom brings over 20 years of experience in information technology within the finance and banking industries, having served as both a principal engineer and a people leader managing global teams. As owner of {SITE['full_brand']}, Tom is focused on building a trusted, locally operated business that delivers exceptional craftsmanship and customer service, bringing the strength and professionalism of the {SITE['brand']} brand to the {SITE['city']} community.</p>
       </div>
       <div class="card">
-        <div class="tile-img" style="aspect-ratio:1/1;margin-bottom:16px">{fence_illustration('aluminum')}</div>
         <h3>Kate Donnelly &mdash; Owner</h3>
         <p>Kate brings over 20 years of experience serving the federal government as an intelligence analyst, with a master's degree and deep experience in strategic analysis and attention to detail. As owner of {SITE['full_brand']}, Kate is committed to building a business grounded in integrity, operational excellence, and outstanding customer service for every {SITE['city']}-area project.</p>
       </div>
@@ -268,7 +269,7 @@ def build_about():
     <div class="grid grid-4 center">
       <div class="badge">Licensed &amp; Bonded — All 50 States</div>
       <div class="badge">Fully Insured</div>
-      <div class="badge">Manufacturer Warranty</div>
+      <a class="badge" href="warranty.html">76-Week Workmanship Warranty</a>
       <div class="badge">Family Owned &amp; Operated</div>
     </div>
   </div>
@@ -423,6 +424,120 @@ def build_pricing():
         "fence-pricing.html", content))
 
 
+# ---------------------------------------------------------------- WARRANTY
+def build_warranty():
+    W = WARRANTY
+    covered = "".join(f"<li>{x}</li>" for x in W["covered"])
+    not_covered = "".join(f"<li>{x}</li>" for x in W["not_covered"])
+    terms = "".join(f"<h3>{h}</h3><p>{t}</p>" for h, t in W["terms"])
+    pillars = [
+        ("✓", "Covers Our Workmanship", "Defects in our installation and assembly. If it's our workmanship, we'll make it right."),
+        (f"{W['weeks']}", f"{W['weeks']} Weeks of Coverage", f"Coverage runs {W['weeks']} weeks ({W['approx']}) from the date your installation is completed."),
+        ("$0", "No Charge to You", "If an issue is covered, we repair or correct it at no cost — parts and labor for the workmanship fix."),
+    ]
+    pillars_html = "".join(f'''
+<div class="card">
+  <div class="icon" style="font-weight:800;color:var(--navy);font-size:1.05rem">{i}</div>
+  <h3>{t}</h3>
+  <p>{d}</p>
+</div>''' for i, t, d in pillars)
+    warranty_faqs = [
+        ("When does the 76 weeks start?",
+         "Coverage starts on your installation completion date — the day our crew finishes the job, as recorded in our system. The clock starts then no matter when the final invoice is paid."),
+        ("Does my project need to be paid in full?",
+         "Yes. Warranty coverage applies once your project is paid in full. We don't perform warranty service on projects with an outstanding balance, and the 76 weeks aren't extended by a payment delay."),
+        ("What's the difference between the workmanship warranty and the manufacturer warranty?",
+         "Our workmanship warranty covers <em>how</em> we installed your fence: setting posts, assembling panels, hanging gates, and so on. The manufacturer's warranty covers the materials themselves — things like fading, rust, warping, or cracking. Between the two, both the install and the product are backed."),
+        ("Is storm or hurricane damage covered?",
+         f"No. Weather events like storms, hurricanes, high winds, and flooding aren't covered by the workmanship warranty — check your homeowner's insurance. We do offer <a href=\"fence-repair.html\">fence repair</a> if you need storm damage fixed."),
+        ("Does the warranty cover fence repairs or DIY services?",
+         f"The {W['short']} applies to fence installations performed by {SITE['brand']}. Ask us about coverage for any other service when you get your estimate."),
+        ("How do I file a warranty claim?",
+         f"Call or text <a href=\"tel:{SITE['phone_tel']}\">{SITE['phone']}</a> or email <a href=\"mailto:{SITE['email']}\">{SITE['email']}</a> with your installation address and a description or photos of the issue. We'll follow up to evaluate it."),
+    ]
+    content = f'''
+<section class="page-hero">
+  <div class="container warranty-hero">
+    <div>
+      <div class="breadcrumbs"><a href="index.html">Home</a> &rsaquo; <span>Our Warranty</span></div>
+      <div class="eyebrow" style="color:#ff8a94">{W['tagline']}</div>
+      <h1>{W['name']}</h1>
+      <p class="lead">Every fence {SITE['full_brand']} installs is backed for {W['weeks']} weeks ({W['approx']}) against defects in our installation and assembly. If it's our workmanship, we'll make it right.</p>
+      <div class="cta-row">
+        <a class="btn btn-red" href="contact-us.html">Get a Free Estimate</a>
+        <a class="btn btn-outline" href="#request-service">Request Warranty Service</a>
+      </div>
+    </div>
+    {warranty_seal("lg")}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Built to Last. Backed by {SITE['brand']}.</div>
+      <h2>What Our Warranty Means for You</h2>
+    </div>
+    <div class="grid grid-3">{pillars_html}</div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>What's Covered</h3>
+        <p>Defects resulting directly from our workmanship or installation, such as:</p>
+        <ul class="check-list">{covered}</ul>
+      </div>
+      <div class="card">
+        <h3>What's Not Covered</h3>
+        <p>Damage or changes resulting from:</p>
+        <ul class="x-list">{not_covered}</ul>
+      </div>
+    </div>
+    <p class="small center" style="margin-top:20px">Coverage applies to projects paid in full and runs from your recorded installation completion date. Material and product issues may be covered separately by the product manufacturer's warranty, where applicable.</p>
+  </div>
+</section>
+
+<section class="section" id="request-service">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Warranty Service</div>
+      <h2>How to Request Warranty Service</h2>
+    </div>
+    <div class="grid grid-3 steps">
+      <div class="card"><h3>Contact Us</h3><p>Call or text <a href="tel:{SITE['phone_tel']}">{SITE['phone']}</a> or email <a href="mailto:{SITE['email']}">{SITE['email']}</a>.</p></div>
+      <div class="card"><h3>Share the Details</h3><p>Send your installation address and a description or photos of the issue.</p></div>
+      <div class="card"><h3>We Inspect &amp; Fix It</h3><p>We evaluate the condition, and if it's covered, we repair or correct the workmanship at no charge.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div style="max-width:800px;margin:0 auto">
+      <div class="section-head"><h2>Warranty FAQs</h2></div>
+      {faq_accordion(warranty_faqs)}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container terms" style="max-width:800px">
+    <div class="eyebrow">Full Terms</div>
+    <h2>{SITE['brand']} &mdash; {W['name']}</h2>
+    {terms}
+  </div>
+</section>
+
+{cta_banner("Get a Fence That's Built to Last", f"Every installation comes with our {W['short']}. Get your free estimate today.")}
+'''
+    write("warranty.html", page(f"{W['name']} | {SITE['full_brand']}",
+        f"Every fence installed by {SITE['full_brand']} is backed by our {W['name']}. See what's covered, what's not, and how to request warranty service.",
+        "warranty.html", content))
+
+
 # ---------------------------------------------------------------- PRIVACY POLICY
 def build_privacy():
     content = page_hero("Legal", "Privacy Policy", f"Last updated {SITE['year']}.",
@@ -457,4 +572,5 @@ if __name__ == "__main__":
     build_gallery()
     build_pricing()
     build_privacy()
+    build_warranty()
     print("core pages done")

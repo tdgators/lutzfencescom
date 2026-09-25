@@ -2,9 +2,9 @@
 """Builds: material pages, materials hub, style pages, styles hub, commercial hub + pages, other-service pages"""
 from pathlib import Path
 from data import SITE, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, TOWNS
-from templates import page, page_hero, faq_accordion, town_chips, cta_banner, map_section, fence_illustration
+from templates import page, page_hero, faq_accordion, town_chips, cta_banner, map_section, fence_illustration, warranty_callout
 
-OUT = Path("/mnt/user-data/outputs/lutz-fences-site")
+OUT = Path(__file__).resolve().parent.parent
 
 def write(path, html):
     p = OUT / path
@@ -69,6 +69,7 @@ def build_materials():
     <div class="grid grid-4">{related}</div>
   </div>
 </section>
+{warranty_callout(f"your {m['short'].lower()} fence").replace('section warranty-strip', 'section section-alt warranty-strip')}
 {cta_banner(f"Ready for a {m['short']} Fence?", "Get a free, no-obligation estimate for your property.")}
 '''
         write(f"{m['slug']}.html", page(f"{m['name']} Installation | {SITE['full_brand']}",
@@ -112,6 +113,7 @@ def build_styles():
     <div class="grid grid-4">{mat_tiles}</div>
   </div>
 </section>
+{warranty_callout(f"your {s['name'].lower()}")}
 {cta_banner()}
 '''
         write(f"{s['slug']}.html", page(f"{s['name']} Installation | {SITE['full_brand']}",
@@ -132,6 +134,7 @@ def build_commercial():
     <div class="grid grid-4">{tiles}</div>
   </div>
 </section>
+{warranty_callout("your fence").replace('section warranty-strip', 'section section-alt warranty-strip')}
 {cta_banner("Need a Commercial Quote?", "Tell us about your property and we'll put together a free estimate.")}
 '''
     write("commercial-fencing.html", page(f"Commercial Fencing | {SITE['full_brand']}",
@@ -154,6 +157,7 @@ def build_commercial():
     </div>
   </div>
 </section>
+{warranty_callout("your fence").replace('section warranty-strip', 'section section-alt warranty-strip')}
 {cta_banner()}
 '''
         write(f"{c['slug']}.html", page(f"{c['name']} | {SITE['full_brand']}",

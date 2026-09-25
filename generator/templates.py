@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from data import SITE, TOWNS, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES
+from data import SITE, TOWNS, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, WARRANTY
 
 def esc(s):
     return s
@@ -26,7 +26,7 @@ def nav_html(active=""):
     commercial_dd = "".join(f'<a href="{c["slug"]}.html">{c["name"]}</a>' for c in COMMERCIAL)
     commercial_dd = f'<a href="commercial-fencing.html">Commercial Fencing (All)</a>' + commercial_dd
     other_dd = "".join(f'<a href="{o["slug"]}.html">{o["name"]}</a>' for o in OTHER_SERVICES)
-    about_dd = '<a href="about-us.html">Meet the Team</a><a href="service-areas.html">Service Areas</a>'
+    about_dd = '<a href="about-us.html">Meet the Team</a><a href="warranty.html">Our Warranty</a><a href="service-areas.html">Service Areas</a>'
     contact_dd = '<a href="contact-us.html">Contact Us</a><a href="faq.html">FAQs</a>'
 
     items = [
@@ -94,6 +94,7 @@ def footer_html():
         <h4>Company</h4>
         <ul>
           <li><a href="about-us.html">Meet the Team</a></li>
+          <li><a href="warranty.html">76-Week Warranty</a></li>
           <li><a href="service-areas.html">Service Areas</a></li>
           <li><a href="fence-gallery.html">Fence Gallery</a></li>
           <li><a href="fence-pricing.html">Pricing</a></li>
@@ -433,6 +434,34 @@ def fence_illustration(kind):
                 f'loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">')
     fn = _SVG_KINDS.get(kind, svg_vinyl)
     return fn()
+
+
+def warranty_seal(size=""):
+    cls = f"warranty-seal {size}".strip()
+    return f'''<div class="{cls}" aria-hidden="true">
+  <span class="ws-num">{WARRANTY['weeks']}</span>
+  <span class="ws-unit">Week</span>
+  <span class="ws-label">Workmanship<br>Warranty</span>
+</div>'''
+
+
+def warranty_callout(context="your fence"):
+    """Compact strip linking to warranty.html — dropped into service and town pages."""
+    return f'''
+<section class="section warranty-strip">
+  <div class="container">
+    <div class="warranty-callout">
+      {warranty_seal()}
+      <div>
+        <div class="eyebrow">{WARRANTY['tagline']}</div>
+        <h2>Backed by Our {WARRANTY['short']}</h2>
+        <p>Every installation comes with our {WARRANTY['name']}. If there's a defect in how we installed or assembled {context} within {WARRANTY['weeks']} weeks ({WARRANTY['approx']}) of your installation date, we'll inspect it and make it right at no charge. Materials are also covered separately by the manufacturer's warranty.</p>
+        <a class="btn btn-navy-outline" href="warranty.html">See Warranty Details</a>
+      </div>
+    </div>
+  </div>
+</section>
+'''
 
 
 def cta_banner(title="Ready to Get Started?", sub="Get a free, no-obligation fence estimate today."):

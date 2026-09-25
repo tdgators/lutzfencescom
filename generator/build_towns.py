@@ -2,9 +2,9 @@
 """Builds one landing page per service-area town."""
 from pathlib import Path
 from data import SITE, TOWNS, MATERIALS, FAQS
-from templates import page, page_hero, faq_accordion, town_chips, cta_banner, map_section, fence_illustration
+from templates import page, page_hero, faq_accordion, town_chips, cta_banner, map_section, fence_illustration, warranty_callout
 
-OUT = Path("/mnt/user-data/outputs/lutz-fences-site")
+OUT = Path(__file__).resolve().parent.parent
 
 def write(path, html):
     p = OUT / path
@@ -21,7 +21,7 @@ INTRO_VARIANTS = [
 
 WHY_VARIANTS = [
     "We're locally owned and operated, backed by the training and manufacturer relationships of the national {brand} network — so you get big-company buying power with small-business accountability.",
-    "Every {town} estimate is free and every installation is backed by both a manufacturer warranty and our own workmanship guarantee.",
+    "Every {town} estimate is free, and every installation is backed by the manufacturer's warranty plus our own <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a>.",
     "We're licensed, bonded, and insured in all 50 states, and we handle the local permitting process for most {town} projects as part of your price.",
 ]
 
@@ -118,6 +118,7 @@ def build_towns():
   </div>
 </section>
 
+{warranty_callout("your fence")}
 {cta_banner(f"Ready for a Free {name} Estimate?", f"Call, text, or request a quote online and we'll get right back to you.")}
 '''
         title = f"Fence Company in {name}, {SITE['state']} | {SITE['full_brand']}"
