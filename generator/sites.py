@@ -19,6 +19,8 @@ COMMON = dict(
     lutz_phone="813-669-4511",
     lutz_phone_tel="+18136694511",
     email="tampa@76fence.com",
+    licensed_in="Hillsborough, Pasco, and Hernando counties",  # contractor licensing (not all 50 states)
+    licensed_short="Hillsborough, Pasco &amp; Hernando Counties",
     state="FL",
     state_full="Florida",
     fb="https://www.facebook.com/76FenceLutz",
@@ -85,7 +87,7 @@ SITES = {
             town_why=[
                 "We're locally owned and operated, backed by the training and manufacturer relationships of the national {brand} network — so you get big-company buying power with small-business accountability.",
                 "Every {town} estimate is free, and every installation is backed by the manufacturer's warranty plus our own <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a>.",
-                "We're fully insured — general liability and workers' compensation — and we handle the local permitting process for most {town} projects as part of your price.",
+                "We're licensed in Hillsborough, Pasco, and Hernando counties and fully insured, and we handle the local permitting process for most {town} projects as part of your price.",
             ],
             town_permit=[
                 "Most fence projects in {state_full} require a local permit, and if your property has a pool, your fence or gate also needs to meet Florida's residential pool safety barrier code. We handle that process for {town} homeowners so you don't have to.",
@@ -151,7 +153,7 @@ SITES = {
             town_why=[
                 "{brand} is owner-operated by Tom &amp; Kate Donnelly and backed by the national {brand} network, so {town} customers get a local point of contact with national buying power.",
                 "Every {town} estimate is free, and every installation comes with the manufacturer's warranty plus our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a>.",
-                "We're fully insured, with general liability and workers' compensation coverage, and we check the permit requirements for your {town} address before we quote — no surprises on install day.",
+                "We're licensed in Hernando, Pasco, and Hillsborough counties and fully insured, and we check the permit requirements for your {town} address before we quote — no surprises on install day.",
             ],
             town_permit=[
                 "Fence rules in {region} depend on whether your property is inside city limits, in a deed-restricted neighborhood, or on rural land. We sort out the permit and any HOA paperwork for {town} projects so you don't have to.",
@@ -217,7 +219,7 @@ SITES = {
             town_why=[
                 "{brand} is owner-operated by Tom &amp; Kate Donnelly and backed by the national {brand} network — a local team you can reach, with national buying power.",
                 "Every {town} estimate is free, and every installation comes with the manufacturer's warranty plus our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a>.",
-                "We're fully insured, with general liability and workers' compensation coverage, and we confirm {town} permit and HOA requirements before install day.",
+                "We're licensed in Hillsborough, Pasco, and Hernando counties and fully insured, and we confirm {town} permit and HOA requirements before install day.",
             ],
             town_permit=[
                 "Fence permits around {town} depend on whether you're in the City of Tampa, Temple Terrace, or unincorporated Hillsborough County. We check your address and handle the permit either way.",

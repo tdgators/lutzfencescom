@@ -54,7 +54,7 @@ def build_home():
     ])
 
     why_items = [
-        ("Fully Insured", "Every job is covered by our general liability and workers' compensation insurance, so you and your property are protected while we work."),
+        ("Licensed &amp; Fully Insured", f"Licensed in {SITE['licensed_in']}, with general liability and workers' compensation insurance on every job."),
         ("Free Estimates", "Every estimate is free, with no obligation and no pressure."),
         ("76-Week Workmanship Warranty", "Every installation is backed by our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a>, plus the manufacturer's warranty on materials."),
         COPY['why_local'],
@@ -106,7 +106,7 @@ def build_home():
         <a class="btn btn-outline" href="tel:{SITE['phone_tel']}">Call {SITE['phone']}</a>
       </div>
       <div class="hero-badges">
-        <div class="hero-badge"><span class="dot"></span>Fully Insured</div>
+        <div class="hero-badge"><span class="dot"></span>Licensed &amp; Fully Insured</div>
         <div class="hero-badge"><span class="dot"></span>Free Estimates</div>
         <div class="hero-badge"><span class="dot"></span><a href="warranty.html" style="color:inherit">76-Week Workmanship Warranty</a></div>
         <div class="hero-badge"><span class="dot"></span>Family Owned &amp; Locally Operated</div>
@@ -287,8 +287,8 @@ def build_about():
 <section class="section">
   <div class="container">
     <div class="grid grid-4 center">
-      <div class="badge">General Liability Insured</div>
-      <div class="badge">Workers' Comp Covered</div>
+      <div class="badge">Licensed — {SITE['licensed_short']}</div>
+      <div class="badge">Fully Insured</div>
       <a class="badge" href="warranty.html">76-Week Workmanship Warranty</a>
       <div class="badge">Family Owned &amp; Operated</div>
     </div>
