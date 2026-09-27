@@ -47,7 +47,7 @@ def header_html(active=""):
     return f'''
 <div class="topbar">
   <div class="container">
-    <div>Licensed, Bonded &amp; Insured in All 50 States &middot; Free Estimates &middot; Serving {SITE['city']}, {SITE['state']} &amp; the {SITE['region']} area</div>
+    <div>Fully Insured &middot; Free Estimates &middot; Serving {SITE['city']}, {SITE['state']} &amp; the {SITE['region']} area</div>
     <div><a href="mailto:{SITE['email']}">{SITE['email']}</a> &nbsp;|&nbsp; <a class="topbar-phone" href="tel:{SITE['phone_tel']}">{SITE['phone']}</a></div>
   </div>
 </div>
