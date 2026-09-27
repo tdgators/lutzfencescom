@@ -1,48 +1,23 @@
 # -*- coding: utf-8 -*-
-SITE = dict(
-    name="Lutz Fences",
-    brand="76 FENCE",
-    full_brand="76 FENCE Lutz",
-    phone="813-669-4511",
-    phone_tel="+18136694511",
-    # Parent company — Lutz and Tampa are both locations of 76 FENCE Tampa
-    parent="76 FENCE Tampa",
-    tampa_phone="813-669-4555",
-    tampa_phone_tel="+18136694555",
-    email="tampa@76fence.com",
-    city="Lutz",
-    state="FL",
-    state_full="Florida",
-    region="Tampa Bay",
-    domain="lutzfences.com",
-    fb="https://www.facebook.com/76FenceLutz",
-    ig="https://www.instagram.com/76fencelutz",
-    google="https://g.page/r/CYR3FNx_NQIDEAI",
-    year="2026",
-    formspree="https://formspree.io/f/xaenwbav",
-    map_embed="https://www.google.com/maps?q=76+Fence+Tampa,+Lutz,+FL&output=embed",
-)
+from pathlib import Path
 
-# (Display Name, slug)
-TOWNS = [
-    ("Lutz", "lutz"), ("Land O' Lakes", "land-o-lakes"), ("Land O' Lakes North", "land-o-lakes-north"),
-    ("Odessa", "odessa"), ("Wesley Chapel", "wesley-chapel"), ("New Port Richey", "new-port-richey"),
-    ("New Port Richey East", "new-port-richey-east"), ("Port Richey", "port-richey"),
-    ("Zephyrhills", "zephyrhills"), ("Dade City", "dade-city"), ("San Antonio", "san-antonio"),
-    ("Saint Leo", "saint-leo"), ("Spring Hill", "spring-hill"), ("Spring Hill South", "spring-hill-south"),
-    ("Brooksville", "brooksville"), ("Brooksville East", "brooksville-east"), ("Ridge Manor", "ridge-manor"),
-    ("Nobleton", "nobleton"), ("Masaryktown", "masaryktown"), ("Shady Hills", "shady-hills"),
-    ("Hudson", "hudson"), ("Hudson South", "hudson-south"), ("Gulf Harbors", "gulf-harbors"),
-    ("Angeline", "angeline"), ("Beacon Woods", "beacon-woods"), ("Bexley", "bexley"),
-    ("Chapel Crossings", "chapel-crossings"), ("Connerton", "connerton"), ("Epperson Lagoon", "epperson-lagoon"),
-    ("Estancia", "estancia"), ("Lake Bernadette", "lake-bernadette"), ("Lake Jovita", "lake-jovita"),
-    ("Lake Padgett Estates", "lake-padgett-estates"), ("Lexington Oaks", "lexington-oaks"),
-    ("Meadow Pointe", "meadow-pointe"), ("Oakstead", "oakstead"), ("Richland", "richland"),
-    ("Saddlebrook", "saddlebrook"), ("Saint Joseph", "saint-joseph"), ("Seven Hills", "seven-hills"),
-    ("Seven Oaks", "seven-oaks"), ("Southern Hills", "southern-hills"), ("Southport Springs", "southport-springs"),
-    ("Sterling Hill", "sterling-hill"), ("Union Park", "union-park"), ("WaterGrass", "watergrass"),
-    ("Wilderness Lake Preserve", "wilderness-lake-preserve"), ("Wiregrass Ranch", "wiregrass-ranch"),
-]
+# The site being built. build_all.py fills these from sites.py via use_site() before building,
+# so every template/builder that imported SITE, TOWNS, or COPY sees the current site's values.
+SITE = {}
+TOWNS = []  # (Display Name, slug)
+COPY = {}   # site-specific wording (see sites.py)
+CURRENT = {}  # out_dir, domain
+
+
+def use_site(domain):
+    from sites import SITES, COMMON
+    cfg = SITES[domain]
+    SITE.clear(); SITE.update(COMMON); SITE.update(cfg["site"])
+    TOWNS[:] = cfg["towns"]
+    COPY.clear(); COPY.update(cfg["copy"])
+    CURRENT.clear(); CURRENT.update(out_dir=Path(cfg["out_dir"]), domain=domain,
+                                   legacy_redirects=cfg.get("legacy_redirects", False))
+
 
 MATERIALS = [
     dict(slug="vinyl-fence", name="Vinyl Fence", short="Vinyl",
@@ -60,7 +35,7 @@ MATERIALS = [
          tagline="Classic cedar and pressure-treated pine, built the right way.",
          img="wood",
          body=[
-            "There's nothing like a wood fence for warmth and classic curb appeal, and we install both cedar and pressure-treated pine across Lutz and the surrounding communities. Pressure-treated pine is our most budget-friendly option and holds up well to Florida's climate when properly sealed; cedar offers a richer grain and natural insect resistance at a step up in price.",
+            "There's nothing like a wood fence for warmth and classic curb appeal, and we install both cedar and pressure-treated pine across {city} and the surrounding communities. Pressure-treated pine is our most budget-friendly option and holds up well to Florida's climate when properly sealed; cedar offers a richer grain and natural insect resistance at a step up in price.",
             "We build wood fences in stockade (tight board-to-board), board-on-board, shadowbox, picket, horizontal, and split-rail styles, so whether you want full privacy or a more open, decorative look, we can build it. Because Florida's humidity is tough on any wood fence, we recommend staining or sealing within the first year and re-staining every 2–3 years — we offer that service too.",
             "All wood fences are set with concrete footings for stability in our sandy soil and are built to meet local wind-load expectations.",
          ],
@@ -193,7 +168,7 @@ FAQS = [
     ("Will my fence hold up to Florida storms and wind?",
      "We set posts in concrete to the depth needed for the material and height, and can talk through wind-rated material and design choices for storm-prone properties."),
     ("Do I need HOA approval before installing a fence?",
-     "Many communities in the Lutz/Tampa Bay area require HOA approval before installation — we're happy to help prepare what your HOA needs to review."),
+     "Many communities in our service area require HOA approval before installation — we're happy to help prepare what your HOA needs to review."),
 ]
 
 PRICING_TABLE = {

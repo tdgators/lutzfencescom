@@ -37,13 +37,23 @@ then visit http://localhost:8080.
 
 2. **Swap in real project photos.** The gallery tiles and material photos on every page are intentionally simple placeholder graphics (no real installation photos were available to me). Send over real project photos whenever you have them and they can be dropped straight into `assets/images/` and swapped into the `.tile-img .ph` blocks.
 
-## Regenerating the site
+## Regenerating the sites (one generator, several domains)
 
-The whole site is generated from Python in `generator/` — all 80 pages share one header/footer/nav/town-list/FAQ, defined once in `generator/data.py` and `generator/templates.py`. To make a sitewide change (add a town, edit the FAQ, update pricing, change the phone number, swap the Formspree ID), edit `generator/data.py` (or the page builders in `generator/build_*.py`) and run:
+`generator/` builds every 76 FENCE Tampa area site from one set of templates:
+
+| Domain | Output folder / repo |
+|---|---|
+| lutzfences.com | this repo |
+| brooksvillefence.com | `../brooksvillefencecom` |
+| northtampafencing.com | `../northtampafencingcom` |
+
+- **Shared** (edit once, every site changes): design, header/footer, forms, warranty, materials, pricing, FAQ base — `generator/data.py`, `generator/templates.py`, `generator/build_*.py`, `assets/`.
+- **Per site**: domain, phone, city/area, town list, map, and the site's own local wording — one entry in `generator/sites.py`. Give each site its own wording so the sites aren't near-duplicates.
 
 ```
 cd generator
-python3 build_all.py
+python3 build_all.py                            # all sites
+python3 build_all.py --site brooksvillefence.com
 ```
 
-This rewrites every HTML file in place from the current data — much safer than hand-editing 80 files individually when something needs to change everywhere at once (like a phone number or the Formspree ID).
+Then commit and push each site's repo that changed. To add a new area site, copy an entry in `sites.py`, change it, build it, and create a GitHub repo for its output folder.

@@ -1,13 +1,36 @@
 # -*- coding: utf-8 -*-
 """Builds: homepage, about, service-areas, contact, faq, gallery, pricing, privacy-policy"""
 from pathlib import Path
-from data import SITE, TOWNS, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, PRICING_TABLE, WARRANTY
+from data import SITE, TOWNS, COPY, CURRENT, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, PRICING_TABLE, WARRANTY
 from templates import write_page, page, page_hero, faq_accordion, mini_quote_form, contact_form_card, map_section, town_chips, cta_banner, fence_illustration, warranty_seal, warranty_callout
 
-OUT = Path(__file__).resolve().parent.parent
 
 def write(path, html):
-    write_page(OUT, path, html)
+    write_page(CURRENT['out_dir'], path, html)
+
+
+def local_section_html():
+    """Optional site-specific homepage section (sites.py copy['local_section'])."""
+    sec = COPY.get('local_section')
+    if not sec:
+        return ""
+    cards = "".join(f'''
+<div class="card">
+  <h3>{t}</h3>
+  <p>{d}</p>
+</div>''' for t, d in sec['cards'])
+    return f'''
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">{sec['eyebrow']}</div>
+      <h2>{sec['title']}</h2>
+      <p>{sec['intro']}</p>
+    </div>
+    <div class="grid grid-4">{cards}</div>
+  </div>
+</section>
+'''
 
 
 # ---------------------------------------------------------------- HOMEPAGE
@@ -34,7 +57,7 @@ def build_home():
         ("Licensed, Bonded &amp; Insured", "76 FENCE is licensed, bonded, and insured in all 50 states, on every job we do."),
         ("Free Estimates", "Every estimate is free, with no obligation and no pressure."),
         ("76-Week Workmanship Warranty", "Every installation is backed by our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a>, plus the manufacturer's warranty on materials."),
-        ("Family Owned &amp; Locally Operated", "76 FENCE Lutz is owned and run by Tom &amp; Kate Donnelly, right here in the Tampa Bay area."),
+        COPY['why_local'],
         ("We Handle Your Permit", "In most cases we manage the local permitting process for you, included in your price."),
         ("Flexible Financing", "Ask about flexible financing options to make your project fit your budget."),
     ]
@@ -77,7 +100,7 @@ def build_home():
     <div>
       <div class="eyebrow" style="color:#ff8a94">{SITE['full_brand']}</div>
       <h1>The Trusted Fence Company in {SITE['city']}, {SITE['state']}</h1>
-      <p class="lead">Residential &amp; commercial fence installation built on quality, trust, and proven results. Vinyl, wood, aluminum, chain link, composite &amp; steel — installed, repaired, and maintained by a locally owned {SITE['region']} team.</p>
+      <p class="lead">{COPY['hero_lead']}</p>
       <div class="cta-row">
         <a class="btn btn-red" href="contact-us.html">Get a Free Estimate</a>
         <a class="btn btn-outline" href="tel:{SITE['phone_tel']}">Call {SITE['phone']}</a>
@@ -103,7 +126,7 @@ def build_home():
     <div class="grid grid-3">{service_tiles}</div>
   </div>
 </section>
-
+{local_section_html()}
 <section class="section section-alt">
   <div class="container">
     <div class="section-head">
@@ -209,7 +232,7 @@ def build_home():
       <h2>Frequently Asked Questions</h2>
     </div>
     <div style="max-width:800px;margin:0 auto">
-      {faq_accordion(FAQS[:6], open_first=True)}
+      {faq_accordion((COPY['local_faqs'] + FAQS)[:6], open_first=True)}
       <div class="center" style="margin-top:24px"><a class="btn btn-navy-outline" href="faq.html">See All FAQs</a></div>
     </div>
   </div>
@@ -219,14 +242,14 @@ def build_home():
 '''
     write("index.html", page(
         f"{SITE['full_brand']} | Fence Company in {SITE['city']}, {SITE['state']}",
-        f"76 FENCE Lutz installs and repairs vinyl, wood, aluminum, chain link, composite, and steel fencing for homes and businesses in {SITE['city']}, FL and the greater Tampa Bay area. Free estimates — call {SITE['phone']}.",
+        f"{SITE['full_brand']} installs and repairs vinyl, wood, aluminum, chain link, composite, and steel fencing for homes and businesses in {SITE['city']}, FL and the greater {SITE['region']} area. Free estimates — call {SITE['phone']}.",
         "index.html", content))
 
 
 # ---------------------------------------------------------------- ABOUT
 def build_about():
     content = page_hero("About Us", f"Meet the {SITE['full_brand']} Team",
-        f"{SITE['full_brand']} is a locally owned and operated fence company, proudly part of the national {SITE['brand']} network.",
+        COPY['about_lead'],
         [("Home", "index.html"), ("About", None)])
     content += f'''
 <section class="section">
@@ -235,8 +258,7 @@ def build_about():
       <div>
         <div class="eyebrow">Our Story</div>
         <h2>Local Ownership. National Backing.</h2>
-        <p>{SITE['full_brand']} brings the training, purchasing power, and manufacturer relationships of the national {SITE['brand']} network to a business that's owned and run right here in the Tampa Bay area. The {SITE['brand']} name is a nod to 1776 — American craftsmanship, straightforward dealing, and standing behind the work.</p>
-        <p>We install and repair fencing for homeowners, HOAs, and businesses across {SITE['city']} and the surrounding communities, and we handle the permitting process, the installation, and anything that needs fixing down the road.</p>
+        {"".join(f"<p>{p_}</p>" for p_ in COPY['about_story'])}
       </div>
       <div class="tile-img"><img src="assets/images/team/tom-kate-donnelly.jpg" alt="Tom and Kate Donnelly, owners of {SITE['full_brand']}, in front of their branded truck" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
     </div>
@@ -276,7 +298,7 @@ def build_about():
 {cta_banner("Ready to Work With Us?", f"Get a free estimate from the {SITE['full_brand']} team today.")}
 '''
     write("about-us.html", page(f"Meet the Team | {SITE['full_brand']}",
-        f"Meet Tom and Kate Donnelly, the owners of 76 FENCE Lutz, a locally owned fence company serving {SITE['city']}, FL and the Tampa Bay area.",
+        f"Meet Tom and Kate Donnelly, the owners of {SITE['full_brand']}, a locally owned fence company serving {SITE['city']}, FL and the {SITE['region']} area.",
         "about-us.html", content))
 
 
@@ -301,7 +323,7 @@ def build_service_areas():
 {cta_banner()}
 '''
     write("service-areas.html", page(f"Service Areas | {SITE['full_brand']}",
-        f"See every city and community {SITE['full_brand']} serves near {SITE['city']}, FL, including Land O' Lakes, Wesley Chapel, Odessa, New Port Richey, and more.",
+        COPY['service_areas_meta'],
         "service-areas.html", content))
 
 
@@ -333,27 +355,27 @@ def build_contact():
 </section>
 '''
     write("contact-us.html", page(f"Contact Us | {SITE['full_brand']}",
-        f"Contact 76 FENCE Lutz for a free fence estimate in {SITE['city']}, FL. Call or text {SITE['phone']} or email {SITE['email']}.",
+        f"Contact {SITE['full_brand']} for a free fence estimate in {SITE['city']}, FL. Call or text {SITE['phone']} or email {SITE['email']}.",
         "contact-us.html", content))
 
 
 # ---------------------------------------------------------------- FAQ
 def build_faq():
     content = page_hero("FAQ", "Frequently Asked Questions",
-        "Answers to the questions we hear most from Lutz-area homeowners and businesses.",
+        COPY['faq_lead'],
         [("Home", "index.html"), ("FAQ", None)])
     content += f'''
 <section class="section">
   <div class="container">
     <div style="max-width:820px;margin:0 auto">
-      {faq_accordion(FAQS, open_first=True)}
+      {faq_accordion(COPY['local_faqs'] + FAQS, open_first=True)}
     </div>
   </div>
 </section>
 {cta_banner("Still Have Questions?", "Give us a call and we'll walk you through it.")}
 '''
     write("faq.html", page(f"FAQ | {SITE['full_brand']}",
-        f"Answers to common questions about fence installation, pricing, permits, and materials from 76 FENCE Lutz.",
+        f"Answers to common questions about fence installation, pricing, permits, and materials from {SITE['full_brand']}.",
         "faq.html", content))
 
 
@@ -381,7 +403,7 @@ def build_gallery():
 {cta_banner()}
 '''
     write("fence-gallery.html", page(f"Fence Gallery | {SITE['full_brand']}",
-        f"Browse vinyl, wood, aluminum, chain link, and composite fence styles installed by 76 FENCE Lutz.",
+        f"Browse vinyl, wood, aluminum, chain link, and composite fence styles installed by {SITE['full_brand']}.",
         "fence-gallery.html", content))
 
 
@@ -451,7 +473,7 @@ def build_warranty():
         ("Does the warranty cover fence repairs or DIY services?",
          f"The {W['short']} applies to fence installations performed by {W['issuer']}. Ask us about coverage for any other service when you get your estimate."),
         ("How do I file a warranty claim?",
-         f"Call or text our Tampa line at <a href=\"tel:{SITE['tampa_phone_tel']}\">{SITE['tampa_phone']}</a> or our Lutz line at <a href=\"tel:{SITE['phone_tel']}\">{SITE['phone']}</a>, or email <a href=\"mailto:{SITE['email']}\">{SITE['email']}</a> with your installation address and a description or photos of the issue. We'll follow up to evaluate it."),
+         f"Call or text our Tampa line at <a href=\"tel:{SITE['tampa_phone_tel']}\">{SITE['tampa_phone']}</a> or our Lutz line at <a href=\"tel:{SITE['lutz_phone_tel']}\">{SITE['lutz_phone']}</a>, or email <a href=\"mailto:{SITE['email']}\">{SITE['email']}</a> with your installation address and a description or photos of the issue. We'll follow up to evaluate it."),
     ]
     content = f'''
 <section class="page-hero">
@@ -506,7 +528,7 @@ def build_warranty():
       <h2>How to Request Warranty Service</h2>
     </div>
     <div class="grid grid-3 steps">
-      <div class="card"><h3>Contact Us</h3><p>Call or text Tampa at <a href="tel:{SITE['tampa_phone_tel']}">{SITE['tampa_phone']}</a> or Lutz at <a href="tel:{SITE['phone_tel']}">{SITE['phone']}</a>, or email <a href="mailto:{SITE['email']}">{SITE['email']}</a>.</p></div>
+      <div class="card"><h3>Contact Us</h3><p>Call or text Tampa at <a href="tel:{SITE['tampa_phone_tel']}">{SITE['tampa_phone']}</a> or Lutz at <a href="tel:{SITE['lutz_phone_tel']}">{SITE['lutz_phone']}</a>, or email <a href="mailto:{SITE['email']}">{SITE['email']}</a>.</p></div>
       <div class="card"><h3>Share the Details</h3><p>Send your installation address and a description or photos of the issue.</p></div>
       <div class="card"><h3>We Inspect &amp; Fix It</h3><p>We evaluate the condition, and if it's covered, we repair or correct the workmanship at no charge.</p></div>
     </div>
@@ -560,17 +582,4 @@ def build_privacy():
 </section>
 '''
     write("privacy-policy.html", page(f"Privacy Policy | {SITE['full_brand']}",
-        "Privacy policy for Lutz Fences / 76 FENCE Lutz.", "privacy-policy.html", content))
-
-
-if __name__ == "__main__":
-    build_home()
-    build_about()
-    build_service_areas()
-    build_contact()
-    build_faq()
-    build_gallery()
-    build_pricing()
-    build_privacy()
-    build_warranty()
-    print("core pages done")
+        f"Privacy policy for {SITE['name']} / {SITE['full_brand']}.", "privacy-policy.html", content))

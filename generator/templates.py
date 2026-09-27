@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
 from pathlib import Path
-from data import SITE, TOWNS, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, WARRANTY
+from data import SITE, TOWNS, COPY, CURRENT, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, WARRANTY
 
 def esc(s):
     return s
@@ -55,7 +55,7 @@ def header_html(active=""):
   <div class="container nav-wrap">
     <a class="brand" href="index.html">
       <img src="assets/images/logo.png" alt="{SITE['full_brand']} logo" width="54" height="54">
-      <span>{SITE['brand']}<small>{SITE['city']}, {SITE['state']}</small></span>
+      <span>{SITE['brand']}<small>{SITE['brand_sub']}</small></span>
     </a>
     <nav class="primary-nav">
       {nav_html(active)}
@@ -166,7 +166,8 @@ WRITTEN_PAGES = {}
 
 
 def write_page(out_root, path, html):
-    """Write 'foo.html' as foo/index.html (served at /foo/) plus a redirect stub at foo.html.
+    """Write 'foo.html' as foo/index.html (served at /foo/), plus a redirect stub at foo.html on
+    sites that used to have .html addresses (legacy_redirects in sites.py).
     index.html stays at the site root."""
     out_root = Path(out_root)
     html = finalize(html)
@@ -178,7 +179,8 @@ def write_page(out_root, path, html):
     target = out_root / slug / "index.html"
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(html, encoding="utf-8")
-    (out_root / path).write_text(redirect_stub(path), encoding="utf-8")
+    if CURRENT.get("legacy_redirects"):
+        (out_root / path).write_text(redirect_stub(path), encoding="utf-8")
 
 
 def page(title, description, path, content, canonical=None):
@@ -255,6 +257,15 @@ def _formspree_id():
 
 FORMSPREE_AJAX_SCRIPT = '<script src="https://unpkg.com/@formspree/ajax@1" defer></script>'
 
+def source_fields():
+    """Hidden fields on every quote form: the email subject names the site the lead came from,
+    and `source` carries the domain as data (for Jobber lead source / the platform later)."""
+    domain = SITE['domain']
+    return (f'<input type="hidden" name="_subject" value="[{domain}] New quote request">\n'
+            f'    <input type="hidden" name="source" value="{domain}">\n'
+            f'    {HONEYPOT_FIELD}')
+
+
 # Honeypot: hidden from people, but bots fill it in — Formspree silently discards those submissions.
 HONEYPOT_FIELD = '<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">'
 
@@ -292,8 +303,7 @@ def mini_quote_form(heading="Get Your Free Estimate"):
     <span class="fs-field-error" data-fs-error="phone"></span>
     <input type="email" name="email" placeholder="Email Address" data-fs-field required>
     <span class="fs-field-error" data-fs-error="email"></span>
-    <input type="hidden" name="_subject" value="New quote request from {SITE['domain']}">
-    {HONEYPOT_FIELD}
+    {source_fields()}
     <div class="fs-error" data-fs-error></div>
     <button class="btn btn-red btn-block" type="submit" data-fs-submit-btn>Request My Free Estimate</button>
   </form>
@@ -323,15 +333,14 @@ def contact_form_card():
         <span class="fs-field-error" data-fs-error="email"></span></div>
     </div>
     <div class="form-row full">
-      <div><label for="address">Property Address / City</label><input id="address" type="text" name="address" placeholder="e.g. Lutz, FL" data-fs-field></div>
+      <div><label for="address">Property Address / City</label><input id="address" type="text" name="address" placeholder="{COPY['address_placeholder']}" data-fs-field></div>
     </div>
     <div class="form-row full">
       <div><label for="project">Tell us about your project</label>
         <textarea id="project" name="project" rows="4" placeholder="Fence type, approximate length, timeline..." data-fs-field></textarea>
       </div>
     </div>
-    <input type="hidden" name="_subject" value="New quote request from {SITE['domain']}">
-    {HONEYPOT_FIELD}
+    {source_fields()}
     <div class="fs-error" data-fs-error></div>
     <button class="btn btn-red btn-block" type="submit" data-fs-submit-btn>Send My Request</button>
     <p class="consent" style="margin-top:12px">By submitting, you consent to be contacted by {SITE['full_brand']} by phone, text, or email about your request. We don't sell or share your information.</p>

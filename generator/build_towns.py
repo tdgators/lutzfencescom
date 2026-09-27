@@ -1,32 +1,13 @@
 # -*- coding: utf-8 -*-
 """Builds one landing page per service-area town."""
 from pathlib import Path
-from data import SITE, TOWNS, MATERIALS, FAQS
+from data import SITE, TOWNS, COPY, CURRENT, MATERIALS, FAQS
 from templates import write_page, page, page_hero, faq_accordion, town_chips, cta_banner, map_section, fence_illustration, warranty_callout
 
-OUT = Path(__file__).resolve().parent.parent
 
 def write(path, html):
-    write_page(OUT, path, html)
+    write_page(CURRENT['out_dir'], path, html)
 
-
-INTRO_VARIANTS = [
-    "When you're ready to add a fence in {town}, you want a contractor who shows up, pulls the right permits, and builds something that holds up to Florida weather for years to come. That's what {brand} does for homeowners and businesses across {town} every week.",
-    "Looking for a fence company near {town}, {state}? {brand} installs and repairs residential and commercial fencing throughout {town} and the surrounding {region} area, with free estimates and no pressure.",
-    "{brand} is proud to serve {town} with professional fence installation, repair, and maintenance — from a simple backyard privacy fence to a full commercial security perimeter.",
-    "Homeowners and businesses in {town} trust {brand} for fence installation because we handle the permitting, the install, and anything that needs fixing down the road, all under one roof.",
-]
-
-WHY_VARIANTS = [
-    "We're locally owned and operated, backed by the training and manufacturer relationships of the national {brand} network — so you get big-company buying power with small-business accountability.",
-    "Every {town} estimate is free, and every installation is backed by the manufacturer's warranty plus our own <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a>.",
-    "We're licensed, bonded, and insured in all 50 states, and we handle the local permitting process for most {town} projects as part of your price.",
-]
-
-PERMIT_VARIANTS = [
-    "Most fence projects in {state} require a local permit, and if your property has a pool, your fence or gate also needs to meet Florida's residential pool safety barrier code. We handle that process for {town} homeowners so you don't have to.",
-    "If you're part of an HOA in {town}, your community likely requires board approval before installation — we're happy to help put together what your HOA needs to review your project.",
-]
 
 MATERIAL_SNIPPETS = {
     "vinyl-fence": "vinyl privacy and semi-privacy fencing that never needs painting",
@@ -48,10 +29,10 @@ TOWN_HERO_KINDS = ["vinyl", "wood", "aluminum", "chain-link", "composite", "stee
 
 def build_towns():
     for i, (name, slug) in enumerate(TOWNS):
-        intro = INTRO_VARIANTS[i % len(INTRO_VARIANTS)].format(
-            town=name, state=SITE['state'], brand=SITE['full_brand'], region=SITE['region'])
-        why = WHY_VARIANTS[i % len(WHY_VARIANTS)].format(town=name, brand=SITE['full_brand'])
-        permit = PERMIT_VARIANTS[i % len(PERMIT_VARIANTS)].format(town=name, state=SITE['state_full'])
+        fmt = dict(town=name, state=SITE['state'], state_full=SITE['state_full'], brand=SITE['full_brand'], region=SITE['region'])
+        intro = COPY['town_intros'][i % len(COPY['town_intros'])].format(**fmt)
+        why = COPY['town_why'][i % len(COPY['town_why'])].format(**fmt)
+        permit = COPY['town_permit'][i % len(COPY['town_permit'])].format(**fmt)
         near = neighbors(i)
         near_links = ", ".join(f'<a href="fence-company-{s}-fl.html">{n}</a>' for n, s in near)
 
@@ -122,8 +103,3 @@ def build_towns():
         title = f"Fence Company in {name}, {SITE['state']} | {SITE['full_brand']}"
         desc = f"{SITE['full_brand']} installs and repairs vinyl, wood, aluminum, chain link, and composite fencing in {name}, {SITE['state']}. Free estimates — call {SITE['phone']}."
         write(f"fence-company-{slug}-fl.html", page(title, desc, f"fence-company-{slug}-fl.html", content))
-
-
-if __name__ == "__main__":
-    build_towns()
-    print(f"{len(TOWNS)} town pages done")

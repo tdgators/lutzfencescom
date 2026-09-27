@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 """Builds: material pages, materials hub, style pages, styles hub, commercial hub + pages, other-service pages"""
 from pathlib import Path
-from data import SITE, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, TOWNS
+from data import SITE, CURRENT, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, TOWNS
 from templates import write_page, page, page_hero, faq_accordion, town_chips, cta_banner, map_section, fence_illustration, warranty_callout
 
-OUT = Path(__file__).resolve().parent.parent
 
 def write(path, html):
-    write_page(OUT, path, html)
+    write_page(CURRENT['out_dir'], path, html)
 
 
 def build_materials():
@@ -23,12 +22,12 @@ def build_materials():
         [("Home", "index.html"), ("Fence Materials", None)])
     content += f'<section class="section"><div class="container"><div class="grid grid-3">{tiles}</div></div></section>{cta_banner()}'
     write("fence-materials.html", page(f"Fence Materials | {SITE['full_brand']}",
-        "Compare vinyl, wood, aluminum, chain link, composite, and steel fence materials installed by 76 FENCE Lutz.",
+        f"Compare vinyl, wood, aluminum, chain link, composite, and steel fence materials installed by {SITE['full_brand']}.",
         "fence-materials.html", content))
 
     # Individual material pages
     for m in MATERIALS:
-        body_html = "".join(f"<p>{p_}</p>" for p_ in m["body"])
+        body_html = "".join(f"<p>{p_.replace('{city}', SITE['city'])}</p>" for p_ in m["body"])
         features_html = "".join(f"<li>{f}</li>" for f in m["features"])
         other_mats = [x for x in MATERIALS if x["slug"] != m["slug"]][:4]
         related = "".join(f'''
@@ -79,11 +78,11 @@ def build_styles():
     tiles = "".join(f'''
 <div class="card"><h3>{s['name']}</h3><p>{s['desc']}</p>
 <a class="more" href="{s['slug']}.html">Learn More &rarr;</a></div>''' for s in STYLES)
-    content = page_hero("Residential", "Fence Styles", "The most common fence styles we build for homeowners across the Tampa Bay area.",
+    content = page_hero("Residential", "Fence Styles", f"The most common fence styles we build for homeowners across the {SITE['region']} area.",
         [("Home", "index.html"), ("Fence Styles", None)])
     content += f'<section class="section"><div class="container"><div class="grid grid-3">{tiles}</div></div></section>{cta_banner()}'
     write("fence-styles.html", page(f"Fence Styles | {SITE['full_brand']}",
-        "Privacy, semi-privacy, horizontal, picket, and split rail fence styles installed by 76 FENCE Lutz.",
+        f"Privacy, semi-privacy, horizontal, picket, and split rail fence styles installed by {SITE['full_brand']}.",
         "fence-styles.html", content))
 
     style_kind = {
@@ -136,7 +135,7 @@ def build_commercial():
 {cta_banner("Need a Commercial Quote?", "Tell us about your property and we'll put together a free estimate.")}
 '''
     write("commercial-fencing.html", page(f"Commercial Fencing | {SITE['full_brand']}",
-        f"Commercial and industrial fence installation, repair, and security fencing in {SITE['city']}, FL and the Tampa Bay area.",
+        f"Commercial and industrial fence installation, repair, and security fencing in {SITE['city']}, FL and the {SITE['region']} area.",
         "commercial-fencing.html", content))
 
     commercial_kind = {
@@ -185,11 +184,3 @@ def build_other_services():
         write(f"{o['slug']}.html", page(f"{o['name']} | {SITE['full_brand']}",
             f"{o['tagline']} {o['name']} service from {SITE['full_brand']} in {SITE['city']}, FL.",
             f"{o['slug']}.html", content))
-
-
-if __name__ == "__main__":
-    build_materials()
-    build_styles()
-    build_commercial()
-    build_other_services()
-    print("service pages done")

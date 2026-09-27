@@ -3,9 +3,9 @@
 Uses headless Google Chrome to print an HTML layout to PDF."""
 import subprocess, tempfile, shutil
 from pathlib import Path
-from data import SITE, WARRANTY
+from data import SITE, CURRENT, WARRANTY
 
-OUT = Path(__file__).resolve().parent.parent
+ASSETS_SRC = Path(__file__).resolve().parent.parent / "assets"  # shared assets live in the lutzfencescom repo
 PDF_PATH = "assets/docs/76-fence-warranty.pdf"
 CHROME_CANDIDATES = [
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
@@ -22,7 +22,7 @@ def _chrome():
 
 def warranty_print_html():
     W = WARRANTY
-    logo = (OUT / "assets/images/logo.png").as_uri()
+    logo = (ASSETS_SRC / "images/logo.png").as_uri()
     covered = "".join(f"<li>{x}</li>" for x in W["covered"])
     not_covered = "".join(f"<li>{x}</li>" for x in W["not_covered"])
     terms = "".join(f"<h3>{h}</h3><p>{t}</p>" for h, t in W["terms"])
@@ -109,7 +109,7 @@ def warranty_print_html():
   <div class="kicker">Warranty Service</div>
   <h2>How to Request Warranty Service</h2>
   <div class="steps">
-    <div class="step"><div class="n">1</div><h3>Contact Us</h3><p>Call or text Tampa at {SITE['tampa_phone']} or Lutz at {SITE['phone']}, or email {SITE['email']}.</p></div>
+    <div class="step"><div class="n">1</div><h3>Contact Us</h3><p>Call or text Tampa at {SITE['tampa_phone']} or Lutz at {SITE['lutz_phone']}, or email {SITE['email']}.</p></div>
     <div class="step"><div class="n">2</div><h3>Share the Details</h3><p>Send your installation address and a description or photos of the issue.</p></div>
     <div class="step"><div class="n">3</div><h3>We Inspect &amp; Fix It</h3><p>We evaluate the condition, and if it&rsquo;s covered, we repair or correct the workmanship at no charge.</p></div>
   </div>
@@ -121,7 +121,7 @@ def warranty_print_html():
   {terms}
   <div class="contact">
     <div><b>{W['issuer']}</b><br><span>Tampa &amp; Lutz locations &middot; serving the {SITE['region']} area</span></div>
-    <div style="text-align:right"><b>Tampa {SITE['tampa_phone']} &nbsp;&middot;&nbsp; Lutz {SITE['phone']}</b><br><span>{SITE['email']} &middot; {SITE['domain']}</span></div>
+    <div style="text-align:right"><b>Tampa {SITE['tampa_phone']} &nbsp;&middot;&nbsp; Lutz {SITE['lutz_phone']}</b><br><span>{SITE['email']} &middot; {SITE['domain']}</span></div>
   </div>
   <div class="foot">&copy; {SITE['year']} {SITE['brand']}&trade;. This document states the terms of the {W['issuer']} {W['name']}.</div>
 </div>
@@ -134,7 +134,7 @@ def build_warranty_pdf():
     if not chrome:
         print("Chrome not found — skipped warranty PDF.")
         return
-    out = OUT / PDF_PATH
+    out = CURRENT["out_dir"] / PDF_PATH
     out.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as tmp:
         src = Path(tmp) / "warranty-print.html"
@@ -143,7 +143,3 @@ def build_warranty_pdf():
                         "--allow-file-access-from-files", f"--print-to-pdf={out}", src.as_uri()],
                        check=True, capture_output=True, timeout=120)
     print(f"wrote {PDF_PATH}")
-
-
-if __name__ == "__main__":
-    build_warranty_pdf()
