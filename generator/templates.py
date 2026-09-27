@@ -255,9 +255,29 @@ def _formspree_id():
 
 FORMSPREE_AJAX_SCRIPT = '<script src="https://unpkg.com/@formspree/ajax@1" defer></script>'
 
+# Honeypot: hidden from people, but bots fill it in — Formspree silently discards those submissions.
+HONEYPOT_FIELD = '<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">'
+
+
+def formspree_init(form_selector):
+    """Wire a form to Formspree. On success: clear the form and scroll the thank-you
+    message into view (on phones the submit button is far below it)."""
+    return f'''{FORMSPREE_AJAX_SCRIPT}
+<script>
+  window.formspree = window.formspree || function () {{ (formspree.q = formspree.q || []).push(arguments); }};
+  formspree('initForm', {{
+    formElement: '{form_selector}',
+    formId: '{_formspree_id()}',
+    onSuccess: function (context) {{
+      context.form.reset();
+      var msg = context.form.parentElement.querySelector('[data-fs-success]');
+      if (msg) msg.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
+    }}
+  }});
+</script>'''
+
 
 def mini_quote_form(heading="Get Your Free Estimate"):
-    fid = _formspree_id()
     return f'''
 <div class="hero-panel">
   <h3>{heading}</h3>
@@ -273,21 +293,17 @@ def mini_quote_form(heading="Get Your Free Estimate"):
     <input type="email" name="email" placeholder="Email Address" data-fs-field required>
     <span class="fs-field-error" data-fs-error="email"></span>
     <input type="hidden" name="_subject" value="New quote request from {SITE['domain']}">
+    {HONEYPOT_FIELD}
     <div class="fs-error" data-fs-error></div>
     <button class="btn btn-red btn-block" type="submit" data-fs-submit-btn>Request My Free Estimate</button>
   </form>
   <p class="consent" style="margin-top:10px">By submitting, you consent to be contacted by {SITE['full_brand']} by phone, text, or email about your request.</p>
 </div>
-{FORMSPREE_AJAX_SCRIPT}
-<script>
-  window.formspree = window.formspree || function () {{ (formspree.q = formspree.q || []).push(arguments); }};
-  formspree('initForm', {{ formElement: '#hero-quote-form', formId: '{fid}' }});
-</script>
+{formspree_init('#hero-quote-form')}
 '''
 
 
 def contact_form_card():
-    fid = _formspree_id()
     return f'''
 <div class="form-card">
   <h3>Request Your Free Estimate</h3>
@@ -315,16 +331,13 @@ def contact_form_card():
       </div>
     </div>
     <input type="hidden" name="_subject" value="New quote request from {SITE['domain']}">
+    {HONEYPOT_FIELD}
     <div class="fs-error" data-fs-error></div>
     <button class="btn btn-red btn-block" type="submit" data-fs-submit-btn>Send My Request</button>
     <p class="consent" style="margin-top:12px">By submitting, you consent to be contacted by {SITE['full_brand']} by phone, text, or email about your request. We don't sell or share your information.</p>
   </form>
 </div>
-{FORMSPREE_AJAX_SCRIPT}
-<script>
-  window.formspree = window.formspree || function () {{ (formspree.q = formspree.q || []).push(arguments); }};
-  formspree('initForm', {{ formElement: '#contact-quote-form', formId: '{fid}' }});
-</script>
+{formspree_init('#contact-quote-form')}
 '''
 
 

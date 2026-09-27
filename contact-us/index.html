@@ -100,6 +100,7 @@
       </div>
     </div>
     <input type="hidden" name="_subject" value="New quote request from lutzfences.com">
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
     <div class="fs-error" data-fs-error></div>
     <button class="btn btn-red btn-block" type="submit" data-fs-submit-btn>Send My Request</button>
     <p class="consent" style="margin-top:12px">By submitting, you consent to be contacted by 76 FENCE Lutz by phone, text, or email about your request. We don't sell or share your information.</p>
@@ -108,7 +109,15 @@
 <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 <script>
   window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-  formspree('initForm', { formElement: '#contact-quote-form', formId: 'xaenwbav' });
+  formspree('initForm', {
+    formElement: '#contact-quote-form',
+    formId: 'xaenwbav',
+    onSuccess: function (context) {
+      context.form.reset();
+      var msg = context.form.parentElement.querySelector('[data-fs-success]');
+      if (msg) msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
 </script>
 
       <div>
