@@ -2,14 +2,12 @@
 """Builds: homepage, about, service-areas, contact, faq, gallery, pricing, privacy-policy"""
 from pathlib import Path
 from data import SITE, TOWNS, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, PRICING_TABLE, WARRANTY
-from templates import page, page_hero, faq_accordion, mini_quote_form, contact_form_card, map_section, town_chips, cta_banner, fence_illustration, warranty_seal, warranty_callout
+from templates import write_page, page, page_hero, faq_accordion, mini_quote_form, contact_form_card, map_section, town_chips, cta_banner, fence_illustration, warranty_seal, warranty_callout
 
 OUT = Path(__file__).resolve().parent.parent
 
 def write(path, html):
-    p = OUT / path
-    p.parent.mkdir(parents=True, exist_ok=True)
-    p.write_text(html, encoding="utf-8")
+    write_page(OUT, path, html)
 
 
 # ---------------------------------------------------------------- HOMEPAGE

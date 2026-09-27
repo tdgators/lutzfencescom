@@ -13,7 +13,17 @@ A full static marketing site for 76 FENCE Lutz, built from the structure of scha
 - `about-us.html`, `service-areas.html`, `contact-us.html`, `faq.html`, `fence-gallery.html`, `fence-pricing.html`, `privacy-policy.html`
 - `assets/` — stylesheet, JS (mobile nav + FAQ accordion), logo, favicon
 
-No build tools needed — it's plain HTML/CSS/JS. Open `index.html` in a browser, or deploy the whole folder to any static host (Netlify, GitHub Pages, S3, etc.).
+No build tools needed — it's plain HTML/CSS/JS, deployed on GitHub Pages.
+
+**URLs:** every page lives in its own folder (`vinyl-fence/index.html`) and is served at a clean URL like `https://lutzfences.com/vinyl-fence/`. The old `vinyl-fence.html` addresses are tiny redirect pages so existing links and search results keep working. All links and asset paths are root-relative (`/assets/...`), so preview the site through a local server rather than opening files directly:
+
+```
+python3 -m http.server 8080
+```
+
+then visit http://localhost:8080.
+
+**Sitemap:** `build_all.py` also writes `sitemap.xml` (every page, clean URLs only) and `robots.txt`. A page's `<lastmod>` date only changes when that page's content changes; `generator/sitemap-state.json` tracks this, so commit it along with the site. Submit `https://lutzfences.com/sitemap.xml` in Google Search Console.
 
 ## Before you go live — 2 things to finish
 

@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import re
+from pathlib import Path
 from data import SITE, TOWNS, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, WARRANTY
 
 def esc(s):
@@ -128,8 +130,59 @@ def footer_html():
 '''
 
 
+def pretty_url(path):
+    """'vinyl-fence.html' -> '/vinyl-fence/', 'index.html' -> '/'."""
+    slug = path[:-len(".html")] if path.endswith(".html") else path
+    return "/" if slug == "index" else f"/{slug}/"
+
+
+_PAGE_LINK = re.compile(r'(href)="([a-z0-9-]+)\.html(#[^"]*)?"')
+_ASSET_LINK = re.compile(r'(href|src|content)="assets/')
+
+
+def finalize(html):
+    """Rewrite in-site links to directory-style URLs and make asset paths root-relative,
+    so pages work from any directory depth."""
+    html = _PAGE_LINK.sub(lambda m: f'{m[1]}="{pretty_url(m[2] + ".html")}{m[3] or ""}"', html)
+    html = _ASSET_LINK.sub(lambda m: f'{m[1]}="/assets/', html)
+    return html
+
+
+def redirect_stub(path):
+    """Tiny page left at the old .html address that forwards to the new URL."""
+    url = pretty_url(path)
+    return f'''<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Redirecting&hellip;</title>
+<link rel="canonical" href="https://{SITE['domain']}{url}">
+<meta http-equiv="refresh" content="0; url={url}">
+<script>location.replace("{url}" + location.search + location.hash);</script>
+</head><body><p>This page has moved to <a href="{url}">https://{SITE['domain']}{url}</a>.</p></body></html>
+'''
+
+
+# Every page written this build, keyed by URL path — used by build_sitemap.py.
+WRITTEN_PAGES = {}
+
+
+def write_page(out_root, path, html):
+    """Write 'foo.html' as foo/index.html (served at /foo/) plus a redirect stub at foo.html.
+    index.html stays at the site root."""
+    out_root = Path(out_root)
+    html = finalize(html)
+    WRITTEN_PAGES[pretty_url(path)] = html
+    if path == "index.html":
+        (out_root / "index.html").write_text(html, encoding="utf-8")
+        return
+    slug = path[:-len(".html")]
+    target = out_root / slug / "index.html"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(html, encoding="utf-8")
+    (out_root / path).write_text(redirect_stub(path), encoding="utf-8")
+
+
 def page(title, description, path, content, canonical=None):
-    canonical = canonical or f"https://{SITE['domain']}/{path}"
+    canonical = canonical or f"https://{SITE['domain']}{pretty_url(path)}"
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -142,7 +195,7 @@ def page(title, description, path, content, canonical=None):
 <link rel="apple-touch-icon" href="assets/images/logo.png">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
-<meta property="og:image" content="assets/images/logo.png">
+<meta property="og:image" content="https://{SITE['domain']}/assets/images/logo.png">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">

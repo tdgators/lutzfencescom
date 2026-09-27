@@ -1,5 +1,5 @@
 """Regenerate the entire site from data.py/templates.py. Run: python3 build_all.py"""
-import build_core, build_services, build_towns, build_pdf
+import build_core, build_services, build_towns, build_pdf, build_sitemap
 
 if __name__ == "__main__":
     build_core.build_home(); build_core.build_about(); build_core.build_service_areas()
@@ -9,4 +9,5 @@ if __name__ == "__main__":
     build_services.build_commercial(); build_services.build_other_services()
     build_towns.build_towns()
     build_pdf.build_warranty_pdf()
+    build_sitemap.build_sitemap()
     print("Site regenerated.")
