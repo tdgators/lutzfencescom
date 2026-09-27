@@ -34,7 +34,6 @@ SITES = {
     # ------------------------------------------------------------------ lutzfences.com
     "lutzfences.com": dict(
         out_dir=REPOS / "lutzfencescom",
-        legacy_redirects=True,  # keep the old /page.html addresses forwarding to /page/
         site=dict(
             name="Lutz Fences",
             full_brand="76 FENCE Lutz",

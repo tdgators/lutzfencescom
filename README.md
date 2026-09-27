@@ -15,7 +15,7 @@ A full static marketing site for 76 FENCE Lutz, built from the structure of scha
 
 No build tools needed — it's plain HTML/CSS/JS, deployed on GitHub Pages.
 
-**URLs:** every page lives in its own folder (`vinyl-fence/index.html`) and is served at a clean URL like `https://lutzfences.com/vinyl-fence/`. The old `vinyl-fence.html` addresses are tiny redirect pages so existing links and search results keep working. All links and asset paths are root-relative (`/assets/...`), so preview the site through a local server rather than opening files directly:
+**URLs:** every page lives in its own folder (`vinyl-fence/index.html`) and is served at a clean URL like `https://lutzfences.com/vinyl-fence/`. All links and asset paths are root-relative (`/assets/...`), so preview the site through a local server rather than opening files directly:
 
 ```
 python3 -m http.server 8080

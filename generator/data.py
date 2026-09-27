@@ -15,8 +15,7 @@ def use_site(domain):
     SITE.clear(); SITE.update(COMMON); SITE.update(cfg["site"])
     TOWNS[:] = cfg["towns"]
     COPY.clear(); COPY.update(cfg["copy"])
-    CURRENT.clear(); CURRENT.update(out_dir=Path(cfg["out_dir"]), domain=domain,
-                                   legacy_redirects=cfg.get("legacy_redirects", False))
+    CURRENT.clear(); CURRENT.update(out_dir=Path(cfg["out_dir"]), domain=domain)
 
 
 MATERIALS = [

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
 from pathlib import Path
-from data import SITE, TOWNS, COPY, CURRENT, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, WARRANTY
+from data import SITE, TOWNS, COPY, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, WARRANTY
 
 def esc(s):
     return s
@@ -148,26 +148,13 @@ def finalize(html):
     return html
 
 
-def redirect_stub(path):
-    """Tiny page left at the old .html address that forwards to the new URL."""
-    url = pretty_url(path)
-    return f'''<!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<title>Redirecting&hellip;</title>
-<link rel="canonical" href="https://{SITE['domain']}{url}">
-<meta http-equiv="refresh" content="0; url={url}">
-<script>location.replace("{url}" + location.search + location.hash);</script>
-</head><body><p>This page has moved to <a href="{url}">https://{SITE['domain']}{url}</a>.</p></body></html>
-'''
-
 
 # Every page written this build, keyed by URL path — used by build_sitemap.py.
 WRITTEN_PAGES = {}
 
 
 def write_page(out_root, path, html):
-    """Write 'foo.html' as foo/index.html (served at /foo/), plus a redirect stub at foo.html on
-    sites that used to have .html addresses (legacy_redirects in sites.py).
+    """Write 'foo.html' as foo/index.html (served at /foo/).
     index.html stays at the site root."""
     out_root = Path(out_root)
     html = finalize(html)
@@ -179,8 +166,6 @@ def write_page(out_root, path, html):
     target = out_root / slug / "index.html"
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(html, encoding="utf-8")
-    if CURRENT.get("legacy_redirects"):
-        (out_root / path).write_text(redirect_stub(path), encoding="utf-8")
 
 
 def page(title, description, path, content, canonical=None):
