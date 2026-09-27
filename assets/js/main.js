@@ -3,17 +3,25 @@ document.addEventListener('DOMContentLoaded', function () {
   var toggle = document.querySelector('.menu-toggle');
   var nav = document.querySelector('.primary-nav');
   var scrim = document.querySelector('.nav-scrim');
-  function closeNav() {
-    nav && nav.classList.remove('open');
-    scrim && scrim.classList.remove('open');
+  function setNav(open) {
+    if (!nav) return;
+    nav.classList.toggle('open', open);
+    scrim && scrim.classList.toggle('open', open);
+    if (toggle) {
+      toggle.innerHTML = open ? '&#10005;' : '&#9776;';
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+    }
   }
   if (toggle && nav) {
     toggle.addEventListener('click', function () {
-      nav.classList.toggle('open');
-      scrim && scrim.classList.toggle('open');
+      setNav(!nav.classList.contains('open'));
     });
   }
-  scrim && scrim.addEventListener('click', closeNav);
+  scrim && scrim.addEventListener('click', function () { setNav(false); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') setNav(false);
+  });
 
   // Mobile dropdown accordions (tap to open submenu instead of hover)
   document.querySelectorAll('nav.primary-nav > ul > li').forEach(function (li) {
