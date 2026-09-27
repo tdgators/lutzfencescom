@@ -121,7 +121,7 @@ def footer_html():
       </div>
     </div>
     <div class="footer-bottom">
-      <div>&copy; {SITE['year']} {SITE['brand']}&trade;. All rights reserved. {SITE['name']} is a registered DBA in the State of {SITE['state_full']}.</div>
+      <div>&copy; {SITE['year']} {SITE['brand']}&trade;. All rights reserved. {SITE['name']} is a division of {SITE['parent']}, a registered DBA in the State of {SITE['state_full']}.</div>
       <div><a href="privacy-policy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="tel:{SITE['phone_tel']}">{SITE['phone']}</a> &nbsp;|&nbsp; <a href="mailto:{SITE['email']}">{SITE['email']}</a></div>
     </div>
   </div>
