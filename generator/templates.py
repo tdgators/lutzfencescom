@@ -7,12 +7,13 @@ def esc(s):
     return s
 
 def nav_html(active=""):
-    def li(label, href, key, dropdown=None):
-        cls = " class=\"open\"" if False else ""
+    def li(label, href, key, dropdown=None, extra=False):
+        # extra=True: hidden from the header at medium widths (still in the menu-button drawer)
+        cls = ' class="nav-extra"' if extra else ""
         if dropdown:
-            return f'''<li><button class="nav-toggle" type="button">{label} <span>▾</span></button>
+            return f'''<li{cls}><button class="nav-toggle" type="button">{label} <span>▾</span></button>
               <div class="dropdown">{dropdown}</div></li>'''
-        return f'<li><a href="{href}">{label}</a></li>'
+        return f'<li{cls}><a href="{href}">{label}</a></li>'
 
     materials_links = "".join(f'<a href="{m["slug"]}.html">{m["name"]}</a>' for m in MATERIALS)
     styles_links = "".join(f'<a href="{s["slug"]}.html">{s["name"]}</a>' for s in STYLES)
@@ -33,9 +34,9 @@ def nav_html(active=""):
 
     items = [
         li("Home", "index.html", "home"),
-        li("Residential", "#", "residential", residential_dd),
-        li("Commercial", "#", "commercial", commercial_dd),
-        li("Other Services", "#", "other", other_dd),
+        li("Residential", "#", "residential", residential_dd, extra=True),
+        li("Commercial", "#", "commercial", commercial_dd, extra=True),
+        li("Other Services", "#", "other", other_dd, extra=True),
         li("Fence Gallery", "fence-gallery.html", "gallery"),
         li("About", "#", "about", about_dd),
         li("Contact", "#", "contact", contact_dd),
@@ -153,6 +154,12 @@ def finalize(html):
 WRITTEN_PAGES = {}
 
 
+def write_404(out_root, html):
+    """GitHub Pages serves /404.html (site root, not a folder) for any missing address.
+    Not added to the sitemap."""
+    (Path(out_root) / "404.html").write_text(finalize(html), encoding="utf-8")
+
+
 def write_page(out_root, path, html):
     """Write 'foo.html' as foo/index.html (served at /foo/).
     index.html stays at the site root."""
@@ -168,8 +175,10 @@ def write_page(out_root, path, html):
     target.write_text(html, encoding="utf-8")
 
 
-def page(title, description, path, content, canonical=None):
+def page(title, description, path, content, canonical=None, noindex=False):
     canonical = canonical or f"https://{SITE['domain']}{pretty_url(path)}"
+    head_meta = ('<meta name="robots" content="noindex">' if noindex
+                 else f'<link rel="canonical" href="{canonical}">')
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -177,7 +186,7 @@ def page(title, description, path, content, canonical=None):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{description}">
-<link rel="canonical" href="{canonical}">
+{head_meta}
 <link rel="icon" href="assets/images/favicon.png">
 <link rel="apple-touch-icon" href="assets/images/logo.png">
 <meta property="og:title" content="{title}">

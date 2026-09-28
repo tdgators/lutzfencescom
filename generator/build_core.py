@@ -2,7 +2,7 @@
 """Builds: homepage, about, service-areas, contact, faq, gallery, pricing, privacy-policy"""
 from pathlib import Path
 from data import SITE, TOWNS, COPY, CURRENT, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, PRICING_TABLE, WARRANTY
-from templates import write_page, page, page_hero, faq_accordion, mini_quote_form, contact_form_card, map_section, town_chips, cta_banner, fence_illustration, warranty_seal, warranty_callout
+from templates import write_page, write_404, page, page_hero, faq_accordion, mini_quote_form, contact_form_card, map_section, town_chips, cta_banner, fence_illustration, warranty_seal, warranty_callout
 
 
 def write(path, html):
@@ -44,13 +44,13 @@ def build_home():
 </div>''' for m in MATERIALS)
 
     gallery_tiles = "".join(f'''
-<div class="tile-img">{fence_illustration(kind)}
-  <div class="tile-label">{label}</div>
-</div>''' for label, kind in [
-        ("Vinyl Privacy Fence", "vinyl"), ("Aluminum Pool Enclosure", "aluminum"),
-        ("Wood Privacy Fence", "wood"), ("Chain Link Install", "chain-link"),
-        ("Composite Fence", "composite"), ("Commercial Security Fence", "security"),
-        ("Picket Fence", "picket"), ("HOA Community Fencing", "steel"),
+<a class="tile-img tile-link" href="{href}">{fence_illustration(kind)}
+  <div class="tile-label">{label} &rarr;</div>
+</a>''' for label, kind, href in [
+        ("Vinyl Privacy Fence", "vinyl", "vinyl-fence.html"), ("Aluminum Pool Enclosure", "aluminum", "aluminum-fence.html"),
+        ("Wood Privacy Fence", "wood", "wood-fence.html"), ("Chain Link Install", "chain-link", "chain-link-fence.html"),
+        ("Composite Fence", "composite", "composite-fence.html"), ("Commercial Security Fence", "security", "security-fencing.html"),
+        ("Picket Fence", "picket", "picket-fence.html"), ("HOA Community Fencing", "steel", "hoa-fencing.html"),
     ])
 
     why_items = [
@@ -162,10 +162,10 @@ def build_home():
         <a class="btn btn-blue" href="fence-pricing.html">See Full Pricing Breakdown</a>
       </div>
       <div>
-        <table class="pricing">
+        <div class="table-scroll"><table class="pricing">
           <tr><th>Yard Size</th>{header_cols}</tr>
           {rows}
-        </table>
+        </table></div>
         <p class="small" style="margin-top:10px">Estimates only. Actual pricing depends on linear footage, material, gates, and site conditions.</p>
       </div>
     </div>
@@ -381,16 +381,17 @@ def build_faq():
 
 # ---------------------------------------------------------------- GALLERY
 def build_gallery():
-    cats = [
-        ("Vinyl Privacy", "vinyl"), ("Wood Stockade", "wood"), ("Aluminum", "aluminum"),
-        ("Chain Link", "chain-link"), ("Composite", "composite"), ("Commercial / Security", "security"),
-        ("Picket", "picket"), ("Split Rail", "split-rail"), ("Horizontal", "horizontal"),
-        ("Steel & Wrought Iron", "steel"),
+    cats = [  # (label, image kind, detail page)
+        ("Vinyl Privacy", "vinyl", "vinyl-fence.html"), ("Wood Stockade", "wood", "wood-fence.html"),
+        ("Aluminum", "aluminum", "aluminum-fence.html"), ("Chain Link", "chain-link", "chain-link-fence.html"),
+        ("Composite", "composite", "composite-fence.html"), ("Commercial / Security", "security", "security-fencing.html"),
+        ("Picket", "picket", "picket-fence.html"), ("Split Rail", "split-rail", "split-rail-fence.html"),
+        ("Horizontal", "horizontal", "horizontal-fence.html"), ("Steel & Wrought Iron", "steel", "steel-wrought-iron-fence.html"),
     ]
     tiles = "".join(f'''
-<div class="tile-img">{fence_illustration(kind)}
-  <div class="tile-label">{cat} Fence — {SITE['city']}, {SITE['state']} area</div>
-</div>''' for cat, kind in cats)
+<a class="tile-img tile-link" href="{href}">{fence_illustration(kind)}
+  <div class="tile-label">{cat} Fence — {SITE['city']}, {SITE['state']} area &rarr;</div>
+</a>''' for cat, kind, href in cats)
     content = page_hero("Gallery", "Fence Gallery",
         f"A look at the fence materials and styles we install across {SITE['city']} and the {SITE['region']} area.",
         [("Home", "index.html"), ("Gallery", None)])
@@ -422,10 +423,10 @@ def build_pricing():
     content += f'''
 <section class="section">
   <div class="container">
-    <table class="pricing">
+    <div class="table-scroll"><table class="pricing">
       <tr><th>Yard Size</th>{header_cols}</tr>
       {rows}
-    </table>
+    </table></div>
     <p class="small" style="margin-top:14px">Estimates only, based on typical residential installations. Actual pricing depends on linear footage, material, existing fence removal, gates, and site conditions. Composite and custom-colored vinyl typically run 50%-100% above standard vinyl pricing.</p>
 
     <div class="divider"></div>
@@ -558,6 +559,47 @@ def build_warranty():
     write("warranty.html", page(f"{W['name']} | {W['issuer']}",
         f"Every fence installed by {SITE['full_brand']} is backed by the {W['issuer']} {W['name']}. See what's covered, what's not, and how to request warranty service.",
         "warranty.html", content))
+
+
+# ---------------------------------------------------------------- 404
+def build_404():
+    links = [
+        ("Fence Materials", "fence-materials.html", "Vinyl, wood, aluminum, chain link, composite, and steel."),
+        ("Fence Styles", "fence-styles.html", "Privacy, semi-privacy, horizontal, picket, and split rail."),
+        ("Service Areas", "service-areas.html", f"Every community we serve around {SITE['city']}."),
+        ("Our Warranty", "warranty.html", "Our 76-Week Limited Workmanship Warranty."),
+        ("Pricing", "fence-pricing.html", "Typical fence costs by material and yard size."),
+        ("Contact Us", "contact-us.html", "Request your free, no-obligation estimate."),
+    ]
+    cards = "".join(f'''
+<div class="card">
+  <h3>{t}</h3>
+  <p>{d}</p>
+  <a class="more" href="{href}">Go &rarr;</a>
+</div>''' for t, href, d in links)
+    content = f'''
+<section class="page-hero">
+  <div class="container">
+    <div class="eyebrow" style="color:#ff8a94">Page Not Found</div>
+    <h1>Sorry, we can't find that page.</h1>
+    <p class="lead">The link may be old or mistyped. Try one of the pages below, or call us and we'll help you directly.</p>
+    <div class="cta-row">
+      <a class="btn btn-red" href="index.html">Go to the Homepage</a>
+      <a class="btn btn-outline" href="tel:{SITE['phone_tel']}">Call {SITE['phone']}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-3">{cards}</div>
+  </div>
+</section>
+{cta_banner()}
+'''
+    write_404(CURRENT['out_dir'], page(f"Page Not Found | {SITE['full_brand']}",
+        f"The page you're looking for isn't here. Find fence services, service areas, and free estimates from {SITE['full_brand']}.",
+        "404.html", content, noindex=True))
 
 
 # ---------------------------------------------------------------- PRIVACY POLICY

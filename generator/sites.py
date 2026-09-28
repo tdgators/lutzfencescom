@@ -113,6 +113,7 @@ SITES = {
             ("Brooksville", "brooksville"), ("Spring Hill", "spring-hill"), ("Weeki Wachee", "weeki-wachee"),
             ("Ridge Manor", "ridge-manor"), ("Nobleton", "nobleton"), ("Masaryktown", "masaryktown"),
             ("Hernando Beach", "hernando-beach"), ("Dade City", "dade-city"), ("San Antonio", "san-antonio"),
+            ("Shady Hills", "shady-hills"),
         ],
         copy=dict(
             hero_lead="Fence installation for Brooksville's acreage, hills, and neighborhoods — privacy, farm, pool, and security fencing in vinyl, wood, aluminum, chain link, and steel, installed and backed by the 76 FENCE Tampa team.",
