@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
 from pathlib import Path
-from data import SITE, TOWNS, COPY, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, WARRANTY
+from data import SITE, TOWNS, COPY, THEME, T, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, WARRANTY
 
 def esc(s):
     return s
@@ -86,7 +86,7 @@ def footer_html():
           <img src="assets/images/logo.png" alt="{SITE['full_brand']} logo" width="46" height="46">
           <span>{SITE['full_brand']}</span>
         </div>
-        <p>{SITE['name']} ({SITE['domain']}) is a marketing website for {SITE['brand']}&trade;, serving {SITE['city']}, {SITE['state']} and the surrounding {SITE['region']} area with residential and commercial fence installation, repair, and maintenance.</p>
+        <p>{T("footer_about", f"{SITE['name']} ({SITE['domain']}) is a marketing website for {SITE['brand']}&trade;, serving {SITE['city']}, {SITE['state']} and the surrounding {SITE['region']} area with residential and commercial fence installation, repair, and maintenance.")}</p>
         <div class="footer-social">
           <a href="{SITE['fb']}" target="_blank" rel="noopener" aria-label="Facebook">f</a>
           <a href="{SITE['ig']}" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
@@ -175,6 +175,22 @@ def write_page(out_root, path, html):
     target.write_text(html, encoding="utf-8")
 
 
+DEFAULT_FONTS = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+
+
+def theme_style():
+    """The site's design tokens (THEME['vars'], e.g. {'--accent': '#2f5d3a'}) layered over styles.css."""
+    tokens = THEME.get("vars")
+    if not tokens:
+        return ""
+    return "<style>:root{" + "".join(f"{k}:{v};" for k, v in tokens.items()) + "}</style>\n"
+
+
+def body_class():
+    cls = THEME.get("body_class")
+    return f' class="{cls}"' if cls else ""
+
+
 def page(title, description, path, content, canonical=None, noindex=False):
     canonical = canonical or f"https://{SITE['domain']}{pretty_url(path)}"
     head_meta = ('<meta name="robots" content="noindex">' if noindex
@@ -194,10 +210,10 @@ def page(title, description, path, content, canonical=None, noindex=False):
 <meta property="og:image" content="https://{SITE['domain']}/assets/images/logo.png">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="{THEME.get('fonts_href', DEFAULT_FONTS)}" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<body>
+{theme_style()}</head>
+<body{body_class()}>
 {header_html()}
 {content}
 {footer_html()}
@@ -221,11 +237,11 @@ def page_hero(eyebrow, title, lead, breadcrumbs_items=None):
 <section class="page-hero">
   <div class="container">
     {bc}
-    <div class="eyebrow" style="color:#ff8a94">{eyebrow}</div>
+    <div class="eyebrow">{eyebrow}</div>
     <h1>{title}</h1>
     <p class="lead">{lead}</p>
     <div class="cta-row">
-      <a class="btn btn-red" href="contact-us.html">Get a Free Estimate</a>
+      <a class="btn btn-red" href="contact-us.html">{T("labels.estimate", "Get a Free Estimate")}</a>
       <a class="btn btn-outline" href="tel:{SITE['phone_tel']}">Call {SITE['phone']}</a>
     </div>
   </div>
@@ -522,9 +538,9 @@ def warranty_callout(context="your fence"):
     <div class="warranty-callout">
       {warranty_seal()}
       <div>
-        <div class="eyebrow">{WARRANTY['tagline']}</div>
-        <h2>Backed by Our {WARRANTY['short']}</h2>
-        <p>Every installation comes with the {WARRANTY['issuer']} {WARRANTY['name']}. If there's a defect in how we installed or assembled {context} within {WARRANTY['weeks']} weeks ({WARRANTY['approx']}) of your installation date, we'll inspect it and make it right at no charge. Materials are also covered separately by the manufacturer's warranty.</p>
+        <div class="eyebrow">{T("warranty_box.eyebrow", WARRANTY['tagline'])}</div>
+        <h2>{T("warranty_box.title", f"Backed by Our {WARRANTY['short']}")}</h2>
+        <p>{T("warranty_box.text", "Every installation comes with the {issuer} {name}. If there's a defect in how we installed or assembled {context} within {weeks} weeks ({approx}) of your installation date, we'll inspect it and make it right at no charge. Materials are also covered separately by the manufacturer's warranty.").format(issuer=WARRANTY['issuer'], name=WARRANTY['name'], context=context, weeks=WARRANTY['weeks'], approx=WARRANTY['approx'])}</p>
         <a class="btn btn-navy-outline" href="warranty.html">See Warranty Details</a>
       </div>
     </div>
@@ -533,14 +549,16 @@ def warranty_callout(context="your fence"):
 '''
 
 
-def cta_banner(title="Ready to Get Started?", sub="Get a free, no-obligation fence estimate today."):
+def cta_banner(title=None, sub=None):
+    title = title or T("cta.title", "Ready to Get Started?")
+    sub = sub or T("cta.sub", "Get a free, no-obligation fence estimate today.")
     return f'''
 <section class="section section-navy">
   <div class="container center">
     <h2>{title}</h2>
     <p style="max-width:560px;margin:0 auto 24px">{sub}</p>
     <div class="cta-row" style="justify-content:center">
-      <a class="btn btn-red" href="contact-us.html">Get a Free Estimate</a>
+      <a class="btn btn-red" href="contact-us.html">{T("labels.estimate", "Get a Free Estimate")}</a>
       <a class="btn btn-outline" href="tel:{SITE['phone_tel']}">Call {SITE['phone']}</a>
     </div>
   </div>

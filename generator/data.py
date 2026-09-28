@@ -7,15 +7,32 @@ SITE = {}
 TOWNS = []  # (Display Name, slug)
 COPY = {}   # site-specific wording (see sites.py)
 CURRENT = {}  # out_dir, domain
+CONTENT = {}  # the site's own wording for every page (content/<name>.py); missing keys use the default text
+THEME = {}    # the site's look: fonts, colors, hero style, homepage section order (content/<name>.py)
 
 
 def use_site(domain):
+    import importlib
     from sites import SITES, COMMON
     cfg = SITES[domain]
     SITE.clear(); SITE.update(COMMON); SITE.update(cfg["site"])
     TOWNS[:] = cfg["towns"]
     COPY.clear(); COPY.update(cfg["copy"])
     CURRENT.clear(); CURRENT.update(out_dir=Path(cfg["out_dir"]), domain=domain)
+    CONTENT.clear(); THEME.clear()
+    if cfg.get("content"):
+        mod = importlib.import_module(f"content.{cfg['content']}")
+        CONTENT.update(mod.CONTENT); THEME.update(mod.THEME)
+
+
+def T(path, default=None):
+    """This site's wording at a dotted path (e.g. "home.hero.h1"), or `default` if it doesn't define one."""
+    node = CONTENT
+    for key in path.split("."):
+        if not isinstance(node, dict) or key not in node:
+            return default
+        node = node[key]
+    return node
 
 
 MATERIALS = [

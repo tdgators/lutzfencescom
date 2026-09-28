@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Builds: homepage, about, service-areas, contact, faq, gallery, pricing, privacy-policy"""
 from pathlib import Path
-from data import SITE, TOWNS, COPY, CURRENT, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, PRICING_TABLE, WARRANTY
+from data import SITE, TOWNS, COPY, CURRENT, THEME, T, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, PRICING_TABLE, WARRANTY
 from templates import write_page, write_404, page, page_hero, faq_accordion, mini_quote_form, contact_form_card, map_section, town_chips, cta_banner, fence_illustration, warranty_seal, warranty_callout
 
 
@@ -9,256 +9,309 @@ def write(path, html):
     write_page(CURRENT['out_dir'], path, html)
 
 
-def local_section_html():
-    """Optional site-specific homepage section (sites.py copy['local_section'])."""
-    sec = COPY.get('local_section')
-    if not sec:
-        return ""
-    cards = "".join(f'''
-<div class="card">
-  <h3>{t}</h3>
-  <p>{d}</p>
-</div>''' for t, d in sec['cards'])
-    return f'''
-<section class="section">
+def sec_head(eyebrow, title, intro=None):
+    intro_html = f"\n      <p>{intro}</p>" if intro else ""
+    return f"""<div class="section-head">
+      <div class="eyebrow">{eyebrow}</div>
+      <h2>{title}</h2>{intro_html}
+    </div>"""
+
+
+def section(inner, alt=False, extra_cls=""):
+    cls = "section" + (" section-alt" if alt else "") + (f" {extra_cls}" if extra_cls else "")
+    return f"""
+<section class="{cls}">
   <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">{sec['eyebrow']}</div>
-      <h2>{sec['title']}</h2>
-      <p>{sec['intro']}</p>
-    </div>
-    <div class="grid grid-4">{cards}</div>
+    {inner}
   </div>
 </section>
-'''
+"""
 
 
-# ---------------------------------------------------------------- HOMEPAGE
-def build_home():
-    service_tiles = "".join(f'''
+def site_faqs():
+    """The FAQ list for this site: its own (content FAQ) or local extras + the shared defaults."""
+    return T("faqs") or (COPY['local_faqs'] + FAQS)
+
+
+# ---------------------------------------------------------------- HOMEPAGE sections
+def home_hero():
+    variant = THEME.get("hero", "split")
+    eyebrow = T("home.hero.eyebrow", SITE['full_brand'])
+    h1 = T("home.hero.h1", f"The Trusted Fence Company in {SITE['city']}, {SITE['state']}")
+    lead = T("home.hero.lead", COPY['hero_lead'])
+    badges = T("home.hero.badges", ["Licensed &amp; Fully Insured", "Free Estimates",
+        '<a href="warranty.html" style="color:inherit">76-Week Workmanship Warranty</a>', "Family Owned &amp; Locally Operated"])
+    badges_html = "".join(f'\n        <div class="hero-badge"><span class="dot"></span>{b}</div>' for b in badges)
+    photo = THEME.get("hero_image")
+    style = f' style="--hero-photo:url(\'/assets/images/{photo}\')"' if photo else ""
+    text = f"""<div>
+      <div class="eyebrow">{eyebrow}</div>
+      <h1>{h1}</h1>
+      <p class="lead">{lead}</p>
+      <div class="cta-row">
+        <a class="btn btn-red" href="contact-us.html">{T("home.hero.cta", "Get a Free Estimate")}</a>
+        <a class="btn btn-outline" href="tel:{SITE['phone_tel']}">Call {SITE['phone']}</a>
+      </div>
+      <div class="hero-badges">{badges_html}
+      </div>
+    </div>"""
+    if variant == "centered":  # headline only; the estimate form gets its own section further down
+        return f"""
+<section class="hero hero-centered{' hero-photo' if photo else ''}"{style}>
+  <div class="container">
+    {text}
+  </div>
+</section>
+"""
+    cls = "hero hero-photo" if variant == "image" and photo else "hero"
+    return f"""
+<section class="{cls}"{style}>
+  <div class="container">
+    {text}
+    {mini_quote_form()}
+  </div>
+</section>
+"""
+
+
+def home_services(alt=False):
+    tiles = "".join(f"""
 <div class="card">
   <div class="tile-img" style="aspect-ratio:16/10;margin-bottom:14px">{fence_illustration(m['img'])}</div>
   <h3>{m['name']}</h3>
-  <p>{m['tagline']}</p>
-  <a class="more" href="{m['slug']}.html">Learn More &rarr;</a>
-</div>''' for m in MATERIALS)
+  <p>{T(f"materials.{m['slug']}.tagline", m['tagline'])}</p>
+  <a class="more" href="{m['slug']}.html">{T("home.services.more", "Learn More &rarr;")}</a>
+</div>""" for m in MATERIALS)
+    return section(sec_head(T("home.services.eyebrow", "What We Install"),
+        T("home.services.title", f"Fencing Services in {SITE['city']} &amp; the {SITE['region']} Area"),
+        T("home.services.intro", "From a simple backyard privacy fence to a full commercial security perimeter, we install and stand behind every material we offer."))
+        + f'\n    <div class="grid grid-3">{tiles}</div>', alt)
 
-    gallery_tiles = "".join(f'''
+
+def home_local(alt=False):
+    sec = T("home.local", COPY.get('local_section'))
+    if not sec:
+        return ""
+    cards = "".join(f"""
+<div class="card">
+  <h3>{t}</h3>
+  <p>{d}</p>
+</div>""" for t, d in sec['cards'])
+    return section(sec_head(sec['eyebrow'], sec['title'], sec['intro']) + f'\n    <div class="grid grid-4">{cards}</div>', alt)
+
+
+GALLERY_TILES = [
+    ("Vinyl Privacy Fence", "vinyl", "vinyl-fence.html"), ("Aluminum Pool Enclosure", "aluminum", "aluminum-fence.html"),
+    ("Wood Privacy Fence", "wood", "wood-fence.html"), ("Chain Link Install", "chain-link", "chain-link-fence.html"),
+    ("Composite Fence", "composite", "composite-fence.html"), ("Commercial Security Fence", "security", "security-fencing.html"),
+    ("Picket Fence", "picket", "picket-fence.html"), ("HOA Community Fencing", "steel", "hoa-fencing.html"),
+]
+
+
+def home_gallery(alt=True):
+    tiles = "".join(f"""
 <a class="tile-img tile-link" href="{href}">{fence_illustration(kind)}
   <div class="tile-label">{label} &rarr;</div>
-</a>''' for label, kind, href in [
-        ("Vinyl Privacy Fence", "vinyl", "vinyl-fence.html"), ("Aluminum Pool Enclosure", "aluminum", "aluminum-fence.html"),
-        ("Wood Privacy Fence", "wood", "wood-fence.html"), ("Chain Link Install", "chain-link", "chain-link-fence.html"),
-        ("Composite Fence", "composite", "composite-fence.html"), ("Commercial Security Fence", "security", "security-fencing.html"),
-        ("Picket Fence", "picket", "picket-fence.html"), ("HOA Community Fencing", "steel", "hoa-fencing.html"),
-    ])
+</a>""" for label, kind, href in T("home.gallery.tiles", GALLERY_TILES))
+    return section(sec_head(T("home.gallery.eyebrow", "Our Work"),
+        T("home.gallery.title", f"Recent {SITE['city']}-Area Fence Installations"),
+        T("home.gallery.intro", "We're building out our full photo gallery of local installs — in the meantime, here's a look at the styles and materials we install most."))
+        + f'\n    <div class="grid grid-4">{tiles}</div>'
+        + f'\n    <div class="center" style="margin-top:28px"><a class="btn btn-navy-outline" href="fence-gallery.html">{T("home.gallery.button", "View Full Gallery")}</a></div>', alt)
 
-    why_items = [
+
+def home_why(alt=False):
+    items = T("home.why.items", [
         ("Licensed &amp; Fully Insured", f"Licensed in {SITE['licensed_in']}, with general liability and workers' compensation insurance on every job."),
         ("Free Estimates", "Every estimate is free, with no obligation and no pressure."),
         ("76-Week Workmanship Warranty", "Every installation is backed by our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a>, plus the manufacturer's warranty on materials."),
         COPY['why_local'],
         ("We Handle Your Permit", "In most cases we manage the local permitting process for you, included in your price."),
         ("Flexible Financing", "Ask about flexible financing options to make your project fit your budget."),
-    ]
-    why_html = "".join(f'''
+    ])
+    cards = "".join(f"""
 <div class="card">
   <div class="icon">✓</div>
   <h3>{t}</h3>
   <p>{d}</p>
-</div>''' for t, d in why_items)
+</div>""" for t, d in items)
+    return section(sec_head(T("home.why.eyebrow", "Why 76 FENCE"),
+        T("home.why.title", f"Why Homeowners Choose {SITE['full_brand']}"),
+        T("home.why.intro", f"We're part of the {SITE['brand']} network — bringing national buying power and manufacturer relationships to a locally owned, locally operated business."))
+        + f'\n    <div class="grid grid-3">{cards}</div>', alt)
 
-    commercial_tiles = "".join(f'''
-<div class="card">
-  <h3>{c['name']}</h3>
-  <p>{c['desc']}</p>
-  <a class="more" href="{c['slug']}.html">Learn More &rarr;</a>
-</div>''' for c in COMMERCIAL)
 
-    pricing_rows = ""
-    for size, mats in PRICING_TABLE.items():
-        pass
+def home_warranty(alt=True):
+    html = warranty_callout()
+    return html.replace('section warranty-strip', 'section section-alt warranty-strip') if alt else html
+
+
+def pricing_table():
     first_size = list(PRICING_TABLE.keys())[0]
     header_cols = "".join(f"<th>{m}</th>" for m in PRICING_TABLE[first_size].keys())
-    rows = ""
-    for size, mats in PRICING_TABLE.items():
-        cells = "".join(f"<td>{v}</td>" for v in mats.values())
-        rows += f"<tr><td>{size}</td>{cells}</tr>"
+    rows = "".join(f"<tr><td>{size}</td>" + "".join(f"<td>{v}</td>" for v in mats.values()) + "</tr>"
+                   for size, mats in PRICING_TABLE.items())
+    return f"""<div class="table-scroll"><table class="pricing">
+          <tr><th>Yard Size</th>{header_cols}</tr>
+          {rows}
+        </table></div>"""
 
-    diy_tiles = "".join(f'''
+
+def home_pricing(alt=True):
+    return section(f"""<div class="split">
+      <div>
+        <div class="eyebrow">{T("home.pricing.eyebrow", "Pricing")}</div>
+        <h2>{T("home.pricing.title", "What Does a Fence Cost?")}</h2>
+        <p>{T("home.pricing.intro", f"Every project is different, but here's a general idea of what {SITE['city']}-area homeowners typically invest based on yard size and material. Get a free, no-obligation quote for exact pricing on your property.")}</p>
+        <a class="btn btn-blue" href="fence-pricing.html">{T("home.pricing.button", "See Full Pricing Breakdown")}</a>
+      </div>
+      <div>
+        {pricing_table()}
+        <p class="small" style="margin-top:10px">Estimates only. Actual pricing depends on linear footage, material, gates, and site conditions.</p>
+      </div>
+    </div>""", alt)
+
+
+def home_commercial(alt=False):
+    tiles = "".join(f"""
+<div class="card">
+  <h3>{c['name']}</h3>
+  <p>{T(f"commercial.{c['slug']}.desc", c['desc'])}</p>
+  <a class="more" href="{c['slug']}.html">Learn More &rarr;</a>
+</div>""" for c in COMMERCIAL)
+    return section(sec_head(T("home.commercial.eyebrow", "Commercial"),
+        T("home.commercial.title", "Commercial &amp; Industrial Fencing"),
+        T("home.commercial.intro", "We handle commercial fencing projects of every size — from a single dumpster enclosure to a full industrial security perimeter."))
+        + f'\n    <div class="grid grid-4">{tiles}</div>'
+        + '\n    <div class="center" style="margin-top:28px"><a class="btn btn-navy-outline" href="commercial-fencing.html">See All Commercial Services</a></div>', alt)
+
+
+def home_diy(alt=True):
+    tiles = "".join(f"""
 <div class="card">
   <h3>{t}</h3><p>{d}</p>
-</div>''' for t, d in [
+</div>""" for t, d in T("home.diy.tiles", [
         ("Materials Only", "Buy fence materials at contractor pricing and install it yourself."),
         ("Post Hole Digging", "We dig the holes; you handle the rest of the build."),
         ("Installation Consultation", "A paid on-site visit to plan layout, materials, and permitting before you start."),
-    ])
+    ]))
+    return section(sec_head(T("home.diy.eyebrow", "DIY"), T("home.diy.title", "Building Your Own Fence?"),
+        T("home.diy.intro", "Not every project needs a full install — here's how we can help without taking over the whole job."))
+        + f'\n    <div class="grid grid-3">{tiles}</div>'
+        + '\n    <div class="center" style="margin-top:24px"><a class="btn btn-blue" href="diy-fence.html">Ask About DIY</a></div>', alt)
 
-    content = f'''
-<section class="hero">
-  <div class="container">
-    <div>
-      <div class="eyebrow" style="color:#ff8a94">{SITE['full_brand']}</div>
-      <h1>The Trusted Fence Company in {SITE['city']}, {SITE['state']}</h1>
-      <p class="lead">{COPY['hero_lead']}</p>
-      <div class="cta-row">
-        <a class="btn btn-red" href="contact-us.html">Get a Free Estimate</a>
-        <a class="btn btn-outline" href="tel:{SITE['phone_tel']}">Call {SITE['phone']}</a>
-      </div>
-      <div class="hero-badges">
-        <div class="hero-badge"><span class="dot"></span>Licensed &amp; Fully Insured</div>
-        <div class="hero-badge"><span class="dot"></span>Free Estimates</div>
-        <div class="hero-badge"><span class="dot"></span><a href="warranty.html" style="color:inherit">76-Week Workmanship Warranty</a></div>
-        <div class="hero-badge"><span class="dot"></span>Family Owned &amp; Locally Operated</div>
-      </div>
-    </div>
-    {mini_quote_form()}
-  </div>
-</section>
 
-<section class="section">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">What We Install</div>
-      <h2>Fencing Services in {SITE['city']} &amp; the {SITE['region']} Area</h2>
-      <p>From a simple backyard privacy fence to a full commercial security perimeter, we install and stand behind every material we offer.</p>
-    </div>
-    <div class="grid grid-3">{service_tiles}</div>
-  </div>
-</section>
-{local_section_html()}
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Our Work</div>
-      <h2>Recent {SITE['city']}-Area Fence Installations</h2>
-      <p>We're building out our full photo gallery of local installs — in the meantime, here's a look at the styles and materials we install most.</p>
-    </div>
-    <div class="grid grid-4">{gallery_tiles}</div>
-    <div class="center" style="margin-top:28px"><a class="btn btn-navy-outline" href="fence-gallery.html">View Full Gallery</a></div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Why 76 FENCE</div>
-      <h2>Why Homeowners Choose {SITE['full_brand']}</h2>
-      <p>We're part of the {SITE['brand']} network — bringing national buying power and manufacturer relationships to a locally owned, locally operated business.</p>
-    </div>
-    <div class="grid grid-3">{why_html}</div>
-  </div>
-</section>
-
-{warranty_callout().replace('section warranty-strip', 'section section-alt warranty-strip')}
-
-<section class="section section-alt">
-  <div class="container">
-    <div class="split">
-      <div>
-        <div class="eyebrow">Pricing</div>
-        <h2>What Does a Fence Cost?</h2>
-        <p>Every project is different, but here's a general idea of what {SITE['city']}-area homeowners typically invest based on yard size and material. Get a free, no-obligation quote for exact pricing on your property.</p>
-        <a class="btn btn-blue" href="fence-pricing.html">See Full Pricing Breakdown</a>
-      </div>
-      <div>
-        <div class="table-scroll"><table class="pricing">
-          <tr><th>Yard Size</th>{header_cols}</tr>
-          {rows}
-        </table></div>
-        <p class="small" style="margin-top:10px">Estimates only. Actual pricing depends on linear footage, material, gates, and site conditions.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Commercial</div>
-      <h2>Commercial &amp; Industrial Fencing</h2>
-      <p>We handle commercial fencing projects of every size — from a single dumpster enclosure to a full industrial security perimeter.</p>
-    </div>
-    <div class="grid grid-4">{commercial_tiles}</div>
-    <div class="center" style="margin-top:28px"><a class="btn btn-navy-outline" href="commercial-fencing.html">See All Commercial Services</a></div>
-  </div>
-</section>
-
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">DIY</div>
-      <h2>Building Your Own Fence?</h2>
-      <p>Not every project needs a full install — here's how we can help without taking over the whole job.</p>
-    </div>
-    <div class="grid grid-3">{diy_tiles}</div>
-    <div class="center" style="margin-top:24px"><a class="btn btn-blue" href="diy-fence.html">Ask About DIY</a></div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Reviews</div>
-      <h2>See What {SITE['city']}-Area Customers Are Saying</h2>
-      <p>Read our latest reviews on Google and Facebook, or leave us one of your own after your project.</p>
-    </div>
+def home_reviews(alt=False):
+    return section(sec_head(T("home.reviews.eyebrow", "Reviews"),
+        T("home.reviews.title", f"See What {SITE['city']}-Area Customers Are Saying"),
+        T("home.reviews.intro", "Read our latest reviews on Google and Facebook, or leave us one of your own after your project."))
+        + f"""
     <div class="cta-row" style="justify-content:center">
       <a class="btn btn-navy-outline" href="{SITE['google']}" target="_blank" rel="noopener">Read Our Google Reviews</a>
       <a class="btn btn-navy-outline" href="{SITE['fb']}" target="_blank" rel="noopener">Read Our Facebook Reviews</a>
-    </div>
-  </div>
-</section>
+    </div>""", alt)
 
-<section class="section section-alt">
-  <div class="container">
-    <div class="split rev">
+
+def home_areas(alt=True):
+    return section(f"""<div class="split rev">
       <div class="split-media">{map_section()}</div>
       <div>
-        <div class="eyebrow">Service Area</div>
-        <h2>Proudly Serving {SITE['city']} &amp; the {SITE['region']} Area</h2>
-        <p>We install and repair fences throughout {SITE['city']} and dozens of surrounding communities.</p>
+        <div class="eyebrow">{T("home.areas.eyebrow", "Service Area")}</div>
+        <h2>{T("home.areas.title", f"Proudly Serving {SITE['city']} &amp; the {SITE['region']} Area")}</h2>
+        <p>{T("home.areas.intro", f"We install and repair fences throughout {SITE['city']} and dozens of surrounding communities.")}</p>
         {town_chips(limit=14)}
         <div style="margin-top:20px"><a class="btn btn-blue" href="service-areas.html">See All Cities We Serve</a></div>
       </div>
-    </div>
-  </div>
-</section>
+    </div>""", alt)
 
-<section class="section">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">FAQ</div>
-      <h2>Frequently Asked Questions</h2>
-    </div>
+
+def home_faq(alt=False):
+    return section(sec_head(T("home.faq.eyebrow", "FAQ"), T("home.faq.title", "Frequently Asked Questions")) + f"""
     <div style="max-width:800px;margin:0 auto">
-      {faq_accordion((COPY['local_faqs'] + FAQS)[:6], open_first=True)}
+      {faq_accordion(site_faqs()[:6], open_first=True)}
       <div class="center" style="margin-top:24px"><a class="btn btn-navy-outline" href="faq.html">See All FAQs</a></div>
-    </div>
-  </div>
-</section>
+    </div>""", alt)
 
-{cta_banner()}
-'''
+
+def home_process(alt=False):
+    sec = T("home.process")
+    steps = "".join(f"""
+<div class="card">
+  <h3>{t}</h3>
+  <p>{d}</p>
+</div>""" for t, d in sec['steps'])
+    return section(sec_head(sec['eyebrow'], sec['title'], sec.get('intro')) + f'\n    <div class="grid grid-4 steps">{steps}</div>', alt)
+
+
+def home_styles(alt=False):
+    sec = T("home.styles")
+    tiles = "".join(f"""
+<a class="card style-card" href="{s['slug']}.html">
+  <h3>{s['name']}</h3>
+  <p>{T(f"styles.{s['slug']}.desc", s['desc'])}</p>
+  <span class="more">{sec.get('more', 'See the style &rarr;')}</span>
+</a>""" for s in STYLES)
+    return section(sec_head(sec['eyebrow'], sec['title'], sec.get('intro')) + f'\n    <div class="grid grid-3">{tiles}</div>', alt)
+
+
+def home_estimate(alt=True):
+    sec = T("home.estimate")
+    points = "".join(f"<li>{p_}</li>" for p_ in sec.get('points', []))
+    return section(f"""<div class="split estimate-split">
+      <div>
+        <div class="eyebrow">{sec['eyebrow']}</div>
+        <h2>{sec['title']}</h2>
+        <p>{sec['intro']}</p>
+        <ul class="check-list">{points}</ul>
+      </div>
+      {contact_form_card()}
+    </div>""", alt)
+
+
+def home_budget(alt=False):
+    sec = T("home.budget")
+    cards = "".join(f"""
+<div class="card">
+  <h3>{t}</h3>
+  <p>{d}</p>
+</div>""" for t, d in sec['cards'])
+    return section(sec_head(sec['eyebrow'], sec['title'], sec.get('intro')) + f'\n    <div class="grid grid-3">{cards}</div>'
+        + f'\n    <div class="center" style="margin-top:24px"><a class="btn btn-blue" href="fence-pricing.html">{sec.get("button", "See Typical Pricing")}</a></div>', alt)
+
+
+HOME_SECTIONS = {
+    "services": home_services, "local": home_local, "gallery": home_gallery, "why": home_why,
+    "warranty": home_warranty, "pricing": home_pricing, "commercial": home_commercial, "diy": home_diy,
+    "reviews": home_reviews, "areas": home_areas, "faq": home_faq, "process": home_process,
+    "styles": home_styles, "estimate": home_estimate, "budget": home_budget,
+}
+# Lutz's layout; a site's THEME['home_sections'] lists its own (section, alt background) order.
+DEFAULT_HOME = [("services", False), ("local", False), ("gallery", True), ("why", False), ("warranty", True),
+                ("pricing", True), ("commercial", False), ("diy", True), ("reviews", False), ("areas", True), ("faq", False)]
+
+
+def build_home():
+    body = "".join(HOME_SECTIONS[name](alt) for name, alt in THEME.get("home_sections", DEFAULT_HOME))
+    content = home_hero() + body + f"\n{cta_banner()}\n"
     write("index.html", page(
-        f"{SITE['full_brand']} | Fence Company in {SITE['city']}, {SITE['state']}",
-        f"{SITE['full_brand']} installs and repairs vinyl, wood, aluminum, chain link, composite, and steel fencing for homes and businesses in {SITE['city']}, FL and the greater {SITE['region']} area. Free estimates — call {SITE['phone']}.",
+        T("home.meta_title", f"{SITE['full_brand']} | Fence Company in {SITE['city']}, {SITE['state']}"),
+        T("home.meta_description", f"{SITE['full_brand']} installs and repairs vinyl, wood, aluminum, chain link, composite, and steel fencing for homes and businesses in {SITE['city']}, FL and the greater {SITE['region']} area. Free estimates — call {SITE['phone']}."),
         "index.html", content))
 
 
 # ---------------------------------------------------------------- ABOUT
 def build_about():
-    content = page_hero("About Us", f"Meet the {SITE['full_brand']} Team",
-        COPY['about_lead'],
+    content = page_hero("About Us", T("about.title", f"Meet the {SITE['full_brand']} Team"),
+        T("about.lead", COPY['about_lead']),
         [("Home", "index.html"), ("About", None)])
     content += f'''
 <section class="section">
   <div class="container">
     <div class="split">
       <div>
-        <div class="eyebrow">Our Story</div>
-        <h2>Local Ownership. National Backing.</h2>
-        {"".join(f"<p>{p_}</p>" for p_ in COPY['about_story'])}
+        <div class="eyebrow">{T("about.story_eyebrow", "Our Story")}</div>
+        <h2>{T("about.story_title", "Local Ownership. National Backing.")}</h2>
+        {"".join(f"<p>{p_}</p>" for p_ in T("about.story", COPY['about_story']))}
       </div>
       <div class="tile-img"><img src="assets/images/team/tom-kate-donnelly.jpg" alt="Tom and Kate Donnelly, owners of {SITE['full_brand']}, in front of their branded truck" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
     </div>
@@ -268,17 +321,17 @@ def build_about():
 <section class="section section-alt">
   <div class="container">
     <div class="section-head">
-      <div class="eyebrow">Ownership</div>
-      <h2>Meet the Owners</h2>
+      <div class="eyebrow">{T("about.owners_eyebrow", "Ownership")}</div>
+      <h2>{T("about.owners_title", "Meet the Owners")}</h2>
     </div>
     <div class="grid grid-2">
       <div class="card">
         <h3>Tom Donnelly &mdash; Owner</h3>
-        <p>Tom brings over 20 years of experience in information technology within the finance and banking industries, having served as both a principal engineer and a people leader managing global teams. As owner of {SITE['full_brand']}, Tom is focused on building a trusted, locally operated business that delivers exceptional craftsmanship and customer service, bringing the strength and professionalism of the {SITE['brand']} brand to the {SITE['city']} community.</p>
+        <p>{T("about.tom", f"Tom brings over 20 years of experience in information technology within the finance and banking industries, having served as both a principal engineer and a people leader managing global teams. As owner of {SITE['full_brand']}, Tom is focused on building a trusted, locally operated business that delivers exceptional craftsmanship and customer service, bringing the strength and professionalism of the {SITE['brand']} brand to the {SITE['city']} community.")}</p>
       </div>
       <div class="card">
         <h3>Kate Donnelly &mdash; Owner</h3>
-        <p>Kate brings over 20 years of experience serving the federal government as an intelligence analyst, with a master's degree and deep experience in strategic analysis and attention to detail. As owner of {SITE['full_brand']}, Kate is committed to building a business grounded in integrity, operational excellence, and outstanding customer service for every {SITE['city']}-area project.</p>
+        <p>{T("about.kate", f"Kate brings over 20 years of experience serving the federal government as an intelligence analyst, with a master's degree and deep experience in strategic analysis and attention to detail. As owner of {SITE['full_brand']}, Kate is committed to building a business grounded in integrity, operational excellence, and outstanding customer service for every {SITE['city']}-area project.")}</p>
       </div>
     </div>
   </div>
@@ -295,25 +348,25 @@ def build_about():
   </div>
 </section>
 
-{cta_banner("Ready to Work With Us?", f"Get a free estimate from the {SITE['full_brand']} team today.")}
+{cta_banner(T("about.cta_title", "Ready to Work With Us?"), T("about.cta_sub", f"Get a free estimate from the {SITE['full_brand']} team today."))}
 '''
     write("about-us.html", page(f"Meet the Team | {SITE['full_brand']}",
-        f"Meet Tom and Kate Donnelly, the owners of {SITE['full_brand']}, a locally owned fence company serving {SITE['city']}, FL and the {SITE['region']} area.",
+        T("about.meta", f"Meet Tom and Kate Donnelly, the owners of {SITE['full_brand']}, a locally owned fence company serving {SITE['city']}, FL and the {SITE['region']} area."),
         "about-us.html", content))
 
 
 # ---------------------------------------------------------------- SERVICE AREAS
 def build_service_areas():
-    content = page_hero("Service Areas", f"Cities We Serve Near {SITE['city']}, {SITE['state']}",
-        f"{SITE['full_brand']} provides fence installation, repair, and maintenance across {SITE['city']} and the entire {SITE['region']} region.",
+    content = page_hero("Service Areas", T("areas.title", f"Cities We Serve Near {SITE['city']}, {SITE['state']}"),
+        T("areas.lead", f"{SITE['full_brand']} provides fence installation, repair, and maintenance across {SITE['city']} and the entire {SITE['region']} region."),
         [("Home", "index.html"), ("Service Areas", None)])
     content += f'''
 <section class="section">
   <div class="container">
     <div class="split">
       <div>
-        <h2>Proudly Serving the Following Communities</h2>
-        <p>Don't see your city listed? Give us a call — we likely still serve your area.</p>
+        <h2>{T("areas.h2", "Proudly Serving the Following Communities")}</h2>
+        <p>{T("areas.intro", "Don't see your city listed? Give us a call — we likely still serve your area.")}</p>
         {town_chips()}
       </div>
       <div>{map_section()}</div>
@@ -329,8 +382,8 @@ def build_service_areas():
 
 # ---------------------------------------------------------------- CONTACT
 def build_contact():
-    content = page_hero("Contact Us", "Get Your Free Fence Estimate",
-        f"Call, text, or send us a message and the {SITE['full_brand']} team will get back to you fast.",
+    content = page_hero("Contact Us", T("contact.title", "Get Your Free Fence Estimate"),
+        T("contact.lead", f"Call, text, or send us a message and the {SITE['full_brand']} team will get back to you fast."),
         [("Home", "index.html"), ("Contact", None)])
     content += f'''
 <section class="section">
@@ -347,7 +400,7 @@ def build_contact():
           <a href="{SITE['ig']}" target="_blank" rel="noopener" style="background:#eef1f5;color:#17356b" aria-label="Instagram">IG</a>
           <a href="{SITE['google']}" target="_blank" rel="noopener" style="background:#eef1f5;color:#17356b" aria-label="Google">G</a>
         </div>
-        <div class="divider"></div>
+        {T("contact.side_html", "")}<div class="divider"></div>
         {map_section()}
       </div>
     </div>
@@ -361,18 +414,18 @@ def build_contact():
 
 # ---------------------------------------------------------------- FAQ
 def build_faq():
-    content = page_hero("FAQ", "Frequently Asked Questions",
-        COPY['faq_lead'],
+    content = page_hero("FAQ", T("faq.title", "Frequently Asked Questions"),
+        T("faq.lead", COPY['faq_lead']),
         [("Home", "index.html"), ("FAQ", None)])
     content += f'''
 <section class="section">
   <div class="container">
     <div style="max-width:820px;margin:0 auto">
-      {faq_accordion(COPY['local_faqs'] + FAQS, open_first=True)}
+      {faq_accordion(site_faqs(), open_first=True)}
     </div>
   </div>
 </section>
-{cta_banner("Still Have Questions?", "Give us a call and we'll walk you through it.")}
+{cta_banner(T("faq.cta_title", "Still Have Questions?"), T("faq.cta_sub", "Give us a call and we'll walk you through it."))}
 '''
     write("faq.html", page(f"FAQ | {SITE['full_brand']}",
         f"Answers to common questions about fence installation, pricing, permits, and materials from {SITE['full_brand']}.",
@@ -390,58 +443,51 @@ def build_gallery():
     ]
     tiles = "".join(f'''
 <a class="tile-img tile-link" href="{href}">{fence_illustration(kind)}
-  <div class="tile-label">{cat} Fence — {SITE['city']}, {SITE['state']} area &rarr;</div>
-</a>''' for cat, kind, href in cats)
-    content = page_hero("Gallery", "Fence Gallery",
-        f"A look at the fence materials and styles we install across {SITE['city']} and the {SITE['region']} area.",
+  <div class="tile-label">{T("gallery.label", "{cat} Fence — {city}, {state} area").format(cat=cat, city=SITE['city'], state=SITE['state'])} &rarr;</div>
+</a>''' for cat, kind, href in T("gallery.tiles", cats))
+    content = page_hero("Gallery", T("gallery.title", "Fence Gallery"),
+        T("gallery.lead", f"A look at the fence materials and styles we install across {SITE['city']} and the {SITE['region']} area."),
         [("Home", "index.html"), ("Gallery", None)])
     content += f'''
 <section class="section">
   <div class="container">
-    <div class="grid grid-4">{tiles}</div>
+    {T("gallery.intro_html", "")}<div class="grid grid-4">{tiles}</div>
   </div>
 </section>
 {cta_banner()}
 '''
     write("fence-gallery.html", page(f"Fence Gallery | {SITE['full_brand']}",
-        f"Browse vinyl, wood, aluminum, chain link, and composite fence styles installed by {SITE['full_brand']}.",
+        T("gallery.meta", f"Browse vinyl, wood, aluminum, chain link, and composite fence styles installed by {SITE['full_brand']}."),
         "fence-gallery.html", content))
 
 
 # ---------------------------------------------------------------- PRICING
 def build_pricing():
-    first_size = list(PRICING_TABLE.keys())[0]
-    header_cols = "".join(f"<th>{m}</th>" for m in PRICING_TABLE[first_size].keys())
-    rows = ""
-    for size, mats in PRICING_TABLE.items():
-        cells = "".join(f"<td>{v}</td>" for v in mats.values())
-        rows += f"<tr><td>{size}</td>{cells}</tr>"
-
-    content = page_hero("Pricing", "What Does a Fence Cost?",
-        f"General pricing guidance for fence installation in {SITE['city']} and the {SITE['region']} area. Get a free quote for exact pricing.",
+    factors = T("pricing.factors", [
+        ("Yard Size", "The single biggest driver of your total price — more linear footage means more material and labor."),
+        ("Existing Fence Removal", "Removing and hauling away an old fence typically adds a few dollars per linear foot."),
+        ("Gates", "Gates typically add a few hundred dollars each on top of your overall fence quote, depending on size and hardware."),
+    ])
+    factor_cards = "".join(f'\n      <div class="card"><h3>{t}</h3><p>{d}</p></div>' for t, d in factors)
+    content = page_hero("Pricing", T("pricing.title", "What Does a Fence Cost?"),
+        T("pricing.lead", f"General pricing guidance for fence installation in {SITE['city']} and the {SITE['region']} area. Get a free quote for exact pricing."),
         [("Home", "index.html"), ("Pricing", None)])
     content += f'''
 <section class="section">
   <div class="container">
-    <div class="table-scroll"><table class="pricing">
-      <tr><th>Yard Size</th>{header_cols}</tr>
-      {rows}
-    </table></div>
+    {T("pricing.intro_html", "")}{pricing_table()}
     <p class="small" style="margin-top:14px">Estimates only, based on typical residential installations. Actual pricing depends on linear footage, material, existing fence removal, gates, and site conditions. Composite and custom-colored vinyl typically run 50%-100% above standard vinyl pricing.</p>
 
     <div class="divider"></div>
 
-    <div class="grid grid-3">
-      <div class="card"><h3>Yard Size</h3><p>The single biggest driver of your total price — more linear footage means more material and labor.</p></div>
-      <div class="card"><h3>Existing Fence Removal</h3><p>Removing and hauling away an old fence typically adds a few dollars per linear foot.</p></div>
-      <div class="card"><h3>Gates</h3><p>Gates typically add a few hundred dollars each on top of your overall fence quote, depending on size and hardware.</p></div>
+    <div class="grid grid-3">{factor_cards}
     </div>
   </div>
 </section>
-{cta_banner("Want an Exact Price?", "Every yard is different — get a free, no-obligation estimate for yours.")}
+{cta_banner(T("pricing.cta_title", "Want an Exact Price?"), T("pricing.cta_sub", "Every yard is different — get a free, no-obligation estimate for yours."))}
 '''
     write("fence-pricing.html", page(f"Fence Pricing | {SITE['full_brand']}",
-        f"See typical fence installation pricing by material and yard size in {SITE['city']}, FL, or get a free custom quote.",
+        T("pricing.meta", f"See typical fence installation pricing by material and yard size in {SITE['city']}, FL, or get a free custom quote."),
         "fence-pricing.html", content))
 
 

@@ -98,6 +98,7 @@ SITES = {
     # ------------------------------------------------------------------ brooksvillefence.com
     "brooksvillefence.com": dict(
         out_dir=REPOS / "brooksvillefencecom",
+        content="brooksville",  # own wording + theme: content/brooksville.py
         site=dict(
             name="Brooksville Fence",
             full_brand="76 FENCE Tampa",
@@ -165,6 +166,7 @@ SITES = {
     # ------------------------------------------------------------------ northtampafencing.com
     "northtampafencing.com": dict(
         out_dir=REPOS / "northtampafencingcom",
+        content="northtampa",  # own wording + theme: content/northtampa.py
         site=dict(
             name="North Tampa Fencing",
             full_brand="76 FENCE Tampa",

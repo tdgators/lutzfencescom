@@ -48,7 +48,8 @@ then visit http://localhost:8080.
 | northtampafencing.com | `../northtampafencingcom` |
 
 - **Shared** (edit once, every site changes): design, header/footer, forms, warranty, materials, pricing, FAQ base — `generator/data.py`, `generator/templates.py`, `generator/build_*.py`, `assets/`.
-- **Per site**: domain, phone, city/area, town list, map, and the site's own local wording — one entry in `generator/sites.py`. Give each site its own wording so the sites aren't near-duplicates.
+- **Per site — settings**: domain, phone, city/area, town list, and map — one entry in `generator/sites.py`.
+- **Per site — words and look**: `generator/content/<site>.py` holds the site's own wording for every page (homepage, about, FAQs, every material/style/service page, town pages) plus its `THEME`: fonts, colors, card style, hero layout (`split`, `image`, or `centered`), homepage section order, and service-page layout (`guide`). Anything a content file leaves out falls back to the lutzfences.com wording and layout. Search engines treat near-identical sites as low-value, so every new site should get its own content file — aim for well under 30% shared phrasing with the other sites, apart from the warranty terms and privacy policy.
 
 ```
 cd generator

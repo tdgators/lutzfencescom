@@ -1,0 +1,453 @@
+# -*- coding: utf-8 -*-
+"""northtampafencing.com — its own look and its own words.
+
+Voice: polished, design-minded, HOA-aware. Audience: homeowners in New Tampa's planned communities
+(Tampa Palms, Hunter's Green, Cross Creek, K-Bar Ranch) plus Temple Terrace, Carrollwood, and Lutz.
+Keep every claim factual (no invented reviews, years in business, or statistics); licensing/insurance
+wording must match sites.py. Never use a competitor's business name."""
+
+THEME = dict(
+    body_class="theme-refined",
+    fonts_href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@400;700;900&display=swap",
+    vars={
+        "--font-head": "'Playfair Display', Georgia, serif",
+        "--font-body": "'Lato', -apple-system, 'Segoe UI', Roboto, Arial, sans-serif",
+        "--head-weight": "700",
+        "--accent": "#1f6f78",
+        "--accent-dark": "#0f3d44",
+        "--eyebrow": "#1f6f78",
+        "--alt-bg": "#f2f6f7",
+        "--hero-eyebrow": "#b9e3e6",
+        "--hero-bg": "linear-gradient(135deg, #0f3d44 0%, #17356b 100%)",
+        "--section-pad": "88px",
+    },
+    hero="centered",
+    hero_image="materials/steel-fence.jpg",
+    home_sections=[
+        ("local", False), ("styles", True), ("services", False), ("estimate", True), ("why", False),
+        ("budget", True), ("warranty", False), ("gallery", True), ("areas", False), ("faq", True),
+    ],
+    detail_layout="guide",
+    town_sections=["intro", "materials", "faq", "nearby"],
+)
+
+LICENSED = "Licensed in Hillsborough, Pasco, and Hernando counties and fully insured with general liability and workers' compensation coverage."
+
+CONTENT = {
+    "labels": {"estimate": "Book a Free Consultation", "glance": "Highlights", "or_call": "or call us at", "read_more": "Learn more &rarr;",
+               "related_materials": "Explore More Materials", "related_styles": "You Might Also Like",
+               "related_commercial": "Related Services", "related_other": "More Services"},
+    "footer_about": "North Tampa Fencing (northtampafencing.com) is the New Tampa and North Tampa website of 76 FENCE Tampa, designing and installing residential and community fencing across Tampa Palms, Hunter's Green, Temple Terrace, and nearby neighborhoods.",
+    "cta": {"title": "Let's Design Your Fence", "sub": "Book a free in-home consultation — we'll bring samples, measure, and help you choose."},
+    "warranty_box": {
+        "eyebrow": "Peace of Mind",
+        "title": "Installed Right — and Guaranteed for 76 Weeks",
+        "text": "Our {issuer} {name} covers the craftsmanship on {context}. If there's a defect in how we installed or assembled it within {weeks} weeks ({approx}) of your installation date, we'll correct it at no cost. Materials carry their own manufacturer warranty.",
+    },
+
+    # ------------------------------------------------------------------ homepage
+    "home": {
+        "meta_title": "North Tampa Fencing | Fence Installation in New Tampa & Tampa Palms — 76 FENCE Tampa",
+        "meta_description": "HOA-ready fence design and installation in New Tampa, Tampa Palms, Hunter's Green, Temple Terrace, and North Tampa. Licensed and insured. Free in-home consultations — 813-669-4555.",
+        "hero": {
+            "eyebrow": "North Tampa Fencing by 76 FENCE Tampa",
+            "h1": "Beautiful Fences for North Tampa Homes",
+            "lead": "Thoughtfully designed privacy, pool, and ornamental fencing for New Tampa's neighborhoods — approved by your HOA and built to last.",
+            "cta": "Book a Free Consultation",
+            "badges": ["HOA-Ready Designs", "Licensed &amp; Fully Insured",
+                       '<a href="warranty.html" style="color:inherit">76-Week Workmanship Warranty</a>'],
+        },
+        "local": {
+            "eyebrow": "Designed for your neighborhood",
+            "title": "Fencing That Fits How North Tampa Lives",
+            "intro": "Planned communities, preserve views, and backyard pools shape what the right fence looks like here.",
+            "cards": [
+                ("Architectural Review", "Most New Tampa communities review fence plans before installation. We help you pick an approvable style and prepare the drawings and product details."),
+                ("Preserve &amp; Water Views", "Homes backing up to ponds, preserves, and golf courses often call for open aluminum that secures the yard without hiding the view."),
+                ("Pool Safety", "Pool barriers with self-closing, self-latching gates, built to Florida's residential pool safety requirements."),
+                ("Quiet, Private Yards", "Vinyl and composite privacy fencing for side yards, close neighbors, and homes along busier roads."),
+            ],
+        },
+        "styles": {
+            "eyebrow": "Find your style",
+            "title": "Start With the Look You Love",
+            "intro": "Choose a style, and we'll recommend the material and height that suit your home and your community's guidelines.",
+            "more": "View this style &rarr;",
+        },
+        "services": {
+            "eyebrow": "Materials",
+            "title": "Premium Materials, Expert Installation",
+            "intro": "Every material we offer, with an honest take on where each one shines in North Tampa.",
+            "more": "Explore &rarr;",
+        },
+        "estimate": {
+            "eyebrow": "Free consultation",
+            "title": "See Your Options at Home",
+            "intro": "We'll come to you, measure your yard, walk through styles and colors, and check your HOA's requirements — then send a clear written proposal.",
+            "points": ["Samples and color options in hand", "Measurements and layout on site", "HOA and permit requirements reviewed", "Written proposal, no obligation"],
+        },
+        "why": {
+            "eyebrow": "Why homeowners choose us",
+            "title": "A Local, Owner-Run Team",
+            "intro": "North Tampa Fencing is part of 76 FENCE Tampa, owned and operated by Tom &amp; Kate Donnelly — so there's always someone accountable for your project.",
+            "items": [
+                ("Licensed &amp; Insured", LICENSED),
+                ("HOA Paperwork Help", "We prepare the style details, drawings, and product sheets architectural review committees typically ask for."),
+                ("76-Week Workmanship Warranty", "Our craftsmanship is backed by a <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a>, plus the manufacturer's material warranty."),
+                ("Owner-Operated", "Tom and Kate run the business day to day, so questions reach the people who can answer them."),
+                ("Permits Handled", "City of Tampa, Temple Terrace, or unincorporated Hillsborough County — we confirm the rules for your address and file the permit."),
+                ("Financing Available", "Ask about financing if you'd like to spread out the cost of your project."),
+            ],
+        },
+        "budget": {
+            "eyebrow": "Planning your budget",
+            "title": "Your Dream Fence, on a Budget That Works",
+            "intro": "A few decisions make the biggest difference in what your fence costs.",
+            "button": "See Typical Pricing",
+            "cards": [
+                ("Material", "Chain link and wood cost the least up front; vinyl and aluminum trade a higher price for less upkeep; composite and custom colors sit at the top."),
+                ("Height &amp; Length", "Linear footage matters most. Taller privacy fencing costs more per foot than a four-foot pool or picket fence."),
+                ("Gates &amp; Details", "Each gate adds to the total, as do decorative tops, custom colors, and removing an old fence."),
+            ],
+        },
+        "gallery": {
+            "eyebrow": "Styles we install",
+            "title": "Fence Styles and Materials",
+            "intro": "A look at the fencing we install most often across New Tampa and North Tampa. Select any photo to learn more.",
+            "button": "Browse All Fence Types",
+            "tiles": [
+                ("Ornamental Aluminum", "aluminum", "aluminum-fence.html"), ("Vinyl Privacy", "vinyl", "vinyl-fence.html"),
+                ("Horizontal Modern", "horizontal", "horizontal-fence.html"), ("Composite Privacy", "composite", "composite-fence.html"),
+                ("Classic Picket", "picket", "picket-fence.html"), ("Steel &amp; Wrought Iron", "steel", "steel-wrought-iron-fence.html"),
+                ("Cedar &amp; Wood", "wood", "wood-fence.html"), ("Community &amp; HOA", "security", "hoa-fencing.html"),
+            ],
+        },
+        "areas": {
+            "eyebrow": "Neighborhoods we serve",
+            "title": "New Tampa, Temple Terrace &amp; Beyond",
+            "intro": "We install fences throughout New Tampa's communities and the North Tampa neighborhoods around them.",
+        },
+        "faq": {"eyebrow": "Good to know", "title": "Questions We Hear Most"},
+    },
+
+    # ------------------------------------------------------------------ about
+    "about": {
+        "title": "About North Tampa Fencing",
+        "lead": "The New Tampa and North Tampa team of 76 FENCE Tampa — owner-operated by Tom &amp; Kate Donnelly.",
+        "story_eyebrow": "Our approach",
+        "story_title": "Design First, Then Build It Right",
+        "story": [
+            "North Tampa Fencing is how 76 FENCE Tampa serves New Tampa, Tampa Palms, Hunter's Green, Temple Terrace, and the neighborhoods nearby. We're a locally owned 76 FENCE location run by Tom &amp; Kate Donnelly.",
+            "In North Tampa, a fence is part of how your home looks from the street and how it fits the community around it. So we start with design: the style your HOA will approve, the height that gives you privacy where you want it, and the material that suits your lot — including homes that back up to preserves, ponds, and golf courses.",
+            "Our membership in the national 76 FENCE network brings training and manufacturer relationships to a small, owner-run team. You get polished results and a direct line to the people responsible for them.",
+        ],
+        "owners_eyebrow": "Meet the owners",
+        "owners_title": "Tom &amp; Kate Donnelly",
+        "tom": "Tom has more than 20 years of experience in information technology in finance and banking, as a principal engineer and a leader of global teams. At 76 FENCE Tampa he focuses on clear communication and precise planning, and he meets many North Tampa homeowners personally to design their projects.",
+        "kate": "Kate spent more than 20 years as an intelligence analyst for the federal government and holds a master's degree. She oversees scheduling, permits, and HOA coordination, making sure every North Tampa project runs smoothly from consultation to final walkthrough.",
+        "cta_title": "Meet With Our Team",
+        "cta_sub": "Schedule a free in-home consultation and see your options side by side.",
+        "meta": "Meet Tom and Kate Donnelly of 76 FENCE Tampa and North Tampa Fencing, serving New Tampa, Tampa Palms, Temple Terrace, and North Tampa.",
+    },
+    "areas": {
+        "title": "Neighborhoods We Serve",
+        "lead": "Fence design and installation across New Tampa and North Tampa.",
+        "h2": "Find Your Neighborhood",
+        "intro": "Select your community for local details. Nearby but not listed? Give us a call.",
+    },
+    "contact": {
+        "side_html": "<div class=\"divider\"></div><h3>Your Consultation</h3><p>We'll bring material samples and color options, measure your yard, and review your HOA's fence guidelines with you. Afterward, you'll receive a written proposal you can share with your architectural review committee.</p>",
+        "title": "Schedule Your Free Consultation",
+        "lead": "Share a few details and we'll arrange a time to visit, measure, and walk you through your options.",
+    },
+    "faq": {
+        "title": "Fence Questions from North Tampa Homeowners",
+        "lead": "HOA approvals, permits, pool codes, materials, and what the process looks like.",
+        "cta_title": "Still Deciding?",
+        "cta_sub": "We're happy to talk it through — call or book a free consultation.",
+    },
+    "faqs": [
+        ("Will my HOA need to approve my fence?",
+         "In most New Tampa communities, yes. Neighborhoods such as Tampa Palms, Hunter's Green, Cross Creek, and K-Bar Ranch generally require architectural review. We'll help you choose an approvable design and prepare the details your committee needs."),
+        ("Are you licensed and insured?",
+         "Yes. 76 FENCE Tampa is licensed in Hillsborough, Pasco, and Hernando counties and carries general liability and workers' compensation insurance. We're glad to provide a certificate of insurance."),
+        ("Do I need a permit for a fence in Tampa?",
+         "Fences inside Tampa city limits generally need a permit through the City of Tampa, while Temple Terrace and unincorporated Hillsborough County have their own processes. We confirm the rules for your address and take care of the permit."),
+        ("What's the best fence for a home that backs up to a preserve or pond?",
+         "Aluminum is the most popular choice — it secures the yard without blocking the view, and it's often what HOAs require along water and preserve lots. We also check for easements and setbacks before laying out the fence line."),
+        ("Can you build a pool fence that meets Florida code?",
+         "Yes. We build pool barriers in aluminum, vinyl, and steel with self-closing, self-latching gates to meet Florida's residential pool safety requirements."),
+        ("Which material requires the least maintenance?",
+         "Vinyl and aluminum need almost none — an occasional rinse is usually enough. Composite is also low-maintenance with a wood look. Natural wood needs periodic sealing or staining in our climate."),
+        ("How tall can my fence be?",
+         "Six feet is typical for backyard privacy, while front-yard and pool fences are often four to five feet. Your HOA and local code set the limits, and we'll confirm them before we finalize your design."),
+        ("Do you offer modern or horizontal designs?",
+         "Yes. Horizontal fences in composite, vinyl, and wood are popular for a contemporary look, especially around patios and pools. We'll check that the style is allowed in your community."),
+        ("How long does installation take?",
+         "Most residential installations take one to two days once we're on site. The overall timeline — including HOA approval and permitting — is usually a few weeks."),
+        ("What happens during a consultation?",
+         "We visit your home, measure, show you material and color options, discuss HOA and permit requirements, and then send a written proposal. The consultation is free and there's no obligation."),
+        ("What does your warranty cover?",
+         "Our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a> covers defects in our installation and assembly. Materials are covered separately by the manufacturer."),
+        ("How do you protect my lawn and landscaping?",
+         "We plan access with you ahead of time, work carefully around irrigation and plantings, and clean up when we finish. Let us know about sprinkler lines so we can plan around them."),
+        ("Do you remove an existing fence?",
+         "Yes. We can remove and haul away your old fence, listed as a separate line in your proposal."),
+        ("Can you match my neighbor's fence or my community's standard?",
+         "Usually, yes. Share a photo or your HOA's specifications and we'll match the style, height, and color as closely as the available products allow."),
+        ("Do you repair fences?",
+         "Yes. We repair damaged panels, leaning posts, and gates on most fence types, even if another company installed them."),
+        ("Is financing available?",
+         "Yes — ask about financing options during your consultation."),
+    ],
+    "gallery": {
+        "label": "{cat} fencing",
+        "intro_html": "<p class=\"hub-intro\">Looking for inspiration? These are the fence styles North Tampa homeowners ask about most, from ornamental aluminum for preserve lots to modern horizontal designs for pool decks. Select a style to see materials, colors, and HOA considerations.</p>",
+        "tiles": [("Ornamental Aluminum", "aluminum", "aluminum-fence.html"), ("Horizontal", "horizontal", "horizontal-fence.html"), ("Vinyl Privacy", "vinyl", "vinyl-fence.html"), ("Composite", "composite", "composite-fence.html"), ("Steel &amp; Wrought Iron", "steel", "steel-wrought-iron-fence.html"), ("Picket", "picket", "picket-fence.html"), ("Cedar &amp; Wood", "wood", "wood-fence.html"), ("Chain Link", "chain-link", "chain-link-fence.html"), ("Split Rail", "split-rail", "split-rail-fence.html"), ("Community &amp; Security", "security", "security-fencing.html")],
+        "title": "Fence Styles &amp; Materials",
+        "lead": "Explore the fencing we install across New Tampa and North Tampa, then select a style for details.",
+        "meta": "Browse aluminum, vinyl, composite, horizontal, picket, and ornamental steel fencing installed by 76 FENCE Tampa in New Tampa and North Tampa.",
+    },
+    "pricing": {
+        "title": "Fence Pricing in North Tampa",
+        "lead": "Typical investment by material and yard size, and the choices that move the number up or down.",
+        "intro_html": "<p style=\"max-width:760px\">Use these ranges to plan. Your written proposal will reflect your exact layout, gates, and any HOA-specific requirements such as color or height.</p>",
+        "factors": [
+            ("Material &amp; Finish", "Premium finishes, custom colors, and composite raise the cost; standard colors and materials keep it lower."),
+            ("Gates &amp; Access", "Each gate adds to the total, and pool gates need specific self-closing hardware."),
+            ("Removal &amp; Site Work", "Removing an old fence, working around irrigation, or tight access can add to the job."),
+        ],
+        "cta_title": "Get Your Personalized Proposal",
+        "cta_sub": "We'll measure, review your options, and send a written proposal — free.",
+        "meta": "Typical fence installation pricing in New Tampa and North Tampa by material and yard size, with tips on what affects cost.",
+    },
+
+    # ------------------------------------------------------------------ materials
+    "materials_hub": {
+        "title": "Fence Materials",
+        "lead": "Compare every material we install and find the right balance of look, upkeep, and budget.",
+        "intro": ["In North Tampa, the best material is usually the one that meets your HOA's guidelines, suits your view, and fits how much maintenance you want. Here's how they compare."],
+    },
+    "materials": {
+        "vinyl-fence": {
+            "tagline": "Crisp, private, and virtually maintenance-free.",
+            "meta": "Vinyl fence installation in New Tampa and North Tampa — HOA-friendly privacy and semi-privacy styles in white, tan, and clay.",
+            "intro": ["Vinyl gives you a clean, finished look with almost no upkeep. It's one of the most popular privacy options in New Tampa's communities."],
+            "sections": [
+                ("Colors and styles", ["White, tan, and clay are common, and many HOAs specify one. We offer solid privacy, semi-privacy, lattice-top, and picket styles."]),
+                ("Built for our climate", ["Color runs through the material, so it won't peel or need repainting, and reinforced rails help it stay straight in the heat."]),
+            ],
+            "glance": ["No painting or staining", "HOA-friendly colors", "Privacy &amp; semi-privacy", "Pool-code gates available"],
+        },
+        "wood-fence": {
+            "tagline": "Natural warmth with endless design options.",
+            "meta": "Wood fence installation in North Tampa, Temple Terrace, and Carrollwood — cedar and pressure-treated designs.",
+            "intro": ["Wood suits established neighborhoods like Temple Terrace and Carrollwood, where many homes favor a natural, traditional look."],
+            "sections": [
+                ("Design choices", ["Board-on-board, shadowbox, horizontal, and capped designs let you tailor the look. Cedar offers a richer grain; pressure-treated pine is more economical."]),
+                ("Upkeep", ["Wood needs sealing or staining to hold up in Florida sun and humidity. We offer <a href=\"fence-staining.html\">staining and sealing</a> to keep it looking its best."]),
+            ],
+            "glance": ["Cedar or pressure-treated pine", "Custom designs", "Natural look", "Staining available"],
+        },
+        "aluminum-fence": {
+            "tagline": "Elegant, open, and the favorite for pools and preserve lots.",
+            "meta": "Aluminum fence installation in New Tampa and Tampa Palms — pool enclosures and preserve-view fencing that won't rust.",
+            "intro": ["Aluminum secures your yard while keeping the view open, which is why it's the go-to choice for homes on ponds, preserves, and golf courses — and often the style HOAs require there."],
+            "sections": [
+                ("Pool barriers", ["Aluminum pool fencing with self-closing, self-latching gates meets Florida's pool safety code while keeping the pool visible from the house."]),
+                ("Finishes", ["Black, bronze, and white powder-coat in flat-top, spear-top, and puppy-picket designs."]),
+            ],
+            "glance": ["Won't rust", "Keeps views open", "Pool-code designs", "Black, bronze, white"],
+        },
+        "chain-link-fence": {
+            "tagline": "Simple, durable, and cost-effective.",
+            "meta": "Chain link fence installation in North Tampa for dog runs, side yards, and commercial properties.",
+            "intro": ["Chain link is a practical, affordable choice for dog runs, side yards, and utility areas. Black vinyl-coated chain link looks far more refined than bare galvanized."],
+            "sections": [("Where it fits", ["Many HOAs restrict chain link in visible areas, so it's most common in side and rear areas or on commercial properties. We'll check your community's rules."])],
+            "glance": ["Most economical", "Black vinyl-coated option", "Great for dog runs"],
+        },
+        "composite-fence": {
+            "tagline": "The rich look of wood, without the maintenance.",
+            "meta": "Composite fence installation in New Tampa and North Tampa — premium wood-look privacy and horizontal designs.",
+            "intro": ["Composite gives you the warmth of wood with none of the rot, splintering, or annual staining — a premium option for homeowners planning to stay put."],
+            "sections": [("Styles", ["Privacy, semi-privacy, and horizontal designs in a range of wood tones, often paired with modern home exteriors."])],
+            "glance": ["Low maintenance", "Premium wood look", "Horizontal options", "Long manufacturer warranties"],
+        },
+        "steel-wrought-iron-fence": {
+            "tagline": "Timeless ornamental fencing and statement gates.",
+            "meta": "Ornamental steel and wrought-iron-style fence and gate installation in North Tampa.",
+            "intro": ["Ornamental steel adds a classic, upscale look to front entries, courtyards, and pool areas, with more heft than aluminum."],
+            "sections": [("Details", ["Powder-coated for our humid climate and available with finials, scrollwork, and matching gates."])],
+            "glance": ["Powder-coated", "Custom details", "Matching entry gates"],
+        },
+    },
+
+    # ------------------------------------------------------------------ styles
+    "styles_hub": {
+        "title": "Fence Styles",
+        "lead": "From full privacy to open ornamental designs — find the style that suits your home and your community.",
+    },
+    "styles": {
+        "privacy-fence": {
+            "desc": "Solid panels that fully screen your backyard — ideal for pools, patios, and close neighbors.",
+            "tagline": "A private retreat in your own backyard.",
+            "meta": "Privacy fence installation in New Tampa and North Tampa in vinyl, wood, and composite — HOA-ready designs.",
+            "intro": ["A privacy fence turns your backyard into a true retreat. In North Tampa, we most often build privacy fences in vinyl or composite to meet HOA color and style guidelines."],
+            "sections": [("Approvals", ["Height and style limits vary by community, and many HOAs require a specific color. We confirm the requirements and prepare the submission."])],
+            "glance": ["Typically 6' tall", "Vinyl, composite, or wood", "HOA submission help"],
+        },
+        "semi-privacy-fence": {
+            "desc": "Spaced boards for screening with light and airflow — a softer, more open feel.",
+            "tagline": "Privacy with a lighter touch.",
+            "meta": "Semi-privacy fence installation in North Tampa in vinyl, wood, and composite.",
+            "intro": ["Semi-privacy fencing screens most of the view while letting light and breezes through — a nice fit for side yards and gardens."],
+            "sections": [],
+            "glance": ["Airflow and light", "Softer appearance", "Multiple materials"],
+        },
+        "horizontal-fence": {
+            "desc": "Contemporary horizontal boards with clean lines — a modern upgrade for patios and pools.",
+            "tagline": "Modern lines for contemporary homes.",
+            "meta": "Horizontal fence installation in New Tampa and North Tampa in composite, vinyl, and wood.",
+            "intro": ["Horizontal fencing creates a sleek, architectural look that pairs well with modern exteriors and outdoor living spaces."],
+            "sections": [("Community rules", ["Some HOAs have specific rules for horizontal designs, so we verify them before you commit."])],
+            "glance": ["Contemporary style", "Composite, vinyl, or wood", "Great around pools and patios"],
+        },
+        "picket-fence": {
+            "desc": "Classic spaced pickets that add charm and curb appeal to front yards and gardens.",
+            "tagline": "Timeless curb appeal.",
+            "meta": "Picket fence installation in North Tampa, Temple Terrace, and Carrollwood.",
+            "intro": ["A picket fence adds charm to a front yard or garden while keeping the home open to the street."],
+            "sections": [],
+            "glance": ["3'–4' tall", "Vinyl, wood, or aluminum", "Front-yard friendly"],
+        },
+        "split-rail-fence": {
+            "desc": "Open rails between posts for a relaxed, natural boundary on larger lots.",
+            "tagline": "A natural boundary for larger properties.",
+            "meta": "Split rail fence installation in Lutz and North Tampa for larger lots and natural settings.",
+            "intro": ["Split rail defines a boundary without closing in the view — best suited to larger lots in areas like Lutz rather than typical planned-community yards."],
+            "sections": [],
+            "glance": ["Open, natural look", "Wire-mesh backing option", "Best for larger lots"],
+        },
+    },
+
+    # ------------------------------------------------------------------ commercial
+    "commercial_hub": {
+        "title": "Community &amp; Commercial Fencing",
+        "lead": "Fencing for HOAs, amenity centers, and businesses across North Tampa.",
+        "intro": "We work with community associations, property managers, and business owners on perimeter, pool, and amenity fencing, as well as security fencing and dumpster screening — with clear written proposals and one point of contact.",
+    },
+    "commercial": {
+        "industrial-fencing": {
+            "desc": "Durable perimeter fencing and slide gates for warehouses, yards, and service areas.",
+            "tagline": "Secure perimeters for business properties.",
+            "meta": "Industrial and commercial perimeter fencing in North Tampa, including cantilever slide gates.",
+            "intro": ["Commercial properties need fencing that stands up to daily use. We install tall chain link and steel perimeters with commercial-grade gates."],
+            "sections": [],
+            "glance": ["Tall perimeters", "Slide gates", "Commercial-grade hardware"],
+        },
+        "security-fencing": {
+            "desc": "Access-controlling fencing for offices, schools, and facilities.",
+            "tagline": "Control access without compromising appearance.",
+            "meta": "Security fence installation in North Tampa in ornamental aluminum, steel, and chain link.",
+            "intro": ["Security fencing can be handsome as well as effective. Ornamental aluminum and steel give facilities a polished look while controlling access."],
+            "sections": [],
+            "glance": ["Ornamental or chain link", "Commercial gates", "Polished appearance"],
+        },
+        "hoa-fencing": {
+            "desc": "Consistent, code-compliant fencing for community perimeters, pools, and amenities.",
+            "tagline": "Fencing that keeps your community consistent.",
+            "meta": "HOA and community fence installation in New Tampa and North Tampa for perimeters, pools, and amenity areas.",
+            "intro": ["New Tampa's communities depend on consistent fencing around perimeters, pools, and amenity centers. We help boards and managers plan, price, and install it."],
+            "sections": [("Working with your board", ["Expect clear proposals, product specifications for review, and scheduling that keeps disruption to residents to a minimum."])],
+            "glance": ["Perimeter, pool &amp; amenity", "Board-ready proposals", "Consistent materials"],
+        },
+        "dumpster-enclosures": {
+            "desc": "Attractive screening for dumpsters and service areas at commercial and community properties.",
+            "tagline": "Tidy screening for service areas.",
+            "meta": "Dumpster enclosure installation in North Tampa for businesses and communities.",
+            "intro": ["A well-built enclosure keeps service areas out of sight and matches the look of your property."],
+            "sections": [],
+            "glance": ["Vinyl, wood, or slatted chain link", "Service-width gates", "Matches your property"],
+        },
+    },
+
+    # ------------------------------------------------------------------ other services
+    "other": {
+        "fence-repair": {
+            "tagline": "Restore your fence's look and function.",
+            "meta": "Fence repair in New Tampa and North Tampa for vinyl, aluminum, wood, and chain link.",
+            "intro": ["From a leaning post to a gate that won't latch, we repair most fence types — including fences another company installed."],
+            "sections": [],
+            "glance": ["Panels, posts &amp; gates", "Most fence types", "Repair-or-replace advice"],
+        },
+        "fence-staining": {
+            "tagline": "Keep wood fencing looking its best.",
+            "meta": "Fence staining and sealing in North Tampa, Temple Terrace, and Carrollwood.",
+            "intro": ["Staining or sealing protects wood from sun and humidity and keeps its color rich. We clean, prep, and apply the finish."],
+            "sections": [],
+            "glance": ["Cleaning &amp; prep", "Stain or sealer", "Longer-lasting wood"],
+        },
+        "artificial-grass": {
+            "tagline": "A lush lawn without the upkeep.",
+            "meta": "Artificial grass installation in New Tampa and North Tampa for backyards, pet areas, and pool decks.",
+            "intro": ["Synthetic turf keeps your yard green year-round with no mowing or watering — a popular pairing with a new fence around pools and pet areas."],
+            "sections": [],
+            "glance": ["No mowing or watering", "Pet- and pool-friendly", "Year-round green"],
+        },
+        "diy-fence": {
+            "tagline": "Expert support for do-it-yourself projects.",
+            "meta": "DIY fence support in North Tampa: materials, post-hole digging, and planning consultations.",
+            "intro": ["Building your own fence? We offer materials at contractor pricing, post-hole digging, and paid planning consultations covering layout, HOA, and permit requirements."],
+            "sections": [],
+            "glance": ["Contractor-priced materials", "Post-hole digging", "Planning consultations"],
+        },
+        "deck-railing": {
+            "tagline": "Railings that complement your outdoor living space.",
+            "meta": "Deck and balcony railing installation in North Tampa in aluminum, composite, and wood.",
+            "intro": ["We install railing for decks, balconies, and porches in aluminum, composite, and wood, often coordinated with a new fence."],
+            "sections": [],
+            "glance": ["Aluminum, composite, wood", "Coordinated with your fence", "Repairs available"],
+        },
+        "retaining-walls": {
+            "tagline": "Shape and level your yard.",
+            "meta": "Retaining wall installation in North Tampa for grade changes and drainage.",
+            "intro": ["Retaining walls manage slopes and drainage and can create level ground for a fence, patio, or garden."],
+            "sections": [],
+            "glance": ["Grade and drainage control", "Block or timber", "Planned with your fence"],
+        },
+    },
+
+    # ------------------------------------------------------------------ town pages
+    "towns": {
+        "title": "Fence Installation in {town}",
+        "lead": "Design-minded fencing for {town} homes — from 76 FENCE Tampa's North Tampa team.",
+        "materials_eyebrow": "Popular choices",
+        "materials_title": "Favorite Fence Materials in {town}",
+        "nearby_title": "Nearby Neighborhoods",
+        "faq_title": "{town} Fence FAQs",
+        "cta_title": "Book a Free {town} Consultation",
+        "cta_sub": "We'll measure, share options, and send a written proposal.",
+        "meta_title": "Fence Installation in {town}, FL | North Tampa Fencing — 76 FENCE Tampa",
+        "meta_description": "HOA-ready fence design and installation in {town}, FL from 76 FENCE Tampa. Licensed and insured. Free in-home consultations — call 813-669-4555.",
+        "snippet_suffix": ", a popular choice for {town} homes.",
+        "snippets": {
+            "vinyl-fence": "Clean, low-maintenance vinyl privacy",
+            "wood-fence": "Natural cedar and wood designs",
+            "aluminum-fence": "Open aluminum for pools and preserve views",
+            "chain-link-fence": "Practical black-coated chain link",
+            "composite-fence": "Premium wood-look composite",
+            "steel-wrought-iron-fence": "Ornamental steel and statement gates",
+        },
+        "faq_picks": [0, 2, 3, 4],
+        "notes": {
+            "new-tampa": "New Tampa is made up largely of planned communities, so design choices usually start with what your association allows.",
+            "tampa-palms": "Tampa Palms homes often sit near ponds, preserves, and golf areas, where open aluminum fencing is a common and frequently required choice.",
+            "hunters-green": "In Hunter's Green, architectural review is typically part of the process, and we help prepare what the committee needs to see.",
+            "cross-creek": "Cross Creek has a mix of home sizes and lots near conservation areas, so we tailor the fence to both privacy needs and views.",
+            "k-bar-ranch": "K-Bar Ranch's newer neighborhoods tend to have specific fence standards, which we confirm before finalizing your design.",
+            "temple-terrace": "Temple Terrace is its own city with its own permit process, and its mature trees and established lots suit both wood and ornamental styles.",
+            "carrollwood": "Carrollwood's established neighborhoods and lakefront lots call for fencing that fits a more traditional streetscape.",
+            "lutz": "Lutz properties are often larger, with lakes and wooded lots, so we see everything from pool enclosures to longer property-line fences.",
+        },
+    },
+}
