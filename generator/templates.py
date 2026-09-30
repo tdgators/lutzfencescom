@@ -319,28 +319,30 @@ def estimate_steps(prefix, submit_label):
     materials = ["Not sure yet", "Vinyl", "Wood", "Aluminum", "Chain link", "Composite", "Steel / ornamental"]
     material_opts = "".join(f'<option value="{m}">{m}</option>' for m in materials)
     return f'''
-    <div class="est-step" data-step="1">
+    <div class="est-steps">
+    <div class="est-step is-active" data-step="1">
       <div class="est-progress"><b>Step 1 of 2</b> · Your contact info &amp; property</div>
       <div class="form-row full">{field("full_name", "Full Name", extra=' autocomplete="name"')}</div>
       <div class="form-row">{field("phone", "Phone", "tel", extra=' autocomplete="tel"')}{field("email", "Email", "email", extra=' autocomplete="email"')}</div>
-      <div class="form-row full">{field("street_address", "Street Address", extra=' autocomplete="street-address"')}</div>
+      <div class="form-row full">{field("street_address", "Street Address", extra=' autocomplete="address-line1"')}</div>
       <div class="form-row est-cityzip">{field("city", "City", extra=' autocomplete="address-level2"')}{field("zip", "ZIP", extra=' inputmode="numeric" pattern="[0-9]{5}" maxlength="5" title="5-digit ZIP code" autocomplete="postal-code"')}</div>
       <button class="btn btn-red btn-block est-next" type="button">Next: Fence Details &rarr;</button>
     </div>
-    <div class="est-step" data-step="2" hidden>
+    <div class="est-step" data-step="2" inert aria-hidden="true">
       <div class="est-progress"><b>Step 2 of 2</b> · A few quick details <span>(optional)</span></div>
       {choices("job_type", "New fence or repair?", ["New fence", "Repair"])}
       <div class="form-row full"><div><label for="{prefix}-fence_type">Fence material</label>
-        <select id="{prefix}-fence_type" name="fence_type"><option value="">Choose one</option>{material_opts}</select></div></div>
+        <select id="{prefix}-fence_type" name="fence_type" autocomplete="off"><option value="">Choose one</option>{material_opts}</select></div></div>
       <div class="form-row">
-        <div><label for="{prefix}-linear_feet">Approx. feet of fence</label><input id="{prefix}-linear_feet" type="number" name="linear_feet" min="0" step="10" inputmode="numeric" placeholder="e.g. 150"></div>
-        <div><label for="{prefix}-gates">Number of gates</label><select id="{prefix}-gates" name="gates"><option value="">Choose</option><option>0</option><option>1</option><option>2</option><option>3+</option></select></div>
+        <div><label for="{prefix}-linear_feet">Approx. feet of fence</label><input id="{prefix}-linear_feet" type="number" name="linear_feet" min="0" step="10" inputmode="numeric" placeholder="e.g. 150" autocomplete="off"></div>
+        <div><label for="{prefix}-gates">Number of gates</label><select id="{prefix}-gates" name="gates" autocomplete="off"><option value="">Choose</option><option>0</option><option>1</option><option>2</option><option>3+</option></select></div>
       </div>
       {choices("remove_old_fence", "Remove &amp; haul away an old fence?", ["Yes", "No"])}
       <div class="est-actions">
+        <button class="est-back" type="button">&larr; Back</button>
         <button class="btn btn-red" type="submit" data-fs-submit-btn>{submit_label}</button>
       </div>
-      <button class="est-back" type="button">&larr; Back</button>
+    </div>
     </div>
     {source_fields()}
     <div class="fs-error" data-fs-error></div>'''
