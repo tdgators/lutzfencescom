@@ -74,7 +74,6 @@ SITES = {
             ],
             service_areas_meta="See every city and community 76 FENCE Lutz serves near Lutz, FL, including Land O' Lakes, Wesley Chapel, Odessa, New Port Richey, and more.",
             faq_lead="Answers to the questions we hear most from Lutz-area homeowners and businesses.",
-            address_placeholder="e.g. Lutz, FL",
             local_section=None,
             local_faqs=[],
             town_intros=[
@@ -126,7 +125,6 @@ SITES = {
             ],
             service_areas_meta="76 FENCE Tampa builds fences across Brooksville and Hernando County, including Spring Hill, Weeki Wachee, Ridge Manor, Nobleton, and Masaryktown.",
             faq_lead="Answers to the questions we hear most from Brooksville and Hernando County property owners.",
-            address_placeholder="e.g. Brooksville, FL",
             local_section=dict(
                 eyebrow="Built for Brooksville",
                 title="Fencing for Hernando County Properties",
@@ -193,7 +191,6 @@ SITES = {
             ],
             service_areas_meta="76 FENCE Tampa installs fences across New Tampa and North Tampa, including Tampa Palms, Hunter's Green, Cross Creek, K-Bar Ranch, Temple Terrace, and Carrollwood.",
             faq_lead="Answers to the questions we hear most from New Tampa and North Tampa homeowners.",
-            address_placeholder="e.g. New Tampa, Tampa, FL",
             local_section=dict(
                 eyebrow="Built for North Tampa",
                 title="Fencing for New Tampa &amp; North Tampa Homes",

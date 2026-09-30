@@ -127,6 +127,8 @@ def footer_html():
     </div>
   </div>
 </footer>
+{estimate_modal()}
+{FORMSPREE_AJAX_SCRIPT}
 <script src="assets/js/main.js"></script>
 '''
 
@@ -283,14 +285,14 @@ HONEYPOT_FIELD = '<input type="text" name="_gotcha" tabindex="-1" autocomplete="
 def formspree_init(form_selector):
     """Wire a form to Formspree. On success: clear the form and scroll the thank-you
     message into view (on phones the submit button is far below it)."""
-    return f'''{FORMSPREE_AJAX_SCRIPT}
-<script>
+    return f'''<script>
   window.formspree = window.formspree || function () {{ (formspree.q = formspree.q || []).push(arguments); }};
   formspree('initForm', {{
     formElement: '{form_selector}',
     formId: '{_formspree_id()}',
     onSuccess: function (context) {{
       context.form.reset();
+      if (window.estimateStep) window.estimateStep(context.form, 1);
       var msg = context.form.parentElement.querySelector('[data-fs-success]');
       if (msg) msg.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
     }}
@@ -298,24 +300,87 @@ def formspree_init(form_selector):
 </script>'''
 
 
+def estimate_steps(prefix, submit_label):
+    """Two-step estimate form body. Step 1 (required): contact + property address.
+    Step 2 (optional): fence details, then Submit. Field names match the
+    76 FENCE platform's lead fields (street_address, zip, job_type, fence_type) for a later hand-off.
+    Step switching lives in assets/js/main.js (.est-form)."""
+    def field(name, label, type_="text", required=True, extra=""):
+        req = " required" if required else ""
+        return (f'<div><label for="{prefix}-{name}">{label}</label>'
+                f'<input id="{prefix}-{name}" type="{type_}" name="{name}" data-fs-field{req}{extra}>'
+                f'<span class="fs-field-error" data-fs-error="{name}"></span></div>')
+
+    def choices(name, legend, options):
+        opts = "".join(f'<label class="est-choice"><input type="radio" name="{name}" value="{v}"><span>{v}</span></label>'
+                       for v in options)
+        return f'<fieldset class="est-choices"><legend>{legend}</legend><div>{opts}</div></fieldset>'
+
+    materials = ["Not sure yet", "Vinyl", "Wood", "Aluminum", "Chain link", "Composite", "Steel / ornamental"]
+    material_opts = "".join(f'<option value="{m}">{m}</option>' for m in materials)
+    return f'''
+    <div class="est-step" data-step="1">
+      <div class="est-progress"><b>Step 1 of 2</b> · Your contact info &amp; property</div>
+      <div class="form-row full">{field("full_name", "Full Name", extra=' autocomplete="name"')}</div>
+      <div class="form-row">{field("phone", "Phone", "tel", extra=' autocomplete="tel"')}{field("email", "Email", "email", extra=' autocomplete="email"')}</div>
+      <div class="form-row full">{field("street_address", "Street Address", extra=' autocomplete="street-address"')}</div>
+      <div class="form-row est-cityzip">{field("city", "City", extra=' autocomplete="address-level2"')}{field("zip", "ZIP", extra=' inputmode="numeric" pattern="[0-9]{5}" maxlength="5" title="5-digit ZIP code" autocomplete="postal-code"')}</div>
+      <button class="btn btn-red btn-block est-next" type="button">Next: Fence Details &rarr;</button>
+    </div>
+    <div class="est-step" data-step="2" hidden>
+      <div class="est-progress"><b>Step 2 of 2</b> · A few quick details <span>(optional)</span></div>
+      {choices("job_type", "New fence or repair?", ["New fence", "Repair"])}
+      <div class="form-row full"><div><label for="{prefix}-fence_type">Fence material</label>
+        <select id="{prefix}-fence_type" name="fence_type"><option value="">Choose one</option>{material_opts}</select></div></div>
+      <div class="form-row">
+        <div><label for="{prefix}-linear_feet">Approx. feet of fence</label><input id="{prefix}-linear_feet" type="number" name="linear_feet" min="0" step="10" inputmode="numeric" placeholder="e.g. 150"></div>
+        <div><label for="{prefix}-gates">Number of gates</label><select id="{prefix}-gates" name="gates"><option value="">Choose</option><option>0</option><option>1</option><option>2</option><option>3+</option></select></div>
+      </div>
+      {choices("remove_old_fence", "Remove &amp; haul away an old fence?", ["Yes", "No"])}
+      <div class="est-actions">
+        <button class="btn btn-red" type="submit" data-fs-submit-btn>{submit_label}</button>
+      </div>
+      <button class="est-back" type="button">&larr; Back</button>
+    </div>
+    {source_fields()}
+    <div class="fs-error" data-fs-error></div>'''
+
+
+def estimate_modal():
+    """The estimate form as a pop-up (full-screen sheet on phones). main.js opens it from any
+    button linking to the contact page; without JS those buttons still go to the page."""
+    return f'''
+<div class="est-modal" id="estimate-modal" hidden>
+  <div class="est-modal-backdrop" data-close></div>
+  <div class="est-modal-panel" role="dialog" aria-modal="true" aria-labelledby="estimate-modal-title">
+    <div class="est-modal-head">
+      <button class="est-modal-close" type="button" data-close aria-label="Close">&times;</button>
+      <div class="est-modal-brand">
+        <img src="assets/images/logo.png" alt="" width="46" height="46">
+        <span>{SITE['name'] if SITE['full_brand'] == SITE['parent'] else SITE['full_brand']}<small>{SITE['parent']}</small></span>
+      </div>
+      <h3 id="estimate-modal-title">{T("labels.modal_title", "Get Your Free Estimate")}</h3>
+      <p class="est-modal-trust">Licensed &amp; insured &middot; 76-week workmanship warranty &middot; No obligation</p>
+    </div>
+    <div class="est-modal-body">
+      <div class="fs-success" data-fs-success>Thanks! Your request is in — we'll call or text you back shortly.</div>
+      <form id="modal-quote-form" class="est-form">{estimate_steps("modal", "Submit")}
+      </form>
+      <p class="est-modal-call">Prefer to talk? <a href="tel:{SITE['phone_tel']}">Call or text {SITE['phone']}</a></p>
+      <p class="consent">By submitting, you consent to be contacted by {SITE['full_brand']} by phone, text, or email about your request.</p>
+    </div>
+  </div>
+</div>
+{formspree_init('#modal-quote-form')}'''
+
+
 def mini_quote_form(heading="Get Your Free Estimate"):
     return f'''
 <div class="hero-panel">
   <h3>{heading}</h3>
-  <p>Tell us a little about your project — we'll call or text you back fast.</p>
+  <p>Tell us where the fence is going — we'll call or text you back fast.</p>
   <div class="fs-success" data-fs-success>Thanks! Your request is in — we'll call or text you back shortly.</div>
-  <form id="hero-quote-form">
-    <input type="text" name="first_name" placeholder="First Name" data-fs-field required>
-    <span class="fs-field-error" data-fs-error="first_name"></span>
-    <input type="text" name="last_name" placeholder="Last Name" data-fs-field required>
-    <span class="fs-field-error" data-fs-error="last_name"></span>
-    <input type="tel" name="phone" placeholder="Phone Number" data-fs-field required>
-    <span class="fs-field-error" data-fs-error="phone"></span>
-    <input type="email" name="email" placeholder="Email Address" data-fs-field required>
-    <span class="fs-field-error" data-fs-error="email"></span>
-    {source_fields()}
-    <div class="fs-error" data-fs-error></div>
-    <button class="btn btn-red btn-block" type="submit" data-fs-submit-btn>Request My Free Estimate</button>
+  <form id="hero-quote-form" class="est-form">{estimate_steps("hero", "Submit")}
   </form>
   <p class="consent" style="margin-top:10px">By submitting, you consent to be contacted by {SITE['full_brand']} by phone, text, or email about your request.</p>
 </div>
@@ -327,32 +392,9 @@ def contact_form_card():
     return f'''
 <div class="form-card">
   <h3>Request Your Free Estimate</h3>
-  <p>Fill out the form and our team will reach out to schedule your free, no-obligation estimate.</p>
+  <p>Start with your address, then add a few optional details about the fence you have in mind.</p>
   <div class="fs-success" data-fs-success>Thanks! Your request is in — we'll be in touch shortly to schedule your free estimate.</div>
-  <form id="contact-quote-form">
-    <div class="form-row">
-      <div><label for="first_name">First Name</label><input id="first_name" type="text" name="first_name" data-fs-field required>
-        <span class="fs-field-error" data-fs-error="first_name"></span></div>
-      <div><label for="last_name">Last Name</label><input id="last_name" type="text" name="last_name" data-fs-field required>
-        <span class="fs-field-error" data-fs-error="last_name"></span></div>
-    </div>
-    <div class="form-row">
-      <div><label for="phone">Phone</label><input id="phone" type="tel" name="phone" data-fs-field required>
-        <span class="fs-field-error" data-fs-error="phone"></span></div>
-      <div><label for="email">Email</label><input id="email" type="email" name="email" data-fs-field required>
-        <span class="fs-field-error" data-fs-error="email"></span></div>
-    </div>
-    <div class="form-row full">
-      <div><label for="address">Property Address / City</label><input id="address" type="text" name="address" placeholder="{COPY['address_placeholder']}" data-fs-field></div>
-    </div>
-    <div class="form-row full">
-      <div><label for="project">Tell us about your project</label>
-        <textarea id="project" name="project" rows="4" placeholder="Fence type, approximate length, timeline..." data-fs-field></textarea>
-      </div>
-    </div>
-    {source_fields()}
-    <div class="fs-error" data-fs-error></div>
-    <button class="btn btn-red btn-block" type="submit" data-fs-submit-btn>Send My Request</button>
+  <form id="contact-quote-form" class="est-form">{estimate_steps("contact", "Submit")}
     <p class="consent" style="margin-top:12px">By submitting, you consent to be contacted by {SITE['full_brand']} by phone, text, or email about your request. We don't sell or share your information.</p>
   </form>
 </div>
