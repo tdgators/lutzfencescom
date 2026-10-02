@@ -37,6 +37,19 @@ CONTENT = {
     "labels": {"estimate": "Get a Free Estimate", "glance": "Quick Facts", "or_call": "or call", "read_more": "Details &rarr;",
                "related_materials": "Compare Other Materials", "related_styles": "Other Styles That Work Here",
                "related_commercial": "More Commercial Work", "related_other": "Other Ways We Help"},
+    "hoa_guide": {
+        "title": "HOA &amp; Deed-Restriction Approval for Your Fence",
+        "lead": "How to get your fence approved in Brooksville, Spring Hill, and Hernando County neighborhoods — and what to check if you don't have an HOA at all.",
+        "local": {
+            "title": "Deed Restrictions in Hernando County",
+            "paragraphs": [
+                "Not every Brooksville-area property has an HOA. Many Spring Hill and Brooksville subdivisions have recorded deed restrictions instead, and rural acreage often has neither. Check your deed and closing documents first.",
+                "If your neighborhood has restrictions but no active association, those restrictions can still limit fence height, style, and placement — so it's worth reading them before you choose a design.",
+            ],
+        },
+        "cta_title": "Questions About Your Neighborhood's Rules?",
+        "cta_sub": "We'll help you sort out what applies to your property, then walk the fence line with you.",
+    },
     "footer_about": "Brooksville Fence (brooksvillefence.com) is the Hernando County website of 76 FENCE Tampa, building residential, farm, and commercial fencing across Brooksville, Spring Hill, and the surrounding area.",
     "cta": {"title": "Let's Walk Your Property Line", "sub": "Free on-site estimates across Brooksville and Hernando County — no pressure, no obligation."},
     "warranty_box": {
@@ -192,7 +205,7 @@ CONTENT = {
         ("Will my fence stand up to storms?",
          "We set posts in concrete at a depth that suits the material and height, and we can talk through wind-resistant designs. No fence is storm-proof, and storm damage isn't covered by our workmanship warranty, but a well-built fence gives you the best odds."),
         ("Do Spring Hill neighborhoods need HOA approval?",
-         "Some do — many Spring Hill and Brooksville subdivisions have deed restrictions or HOA rules on height and style. We'll help you gather what your association needs before we build."),
+         "Some do — many Spring Hill and Brooksville subdivisions have deed restrictions or HOA rules on height and style. We'll help you gather what your association needs before we build. Our <a href=\"hoa-fence-approval-guide.html\">HOA approval guide</a> walks through the process."),
         ("Can you build a pool fence that meets code?",
          "Yes. We build aluminum and vinyl pool barriers with self-closing, self-latching gates to meet Florida's residential pool safety requirements."),
         ("Do you remove my old fence?",

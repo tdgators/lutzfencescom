@@ -37,6 +37,19 @@ CONTENT = {
     "labels": {"estimate": "Book a Free Consultation", "glance": "Highlights", "or_call": "or call us at", "read_more": "Learn more &rarr;",
                "related_materials": "Explore More Materials", "related_styles": "You Might Also Like",
                "related_commercial": "Related Services", "related_other": "More Services"},
+    "hoa_guide": {
+        "title": "HOA &amp; ARC Fence Approval in New Tampa",
+        "lead": "What New Tampa's architectural review committees look for, what to submit, and how to keep your fence project on schedule.",
+        "local": {
+            "title": "Architectural Review in New Tampa",
+            "paragraphs": [
+                "Most New Tampa communities — including Tampa Palms, Hunter's Green, Cross Creek, and K-Bar Ranch — route fence requests through an architectural review committee (ARC), often through a management company's online portal.",
+                "Many associations publish standard fence specifications (style, color, height), and lots on ponds, preserves, or golf courses often have their own rules. Ask for those specifications before choosing your design — it's the simplest way to get approved the first time.",
+            ],
+        },
+        "cta_title": "Let's Get Your Fence Approved",
+        "cta_sub": "Book a free consultation — we'll design to your community's standards and prepare your submission details.",
+    },
     "footer_about": "North Tampa Fencing (northtampafencing.com) is the New Tampa and North Tampa website of 76 FENCE Tampa, designing and installing residential and community fencing across Tampa Palms, Hunter's Green, Temple Terrace, and nearby neighborhoods.",
     "cta": {"title": "Let's Design Your Fence", "sub": "Book a free in-home consultation — we'll bring samples, measure, and help you choose."},
     "warranty_box": {
@@ -168,7 +181,7 @@ CONTENT = {
     },
     "faqs": [
         ("Will my HOA need to approve my fence?",
-         "In most New Tampa communities, yes. Neighborhoods such as Tampa Palms, Hunter's Green, Cross Creek, and K-Bar Ranch generally require architectural review. We'll help you choose an approvable design and prepare the details your committee needs."),
+         "In most New Tampa communities, yes. Neighborhoods such as Tampa Palms, Hunter's Green, Cross Creek, and K-Bar Ranch generally require architectural review. We'll help you choose an approvable design and prepare the details your committee needs — see our <a href=\"hoa-fence-approval-guide.html\">HOA approval guide</a>."),
         ("Are you licensed and insured?",
          "Yes. 76 FENCE Tampa is licensed in Hillsborough, Pasco, and Hernando counties and carries general liability and workers' compensation insurance. We're glad to provide a certificate of insurance."),
         ("Do I need a permit for a fence in Tampa?",

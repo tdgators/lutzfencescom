@@ -184,7 +184,7 @@ FAQS = [
     ("Will my fence hold up to Florida storms and wind?",
      "We set posts in concrete to the depth needed for the material and height, and can talk through wind-rated material and design choices for storm-prone properties."),
     ("Do I need HOA approval before installing a fence?",
-     "Many communities in our service area require HOA approval before installation — we're happy to help prepare what your HOA needs to review."),
+     "Many communities in our service area require HOA approval before installation — we're happy to help prepare what your HOA needs to review. See our <a href=\"hoa-fence-approval-guide.html\">HOA fence approval guide</a> for the steps."),
 ]
 
 PRICING_TABLE = {
@@ -250,4 +250,51 @@ WARRANTY = dict(
         ("Requesting Warranty Service",
          "To request warranty service, contact 76 FENCE Tampa and provide the installation address and a description or photographs of the issue. 76 FENCE Tampa will evaluate the condition to determine whether it is covered under this workmanship warranty."),
     ],
+)
+
+# HOA fence-approval guide (/hoa-fence-approval-guide/). Shared steps; each site adds its own intro and
+# local notes via content/<site>.py "hoa_guide". Florida points verified against the statute 2026-10-02
+# (platform repo docs/HOA_SUBMISSION_GUIDE_FOR_WEBSITE.md). General information, not legal advice.
+HOA_GUIDE = dict(
+    title="Getting HOA Approval for Your New Fence",
+    lead="A plain-English guide to the HOA architectural review process — what to gather, how to submit, and what happens next.",
+    intro="If you live in a community with a homeowners association (HOA), you'll almost always need written approval before a fence goes up — even when the county doesn't require a permit for it. The good news: it's a routine process, and a complete application is the fastest way through it.",
+    steps=[
+        ("Find out what your HOA requires", [
+            "Your HOA's rules live in its <strong>declaration of covenants</strong> and its <strong>architectural guidelines</strong>. Look for the sections on fences: allowed heights, materials, colors, styles, and where a fence may sit on the lot.",
+            "Many HOAs publish these on their website or through their management company. If you can't find them, email your HOA manager and ask for the <em>architectural review application</em> and the <em>fence guidelines</em>.",
+            "Some neighborhoods also have a <strong>CDD</strong> (community development district), which usually manages shared infrastructure and may have its own rules about easements and drainage.",
+        ]),
+        ("Gather what the application will ask for", [
+            "Most HOAs want some combination of:",
+            "<ul class=\"check-list\"><li>The HOA's application form, signed by the property owner</li><li>A <strong>site plan or survey</strong> showing the property lines and where the fence will run</li><li>Fence details: height, material, color, style, and gate locations</li><li>A photo or sample of the fence material</li><li>Contractor information (license and insurance), if required</li><li>Neighbor acknowledgment or signatures, if your HOA asks for them</li></ul>",
+            "<strong>Don't have your survey?</strong> Check your closing documents first. If you can't find it, it's often on file with your title company, the original surveyor, or your HOA's architectural files, and the recorded subdivision plat is available free from your county Clerk of Court.",
+        ]),
+        ("Let us prepare your submission document", [
+            "Once you've chosen your fence, we can prepare an <strong>HOA submission document</strong> for your property: your parcel details, a satellite view with the proposed fence line marked, a map view, photos of the fence material, and — when it's available — the recorded plat. We can also look up your HOA's published submission steps and fence rules so nothing is missed.",
+        ]),
+        ("Submit and keep a record", [
+            "<ul class=\"check-list\"><li>Send the complete package the way your HOA asks — online portal, email, or management company.</li><li>Keep a copy of everything you submit and note the date.</li><li>Ask for the decision <strong>in writing</strong> and keep it.</li></ul>",
+        ]),
+        ("How long does approval take?", [
+            "It depends on your HOA's own documents — commonly <strong>30 to 60 days</strong> from a complete application. Florida law doesn't set one statewide deadline for HOA architectural decisions, so check your declaration for the timeframe and for what happens if the HOA doesn't respond. Incomplete applications restart the clock, so it pays to submit everything at once.",
+        ]),
+        ("If you're approved", [
+            "Read the approval for <strong>conditions</strong> — a specific color, setback, or gate location — and build to them.",
+            "Fence permits, where the city or county requires them, are separate from HOA approval. Since July 1, 2026, Florida law says an HOA can't make a building permit a precondition for <em>reviewing</em> your application, but it may make its approval conditional on you getting any required permit.",
+            "Before digging, Florida requires a free <strong>811</strong> utility locate (call 811 or submit a ticket with Sunshine 811). When we install your fence, we take care of the locate request.",
+        ]),
+        ("If you're denied", [
+            "Under Florida law, an HOA that denies an application must tell you in writing which rule or covenant it relied on. Use that to adjust your request — a different color, height, or placement is often enough — and resubmit. We're glad to help you revise the fence design to fit.",
+        ]),
+    ],
+    checklist=[
+        "Got the HOA's fence guidelines and application form",
+        "Have a survey, site plan, or property diagram",
+        "Picked height, material, color, and gate locations that fit the guidelines",
+        "Submitted the complete package and saved a copy",
+        "Received written approval before ordering or building",
+        "811 locate requested before digging",
+    ],
+    disclaimer="This page is general information, not legal advice. Your HOA's governing documents control.",
 )

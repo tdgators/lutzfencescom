@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Builds: homepage, about, service-areas, contact, faq, gallery, pricing, privacy-policy"""
 from pathlib import Path
-from data import SITE, TOWNS, COPY, CURRENT, THEME, T, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, PRICING_TABLE, WARRANTY
+from data import SITE, TOWNS, COPY, CURRENT, THEME, T, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, PRICING_TABLE, WARRANTY, HOA_GUIDE
 from templates import write_page, write_404, page, page_hero, faq_accordion, mini_quote_form, contact_form_card, map_section, town_chips, cta_banner, fence_illustration, warranty_seal, warranty_callout
 
 
@@ -605,6 +605,49 @@ def build_warranty():
     write("warranty.html", page(f"{W['name']} | {W['issuer']}",
         f"Every fence installed by {SITE['full_brand']} is backed by the {W['issuer']} {W['name']}. See what's covered, what's not, and how to request warranty service.",
         "warranty.html", content))
+
+
+# ---------------------------------------------------------------- HOA GUIDE
+def build_hoa_guide():
+    G = HOA_GUIDE
+    local = T("hoa_guide.local")
+    local_html = f'''
+      <div class="card hoa-local">
+        <h2>{local["title"]}</h2>
+        {"".join(f"<p>{p_}</p>" for p_ in local["paragraphs"])}
+      </div>''' if local else ""
+    steps = "".join(f'''
+      <section class="hoa-step">
+        <h2><span class="hoa-num">{n}</span>{title}</h2>
+        {"".join(p_ if p_.startswith("<ul") else f"<p>{p_}</p>" for p_ in paras)}
+      </section>''' for n, (title, paras) in enumerate(G["steps"], 1))
+    checklist = "".join(f"<li>{c}</li>" for c in G["checklist"])
+    content = page_hero("HOA Approval", T("hoa_guide.title", G["title"]), T("hoa_guide.lead", G["lead"]),
+        [("Home", "index.html"), ("HOA Approval Guide", None)])
+    content += f'''
+<section class="section">
+  <div class="container guide hoa-guide">
+    <article class="guide-main">
+      <p>{T("hoa_guide.intro", G["intro"])}</p>{local_html}
+      {steps}
+      <p class="small hoa-disclaimer">{G["disclaimer"]}</p>
+    </article>
+    <aside class="guide-side">
+      <div class="card glance">
+        <h3>Quick Checklist</h3>
+        <ul class="check-list">{checklist}</ul>
+        <a class="btn btn-red btn-block" href="contact-us.html">{T("labels.estimate", "Get a Free Estimate")}</a>
+        <button class="btn btn-navy-outline btn-block hoa-print" type="button" onclick="window.print()">Print this guide</button>
+      </div>
+    </aside>
+  </div>
+</section>
+{cta_banner(T("hoa_guide.cta_title", "Need Help With Your HOA Submission?"), T("hoa_guide.cta_sub", "We'll prepare your fence details and property diagram for your HOA — and build it once it's approved."))}
+'''
+    write("hoa-fence-approval-guide.html", page(
+        T("hoa_guide.meta_title", f"HOA Fence Approval Guide | {SITE['full_brand']}"),
+        T("hoa_guide.meta", f"How to get HOA approval for a new fence in {SITE['city']} and the {SITE['region']} area: what your HOA requires, what to submit, timelines, and what to do if you're denied."),
+        "hoa-fence-approval-guide.html", content))
 
 
 # ---------------------------------------------------------------- 404

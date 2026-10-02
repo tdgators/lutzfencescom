@@ -34,6 +34,7 @@ SITES = {
     # ------------------------------------------------------------------ lutzfences.com
     "lutzfences.com": dict(
         out_dir=REPOS / "lutzfencescom",
+        content="lutz",  # default look/wording; page-specific additions in content/lutz.py
         site=dict(
             name="Lutz Fences",
             full_brand="76 FENCE Lutz",
