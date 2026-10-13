@@ -10,7 +10,8 @@ def write(path, html):
 
 
 def guide_layout():
-    return THEME.get("detail_layout") == "guide"
+    """Content-driven detail pages (any THEME detail_layout); Lutz keeps its original layout."""
+    return THEME.get("detail_layout") in ("guide", "cards", "longform")
 
 
 def guide_page(path, crumbs, kicker, name, tagline, c, img_kind, related_title, related, warranty_ctx,
@@ -20,6 +21,7 @@ def guide_page(path, crumbs, kicker, name, tagline, c, img_kind, related_title, 
     intro = "".join(f"<p>{p_}</p>" for p_ in c.get("intro", []))
     sections = "".join(f"<h2>{h}</h2>" + "".join(f"<p>{p_}</p>" for p_ in ps) for h, ps in c.get("sections", []))
     glance = "".join(f"<li>{g}</li>" for g in c.get("glance", []))
+    layout = THEME.get("detail_layout")
     related_html = "".join(f"""
 <a class="card related-card" href="{href}">
   <h3>{title}</h3>
@@ -27,13 +29,60 @@ def guide_page(path, crumbs, kicker, name, tagline, c, img_kind, related_title, 
   <span class="more">{T("labels.read_more", "Read more &rarr;")}</span>
 </a>""" for title, href, blurb in related)
     content = page_hero(kicker, name, tagline, crumbs)
+    glance_title = c.get("glance_title", T("labels.glance", "At a Glance"))
+    if layout == "cards":  # intro, highlight tiles, each topic as its own card
+        tiles = "".join(f'<div class="hl-tile"><span>✓</span>{g}</div>' for g in c.get("glance", []))
+        topic_cards = "".join(f'<div class="card topic-card"><h2>{h}</h2>' + "".join(f"<p>{p_}</p>" for p_ in ps) + "</div>"
+                              for h, ps in c.get("sections", []))
+        body = f"""
+<section class="section">
+  <div class="container">
+    <div class="cards-intro">{intro}</div>
+    <h2 class="hl-title">{glance_title}</h2>
+    <div class="hl-grid">{tiles}</div>
+    {f'<div class="grid grid-2 topic-grid">{topic_cards}</div>' if topic_cards else ''}
+    <div class="center" style="margin-top:32px"><a class="btn btn-red" href="contact-us.html">{T("labels.estimate", "Get a Free Estimate")}</a></div>
+  </div>
+</section>
+<section class="guide-photo">
+  <div class="container"><div class="tile-img wide">{fence_illustration(img_kind)}</div></div>
+</section>"""
+    elif layout == "longform":  # one centered article: highlights strip, photo after the intro
+        chips = "".join(f'<li>{g}</li>' for g in c.get("glance", []))
+        body = f"""
+<section class="section longform">
+  <div class="container">
+    <div class="lf-highlights"><strong>{glance_title}</strong><ul>{chips}</ul></div>
+    <article class="lf-article">{intro}
+      <div class="tile-img lf-photo">{fence_illustration(img_kind)}</div>
+      {sections}
+      <p class="lf-cta"><a class="btn btn-red" href="contact-us.html">{T("labels.estimate", "Get a Free Estimate")}</a>
+        <a class="glance-phone" href="tel:{SITE['phone_tel']}">{T("labels.or_call", "or call")} {SITE['phone']}</a></p>
+    </article>
+  </div>
+</section>"""
+    else:
+        body = None
+    if body:
+        content += body + f"""
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head"><h2>{related_title}</h2></div>
+    <div class="grid grid-3">{related_html}</div>
+  </div>
+</section>
+{warranty_callout(warranty_ctx)}
+{cta_banner(cta_title, c.get("cta_sub"))}
+"""
+        write(path, page(meta_title, meta_desc, path, content))
+        return
     content += f"""
 <section class="section">
   <div class="container guide">
     <article class="guide-main">{intro}{sections}</article>
     <aside class="guide-side">
       <div class="card glance">
-        <h3>{c.get("glance_title", T("labels.glance", "At a Glance"))}</h3>
+        <h3>{glance_title}</h3>
         <ul class="check-list">{glance}</ul>
         <a class="btn btn-red btn-block" href="contact-us.html">{T("labels.estimate", "Get a Free Estimate")}</a>
         <a class="glance-phone" href="tel:{SITE['phone_tel']}">{T("labels.or_call", "or call")} {SITE['phone']}</a>

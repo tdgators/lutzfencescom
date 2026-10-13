@@ -2,7 +2,7 @@
 """northtampafencing.com — its own look and its own words.
 
 Voice: polished, design-minded, HOA-aware. Audience: homeowners in New Tampa's planned communities
-(Tampa Palms, Hunter's Green, Cross Creek, K-Bar Ranch) plus Temple Terrace, Carrollwood, and Lutz.
+(Tampa Palms, Hunter's Green, Cross Creek, K-Bar Ranch) plus Temple Terrace and Lutz.
 Keep every claim factual (no invented reviews, years in business, or statistics); licensing/insurance
 wording must match sites.py. Never use a competitor's business name."""
 
@@ -254,8 +254,8 @@ CONTENT = {
         },
         "wood-fence": {
             "tagline": "Natural warmth with endless design options.",
-            "meta": "Wood fence installation in North Tampa, Temple Terrace, and Carrollwood — cedar and pressure-treated designs.",
-            "intro": ["Wood suits established neighborhoods like Temple Terrace and Carrollwood, where many homes favor a natural, traditional look."],
+            "meta": "Wood fence installation in North Tampa, Temple Terrace, and Lutz — cedar and pressure-treated designs.",
+            "intro": ["Wood suits established neighborhoods like Temple Terrace and parts of Lutz, where many homes favor a natural, traditional look."],
             "sections": [
                 ("Design choices", ["Board-on-board, shadowbox, horizontal, and capped designs let you tailor the look. Cedar offers a richer grain; pressure-treated pine is more economical."]),
                 ("Upkeep", ["Wood needs sealing or staining to hold up in Florida sun and humidity. We offer <a href=\"fence-staining.html\">staining and sealing</a> to keep it looking its best."]),
@@ -328,7 +328,7 @@ CONTENT = {
         "picket-fence": {
             "desc": "Classic spaced pickets that add charm and curb appeal to front yards and gardens.",
             "tagline": "Timeless curb appeal.",
-            "meta": "Picket fence installation in North Tampa, Temple Terrace, and Carrollwood.",
+            "meta": "Picket fence installation in North Tampa, Temple Terrace, and Lutz.",
             "intro": ["A picket fence adds charm to a front yard or garden while keeping the home open to the street."],
             "sections": [],
             "glance": ["3'–4' tall", "Vinyl, wood, or aluminum", "Front-yard friendly"],
@@ -395,7 +395,7 @@ CONTENT = {
         },
         "fence-staining": {
             "tagline": "Keep wood fencing looking its best.",
-            "meta": "Fence staining and sealing in North Tampa, Temple Terrace, and Carrollwood.",
+            "meta": "Fence staining and sealing in North Tampa, Temple Terrace, and Lutz.",
             "intro": ["Staining or sealing protects wood from sun and humidity and keeps its color rich. We clean, prep, and apply the finish."],
             "sections": [],
             "glance": ["Cleaning &amp; prep", "Stain or sealer", "Longer-lasting wood"],
@@ -459,7 +459,6 @@ CONTENT = {
             "cross-creek": "Cross Creek has a mix of home sizes and lots near conservation areas, so we tailor the fence to both privacy needs and views.",
             "k-bar-ranch": "K-Bar Ranch's newer neighborhoods tend to have specific fence standards, which we confirm before finalizing your design.",
             "temple-terrace": "Temple Terrace is its own city with its own permit process, and its mature trees and established lots suit both wood and ornamental styles.",
-            "carrollwood": "Carrollwood's established neighborhoods and lakefront lots call for fencing that fits a more traditional streetscape.",
             "lutz": "Lutz properties are often larger, with lakes and wooded lots, so we see everything from pool enclosures to longer property-line fences.",
         },
     },

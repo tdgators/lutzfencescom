@@ -180,7 +180,7 @@ SITES = {
         towns=[
             ("New Tampa", "new-tampa"), ("Tampa Palms", "tampa-palms"), ("Hunter's Green", "hunters-green"),
             ("Cross Creek", "cross-creek"), ("K-Bar Ranch", "k-bar-ranch"), ("Temple Terrace", "temple-terrace"),
-            ("Carrollwood", "carrollwood"), ("Lutz", "lutz"),
+            ("Lutz", "lutz"),  # Carrollwood moved to carrollwoodfence.com (one site per town)
         ],
         copy=dict(
             hero_lead="Fence installation for New Tampa, Tampa Palms, Temple Terrace, and North Tampa neighborhoods — HOA-ready privacy, pool, and decorative fencing from the owner-operated 76 FENCE Tampa team.",
@@ -190,7 +190,7 @@ SITES = {
                 "North Tampa Fencing is part of 76 FENCE Tampa, the locally owned 76 FENCE location run by Tom &amp; Kate Donnelly. We install and repair fencing across New Tampa, Tampa Palms, Hunter's Green, Temple Terrace, and the rest of North Tampa, with the training and manufacturer relationships of the national 76 FENCE network behind every job.",
                 "Most North Tampa neighborhoods are planned communities with architectural review, and many homes back up to preserves, ponds, or golf courses. We help you pick a style your HOA will approve, prepare the paperwork, and build to the lot you actually have.",
             ],
-            service_areas_meta="76 FENCE Tampa installs fences across New Tampa and North Tampa, including Tampa Palms, Hunter's Green, Cross Creek, K-Bar Ranch, Temple Terrace, and Carrollwood.",
+            service_areas_meta="76 FENCE Tampa installs fences across New Tampa and North Tampa, including Tampa Palms, Hunter's Green, Cross Creek, K-Bar Ranch, and Temple Terrace.",
             faq_lead="Answers to the questions we hear most from New Tampa and North Tampa homeowners.",
             local_section=dict(
                 eyebrow="Built for North Tampa",
@@ -224,6 +224,159 @@ SITES = {
             town_permit=[
                 "Fence permits around {town} depend on whether you're in the City of Tampa, Temple Terrace, or unincorporated Hillsborough County. We check your address and handle the permit either way.",
                 "If you have a pool, your fence or gate may count as the required pool barrier under Florida code. We build {town} pool enclosures with self-closing, self-latching gates that meet it.",
+            ],
+        ),
+    ),
+
+    # ------------------------------------------------------------------ carrollwoodfence.com (FL46)
+    "carrollwoodfence.com": dict(
+        out_dir=REPOS / "carrollwoodfencecom",
+        content="carrollwood",
+        site=dict(
+            name="Carrollwood Fence", full_brand="76 FENCE Tampa", brand_sub="Carrollwood &amp; Northdale",
+            phone="813-669-4555", phone_tel="+18136694555", city="Carrollwood", region="Northwest Hillsborough",
+            domain="carrollwoodfence.com",
+            map_embed="https://www.google.com/maps?q=Carrollwood,+Tampa,+FL&output=embed",
+        ),
+        towns=[("Carrollwood", "carrollwood"), ("Carrollwood Village", "carrollwood-village"),
+               ("Northdale", "northdale"), ("Lake Magdalene", "lake-magdalene")],
+        copy=dict(
+            hero_lead="Replacement and new fencing for Carrollwood's established neighborhoods.",
+            why_local=("Owner-Operated", "76 FENCE Tampa is owned and run by Tom &amp; Kate Donnelly."),
+            about_lead="Carrollwood Fence is part of 76 FENCE Tampa.",
+            about_story=["Carrollwood Fence is part of 76 FENCE Tampa."],
+            service_areas_meta="Fence installation in Carrollwood, Carrollwood Village, Northdale, and Lake Magdalene from 76 FENCE Tampa.",
+            faq_lead="Answers for Carrollwood and Northdale homeowners.",
+            local_section=None, local_faqs=[],
+            town_intros=[
+                "Many {town} homes have had the same fence since the house was built, and plenty of them are due. {brand} replaces tired wood fences and builds new ones across {town}, with the old fence hauled away as part of the job.",
+                "{brand} works in {town} every week — swapping out leaning wood for vinyl, enclosing pools, and adding gates where families need them.",
+                "From lakefront lots to cul-de-sac backyards, {brand} builds fences that suit {town}'s established streets and mature trees.",
+                "If you live in {town}, you're likely dealing with an older fence, big oaks, and a backyard pool. {brand} plans around all three.",
+            ],
+            town_why=[
+                "{brand} is owner-run by Tom &amp; Kate Donnelly, so {town} customers deal directly with the people responsible for the work.",
+                "Every {town} installation carries our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a> on top of the manufacturer's material warranty.",
+                "We're licensed in Hillsborough, Pasco, and Hernando counties and fully insured, and we handle Hillsborough County permits for {town} projects.",
+            ],
+            town_permit=[
+                "{town} is in unincorporated Hillsborough County, so most fence work goes through the county's permitting process. We check the requirements for your address and file what's needed.",
+                "Deed-restricted sections of {town} can have their own rules on fence height and style. We'll help you check before you choose a design.",
+            ],
+        ),
+    ),
+
+    # ------------------------------------------------------------------ westchasefence.com (FL46)
+    "westchasefence.com": dict(
+        out_dir=REPOS / "westchasefencecom",
+        content="westchase",
+        site=dict(
+            name="Westchase Fence", full_brand="76 FENCE Tampa", brand_sub="Westchase &amp; Citrus Park",
+            phone="813-669-4555", phone_tel="+18136694555", city="Westchase", region="Northwest Tampa",
+            domain="westchasefence.com",
+            map_embed="https://www.google.com/maps?q=Westchase,+Tampa,+FL&output=embed",
+        ),
+        towns=[("Westchase", "westchase"), ("Citrus Park", "citrus-park"),
+               ("Town 'n' Country", "town-n-country"), ("Egypt Lake-Leto", "egypt-lake-leto")],
+        copy=dict(
+            hero_lead="Fences designed to pass architectural review in Westchase and northwest Tampa.",
+            why_local=("Owner-Operated", "76 FENCE Tampa is owned and run by Tom &amp; Kate Donnelly."),
+            about_lead="Westchase Fence is part of 76 FENCE Tampa.",
+            about_story=["Westchase Fence is part of 76 FENCE Tampa."],
+            service_areas_meta="Fence installation in Westchase, Citrus Park, Town 'n' Country, and Egypt Lake-Leto from 76 FENCE Tampa.",
+            faq_lead="Answers for Westchase and northwest Tampa homeowners.",
+            local_section=None, local_faqs=[],
+            town_intros=[
+                "In {town}, a fence usually has to look right to the neighbors and to the association before it ever goes in. {brand} designs with those rules in mind from the first visit.",
+                "{brand} installs vinyl, aluminum, and wood fencing throughout {town}, with clear written proposals and a crew that respects your landscaping.",
+                "Whether it's a pool enclosure, a privacy run along the back line, or a new gate, {brand} handles {town} fence projects from design to cleanup.",
+                "{town} homeowners choose {brand} for straightforward pricing, approval help, and a workmanship warranty that runs well beyond the install.",
+            ],
+            town_why=[
+                "{brand} is owner-operated by Tom &amp; Kate Donnelly — {town} customers have a direct line to the owners.",
+                "Every {town} project includes our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a> and the manufacturer's material warranty.",
+                "We're licensed in Hillsborough, Pasco, and Hernando counties and fully insured, and we take care of permits for {town} projects.",
+            ],
+            town_permit=[
+                "Most of {town} sits in unincorporated Hillsborough County, so permits go through the county; parts of the area fall inside Tampa city limits. We confirm which applies to your address.",
+                "If your {town} neighborhood has an association, we'll help assemble what its review committee needs — style, height, color, and a site plan.",
+            ],
+        ),
+    ),
+
+    # ------------------------------------------------------------------ southtampafence.com (FL43)
+    "southtampafence.com": dict(
+        out_dir=REPOS / "southtampafencecom",
+        content="southtampa",
+        site=dict(
+            name="South Tampa Fence", full_brand="76 FENCE Tampa", brand_sub="South Tampa",
+            phone="813-669-4555", phone_tel="+18136694555", city="South Tampa", region="Tampa",
+            domain="southtampafence.com",
+            map_embed="https://www.google.com/maps?q=South+Tampa,+Tampa,+FL&output=embed",
+        ),
+        towns=[("Hyde Park", "hyde-park"), ("Palma Ceia", "palma-ceia"), ("Davis Islands", "davis-islands"),
+               ("Bayshore Beautiful", "bayshore-beautiful"), ("Ballast Point", "ballast-point"),
+               ("Westshore", "westshore"), ("Port Tampa", "port-tampa")],
+        copy=dict(
+            hero_lead="Fencing for South Tampa's bungalows, courtyards, and bayside homes.",
+            why_local=("Owner-Operated", "76 FENCE Tampa is owned and run by Tom &amp; Kate Donnelly."),
+            about_lead="South Tampa Fence is part of 76 FENCE Tampa.",
+            about_story=["South Tampa Fence is part of 76 FENCE Tampa."],
+            service_areas_meta="Fence installation across South Tampa: Hyde Park, Palma Ceia, Davis Islands, Bayshore Beautiful, Ballast Point, Westshore, and Port Tampa.",
+            faq_lead="Answers for South Tampa homeowners.",
+            local_section=None, local_faqs=[],
+            town_intros=[
+                "{town} lots are compact and close together, so every foot of fence matters. {brand} designs fencing that adds privacy without overwhelming the house.",
+                "{brand} builds courtyard, pool, and privacy fencing in {town}, matched to the character of the home and the street.",
+                "In {town}, a fence is often the first thing people see from the sidewalk. {brand} helps you choose a style that suits the architecture.",
+                "From alley-side privacy to decorative front-yard fencing, {brand} handles {town} projects with care for older homes and established landscaping.",
+            ],
+            town_why=[
+                "{brand} is owner-operated by Tom &amp; Kate Donnelly, so your {town} project has a direct line to the owners.",
+                "Every {town} fence carries our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a> plus the manufacturer's material warranty.",
+                "We're licensed in Hillsborough, Pasco, and Hernando counties and fully insured, and we handle City of Tampa permits for {town} projects.",
+            ],
+            town_permit=[
+                "{town} is inside Tampa city limits, so fence work generally needs a City of Tampa permit, and homes in local historic districts can need historic preservation review as well. We check your address before we quote.",
+                "Near the bay, salt air is hard on bare steel, so we usually recommend aluminum or vinyl for {town} homes close to the water.",
+            ],
+        ),
+    ),
+
+    # ------------------------------------------------------------------ starkeyfence.com (FL44)
+    "starkeyfence.com": dict(
+        out_dir=REPOS / "starkeyfencecom",
+        content="starkey",
+        site=dict(
+            name="Starkey Fence", full_brand="76 FENCE Tampa", brand_sub="Starkey Ranch &amp; Odessa",
+            phone="813-669-4555", phone_tel="+18136694555", city="Starkey Ranch", region="Odessa and Trinity",
+            domain="starkeyfence.com",
+            map_embed="https://www.google.com/maps?q=Starkey+Ranch,+Odessa,+FL&output=embed",
+        ),
+        towns=[("Starkey Ranch", "starkey-ranch"), ("Odessa", "odessa"), ("Keystone", "keystone"),
+               ("Cheval", "cheval"), ("Trinity", "trinity")],
+        copy=dict(
+            hero_lead="Fencing for Starkey Ranch families, Odessa acreage, and Trinity neighborhoods.",
+            why_local=("Owner-Operated", "76 FENCE Tampa is owned and run by Tom &amp; Kate Donnelly."),
+            about_lead="Starkey Fence is part of 76 FENCE Tampa.",
+            about_story=["Starkey Fence is part of 76 FENCE Tampa."],
+            service_areas_meta="Fence installation in Starkey Ranch, Odessa, Keystone, Cheval, and Trinity from 76 FENCE Tampa.",
+            faq_lead="Answers for Starkey Ranch, Odessa, and Trinity homeowners.",
+            local_section=None, local_faqs=[],
+            town_intros=[
+                "Families in {town} want a backyard where kids and dogs can play safely. {brand} builds fences that do that job and fit the neighborhood's look.",
+                "{brand} installs fencing across {town} — from new-construction backyards to larger lots that need longer runs and wider gates.",
+                "Whether your {town} home is brand new or well established, {brand} will help you pick a fence that suits the lot, the rules, and your budget.",
+                "{town} homeowners call {brand} for pet-friendly, pool-safe, low-maintenance fencing installed by the owners' own team.",
+            ],
+            town_why=[
+                "{brand} is owner-operated by Tom &amp; Kate Donnelly, so {town} customers reach the people accountable for the work.",
+                "Every {town} installation includes our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a> and the manufacturer's material warranty.",
+                "We're licensed in Hillsborough, Pasco, and Hernando counties and fully insured, and we handle the permit for {town} projects.",
+            ],
+            town_permit=[
+                "Depending on the address, {town} projects go through Pasco County or Hillsborough County permitting. We confirm which applies and file what's needed.",
+                "Many {town} neighborhoods have an HOA with fence standards. We'll help you gather what the review committee needs before we schedule the install.",
             ],
         ),
     ),

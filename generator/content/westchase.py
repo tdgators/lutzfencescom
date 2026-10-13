@@ -1,0 +1,337 @@
+# -*- coding: utf-8 -*-
+"""westchasefence.com — its own look and its own words.
+
+Voice: crisp, modern, process-oriented. Audience: homeowners in Westchase's master-planned villages
+(community-association modification review), Citrus Park, Town 'n' Country, and Egypt Lake-Leto —
+all Hillsborough County. Pinellas towns are deliberately excluded (not licensed there). Keep every
+claim factual; licensing/insurance wording must match sites.py. Territory FL46."""
+
+THEME = dict(
+    body_class="theme-modern",
+    fonts_href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Work+Sans:wght@400;500;600;700&display=swap",
+    vars={
+        "--font-head": "'Montserrat', 'Helvetica Neue', Arial, sans-serif",
+        "--font-body": "'Work Sans', -apple-system, 'Segoe UI', Roboto, Arial, sans-serif",
+        "--head-weight": "800",
+        "--head-case": "uppercase",
+        "--head-spacing": ".02em",
+        "--accent": "#d1242f",
+        "--accent-dark": "#1b1f24",
+        "--eyebrow": "#d1242f",
+        "--alt-bg": "#f3f4f5",
+        "--hero-eyebrow": "#ff6b74",
+        "--hero-bg": "linear-gradient(120deg, #111418 0%, #252b33 100%)",
+        "--btn-radius": "2px",
+        "--section-pad": "76px",
+    },
+    hero="image",
+    hero_image="materials/vinyl-fence.jpg",
+    home_sections=[
+        ("local", False), ("process", True), ("services", False), ("styles", True),
+        ("why", False), ("budget", True), ("warranty", False), ("areas", True), ("faq", False),
+    ],
+    detail_layout="guide",
+    town_sections=["intro", "faq", "nearby", "materials"],
+)
+
+LICENSED = "Licensed in Hillsborough, Pasco, and Hernando counties and fully insured with general liability and workers' compensation coverage."
+
+CONTENT = {
+    "labels": {"estimate": "Start Your Project", "glance": "Specs at a Glance", "or_call": "or call", "read_more": "View details &rarr;",
+               "related_materials": "Compare Materials", "related_styles": "More Styles",
+               "related_commercial": "Commercial Services", "related_other": "Also Available",
+               "modal_title": "Start Your Fence Project"},
+    "footer_about": "Westchase Fence (westchasefence.com) is the northwest Tampa website of 76 FENCE Tampa, designing and installing fences in Westchase, Citrus Park, Town 'n' Country, and Egypt Lake-Leto.",
+    "cta": {"title": "Ready to Start?", "sub": "Get a design consultation and a written proposal you can take straight to your association."},
+    "warranty_box": {
+        "eyebrow": "Warranty",
+        "title": "76-Week Workmanship Warranty",
+        "text": "The {issuer} {name} covers how we built {context}. Workmanship defects reported within {weeks} weeks ({approx}) of your installation date are corrected at no charge. Product warranties come from the manufacturers.",
+    },
+
+    "home": {
+        "meta_title": "Westchase Fence | Fence Design & Installation in Westchase & Citrus Park — 76 FENCE Tampa",
+        "meta_description": "Fence design and installation for Westchase, Citrus Park, Town 'n' Country, and Egypt Lake-Leto. Association-ready proposals. Licensed and insured. Call 813-669-4555.",
+        "hero": {
+            "eyebrow": "Westchase Fence · 76 FENCE Tampa",
+            "h1": "Fences Designed to Get Approved",
+            "lead": "Vinyl, aluminum, and wood fencing for Westchase and northwest Tampa — planned around your association's standards and installed by an owner-run team.",
+            "cta": "Start Your Project",
+            "badges": ["Association-Ready Proposals", "Licensed &amp; Fully Insured",
+                       '<a href="warranty.html" style="color:inherit">76-Week Warranty</a>'],
+        },
+        "local": {
+            "eyebrow": "Built for Westchase",
+            "title": "Planned Communities, Precise Standards",
+            "intro": "Westchase's villages each come with expectations for how a fence looks. We design to them from day one.",
+            "cards": [
+                ("Modification Review", "Most Westchase homes need association approval before a fence goes in. We prepare the site plan, specs, and product details reviewers ask for."),
+                ("Matching the Village", "Neighborhood standards often set fence style, height, and color. We confirm yours before recommending a design."),
+                ("Water &amp; Preserve Views", "Lots along ponds and conservation areas often call for open aluminum that keeps the view."),
+                ("Clean Installs", "Irrigation lines, sod, and landscaping get protected — and the crew leaves the yard the way they found it."),
+            ],
+        },
+        "process": {
+            "eyebrow": "Process",
+            "title": "Four Steps to a New Fence",
+            "steps": [
+                ("Design Consult", "We measure, review your lot, and talk through style, height, color, and gates."),
+                ("Written Proposal", "You get a clear proposal with a site plan and product details — ready for your association."),
+                ("Approval &amp; Permit", "Once your association signs off, we handle the permit and schedule your install."),
+                ("Install &amp; Walkthrough", "We build it, clean up, and walk the finished fence with you."),
+            ],
+        },
+        "services": {
+            "eyebrow": "Materials",
+            "title": "Materials That Meet the Standard",
+            "intro": "Every material we offer, and where it fits in northwest Tampa.",
+            "more": "Specs &amp; options &rarr;",
+        },
+        "styles": {
+            "eyebrow": "Styles",
+            "title": "Choose Your Style",
+            "intro": "Start with the look; we'll confirm it fits your neighborhood's standards.",
+            "more": "View style &rarr;",
+        },
+        "why": {
+            "eyebrow": "Why Westchase Fence",
+            "title": "Straightforward From Start to Finish",
+            "intro": "Westchase Fence is part of 76 FENCE Tampa, owned and operated by Tom &amp; Kate Donnelly.",
+            "items": [
+                ("Licensed &amp; Insured", LICENSED),
+                ("Approval Help", "Proposals include the site plan and product details association reviewers typically request."),
+                ("76-Week Workmanship Warranty", "Every install includes our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a> plus manufacturer coverage."),
+                ("Owner-Operated", "You deal directly with the owners — not a call center."),
+                ("Permits Handled", "We confirm whether your address falls under Hillsborough County or the City of Tampa and file the permit."),
+                ("Financing Available", "Ask about financing options for your project."),
+            ],
+        },
+        "budget": {
+            "eyebrow": "Budget",
+            "title": "What Drives the Price",
+            "intro": "Three things decide most of the cost of a fence in northwest Tampa.",
+            "button": "See Typical Pricing",
+            "cards": [
+                ("Material &amp; Height", "Six-foot vinyl privacy costs more per foot than four-foot aluminum; composite and custom colors cost more still."),
+                ("Length &amp; Layout", "Total linear footage and the number of corners and changes in direction."),
+                ("Gates &amp; Extras", "Each gate, pool hardware, and removing an existing fence."),
+            ],
+        },
+        "areas": {
+            "eyebrow": "Coverage",
+            "title": "Westchase &amp; Northwest Tampa",
+            "intro": "We serve Westchase and the neighborhoods around it in Hillsborough County.",
+        },
+        "faq": {"eyebrow": "FAQ", "title": "Questions, Answered"},
+    },
+
+    "about": {
+        "title": "About Westchase Fence",
+        "lead": "Northwest Tampa fencing from 76 FENCE Tampa — owner-operated by Tom &amp; Kate Donnelly.",
+        "story_eyebrow": "Who We Are",
+        "story_title": "Design-Minded, Owner-Run",
+        "story": [
+            "Westchase Fence is how 76 FENCE Tampa serves Westchase, Citrus Park, Town 'n' Country, and Egypt Lake-Leto. We're a locally owned 76 FENCE location run by Tom &amp; Kate Donnelly.",
+            "In a planned community, a fence isn't just a fence — it's a modification your neighbors and your association will see. That's why we start every project with design and approval in mind, and why our proposals include the details reviewers need.",
+            "The national 76 FENCE network gives us training and supplier relationships; being owner-run gives you accountability.",
+        ],
+        "owners_eyebrow": "Owners",
+        "owners_title": "Tom &amp; Kate Donnelly",
+        "tom": "Tom has more than 20 years of experience in information technology in finance and banking, as a principal engineer and as a leader of global teams. He applies the same precision to fence design and project planning.",
+        "kate": "Kate spent more than 20 years as a federal intelligence analyst and holds a master's degree. She manages approvals, permits, and scheduling so every project moves forward on time.",
+        "cta_title": "Work With the Owners",
+        "cta_sub": "Book a design consultation and get a proposal you can submit.",
+        "meta": "Meet Tom and Kate Donnelly of 76 FENCE Tampa and Westchase Fence, serving Westchase, Citrus Park, and northwest Tampa.",
+    },
+    "areas": {
+        "title": "Service Area",
+        "lead": "Fence design and installation in Westchase and northwest Tampa.",
+        "h2": "Neighborhoods",
+        "intro": "Select your area for local details. We serve Hillsborough County addresses in northwest Tampa.",
+    },
+    "contact": {
+        "title": "Start Your Project",
+        "lead": "Send us your address and a few details, and we'll schedule your design consultation.",
+        "side_html": "<div class=\"divider\"></div><h3>Need It for Your Association?</h3><p>Mention your village or neighborhood. We'll prepare a proposal with a site plan and product details you can attach to your modification request.</p>",
+    },
+    "faq": {
+        "title": "Westchase Fence FAQ",
+        "lead": "Approvals, permits, materials, timelines, and warranty.",
+        "cta_title": "Still Have Questions?",
+        "cta_sub": "Call or start your project online — we'll get back to you quickly.",
+    },
+    "faqs": [
+        ("Do I need association approval for a fence in Westchase?",
+         "In most cases, yes. Westchase homes are part of a community association that reviews exterior modifications, including fences. We provide a proposal with the site plan and product details reviewers usually ask for. See our <a href=\"hoa-fence-approval-guide.html\">HOA approval guide</a>."),
+        ("Are you licensed and insured?",
+         "Yes. 76 FENCE Tampa is licensed in Hillsborough, Pasco, and Hernando counties and carries general liability and workers' compensation insurance. A certificate of insurance is available on request."),
+        ("Who issues the fence permit?",
+         "Most of this area is unincorporated Hillsborough County, so permits go through the county; some addresses fall inside Tampa city limits. We confirm which applies and file it."),
+        ("Which material is most common in Westchase?",
+         "Vinyl privacy fencing and black aluminum are the most common choices, often because neighborhood standards favor them. We'll confirm what your village allows."),
+        ("Can you build a pool fence that meets code?",
+         "Yes. Aluminum and vinyl pool barriers with self-closing, self-latching gates, built to Florida's residential pool safety requirements."),
+        ("What do you include in the proposal?",
+         "Material, height, color, gate locations, a site plan of the fence line, product details, and price — everything you need to submit for approval and compare quotes."),
+        ("How long does approval take?",
+         "It depends on your association's process and meeting schedule. Submitting a complete package helps avoid delays."),
+        ("How long does installation take?",
+         "Most residential installs take one to two days on site once approval and the permit are in hand."),
+        ("Will you protect my irrigation and landscaping?",
+         "Yes. Tell us where sprinkler lines run, and we'll plan post locations and clean up when we're done."),
+        ("What does your warranty cover?",
+         "Our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a> covers defects in our installation and assembly; materials carry the manufacturer's warranty."),
+        ("Do you remove existing fences?",
+         "Yes. Removal and haul-away is listed separately in your proposal."),
+        ("Do you offer financing?",
+         "Yes — ask during your consultation."),
+    ],
+    "gallery": {
+        "title": "Fence Types",
+        "lead": "The fence types we install most across Westchase and northwest Tampa.",
+        "meta": "Vinyl, aluminum, horizontal, and composite fence types installed by 76 FENCE Tampa in Westchase and Citrus Park.",
+        "label": "{cat}",
+        "intro_html": "<p class=\"hub-intro\">Browse by type, then check the specs. Every option can be configured to match common neighborhood standards for style, height, and color.</p>",
+        "tiles": [("Vinyl Privacy", "vinyl", "vinyl-fence.html"), ("Aluminum", "aluminum", "aluminum-fence.html"), ("Horizontal", "horizontal", "horizontal-fence.html"), ("Composite", "composite", "composite-fence.html"), ("Wood", "wood", "wood-fence.html"), ("Picket", "picket", "picket-fence.html"), ("Steel", "steel", "steel-wrought-iron-fence.html"), ("Chain Link", "chain-link", "chain-link-fence.html"), ("Split Rail", "split-rail", "split-rail-fence.html"), ("Security", "security", "security-fencing.html")],
+    },
+    "pricing": {
+        "title": "Fence Pricing",
+        "lead": "Typical investment by yard size and material in northwest Tampa.",
+        "intro_html": "<p style=\"max-width:760px\">Use these ranges to plan. Your written proposal reflects your exact layout, gates, and any neighborhood requirements for style or color.</p>",
+        "factors": [
+            ("Material &amp; Color", "Standard colors cost less than premium finishes or composite."),
+            ("Layout", "More corners and grade changes add labor."),
+            ("Gates &amp; Removal", "Each gate and any existing-fence removal add to the total."),
+        ],
+        "cta_title": "Get Your Proposal",
+        "cta_sub": "Design consultation and written proposal — free.",
+        "meta": "Typical fence prices in Westchase and northwest Tampa by material and yard size.",
+    },
+
+    "materials_hub": {
+        "title": "Materials",
+        "lead": "Specs and best uses for every fence material we install.",
+        "intro": ["Choosing a material in a planned community starts with what your neighborhood allows. From there, it's about upkeep, look, and budget."],
+    },
+    "materials": {
+        "vinyl-fence": {
+            "tagline": "The standard for private backyards in planned communities.",
+            "meta": "Vinyl fence installation in Westchase and Citrus Park — privacy and semi-privacy in standard colors.",
+            "intro": ["Vinyl is the most common privacy fence in Westchase's villages: clean lines, consistent color, and no painting or staining."],
+            "sections": [
+                ("Specs", ["Privacy, semi-privacy, and picket profiles, typically 4 to 6 feet tall, in white, tan, or clay. Reinforced rails help keep panels straight in the heat."]),
+                ("Approval notes", ["Many neighborhoods specify a vinyl color and profile. We confirm yours and match it."]),
+            ],
+            "glance": ["4'–6' heights", "White, tan, or clay", "No painting or staining", "Pool-code gates available"],
+        },
+        "aluminum-fence": {
+            "tagline": "Open, rust-proof, and common on water and preserve lots.",
+            "meta": "Aluminum fence installation in Westchase — pool enclosures and open-view fencing.",
+            "intro": ["Black aluminum is a common requirement and a popular choice on Westchase lots that face ponds or conservation areas, because it secures the yard without blocking the view."],
+            "sections": [
+                ("Specs", ["Flat-top, spear-top, or puppy-picket profiles, 4 to 6 feet, in black, bronze, or white powder-coat."]),
+                ("Pools", ["Self-closing, self-latching gate hardware for Florida pool barrier compliance."]),
+            ],
+            "glance": ["Won't rust", "Open view", "Pool-code options", "Black, bronze, white"],
+        },
+        "wood-fence": {
+            "tagline": "Natural texture, custom detailing.",
+            "meta": "Wood fence installation in Town 'n' Country and Egypt Lake-Leto.",
+            "intro": ["Wood suits many of the established neighborhoods around Westchase, like Town 'n' Country and Egypt Lake-Leto, and allows custom designs."],
+            "sections": [("Specs", ["Cedar or pressure-treated pine in board-on-board, shadowbox, or horizontal designs. Plan to seal or stain periodically."])],
+            "glance": ["Cedar or pine", "Custom designs", "Staining available"],
+        },
+        "composite-fence": {
+            "tagline": "Premium wood look, minimal upkeep.",
+            "meta": "Composite fence installation in Westchase.",
+            "intro": ["Composite pairs the look of wood with the low maintenance of synthetic materials — popular for modern horizontal designs."],
+            "sections": [],
+            "glance": ["Wood look", "Low maintenance", "Horizontal options"],
+        },
+        "chain-link-fence": {
+            "tagline": "Practical fencing where it's allowed.",
+            "meta": "Chain link fence installation in Town 'n' Country and Citrus Park.",
+            "intro": ["Chain link is economical for side yards and dog runs. Many planned communities restrict it in visible areas, so we check first."],
+            "sections": [],
+            "glance": ["Most economical", "Black-coated option"],
+        },
+        "steel-wrought-iron-fence": {
+            "tagline": "Ornamental strength for entries and courtyards.",
+            "meta": "Ornamental steel fence installation in northwest Tampa.",
+            "intro": ["Ornamental steel gives front entries and courtyards a polished look, with powder-coating for our climate."],
+            "sections": [],
+            "glance": ["Powder-coated", "Matching gates"],
+        },
+    },
+
+    "styles_hub": {"title": "Styles", "lead": "Popular fence styles in Westchase and northwest Tampa."},
+    "styles": {
+        "privacy-fence": {"desc": "Full-height solid panels for a private backyard.", "tagline": "Full privacy, built to the standard.", "meta": "Privacy fence installation in Westchase.", "intro": ["Solid six-foot privacy is the most requested style in Westchase backyards, usually in vinyl."], "sections": [("Approval", ["Height and color are often specified by neighborhood standards; we confirm before ordering."])], "glance": ["Usually 6'", "Vinyl or composite", "Association-ready specs"]},
+        "semi-privacy-fence": {"desc": "Screening with small gaps for airflow.", "tagline": "Screening that breathes.", "meta": "Semi-privacy fence installation in northwest Tampa.", "intro": ["Small gaps between boards let air through while still screening most of the view."], "sections": [], "glance": ["Airflow", "Softer look"]},
+        "horizontal-fence": {"desc": "Clean horizontal lines for modern homes.", "tagline": "Modern lines.", "meta": "Horizontal fence installation in Westchase.", "intro": ["Horizontal designs suit contemporary exteriors and pool areas. Some neighborhoods regulate them, so we verify first."], "sections": [], "glance": ["Contemporary", "Composite, vinyl, or wood"]},
+        "picket-fence": {"desc": "Decorative pickets for front yards.", "tagline": "Classic front-yard appeal.", "meta": "Picket fence installation in Citrus Park.", "intro": ["Picket fencing adds curb appeal while keeping the yard open."], "sections": [], "glance": ["3'–4'", "Vinyl, wood, or aluminum"]},
+        "split-rail-fence": {"desc": "Open rails for larger lots.", "tagline": "A natural boundary.", "meta": "Split rail fence installation in northwest Tampa.", "intro": ["Split rail suits larger lots and natural settings rather than typical planned-community yards."], "sections": [], "glance": ["Open look", "Mesh option for pets"]},
+    },
+
+    "commercial_hub": {
+        "title": "Commercial &amp; Community Fencing",
+        "lead": "Fencing for associations, businesses, and facilities in northwest Tampa.",
+        "intro": "We work with community associations and property managers on perimeter, pool, and amenity fencing, and with businesses on security fencing and service-area screening — with written scopes and one point of contact.",
+    },
+    "commercial": {
+        "industrial-fencing": {"desc": "Perimeter fencing and slide gates for business properties.", "tagline": "Secure business perimeters.", "meta": "Commercial perimeter fencing in northwest Tampa.", "intro": ["Tall chain link and steel perimeters with commercial-grade gates."], "sections": [], "glance": ["Tall perimeters", "Slide gates"]},
+        "security-fencing": {"desc": "Access control with a professional look.", "tagline": "Security that looks sharp.", "meta": "Security fencing in northwest Tampa.", "intro": ["Ornamental aluminum and steel combine access control with a clean appearance."], "sections": [], "glance": ["Ornamental options", "Commercial hardware"]},
+        "hoa-fencing": {"desc": "Consistent fencing for community perimeters and amenities.", "tagline": "Community fencing, done consistently.", "meta": "HOA and community fencing in Westchase and northwest Tampa.", "intro": ["We help associations plan, price, and install consistent perimeter, pool, and amenity fencing."], "sections": [("For boards and managers", ["Clear proposals, product specifications for review, and scheduling that minimizes disruption."])], "glance": ["Board-ready proposals", "Perimeter, pool &amp; amenity"]},
+        "dumpster-enclosures": {"desc": "Screening for dumpsters and service areas.", "tagline": "Tidy service areas.", "meta": "Dumpster enclosures in northwest Tampa.", "intro": ["Enclosures in vinyl, wood, or slatted chain link with service-width gates."], "sections": [], "glance": ["Service-width gates"]},
+    },
+    "other": {
+        "fence-repair": {"tagline": "Repairs that match the original.", "meta": "Fence repair in Westchase and northwest Tampa.", "intro": ["We repair panels, posts, and gates on most fence types and match materials as closely as available products allow."], "sections": [], "glance": ["Panels, posts &amp; gates", "Material matching"]},
+        "fence-staining": {"tagline": "Keep wood looking finished.", "meta": "Fence staining in northwest Tampa.", "intro": ["Staining and sealing protect wood fences from sun and humidity."], "sections": [], "glance": ["Cleaning &amp; prep", "Stain or sealer"]},
+        "artificial-grass": {"tagline": "Low-maintenance turf.", "meta": "Artificial grass installation in Westchase.", "intro": ["Synthetic turf for pet areas, play spaces, and pool surrounds — check your neighborhood's rules first."], "sections": [], "glance": ["No mowing", "Pet-friendly"]},
+        "diy-fence": {"tagline": "Support for DIY projects.", "meta": "DIY fence help in northwest Tampa.", "intro": ["Materials at contractor pricing, post-hole digging, and paid planning consultations."], "sections": [], "glance": ["Contractor pricing", "Planning help"]},
+        "deck-railing": {"tagline": "Railing to match.", "meta": "Railing installation in northwest Tampa.", "intro": ["Aluminum, composite, and wood railing coordinated with your fence."], "sections": [], "glance": ["Aluminum, composite, wood"]},
+        "retaining-walls": {"tagline": "Grade and drainage control.", "meta": "Retaining walls in northwest Tampa.", "intro": ["Retaining walls manage slopes and drainage and create level ground for fencing."], "sections": [], "glance": ["Drainage control"]},
+    },
+
+    "towns": {
+        "title": "Fences in {town}",
+        "lead": "Fence design and installation for {town} homeowners — from 76 FENCE Tampa.",
+        "materials_eyebrow": "Materials",
+        "materials_title": "Fence Materials for {town}",
+        "nearby_title": "Also Serving",
+        "faq_title": "{town} FAQ",
+        "cta_title": "Start Your {town} Fence Project",
+        "cta_sub": "Design consultation and written proposal — free.",
+        "meta_title": "Fence Company in {town}, FL | Westchase Fence — 76 FENCE Tampa",
+        "meta_description": "Fence design and installation in {town}, FL from 76 FENCE Tampa. Association-ready proposals. Licensed and insured. Call 813-669-4555.",
+        "snippet_suffix": " — specs for {town} homes.",
+        "snippets": {
+            "vinyl-fence": "Vinyl privacy in standard colors",
+            "wood-fence": "Custom wood designs",
+            "aluminum-fence": "Black aluminum for pools and views",
+            "chain-link-fence": "Economical chain link where allowed",
+            "composite-fence": "Premium composite",
+            "steel-wrought-iron-fence": "Ornamental steel and gates",
+        },
+        "faq_picks": [0, 2, 4, 5],
+        "notes": {
+            "westchase": "Westchase homes sit in villages within a master-planned community, and fence projects there usually go through the community association's review first.",
+            "citrus-park": "Citrus Park mixes planned subdivisions and older neighborhoods, so some homes need association approval and others only a permit.",
+            "town-n-country": "Town 'n' Country's established neighborhoods often have older fences due for replacement, and fewer association rules than newer communities.",
+            "egypt-lake-leto": "Egypt Lake-Leto's older homes and lake lots suit both privacy fencing and open styles near the water.",
+        },
+    },
+    "hoa_guide": {
+        "title": "Fence Approval in Westchase",
+        "lead": "How association review works for fences in Westchase's villages and nearby planned communities.",
+        "local": {
+            "title": "Community Association Review",
+            "paragraphs": [
+                "Westchase is a master-planned community with a community association that reviews exterior modifications, including new and replacement fences. Individual villages and neighborhoods can also have their own standards for style, height, and color.",
+                "Ask your association or management company for the current modification application and fence standards before choosing a design, and expect to include a site plan and product details.",
+            ],
+        },
+        "cta_title": "Need an Approval-Ready Proposal?",
+        "cta_sub": "We'll prepare the site plan and product details for your submission.",
+    },
+}

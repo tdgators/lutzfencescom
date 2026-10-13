@@ -279,11 +279,23 @@ def home_budget(alt=False):
         + f'\n    <div class="center" style="margin-top:24px"><a class="btn btn-blue" href="fence-pricing.html">{sec.get("button", "See Typical Pricing")}</a></div>', alt)
 
 
+def home_neighborhoods(alt=False):
+    """A card per town with its local note (content towns.notes), linking to the town page."""
+    sec = T("home.neighborhoods")
+    cards = "".join(f"""
+<a class="card hood-card" href="fence-company-{slug}-fl.html">
+  <h3>{name}</h3>
+  <p>{T(f"towns.notes.{slug}", "")}</p>
+  <span class="more">{sec.get("more", "Fencing in " + name + " &rarr;")}</span>
+</a>""" for name, slug in TOWNS)
+    return section(sec_head(sec['eyebrow'], sec['title'], sec.get('intro')) + f'\n    <div class="grid grid-3">{cards}</div>', alt)
+
+
 HOME_SECTIONS = {
     "services": home_services, "local": home_local, "gallery": home_gallery, "why": home_why,
     "warranty": home_warranty, "pricing": home_pricing, "commercial": home_commercial, "diy": home_diy,
     "reviews": home_reviews, "areas": home_areas, "faq": home_faq, "process": home_process,
-    "styles": home_styles, "estimate": home_estimate, "budget": home_budget,
+    "styles": home_styles, "estimate": home_estimate, "budget": home_budget, "neighborhoods": home_neighborhoods,
 }
 # Lutz's layout; a site's THEME['home_sections'] lists its own (section, alt background) order.
 DEFAULT_HOME = [("services", False), ("local", False), ("gallery", True), ("why", False), ("warranty", True),

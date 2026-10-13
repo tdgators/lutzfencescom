@@ -1,0 +1,333 @@
+# -*- coding: utf-8 -*-
+"""southtampafence.com — its own look and its own words.
+
+Voice: considered, architecture-aware, a little understated. Audience: South Tampa homeowners in
+Hyde Park, Palma Ceia, Davis Islands, Bayshore Beautiful, Ballast Point, Westshore, and Port Tampa —
+City of Tampa permits, local historic districts, compact lots, alleys, bayside salt air, flood zones.
+Keep every claim factual and hedged where rules vary by address; licensing/insurance wording must match
+sites.py. Territory FL43."""
+
+THEME = dict(
+    body_class="theme-coastal",
+    fonts_href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Mulish:wght@400;600;700;800&display=swap",
+    vars={
+        "--font-head": "'Libre Baskerville', Georgia, serif",
+        "--font-body": "'Mulish', -apple-system, 'Segoe UI', Roboto, Arial, sans-serif",
+        "--head-weight": "700",
+        "--accent": "#2a7f8f",
+        "--accent-dark": "#12355b",
+        "--eyebrow": "#2a7f8f",
+        "--alt-bg": "#f7f3ec",
+        "--hero-eyebrow": "#a9e0e6",
+        "--hero-bg": "linear-gradient(125deg, #12355b 0%, #1f5f74 100%)",
+        "--btn-radius": "4px",
+        "--section-pad": "80px",
+    },
+    hero="centered",
+    hero_image="materials/picket-fence.jpg",
+    home_sections=[
+        ("local", False), ("estimate", True), ("styles", False), ("neighborhoods", True),
+        ("why", False), ("gallery", True), ("warranty", False), ("pricing", True), ("faq", False),
+    ],
+    detail_layout="longform",
+    town_sections=["intro", "nearby", "faq", "materials"],
+)
+
+LICENSED = "Licensed in Hillsborough, Pasco, and Hernando counties and fully insured with general liability and workers' compensation coverage."
+
+CONTENT = {
+    "labels": {"estimate": "Request an Estimate", "glance": "In Brief", "or_call": "or call", "read_more": "Continue reading &rarr;",
+               "related_materials": "Other Materials", "related_styles": "Related Styles",
+               "related_commercial": "Related Services", "related_other": "More Ways We Help"},
+    "footer_about": "South Tampa Fence (southtampafence.com) is the South Tampa website of 76 FENCE Tampa, designing and installing residential fencing in Hyde Park, Palma Ceia, Davis Islands, Bayshore Beautiful, Ballast Point, Westshore, and Port Tampa.",
+    "cta": {"title": "Let's Talk About Your Fence", "sub": "We'll visit, look at the house and the lot, and recommend a fence that suits both."},
+    "warranty_box": {
+        "eyebrow": "Our commitment",
+        "title": "Craftsmanship, Guaranteed for 76 Weeks",
+        "text": "The {issuer} {name} stands behind our installation of {context}. If a workmanship defect appears within {weeks} weeks ({approx}) of your installation date, we'll correct it without charge. Material warranties come from the manufacturer.",
+    },
+
+    "home": {
+        "meta_title": "South Tampa Fence | Fences for Hyde Park, Palma Ceia & Davis Islands — 76 FENCE Tampa",
+        "meta_description": "Fence design and installation in South Tampa — Hyde Park, Palma Ceia, Davis Islands, Bayshore Beautiful, and nearby. City of Tampa permits handled. Licensed and insured. 813-669-4555.",
+        "hero": {
+            "eyebrow": "South Tampa Fence · 76 FENCE Tampa",
+            "h1": "Fences That Suit South Tampa Homes",
+            "lead": "Courtyard, pool, and privacy fencing designed around the architecture — from Hyde Park bungalows to bayside homes on Davis Islands.",
+            "cta": "Request an Estimate",
+            "badges": ["City of Tampa Permits Handled", "Licensed &amp; Fully Insured",
+                       '<a href="warranty.html" style="color:inherit">76-Week Workmanship Warranty</a>'],
+        },
+        "local": {
+            "eyebrow": "the south tampa difference",
+            "title": "Small Lots, Historic Streets, Salt Air",
+            "intro": "South Tampa asks more of a fence than most neighborhoods. These are the things we plan around.",
+            "cards": [
+                ("Historic Districts", "Homes in local historic districts, like Hyde Park, may need historic preservation review for a new fence. We check your address before we design."),
+                ("Compact Lots &amp; Alleys", "With homes close together and alleys behind them, privacy fencing has to work hard without overwhelming the house."),
+                ("Near the Bay", "Salt air is hard on bare steel, so we favor aluminum and vinyl for homes close to the water."),
+                ("Front-Yard Rules", "City rules generally keep front-yard fences lower than backyard fences. We design within them."),
+            ],
+        },
+        "estimate": {
+            "eyebrow": "start here",
+            "title": "Request an In-Home Estimate",
+            "intro": "Share your address and a few details. We'll visit, measure, and talk through options that fit the house and the lot.",
+            "points": ["Design suited to your home's architecture", "City of Tampa permit handled", "Historic-district review checked", "Written estimate, no obligation"],
+        },
+        "styles": {
+            "eyebrow": "find your style",
+            "title": "Styles That Fit the Streetscape",
+            "intro": "In South Tampa, the right fence complements the house. Start with the look.",
+            "more": "Explore this style &rarr;",
+        },
+        "neighborhoods": {
+            "eyebrow": "neighborhoods",
+            "title": "From Hyde Park to Port Tampa",
+            "intro": "Each South Tampa neighborhood has its own character. Choose yours for local notes.",
+            "more": "Read more &rarr;",
+        },
+        "why": {
+            "eyebrow": "why south tampa fence",
+            "title": "A Small, Owner-Run Team",
+            "intro": "South Tampa Fence is part of 76 FENCE Tampa, owned and operated by Tom &amp; Kate Donnelly.",
+            "items": [
+                ("Licensed &amp; Insured", LICENSED),
+                ("Permits Handled", "Inside Tampa city limits, fence work generally needs a City of Tampa permit. We take care of it."),
+                ("76-Week Workmanship Warranty", "Every fence carries our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a> and the manufacturer's warranty."),
+                ("Owner-Operated", "You work directly with the owners, from estimate to final walkthrough."),
+                ("Careful on Tight Sites", "We plan access, protect landscaping, and keep a tidy site on close-set lots."),
+                ("Financing Available", "Ask about financing options."),
+            ],
+        },
+        "gallery": {
+            "eyebrow": "fence types",
+            "title": "Fences for South Tampa Homes",
+            "intro": "The materials and styles we install most in South Tampa. Select one for details.",
+            "button": "All Fence Types",
+            "tiles": [
+                ("Classic Picket", "picket", "picket-fence.html"), ("Aluminum", "aluminum", "aluminum-fence.html"),
+                ("Vinyl Privacy", "vinyl", "vinyl-fence.html"), ("Horizontal", "horizontal", "horizontal-fence.html"),
+                ("Ornamental Steel", "steel", "steel-wrought-iron-fence.html"), ("Wood", "wood", "wood-fence.html"),
+                ("Composite", "composite", "composite-fence.html"), ("Chain Link", "chain-link", "chain-link-fence.html"),
+            ],
+        },
+        "pricing": {
+            "eyebrow": "investment",
+            "title": "Typical Fence Costs",
+            "intro": "South Tampa lots are often smaller, but design details and access can matter more. Here's a starting point.",
+            "button": "Read the Pricing Guide",
+        },
+        "faq": {"eyebrow": "questions", "title": "South Tampa Fence Questions"},
+    },
+
+    "about": {
+        "title": "About South Tampa Fence",
+        "lead": "The South Tampa team of 76 FENCE Tampa — owner-operated by Tom &amp; Kate Donnelly.",
+        "story_eyebrow": "our approach",
+        "story_title": "A Fence Should Suit the House",
+        "story": [
+            "South Tampa Fence is part of 76 FENCE Tampa, a locally owned 76 FENCE location run by Tom &amp; Kate Donnelly. We serve Hyde Park, Palma Ceia, Davis Islands, Bayshore Beautiful, Ballast Point, Westshore, and Port Tampa.",
+            "South Tampa's streets are full of homes with real character, set close together. A fence here has to give you privacy and security without fighting the architecture. We look at the house first, then recommend a style, height, and material that suit it — and we check permit and historic-district requirements before we design.",
+            "Our place in the national 76 FENCE network brings training and supplier relationships; being owner-run means you work with the people accountable for the result.",
+        ],
+        "owners_eyebrow": "the owners",
+        "owners_title": "Tom &amp; Kate Donnelly",
+        "tom": "Tom spent more than two decades in information technology for the finance and banking industries, as a principal engineer and as a leader of global teams. He brings a careful, detail-first approach to designing each South Tampa project.",
+        "kate": "Kate spent more than two decades as a federal intelligence analyst and holds a master's degree. She oversees permits, reviews, and scheduling, so the paperwork side of your project is handled thoroughly.",
+        "cta_title": "Start With a Conversation",
+        "cta_sub": "Request an in-home estimate and we'll talk through what suits your home.",
+        "meta": "Meet Tom and Kate Donnelly of 76 FENCE Tampa and South Tampa Fence, serving Hyde Park, Palma Ceia, Davis Islands, and South Tampa.",
+    },
+    "areas": {
+        "title": "South Tampa Neighborhoods",
+        "lead": "Fence design and installation across South Tampa.",
+        "h2": "Neighborhoods We Serve",
+        "intro": "Choose your neighborhood for local notes, or call us if you're nearby.",
+    },
+    "contact": {
+        "title": "Request an In-Home Estimate",
+        "lead": "Tell us where you are and what you have in mind. We'll arrange a visit.",
+        "side_html": "<div class=\"divider\"></div><h3>Historic District Home?</h3><p>Let us know if your home is in a local historic district. We'll check what review may be required and factor it into the design and schedule.</p>",
+    },
+    "faq": {
+        "title": "Questions from South Tampa Homeowners",
+        "lead": "Permits, historic districts, front-yard heights, salt air, and more.",
+        "cta_title": "Have a Question We Didn't Cover?",
+        "cta_sub": "Call us or request an estimate.",
+    },
+    "faqs": [
+        ("Do I need a permit for a fence in South Tampa?",
+         "South Tampa is inside Tampa city limits, where fence work generally requires a City of Tampa permit. We check the requirements for your address and handle the permit."),
+        ("Are you licensed and insured?",
+         "Yes. 76 FENCE Tampa is licensed in Hillsborough, Pasco, and Hernando counties and carries general liability and workers' compensation insurance. We can provide a certificate of insurance."),
+        ("My home is in a historic district. Does that change anything?",
+         "It can. Homes in local historic districts, such as Hyde Park, may need historic preservation review for exterior changes like fences. We check your address before we design so the schedule accounts for it."),
+        ("How tall can my front-yard fence be?",
+         "City rules generally limit front-yard fences to lower heights than backyard fences, and corner lots have additional sight-line rules. We confirm the limits for your lot before you choose a design."),
+        ("What material holds up best near the bay?",
+         "Aluminum and vinyl, because they won't rust in salt air. If you want the look of ornamental steel, we'll talk through powder-coated options and upkeep."),
+        ("Can you build a pool fence on a small lot?",
+         "Yes. We design pool barriers with self-closing, self-latching gates to meet Florida's pool safety requirements, fitted to tight setbacks and courtyards."),
+        ("Can you work with an alley behind my house?",
+         "Yes. Alley-side fences and gates are common in South Tampa. We plan gate placement for trash access and parking."),
+        ("Does a flood zone affect my fence?",
+         "Some South Tampa addresses are in flood zones, which can affect fence design and permitting. We check during the estimate."),
+        ("How long does installation take?",
+         "Most South Tampa fences take one to two days on site. Permits and any historic review set the overall timeline."),
+        ("What does your warranty cover?",
+         "Our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a> covers defects in our installation and assembly. Materials carry the manufacturer's warranty."),
+        ("Do you remove old fences?",
+         "Yes. Removal and haul-away are listed separately in your estimate."),
+        ("Is financing available?",
+         "Yes — ask during your estimate."),
+    ],
+    "gallery": {
+        "title": "Fence Styles for South Tampa",
+        "lead": "Materials and styles we install across South Tampa's neighborhoods.",
+        "meta": "Picket, aluminum, vinyl, horizontal, and ornamental steel fences installed by 76 FENCE Tampa in South Tampa.",
+        "label": "{cat}",
+        "intro_html": "<p class=\"hub-intro\">From a classic picket in front of a bungalow to aluminum by the bay, these are the fences we install most in South Tampa. Select a style for details on heights, finishes, and upkeep.</p>",
+        "tiles": [("Picket", "picket", "picket-fence.html"), ("Aluminum", "aluminum", "aluminum-fence.html"), ("Ornamental Steel", "steel", "steel-wrought-iron-fence.html"), ("Vinyl Privacy", "vinyl", "vinyl-fence.html"), ("Horizontal", "horizontal", "horizontal-fence.html"), ("Wood", "wood", "wood-fence.html"), ("Composite", "composite", "composite-fence.html"), ("Chain Link", "chain-link", "chain-link-fence.html"), ("Split Rail", "split-rail", "split-rail-fence.html"), ("Security", "security", "security-fencing.html")],
+    },
+    "pricing": {
+        "title": "Fence Pricing in South Tampa",
+        "lead": "A starting point for budgeting, plus what affects cost on South Tampa lots.",
+        "intro_html": "<p style=\"max-width:760px\">South Tampa fences are often shorter runs than suburban ones, but decorative details, gates, and tight access can carry more weight in the price. Your written estimate will reflect your lot.</p>",
+        "factors": [
+            ("Design Details", "Decorative tops, ornamental finishes, and custom gates add to the cost."),
+            ("Site Access", "Tight side yards and alleys can affect installation time."),
+            ("Permits &amp; Review", "City permitting and any historic-district review are part of planning the project."),
+        ],
+        "cta_title": "Request Your Estimate",
+        "cta_sub": "An in-home visit and written estimate — free.",
+        "meta": "Typical fence installation prices in South Tampa and what affects cost on smaller and historic lots.",
+    },
+
+    "materials_hub": {
+        "title": "Fence Materials",
+        "lead": "How each material suits South Tampa homes, lots, and climate.",
+        "intro": ["Choosing a material in South Tampa means balancing the look of the house, your distance from the water, and how much upkeep you want."],
+    },
+    "materials": {
+        "aluminum-fence": {
+            "tagline": "Elegant, rust-proof, and well suited to the bay.",
+            "meta": "Aluminum fence and pool enclosure installation in South Tampa, Davis Islands, and Ballast Point.",
+            "intro": ["Aluminum gives South Tampa homes an ornamental look without the rust risk of steel — which matters close to the bay."],
+            "sections": [
+                ("Pools and courtyards", ["Aluminum pool barriers with self-closing, self-latching gates meet Florida code while keeping a light, open look."]),
+                ("Finishes", ["Black, bronze, and white powder-coat, in flat-top, spear-top, and decorative profiles."]),
+            ],
+            "glance": ["Won't rust", "Ornamental look", "Pool-code designs", "Good near salt air"],
+        },
+        "vinyl-fence": {
+            "tagline": "Private, low-maintenance, and salt-air friendly.",
+            "meta": "Vinyl fence installation in South Tampa — privacy fencing for compact lots.",
+            "intro": ["Vinyl gives close-set South Tampa homes real privacy with almost no upkeep, and it won't corrode near the water."],
+            "sections": [("Choosing a profile", ["Privacy, semi-privacy, lattice-top, and picket profiles let you balance privacy with the style of the house."])],
+            "glance": ["No painting or staining", "Won't corrode", "Privacy &amp; picket profiles"],
+        },
+        "wood-fence": {
+            "tagline": "Natural character for older homes.",
+            "meta": "Wood fence installation in Hyde Park, Palma Ceia, and South Tampa.",
+            "intro": ["Wood suits the bungalows and older homes found across South Tampa, and it's flexible for custom designs."],
+            "sections": [("Care", ["Florida humidity is hard on wood. Sealing or staining protects it; we offer <a href=\"fence-staining.html\">staining and sealing</a>."])],
+            "glance": ["Cedar or pine", "Custom designs", "Staining available"],
+        },
+        "steel-wrought-iron-fence": {
+            "tagline": "Classic ornamental fencing with presence.",
+            "meta": "Ornamental steel and wrought-iron-style fencing in South Tampa.",
+            "intro": ["Ornamental steel suits South Tampa's more formal homes and entries. Near the bay, plan for upkeep — powder-coating helps, and aluminum is a lower-maintenance alternative."],
+            "sections": [],
+            "glance": ["Powder-coated", "Custom gates", "Formal look"],
+        },
+        "composite-fence": {
+            "tagline": "Wood warmth, modern durability.",
+            "meta": "Composite fence installation in South Tampa.",
+            "intro": ["Composite gives the warmth of wood without rot or staining — a good fit for modern renovations and new builds."],
+            "sections": [],
+            "glance": ["Wood look", "Low maintenance"],
+        },
+        "chain-link-fence": {
+            "tagline": "Practical fencing for utility areas.",
+            "meta": "Chain link fence installation in South Tampa.",
+            "intro": ["Black vinyl-coated chain link is a practical choice for side yards, dog runs, and utility areas."],
+            "sections": [],
+            "glance": ["Economical", "Black-coated option"],
+        },
+    },
+
+    "styles_hub": {"title": "Fence Styles", "lead": "Styles that suit South Tampa homes and streets."},
+    "styles": {
+        "picket-fence": {"desc": "Classic pickets that frame bungalows and front gardens.", "tagline": "The classic South Tampa front yard.", "meta": "Picket fence installation in Hyde Park and South Tampa.", "intro": ["A picket fence suits South Tampa's bungalows and front gardens, adding charm without hiding the house."], "sections": [("Height", ["Front-yard fences are generally kept low under city rules; we confirm yours."])], "glance": ["Front-yard friendly", "Wood, vinyl, or aluminum"]},
+        "privacy-fence": {"desc": "Solid panels for private backyards on close-set lots.", "tagline": "Privacy on a close-set street.", "meta": "Privacy fence installation in South Tampa.", "intro": ["With neighbors close by, privacy fencing is one of the most requested backyard projects in South Tampa."], "sections": [], "glance": ["Backyard privacy", "Vinyl, wood, or composite"]},
+        "horizontal-fence": {"desc": "Horizontal boards for modern homes and renovations.", "tagline": "A modern line for new builds.", "meta": "Horizontal fence installation in South Tampa.", "intro": ["Horizontal fences suit South Tampa's modern new builds and renovations, especially around pools."], "sections": [], "glance": ["Contemporary", "Composite, wood, or vinyl"]},
+        "semi-privacy-fence": {"desc": "Spaced boards for screening with airflow.", "tagline": "Screening with breathing room.", "meta": "Semi-privacy fence installation in South Tampa.", "intro": ["Semi-privacy fencing lets the breeze through while screening most of the view — welcome on warm, close-set lots."], "sections": [], "glance": ["Airflow", "Softer look"]},
+        "split-rail-fence": {"desc": "Open rails for a relaxed boundary.", "tagline": "A relaxed boundary.", "meta": "Split rail fencing in South Tampa.", "intro": ["Split rail is less common on South Tampa's smaller lots, but works well for gardens and larger properties."], "sections": [], "glance": ["Open look"]},
+    },
+
+    "commercial_hub": {
+        "title": "Commercial Fencing",
+        "lead": "Fencing for South Tampa businesses, offices, and multifamily properties.",
+        "intro": "We install ornamental aluminum, steel, vinyl, and chain link for local businesses and multifamily properties, with written scopes and one point of contact.",
+    },
+    "commercial": {
+        "industrial-fencing": {"desc": "Perimeter fencing for commercial and service properties.", "tagline": "Secure commercial perimeters.", "meta": "Commercial perimeter fencing in South Tampa.", "intro": ["Chain link and steel perimeters with commercial-grade gates."], "sections": [], "glance": ["Commercial gates"]},
+        "security-fencing": {"desc": "Ornamental security fencing for offices and storefronts.", "tagline": "Security with curb appeal.", "meta": "Security fencing in South Tampa.", "intro": ["Ornamental aluminum and steel secure South Tampa properties while keeping a polished street presence."], "sections": [], "glance": ["Ornamental options"]},
+        "hoa-fencing": {"desc": "Fencing for condo associations and multifamily communities.", "tagline": "Consistent fencing for associations.", "meta": "Condo and HOA fencing in South Tampa.", "intro": ["We help condo and community associations plan and install pool, perimeter, and common-area fencing."], "sections": [], "glance": ["Board-ready proposals"]},
+        "dumpster-enclosures": {"desc": "Screening for dumpsters and service areas.", "tagline": "Neat service areas.", "meta": "Dumpster enclosures in South Tampa.", "intro": ["Enclosures sized for service access, built to match your property."], "sections": [], "glance": ["Service-width gates"]},
+    },
+    "other": {
+        "fence-repair": {"tagline": "Careful repairs on older fences.", "meta": "Fence repair in South Tampa.", "intro": ["We repair posts, panels, and gates, matching materials as closely as available products allow."], "sections": [], "glance": ["Posts, panels &amp; gates"]},
+        "fence-staining": {"tagline": "Protect and refresh wood fences.", "meta": "Fence staining in South Tampa.", "intro": ["Cleaning and sealing or staining keeps wood fences looking their best in humid, salty air."], "sections": [], "glance": ["Cleaning &amp; prep", "Stain or sealer"]},
+        "artificial-grass": {"tagline": "Green space without the upkeep.", "meta": "Artificial grass installation in South Tampa.", "intro": ["Synthetic turf suits small South Tampa yards, courtyards, and pet areas."], "sections": [], "glance": ["Small-yard friendly"]},
+        "diy-fence": {"tagline": "Help for DIY projects.", "meta": "DIY fence help in South Tampa.", "intro": ["Contractor-priced materials, post-hole digging, and planning consultations — including permit guidance."], "sections": [], "glance": ["Planning help"]},
+        "deck-railing": {"tagline": "Railings for porches and decks.", "meta": "Railing installation in South Tampa.", "intro": ["Porch and deck railing in aluminum, composite, and wood."], "sections": [], "glance": ["Porch &amp; deck railing"]},
+        "retaining-walls": {"tagline": "Shape the ground.", "meta": "Retaining walls in South Tampa.", "intro": ["Retaining walls manage grade and drainage on sloped or raised lots."], "sections": [], "glance": ["Drainage control"]},
+    },
+
+    "towns": {
+        "title": "Fencing in {town}",
+        "lead": "Fence design and installation for {town} homes — from 76 FENCE Tampa.",
+        "materials_eyebrow": "materials",
+        "materials_title": "Materials for {town} Homes",
+        "nearby_title": "Nearby South Tampa Neighborhoods",
+        "faq_title": "{town} Fence Questions",
+        "cta_title": "Request a {town} Estimate",
+        "cta_sub": "An in-home visit and written estimate — free.",
+        "meta_title": "{town} Fence Company | South Tampa Fence — 76 FENCE Tampa",
+        "meta_description": "Fence design and installation in {town}, Tampa, from 76 FENCE Tampa. City of Tampa permits handled. Licensed and insured. Call 813-669-4555.",
+        "snippet_suffix": ", suited to {town} homes.",
+        "snippets": {
+            "vinyl-fence": "Low-maintenance vinyl privacy",
+            "wood-fence": "Wood fencing for older homes",
+            "aluminum-fence": "Rust-proof ornamental aluminum",
+            "chain-link-fence": "Practical coated chain link",
+            "composite-fence": "Modern composite designs",
+            "steel-wrought-iron-fence": "Ornamental steel and gates",
+        },
+        "faq_picks": [0, 2, 3, 4],
+        "notes": {
+            "hyde-park": "Hyde Park's historic bungalows and brick streets call for fences that respect the architecture, and some homes need historic preservation review first.",
+            "palma-ceia": "Palma Ceia mixes classic bungalows and larger renovated homes, so we see everything from front-yard pickets to full backyard privacy.",
+            "davis-islands": "On Davis Islands, salt air and waterfront lots make aluminum and vinyl the practical choices, and some lots sit in flood zones.",
+            "bayshore-beautiful": "Bayshore Beautiful's homes near the water favor rust-proof materials, with privacy fencing for pools and backyards.",
+            "ballast-point": "Ballast Point's bayside streets and established homes suit aluminum near the water and privacy fencing for backyards.",
+            "westshore": "Westshore's residential pockets sit close to the business district, so privacy and security fencing are common requests.",
+            "port-tampa": "Port Tampa's homes and larger lots near the bay call for durable, corrosion-resistant fencing.",
+        },
+    },
+    "hoa_guide": {
+        "title": "Fence Approval in South Tampa",
+        "lead": "Historic-district review, condo associations, and HOA approvals for fences in South Tampa.",
+        "local": {
+            "title": "Historic Districts &amp; Associations",
+            "paragraphs": [
+                "Much of South Tampa has no traditional HOA, but homes in local historic districts, such as Hyde Park, may need historic preservation review before exterior changes like a new fence. Townhome and condo communities usually have an association that reviews fences.",
+                "We check your address for historic-district status and association rules before designing, so approvals are part of the plan from the start.",
+            ],
+        },
+        "cta_title": "Not Sure What Applies to Your Home?",
+        "cta_sub": "We'll check historic-district and association requirements during your estimate.",
+    },
+}

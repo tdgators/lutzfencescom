@@ -1,0 +1,329 @@
+# -*- coding: utf-8 -*-
+"""starkeyfence.com — its own look and its own words.
+
+Voice: friendly, family-focused, upbeat. Audience: families in Starkey Ranch and Trinity (newer
+master-planned communities, HOA fence standards, pets, pools), plus Odessa/Keystone acreage and Cheval.
+Permits: Pasco (Starkey Ranch, Trinity, Pasco side of Odessa) or Hillsborough (Keystone, Cheval,
+Hillsborough side of Odessa). Keep every claim factual; licensing/insurance wording must match sites.py.
+Territory FL44."""
+
+THEME = dict(
+    body_class="theme-fresh",
+    fonts_href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap",
+    vars={
+        "--font-head": "'Poppins', -apple-system, 'Segoe UI', Roboto, Arial, sans-serif",
+        "--font-body": "'Nunito Sans', -apple-system, 'Segoe UI', Roboto, Arial, sans-serif",
+        "--head-weight": "700",
+        "--accent": "#2e7d32",
+        "--accent-dark": "#1b4d3e",
+        "--eyebrow": "#2e7d32",
+        "--alt-bg": "#eef6f0",
+        "--hero-eyebrow": "#b7f0c0",
+        "--hero-bg": "linear-gradient(120deg, #1b4d3e 0%, #1f6e8c 100%)",
+        "--btn-radius": "999px",
+        "--section-pad": "72px",
+    },
+    hero="split",
+    home_sections=[
+        ("neighborhoods", False), ("services", True), ("process", False), ("why", True),
+        ("styles", False), ("warranty", True), ("budget", False), ("areas", True), ("faq", False),
+    ],
+    detail_layout="guide",
+    town_sections=["intro", "materials", "faq", "nearby"],
+)
+
+LICENSED = "Licensed in Hillsborough, Pasco, and Hernando counties and fully insured with general liability and workers' compensation coverage."
+
+CONTENT = {
+    "labels": {"estimate": "Get My Free Quote", "glance": "Good to Know", "or_call": "or call", "read_more": "Learn more &rarr;",
+               "related_materials": "More Materials to Explore", "related_styles": "More Fence Styles",
+               "related_commercial": "Other Commercial Services", "related_other": "Other Services"},
+    "footer_about": "Starkey Fence (starkeyfence.com) is the Starkey Ranch, Odessa, and Trinity website of 76 FENCE Tampa, installing fences for families across Starkey Ranch, Odessa, Keystone, Cheval, and Trinity.",
+    "cta": {"title": "Let's Fence In Your Backyard", "sub": "Free quotes for Starkey Ranch, Odessa, and Trinity — usually scheduled within a few days."},
+    "warranty_box": {
+        "eyebrow": "Peace of mind",
+        "title": "Your Fence Is Covered for 76 Weeks",
+        "text": "If something we installed on {context} isn't right — a gate that sags, a post that shifts because of how we set it — within {weeks} weeks ({approx}) of your installation date, the {issuer} {name} means we'll fix it free. Manufacturers cover the materials.",
+    },
+
+    "home": {
+        "meta_title": "Starkey Fence | Backyard Fences for Starkey Ranch, Odessa & Trinity — 76 FENCE Tampa",
+        "meta_description": "Pet-friendly, pool-safe backyard fencing for Starkey Ranch, Odessa, Keystone, Cheval, and Trinity. HOA-ready designs. Licensed and insured. Free quotes — 813-669-4555.",
+        "hero": {
+            "eyebrow": "Starkey Fence · 76 FENCE Tampa",
+            "h1": "A Safe Backyard for Kids, Dogs &amp; Pools",
+            "lead": "Backyard fencing for Starkey Ranch, Odessa, and Trinity families — built to your HOA's standards and installed by an owner-run local team.",
+            "cta": "Get My Free Quote",
+            "badges": ["Pet-Friendly Options", "HOA-Ready Designs", '<a href="warranty.html" style="color:inherit">76-Week Warranty</a>'],
+        },
+        "neighborhoods": {
+            "eyebrow": "Your Neighborhood",
+            "title": "Fencing for Starkey Ranch &amp; Nearby",
+            "intro": "Every community out here is a little different. Pick yours.",
+            "more": "See local details &rarr;",
+        },
+        "services": {
+            "eyebrow": "Materials",
+            "title": "Find the Right Fence for Your Family",
+            "intro": "Low-maintenance vinyl, pool-safe aluminum, natural wood, and more — here's what each one does best.",
+            "more": "Learn more &rarr;",
+        },
+        "process": {
+            "eyebrow": "How It Works",
+            "title": "Getting Your Fence Is Easy",
+            "steps": [
+                ("Free Quote", "We visit, measure your yard, and talk through what you need — pets, pool, privacy."),
+                ("HOA Packet", "We give you the fence details your HOA needs to approve the project."),
+                ("Permit &amp; Schedule", "Once approved, we pull the permit and set your install date."),
+                ("Install Day", "Most backyards are done in a day or two, and we clean up before we go."),
+            ],
+        },
+        "why": {
+            "eyebrow": "Why Families Choose Us",
+            "title": "A Local Team That Treats Your Yard Like Ours",
+            "intro": "Starkey Fence is part of 76 FENCE Tampa, owned and run by Tom &amp; Kate Donnelly.",
+            "items": [
+                ("Licensed &amp; Insured", LICENSED),
+                ("Pet-Friendly Builds", "Puppy-picket aluminum, tight-gap privacy, and gates that latch securely keep pets where they belong."),
+                ("76-Week Workmanship Warranty", "Every install comes with our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a> and the manufacturer's warranty."),
+                ("HOA Help", "We prepare the fence details your HOA's review committee asks for."),
+                ("Permits Handled", "Pasco or Hillsborough — we check which applies to your address and file it."),
+                ("Financing Available", "Ask about financing options."),
+            ],
+        },
+        "styles": {
+            "eyebrow": "Styles",
+            "title": "Popular Styles Around Starkey Ranch",
+            "intro": "Choose a look, and we'll make sure it fits your community's standards.",
+            "more": "See this style &rarr;",
+        },
+        "budget": {
+            "eyebrow": "Budgeting",
+            "title": "Planning Your Fence Budget",
+            "intro": "A few choices make the biggest difference to the price.",
+            "button": "See Typical Prices",
+            "cards": [
+                ("Material", "Chain link and wood cost less up front; vinyl and aluminum cost more but need little upkeep."),
+                ("Size of the Yard", "Total linear feet drives most of the cost — larger Odessa and Keystone lots add up quickly."),
+                ("Gates", "Walk gates, double drive gates, and pool gates each add to the total."),
+            ],
+        },
+        "areas": {
+            "eyebrow": "Service Area",
+            "title": "Starkey Ranch, Odessa, Trinity &amp; More",
+            "intro": "We install fences across northwest Pasco and northwest Hillsborough.",
+        },
+        "faq": {"eyebrow": "FAQ", "title": "Questions Families Ask"},
+    },
+
+    "about": {
+        "title": "About Starkey Fence",
+        "lead": "The Starkey Ranch, Odessa, and Trinity team of 76 FENCE Tampa — owner-operated by Tom &amp; Kate Donnelly.",
+        "story_eyebrow": "Our Story",
+        "story_title": "Backyards Are for Living",
+        "story": [
+            "Starkey Fence is part of 76 FENCE Tampa, a locally owned 76 FENCE location run by Tom &amp; Kate Donnelly. We build fences for families in Starkey Ranch, Odessa, Keystone, Cheval, and Trinity.",
+            "Most of the fences we build out here have a simple job: give kids and dogs a safe place to play, keep the pool secure, and look good to the neighbors and the HOA. In Odessa and Keystone, it's often bigger properties with longer fence lines and wider gates.",
+            "The national 76 FENCE network gives us training and supplier relationships; being owner-run means there's always someone accountable for your project.",
+        ],
+        "owners_eyebrow": "Meet the Owners",
+        "owners_title": "Tom &amp; Kate Donnelly",
+        "tom": "Tom spent over 20 years in information technology for the finance and banking industries, as a principal engineer and a leader of global teams. Today he puts that planning and problem-solving to work designing fences that fit each family's yard.",
+        "kate": "Kate spent over 20 years as a federal intelligence analyst and holds a master's degree. She keeps HOA paperwork, permits, and scheduling organized so your project moves along smoothly.",
+        "cta_title": "Say Hello",
+        "cta_sub": "Get a free quote and meet the team behind your fence.",
+        "meta": "Meet Tom and Kate Donnelly of 76 FENCE Tampa and Starkey Fence, serving Starkey Ranch, Odessa, Keystone, Cheval, and Trinity.",
+    },
+    "areas": {
+        "title": "Where We Build",
+        "lead": "Backyard fencing across Starkey Ranch, Odessa, Keystone, Cheval, and Trinity.",
+        "h2": "Communities We Serve",
+        "intro": "Choose your community for local details. Nearby but not listed? Give us a call.",
+    },
+    "contact": {
+        "title": "Get Your Free Quote",
+        "lead": "Tell us about your yard — pets, pool, privacy — and we'll set up a quick visit.",
+        "side_html": "<div class=\"divider\"></div><h3>Have Pets or a Pool?</h3><p>Let us know! Small dogs, diggers, and jumpers all change what the right fence looks like, and pools need self-closing, self-latching gates. We'll recommend the right setup.</p>",
+    },
+    "faq": {
+        "title": "Fence Questions from Starkey-Area Families",
+        "lead": "Pets, pools, HOAs, permits, and timelines.",
+        "cta_title": "Still Wondering About Something?",
+        "cta_sub": "Give us a call — we're happy to help.",
+    },
+    "faqs": [
+        ("Do I need HOA approval for a fence in Starkey Ranch?",
+         "Most likely. Planned communities like Starkey Ranch and Trinity typically have fence standards and a review process. We'll give you the details your HOA needs — see our <a href=\"hoa-fence-approval-guide.html\">HOA approval guide</a>."),
+        ("Are you licensed and insured?",
+         "Yes. 76 FENCE Tampa is licensed in Hillsborough, Pasco, and Hernando counties and carries general liability and workers' compensation insurance. We can share a certificate of insurance."),
+        ("What's the best fence for small dogs?",
+         "Puppy-picket aluminum (extra pickets along the bottom) or a privacy fence with tight gaps. We'll also make sure gates latch securely."),
+        ("Can you keep my dog from digging under the fence?",
+         "We can keep the bottom of the fence close to the ground and talk through options for diggers during your quote."),
+        ("Do you build pool fences that meet code?",
+         "Yes. Aluminum and vinyl pool barriers with self-closing, self-latching gates, built to Florida's residential pool safety requirements."),
+        ("Who handles the permit?",
+         "We do. Starkey Ranch and Trinity are in Pasco County; Keystone and Cheval are in Hillsborough County; Odessa spans both. We confirm which applies to your address."),
+        ("What works for a larger Odessa or Keystone property?",
+         "Often a mix: a finished fence near the house and pool, and a simpler, economical fence along the back lines, with wide drive gates where you need access."),
+        ("Which fence needs the least maintenance?",
+         "Vinyl and aluminum. A rinse now and then is usually all they need."),
+        ("How long does installation take?",
+         "Most backyard fences take one to two days on site. HOA approval and permitting usually set the overall timeline."),
+        ("What does your warranty cover?",
+         "Our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a> covers defects in our installation and assembly; materials carry the manufacturer's warranty."),
+        ("Is my new-construction yard ready for a fence?",
+         "Usually, once final grading and sod are done. We'll check property corners and any drainage easements before we lay out the fence line."),
+        ("Do you offer financing?",
+         "Yes — ask about financing when you get your quote."),
+    ],
+    "gallery": {
+        "title": "Fence Ideas for Your Backyard",
+        "lead": "Popular fence types for Starkey Ranch, Odessa, and Trinity homes.",
+        "meta": "Vinyl, aluminum, wood, and composite fence ideas from 76 FENCE Tampa for Starkey Ranch, Odessa, and Trinity.",
+        "label": "{cat}",
+        "intro_html": "<p class=\"hub-intro\">Looking for ideas? These are the fences families around Starkey Ranch ask about most — from pool-safe aluminum to private vinyl backyards. Tap one to learn more.</p>",
+        "tiles": [("Vinyl Privacy", "vinyl", "vinyl-fence.html"), ("Aluminum Pool Fence", "aluminum", "aluminum-fence.html"), ("Wood", "wood", "wood-fence.html"), ("Composite", "composite", "composite-fence.html"), ("Picket", "picket", "picket-fence.html"), ("Horizontal", "horizontal", "horizontal-fence.html"), ("Chain Link", "chain-link", "chain-link-fence.html"), ("Split Rail", "split-rail", "split-rail-fence.html"), ("Steel", "steel", "steel-wrought-iron-fence.html"), ("Security", "security", "security-fencing.html")],
+    },
+    "pricing": {
+        "title": "Fence Prices for Starkey-Area Homes",
+        "lead": "Typical costs by material and yard size to help you plan.",
+        "intro_html": "<p style=\"max-width:760px\">New-construction backyards in Starkey Ranch and Trinity often fall in the average-yard range; larger Odessa and Keystone properties can run much longer. We'll give you a written quote for your yard.</p>",
+        "factors": [
+            ("Yard Size", "More linear feet means more material and labor."),
+            ("Pets &amp; Pools", "Puppy-picket upgrades and pool-code gate hardware add a little to the cost."),
+            ("Gates", "Each gate — walk, double drive, or pool — adds to the total."),
+        ],
+        "cta_title": "Get Your Free Quote",
+        "cta_sub": "We'll measure and send a written price — no pressure.",
+        "meta": "Typical fence prices in Starkey Ranch, Odessa, and Trinity by material and yard size.",
+    },
+
+    "materials_hub": {
+        "title": "Fence Materials",
+        "lead": "Pick the material that fits your family, your yard, and your HOA.",
+        "intro": ["Most Starkey-area families choose between vinyl and aluminum, with wood and composite close behind. Here's how they compare."],
+    },
+    "materials": {
+        "vinyl-fence": {
+            "tagline": "Private, clean, and practically maintenance-free.",
+            "meta": "Vinyl privacy fence installation in Starkey Ranch, Odessa, and Trinity.",
+            "intro": ["Vinyl is the go-to backyard fence for families who want privacy without upkeep. It never needs painting or staining and cleans up with a hose."],
+            "sections": [
+                ("For kids and pets", ["Solid privacy panels keep little ones and dogs in and curious eyes out."]),
+                ("HOA colors", ["Many communities specify white, tan, or clay. We'll match your HOA's standard."]),
+            ],
+            "glance": ["No painting or staining", "Solid privacy for pets", "HOA-friendly colors", "Pool-code gates available"],
+        },
+        "aluminum-fence": {
+            "tagline": "Pool-safe, pet-friendly, and open to the view.",
+            "meta": "Aluminum pool fence and puppy-picket fence installation in Starkey Ranch and Trinity.",
+            "intro": ["Aluminum is the favorite for pools and for homes that back up to ponds and preserves. It won't rust, and puppy-picket designs keep small dogs safely inside."],
+            "sections": [
+                ("Pool safety", ["Self-closing, self-latching gates built to Florida's pool barrier requirements."]),
+                ("Puppy picket", ["Extra pickets along the bottom of the panel close the gaps small pets can squeeze through."]),
+            ],
+            "glance": ["Won't rust", "Puppy-picket option", "Pool-code designs", "Keeps views open"],
+        },
+        "wood-fence": {
+            "tagline": "Natural warmth for family backyards.",
+            "meta": "Wood fence installation in Odessa and Keystone.",
+            "intro": ["Wood gives a warm, natural look and works well on larger Odessa and Keystone lots where you want a classic feel."],
+            "sections": [("Upkeep", ["Seal or stain within the first year and every few years after to keep it looking its best."])],
+            "glance": ["Cedar or pine", "Natural look", "Staining available"],
+        },
+        "composite-fence": {
+            "tagline": "Wood look without the weekend chores.",
+            "meta": "Composite fence installation in Starkey Ranch.",
+            "intro": ["Composite looks like wood but won't rot or need staining — great for busy families who want a premium look."],
+            "sections": [],
+            "glance": ["Low maintenance", "Wood look"],
+        },
+        "chain-link-fence": {
+            "tagline": "Budget-friendly fencing for big yards and dog runs.",
+            "meta": "Chain link fence installation in Odessa and Keystone.",
+            "intro": ["Chain link is an affordable way to fence larger properties and dog runs. Black-coated chain link blends in nicely."],
+            "sections": [],
+            "glance": ["Most affordable", "Great for large lots"],
+        },
+        "steel-wrought-iron-fence": {
+            "tagline": "Ornamental fencing and entry gates.",
+            "meta": "Ornamental steel fence and gate installation in Cheval and Keystone.",
+            "intro": ["Ornamental steel and matching driveway gates suit estate properties in Cheval and Keystone."],
+            "sections": [],
+            "glance": ["Powder-coated", "Driveway gates"],
+        },
+    },
+
+    "styles_hub": {"title": "Fence Styles", "lead": "The styles Starkey-area families choose most."},
+    "styles": {
+        "privacy-fence": {"desc": "Solid panels for a private, pet-safe backyard.", "tagline": "Your own private backyard.", "meta": "Privacy fence installation in Starkey Ranch and Trinity.", "intro": ["A privacy fence gives your family a backyard that feels like an extension of the house — and keeps the dog in."], "sections": [], "glance": ["Usually 6'", "Pet-safe", "HOA-ready"]},
+        "semi-privacy-fence": {"desc": "Screening with small gaps for airflow.", "tagline": "Privacy with a breeze.", "meta": "Semi-privacy fence installation in Odessa.", "intro": ["Semi-privacy fencing lets air through while screening most of the view."], "sections": [], "glance": ["Airflow", "Softer look"]},
+        "horizontal-fence": {"desc": "Modern horizontal boards.", "tagline": "A modern backyard look.", "meta": "Horizontal fence installation in Starkey Ranch.", "intro": ["Horizontal fences give a modern look — check your HOA's standards first."], "sections": [], "glance": ["Modern style"]},
+        "picket-fence": {"desc": "Classic pickets for front yards and gardens.", "tagline": "Classic curb appeal.", "meta": "Picket fence installation in Odessa and Trinity.", "intro": ["Picket fencing adds charm to front yards and gardens."], "sections": [], "glance": ["3'–4' tall"]},
+        "split-rail-fence": {"desc": "Open rails for larger, rural properties.", "tagline": "Made for acreage.", "meta": "Split rail fence installation in Odessa and Keystone.", "intro": ["Split rail suits larger Odessa and Keystone properties. Add wire mesh to keep dogs and small animals in."], "sections": [], "glance": ["Great for acreage", "Wire-mesh option"]},
+    },
+
+    "commercial_hub": {
+        "title": "Commercial &amp; Community Fencing",
+        "lead": "Fencing for HOAs, amenity centers, and businesses around Starkey Ranch and Trinity.",
+        "intro": "We help community associations and businesses with perimeter, pool, and amenity fencing, plus security fencing and dumpster screening — with written proposals and one point of contact.",
+    },
+    "commercial": {
+        "industrial-fencing": {"desc": "Perimeter fencing and slide gates for business properties.", "tagline": "Secure business perimeters.", "meta": "Commercial perimeter fencing in Odessa and Trinity.", "intro": ["Tall chain link and steel perimeters with commercial-grade gates."], "sections": [], "glance": ["Commercial gates"]},
+        "security-fencing": {"desc": "Access-control fencing for facilities.", "tagline": "Keep facilities secure.", "meta": "Security fencing in Odessa and Trinity.", "intro": ["Ornamental and chain link security fencing with commercial hardware."], "sections": [], "glance": ["Commercial hardware"]},
+        "hoa-fencing": {"desc": "Fencing for community perimeters, pools, and amenity centers.", "tagline": "Community fencing done right.", "meta": "HOA and community fencing in Starkey Ranch and Trinity.", "intro": ["We help associations plan and install consistent perimeter, pool, and amenity fencing."], "sections": [], "glance": ["Board-ready proposals"]},
+        "dumpster-enclosures": {"desc": "Screening for dumpsters and service areas.", "tagline": "Tidy service areas.", "meta": "Dumpster enclosures in Odessa and Trinity.", "intro": ["Enclosures with service-width gates, built to match your property."], "sections": [], "glance": ["Service-width gates"]},
+    },
+    "other": {
+        "fence-repair": {"tagline": "Gates that latch and fences that stand straight.", "meta": "Fence repair in Starkey Ranch, Odessa, and Trinity.", "intro": ["We fix sagging gates, leaning posts, and damaged panels on most fence types."], "sections": [], "glance": ["Gates, posts &amp; panels"]},
+        "fence-staining": {"tagline": "Keep your wood fence looking new.", "meta": "Fence staining in Odessa.", "intro": ["Sealing and staining protect wood fences from Florida sun and humidity."], "sections": [], "glance": ["Stain or sealer"]},
+        "artificial-grass": {"tagline": "Mud-free play and pet areas.", "meta": "Artificial grass installation in Starkey Ranch.", "intro": ["Synthetic turf gives kids and pets a clean, green place to play without mowing or watering."], "sections": [], "glance": ["Pet- and kid-friendly"]},
+        "diy-fence": {"tagline": "Doing it yourself? We can help.", "meta": "DIY fence help in Odessa.", "intro": ["Materials at contractor pricing, post-hole digging, and planning consultations."], "sections": [], "glance": ["Contractor pricing"]},
+        "deck-railing": {"tagline": "Railing to match your fence.", "meta": "Railing installation in Starkey Ranch.", "intro": ["Aluminum, composite, and wood railing for decks and porches."], "sections": [], "glance": ["Matches your fence"]},
+        "retaining-walls": {"tagline": "Level ground for your backyard.", "meta": "Retaining walls in Odessa.", "intro": ["Retaining walls manage slopes and drainage, giving your fence and yard stable ground."], "sections": [], "glance": ["Drainage control"]},
+    },
+
+    "towns": {
+        "title": "Backyard Fences in {town}",
+        "lead": "Pet-friendly, pool-safe fencing for {town} families — from 76 FENCE Tampa.",
+        "materials_eyebrow": "Options",
+        "materials_title": "Popular Fences in {town}",
+        "nearby_title": "Nearby Communities",
+        "faq_title": "{town} Fence FAQs",
+        "cta_title": "Get a Free {town} Quote",
+        "cta_sub": "We'll measure your yard and send a written quote.",
+        "meta_title": "{town} Fence Company | Starkey Fence by 76 FENCE Tampa",
+        "meta_description": "Backyard fencing in {town}, FL: pet-friendly, pool-safe, HOA-ready designs from 76 FENCE Tampa. Licensed and insured. Free quotes — 813-669-4555.",
+        "snippet_suffix": " for {town} families.",
+        "snippets": {
+            "vinyl-fence": "Private, low-maintenance vinyl",
+            "wood-fence": "Warm, natural wood",
+            "aluminum-fence": "Pool-safe and puppy-picket aluminum",
+            "chain-link-fence": "Affordable chain link for big yards",
+            "composite-fence": "Wood-look composite",
+            "steel-wrought-iron-fence": "Ornamental steel and gates",
+        },
+        "faq_picks": [0, 2, 4, 5],
+        "notes": {
+            "starkey-ranch": "Starkey Ranch is a newer master-planned community in Odessa, so most fence projects start with the HOA's standards and review.",
+            "odessa": "Odessa spans Pasco and Hillsborough counties and ranges from planned neighborhoods to lakefront and acreage properties.",
+            "keystone": "Keystone's larger, often lake-adjacent properties call for longer fence runs, wide gates, and sometimes split rail with mesh for animals.",
+            "cheval": "Cheval is a gated community with established standards, where ornamental aluminum and steel are common choices.",
+            "trinity": "Trinity's planned neighborhoods in Pasco County typically have HOA fence standards we design around.",
+        },
+    },
+    "hoa_guide": {
+        "title": "HOA Fence Approval for Starkey-Area Homes",
+        "lead": "How to get your fence approved in Starkey Ranch, Trinity, and other planned communities.",
+        "local": {
+            "title": "Planned Communities Out Here",
+            "paragraphs": [
+                "Starkey Ranch and Trinity are master-planned communities, and they typically publish fence standards — approved materials, colors, heights, and placement — along with a review process for new fences.",
+                "Odessa and Keystone vary more: some neighborhoods have an HOA or deed restrictions, while many larger properties have neither. Check your closing documents before you choose a design.",
+            ],
+        },
+        "cta_title": "Let Us Help With Your HOA Packet",
+        "cta_sub": "We'll give you the fence details your HOA needs, then build it once you're approved.",
+    },
+}
