@@ -22,7 +22,9 @@ THEME = dict(
         "--section-pad": "72px",
     },
     hero="image",
-    hero_image="materials/split-rail-fence.jpg",
+    hero_image="hero/brooksville-hero.webp",
+    hero_video="brooksville-hero.mp4",
+    bands=[("hero/brooksville-detail.webp", "Wood split rail fence with wire mesh in a wildflower pasture under live oaks", "Fencing for real acreage", "Split rail, ranch, and field fence for Hernando County land, set to last."), ("hero/brooksville-dusk.webp", "Wooden farm gate on a gravel drive under live oaks at sunset", "Gates that open the right way", "Drive gates, walk gates, and wide farm gates sized for trucks, tractors, and trailers.")],
     home_sections=[
         ("local", False), ("services", True), ("process", False), ("why", True), ("styles", False),
         ("warranty", True), ("gallery", False), ("pricing", True), ("areas", False), ("faq", True),
@@ -50,6 +52,13 @@ CONTENT = {
         "cta_title": "Questions About Your Neighborhood's Rules?",
         "cta_sub": "We'll help you sort out what applies to your property, then walk the fence line with you.",
     },
+    "reviews": {"title": "Reviews from Hernando County Customers", "lead": "Read what Brooksville and Spring Hill property owners say about our work.",
+                "intro": "Most of our Hernando County work comes from referrals and reviews. You'll find our reviews on Google and Facebook, with every rating visible."},
+    "financing": {"title": "Financing for Fences, Farm Fencing &amp; Long Runs", "lead": "Monthly payments can make a bigger Hernando County fence project easier to plan.",
+                  "intro": "Rural lots and long property lines add up. If you'd like to spread the cost of a larger project, ask about financing when we walk your property."},
+    "care": {"title": "Fence Care for Hernando County Properties", "local": {"title": "Brooksville-Area Tips", "paragraphs": [
+        "On sandy or sloped lots, watch for soil washing away from post bases after heavy rain. Fill and tamp any low spots before they let a post loosen.",
+        "Farm and split rail fences take bumps from equipment and animals. Walk the line a few times a year and tighten any loose rails or mesh before small problems spread."]}},
     "footer_about": "Brooksville Fence (brooksvillefence.com) is the Hernando County website of 76 FENCE Tampa, building residential, farm, and commercial fencing across Brooksville, Spring Hill, and the surrounding area.",
     "cta": {"title": "Let's Walk Your Property Line", "sub": "Free on-site estimates across Brooksville and Hernando County — no pressure, no obligation."},
     "warranty_box": {

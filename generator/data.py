@@ -298,3 +298,64 @@ HOA_GUIDE = dict(
     ],
     disclaimer="This page is general information, not legal advice. Your HOA's governing documents control.",
 )
+
+# Fence Care & Easy Fixes guide (/fence-care/). Shared tips; each site adds its own intro + local tips
+# via content/<site>.py "care". General homeowner guidance only — no manufacturer names (suppliers vary).
+FENCE_CARE = dict(
+    title="Fence Care &amp; Easy Fixes",
+    lead="Simple maintenance and quick fixes that keep your fence looking good and working right — plus how to tell when it's time to call us.",
+    intro="Most fences need very little attention, but a few minutes a season goes a long way in Florida's sun, rain, and humidity. Here's what to do for each material, and the small fixes you can safely handle yourself.",
+    materials=[
+        ("Vinyl", [
+            "Rinse with a garden hose a few times a year. For mildew or green film, use mild soap and water with a soft brush, then rinse.",
+            "Avoid pressure washers set too high and harsh solvents — they can scuff or dull the surface.",
+            "Keep sprinklers from spraying the same spot constantly; mineral-rich water can leave stains.",
+        ]),
+        ("Aluminum", [
+            "Wash with mild soap and water to remove dirt and salt; rinse well, especially near the coast.",
+            "Touch up any scratches in the powder coat with a matching touch-up paint to keep the finish looking new.",
+            "Check that gate hinges and latches open and close smoothly — pool gates must self-close and self-latch.",
+        ]),
+        ("Wood", [
+            "Seal or stain within the first year, then every few years depending on sun exposure.",
+            "Keep soil, mulch, and plants from piling up against boards and posts — trapped moisture causes rot.",
+            "Replace a cracked or broken picket as soon as you notice it so the damage doesn't spread.",
+        ]),
+        ("Chain Link", [
+            "Pull vines and weeds out of the mesh before they tighten around it.",
+            "Check tension wires and ties once a year and retighten any that have loosened.",
+        ]),
+    ],
+    fixes=[
+        ("Gate sags or drags on the ground", "Check the hinge screws and tighten any that have backed out. Many gates have an adjustable hinge or anti-sag kit — a few turns can lift the latch side. If the post itself is leaning, that's a job for us."),
+        ("Latch won't catch", "Open and close the gate slowly and watch where the latch meets the striker. Loosen the striker screws, slide it to line up, and retighten. A drop of lubricant on moving parts helps too."),
+        ("Pool gate doesn't close on its own", "Clean the hinges, then adjust the spring tension per the hinge's instructions. Because pool gates are a safety barrier, call us if it still won't self-close and self-latch every time."),
+        ("Mildew or green film", "Mix mild dish soap in warm water, scrub with a soft brush, and rinse. For stubborn spots on vinyl, a diluted vinegar solution usually works."),
+        ("Loose screws or fasteners", "Tighten them with a hand screwdriver rather than a drill to avoid stripping. Replace any rusted fasteners with stainless or coated ones."),
+    ],
+    call_us=[
+        "A post is leaning, wobbling, or cracked at the base",
+        "Storm damage to panels, rails, or posts",
+        "A pool gate won't reliably self-close and self-latch",
+        "Several boards or panels are loose or broken",
+        "The fence line is shifting or sinking",
+    ],
+)
+
+# Financing page (/financing/). Kept general on purpose: no lender name, rates, or terms are stated
+# until the owner confirms them (sites.py COMMON can add a provider later).
+FINANCING = dict(
+    title="Fence Financing",
+    lead="Spread the cost of your new fence into monthly payments.",
+    intro="A quality fence is an investment in your home. If you'd rather not pay all at once, ask about financing when we give you your estimate.",
+    how=[
+        ("Get your estimate", "We measure your property and give you a written price for the fence you want."),
+        ("Ask about financing", "Let us know you're interested, and we'll share the current financing options and how to apply."),
+        ("Apply and get a decision", "Financing is provided through a third-party lender and is subject to credit approval."),
+        ("Schedule your install", "Once you're approved and your project is signed, we schedule your installation."),
+    ],
+    notes=[
+        "Financing is offered through a third-party lender and is subject to credit approval. Terms, rates, and availability vary and can change.",
+        "Applying for financing doesn't obligate you to buy, and asking about it costs nothing.",
+    ],
+)

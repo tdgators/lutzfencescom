@@ -24,6 +24,9 @@ THEME = dict(
         "--section-pad": "72px",
     },
     hero="split",
+    hero_image="hero/starkey-hero.webp",
+    hero_video="starkey-hero.mp4",
+    bands=[("hero/starkey-detail.webp", "Black aluminum puppy-picket fence along a green lawn with pines behind", "Safe for kids and pets", "Puppy-picket aluminum and no-gap privacy fence keep little ones and pets in the yard."), ("hero/starkey-dusk.webp", "Backyard with a wooden play set and black aluminum fence at golden hour", "Room to play", "A fenced backyard that fits Starkey Ranch's guidelines, from plans to approval to install.")],
     home_sections=[
         ("neighborhoods", False), ("services", True), ("process", False), ("why", True),
         ("styles", False), ("warranty", True), ("budget", False), ("areas", True), ("faq", False),
@@ -38,6 +41,13 @@ CONTENT = {
     "labels": {"estimate": "Get My Free Quote", "glance": "Good to Know", "or_call": "or call", "read_more": "Learn more &rarr;",
                "related_materials": "More Materials to Explore", "related_styles": "More Fence Styles",
                "related_commercial": "Other Commercial Services", "related_other": "Other Services"},
+    "reviews": {"title": "What Families Say About Starkey Fence", "lead": "Reviews from Starkey Ranch, Odessa, and Trinity customers.",
+                "intro": "Families trust us with their kids' and pets' backyard safety. Read our reviews on Google and Facebook."},
+    "financing": {"title": "Fence Financing for Families", "lead": "Get the backyard fence your family needs and pay over time.",
+                  "intro": "A safe backyard shouldn't have to wait. Ask about financing when we come out for your free quote."},
+    "care": {"title": "Fence Care for Busy Families", "local": {"title": "Pets, Kids &amp; Pools", "paragraphs": [
+        "Dogs dig and kids lean on gates. Every few months, check the bottom of the fence for gaps and make sure gates latch firmly every time.",
+        "If you have a pool, test that the pool gate closes and latches on its own from any open position. If it doesn't, call us right away."]}},
     "footer_about": "Starkey Fence (starkeyfence.com) is the Starkey Ranch, Odessa, and Trinity website of 76 FENCE Tampa, installing fences for families across Starkey Ranch, Odessa, Keystone, Cheval, and Trinity.",
     "cta": {"title": "Let's Fence In Your Backyard", "sub": "Free quotes for Starkey Ranch, Odessa, and Trinity — usually scheduled within a few days."},
     "warranty_box": {

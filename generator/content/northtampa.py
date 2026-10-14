@@ -22,7 +22,9 @@ THEME = dict(
         "--section-pad": "88px",
     },
     hero="centered",
-    hero_image="materials/steel-fence.jpg",
+    hero_image="hero/northtampa-hero.webp",
+    hero_video="northtampa-hero.mp4",
+    bands=[("hero/northtampa-dusk.webp", "Black aluminum pool fence around a lit pool overlooking a pond at twilight", "Pool fencing that passes inspection", "Code-compliant aluminum around the pool, with nothing blocking the preserve view.")],
     home_sections=[
         ("local", False), ("styles", True), ("services", False), ("estimate", True), ("why", False),
         ("budget", True), ("warranty", False), ("gallery", True), ("areas", False), ("faq", True),
@@ -50,6 +52,13 @@ CONTENT = {
         "cta_title": "Let's Get Your Fence Approved",
         "cta_sub": "Book a free consultation — we'll design to your community's standards and prepare your submission details.",
     },
+    "reviews": {"title": "What North Tampa Homeowners Say", "lead": "Reviews from New Tampa, Tampa Palms, and Temple Terrace customers.",
+                "intro": "We're an owner-run team, and our reputation in North Tampa's neighborhoods matters to us. Read our reviews on Google and Facebook."},
+    "financing": {"title": "Financing Your New Fence", "lead": "Flexible monthly payment options for New Tampa and North Tampa homeowners.",
+                  "intro": "Upgrading to aluminum around the pool or vinyl privacy across the backyard? Ask about financing during your free consultation."},
+    "care": {"title": "Caring for Your Fence in North Tampa", "local": {"title": "Pond, Preserve &amp; HOA Tips", "paragraphs": [
+        "Homes on ponds and preserves see more moisture and mildew. A gentle wash in spring and fall keeps vinyl and aluminum looking new — and keeps you in line with HOA appearance standards.",
+        "Many associations expect fences to stay clean and in good repair. A quick seasonal check of gates, latches, and post caps saves a reminder letter."]}},
     "footer_about": "North Tampa Fencing (northtampafencing.com) is the New Tampa and North Tampa website of 76 FENCE Tampa, designing and installing residential and community fencing across Tampa Palms, Hunter's Green, Temple Terrace, and nearby neighborhoods.",
     "cta": {"title": "Let's Design Your Fence", "sub": "Book a free in-home consultation — we'll bring samples, measure, and help you choose."},
     "warranty_box": {

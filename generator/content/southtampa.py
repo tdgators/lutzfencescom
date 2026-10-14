@@ -24,7 +24,9 @@ THEME = dict(
         "--section-pad": "80px",
     },
     hero="centered",
-    hero_image="materials/picket-fence.jpg",
+    hero_image="hero/southtampa-hero.webp",
+    hero_video="southtampa-hero.mp4",
+    bands=[("hero/southtampa-detail.webp", "White wood picket fence in front of ferns and bromeliads beside a brick sidewalk", "Classic fences for historic streets", "Picket, iron-look aluminum, and wood styles that suit Hyde Park and Palma Ceia homes."), ("hero/southtampa-dusk.webp", "Palm-lined bayside walkway with a white balustrade at dusk", "Built for the bay air", "Salt air is hard on fencing, so we recommend materials and hardware that hold up to it.")],
     home_sections=[
         ("local", False), ("estimate", True), ("styles", False), ("neighborhoods", True),
         ("why", False), ("gallery", True), ("warranty", False), ("pricing", True), ("faq", False),
@@ -39,6 +41,13 @@ CONTENT = {
     "labels": {"estimate": "Request an Estimate", "glance": "In Brief", "or_call": "or call", "read_more": "Continue reading &rarr;",
                "related_materials": "Other Materials", "related_styles": "Related Styles",
                "related_commercial": "Related Services", "related_other": "More Ways We Help"},
+    "reviews": {"title": "South Tampa Fence Reviews", "lead": "Reviews from Hyde Park, Palma Ceia, Davis Islands, and South Tampa customers.",
+                "intro": "We take care with older homes and tight lots, and our customers notice. Read their reviews on Google and Facebook."},
+    "financing": {"title": "Financing Your Fence", "lead": "Monthly payment options for South Tampa homeowners.",
+                  "intro": "Ask about financing during your in-home estimate — we'll share the current options."},
+    "care": {"title": "Fence Care Near the Bay", "local": {"title": "Salt Air &amp; Humidity", "paragraphs": [
+        "Close to the bay, salt settles on fences and hardware. Rinse aluminum, vinyl, and gate hardware with fresh water every month or two to slow corrosion.",
+        "Check hinges and latches for rust and replace corroded fasteners with stainless steel before they fail."]}},
     "footer_about": "South Tampa Fence (southtampafence.com) is the South Tampa website of 76 FENCE Tampa, designing and installing residential fencing in Hyde Park, Palma Ceia, Davis Islands, Bayshore Beautiful, Ballast Point, Westshore, and Port Tampa.",
     "cta": {"title": "Let's Talk About Your Fence", "sub": "We'll visit, look at the house and the lot, and recommend a fence that suits both."},
     "warranty_box": {

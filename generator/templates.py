@@ -28,8 +28,8 @@ def nav_html(active=""):
     '''
     commercial_dd = "".join(f'<a href="{c["slug"]}.html">{c["name"]}</a>' for c in COMMERCIAL)
     commercial_dd = f'<a href="commercial-fencing.html">Commercial Fencing (All)</a>' + commercial_dd
-    other_dd = "".join(f'<a href="{o["slug"]}.html">{o["name"]}</a>' for o in OTHER_SERVICES)
-    about_dd = '<a href="about-us.html">Meet the Team</a><a href="warranty.html">Our Warranty</a><a href="hoa-fence-approval-guide.html">HOA Approval Guide</a><a href="service-areas.html">Service Areas</a>'
+    other_dd = "".join(f'<a href="{o["slug"]}.html">{o["name"]}</a>' for o in OTHER_SERVICES) + '<a href="fence-care.html">Fence Care &amp; Easy Fixes</a>'
+    about_dd = '<a href="about-us.html">Meet the Team</a><a href="warranty.html">Our Warranty</a><a href="hoa-fence-approval-guide.html">HOA Approval Guide</a><a href="reviews.html">Reviews</a><a href="financing.html">Financing</a><a href="service-areas.html">Service Areas</a>'
     contact_dd = '<a href="contact-us.html">Contact Us</a><a href="faq.html">FAQs</a>'
 
     items = [
@@ -99,6 +99,9 @@ def footer_html():
           <li><a href="about-us.html">Meet the Team</a></li>
           <li><a href="warranty.html">76-Week Warranty</a></li>
           <li><a href="hoa-fence-approval-guide.html">HOA Approval Guide</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="fence-care.html">Fence Care Guide</a></li>
           <li><a href="service-areas.html">Service Areas</a></li>
           <li><a href="fence-gallery.html">Fence Gallery</a></li>
           <li><a href="fence-pricing.html">Pricing</a></li>

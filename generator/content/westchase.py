@@ -25,7 +25,9 @@ THEME = dict(
         "--section-pad": "76px",
     },
     hero="image",
-    hero_image="materials/vinyl-fence.jpg",
+    hero_image="hero/westchase-hero.webp",
+    hero_video="westchase-hero.mp4",
+    bands=[("hero/westchase-detail.webp", "Modern horizontal composite fence with black posts above a boxwood hedge", "Clean lines, low upkeep", "Horizontal composite and aluminum designs that suit Westchase's newer architecture."), ("hero/westchase-dusk.webp", "Modern Florida home at dusk with a horizontal fence and royal palms", "Designed to pass review", "We prepare the drawings and specs your HOA's architectural committee asks for.")],
     home_sections=[
         ("local", False), ("process", True), ("services", False), ("styles", True),
         ("why", False), ("budget", True), ("warranty", False), ("areas", True), ("faq", False),
@@ -41,6 +43,13 @@ CONTENT = {
                "related_materials": "Compare Materials", "related_styles": "More Styles",
                "related_commercial": "Commercial Services", "related_other": "Also Available",
                "modal_title": "Start Your Fence Project"},
+    "reviews": {"title": "Westchase Fence Reviews", "lead": "Customer reviews from Westchase and northwest Tampa.",
+                "intro": "Clear proposals, clean installs, and approval-ready paperwork — read what customers say on Google and Facebook."},
+    "financing": {"title": "Fence Financing", "lead": "Monthly payment options for your Westchase fence project.",
+                  "intro": "Ask about financing during your design consultation. We'll share current options once your proposal is ready."},
+    "care": {"title": "Fence Care &amp; Maintenance", "local": {"title": "Keeping Up Appearances", "paragraphs": [
+        "Planned communities expect fences to stay clean and in good repair. A spring and fall wash and a quick check of gates and post caps keeps your fence looking like the day it was installed.",
+        "Before repainting, staining, or changing anything about your fence's appearance, check whether your association requires approval."]}},
     "footer_about": "Westchase Fence (westchasefence.com) is the northwest Tampa website of 76 FENCE Tampa, designing and installing fences in Westchase, Citrus Park, Town 'n' Country, and Egypt Lake-Leto.",
     "cta": {"title": "Ready to Start?", "sub": "Get a design consultation and a written proposal you can take straight to your association."},
     "warranty_box": {

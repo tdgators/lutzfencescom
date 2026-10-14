@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Builds: homepage, about, service-areas, contact, faq, gallery, pricing, privacy-policy"""
 from pathlib import Path
-from data import SITE, TOWNS, COPY, CURRENT, THEME, T, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, PRICING_TABLE, WARRANTY, HOA_GUIDE
+from data import SITE, TOWNS, COPY, CURRENT, THEME, T, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, PRICING_TABLE, WARRANTY, HOA_GUIDE, FENCE_CARE, FINANCING
 from templates import write_page, write_404, page, page_hero, faq_accordion, mini_quote_form, contact_form_card, map_section, town_chips, cta_banner, fence_illustration, warranty_seal, warranty_callout
 
 
@@ -33,6 +33,23 @@ def site_faqs():
     return T("faqs") or (COPY['local_faqs'] + FAQS)
 
 
+def trust_strip():
+    """Row of verified trust points under the homepage hero (only claims we can back up)."""
+    items = T("trust", [
+        ("Licensed", SITE['licensed_short']),
+        ("Fully Insured", "General liability &amp; workers' comp"),
+        ("76-Week Warranty", '<a href="warranty.html">Workmanship guaranteed</a>'),
+        ("Free Estimates", "Written, no obligation"),
+        ("Owner-Operated", "Tom &amp; Kate Donnelly"),
+    ])
+    cells = "".join(f'<div class="trust-item"><strong>{t}</strong><span>{d}</span></div>' for t, d in items)
+    return f'''
+<section class="trust-strip">
+  <div class="container trust-row">{cells}</div>
+</section>
+'''
+
+
 # ---------------------------------------------------------------- HOMEPAGE sections
 def home_hero():
     variant = THEME.get("hero", "split")
@@ -55,17 +72,24 @@ def home_hero():
       <div class="hero-badges">{badges_html}
       </div>
     </div>"""
+    video = THEME.get("hero_video")
+    video_html = (f'<video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true"'
+                  f'{(" poster=" + chr(34) + "/assets/images/" + photo + chr(34)) if photo else ""}>'
+                  f'<source src="/assets/video/{video}" type="video/mp4"></video>') if video else ""
+    vcls = " hero-has-video" if video else ""
     if variant == "centered":  # headline only; the estimate form gets its own section further down
         return f"""
-<section class="hero hero-centered{' hero-photo' if photo else ''}"{style}>
+<section class="hero hero-centered{' hero-photo' if photo else ''}{vcls}"{style}>
+  {video_html}
   <div class="container">
     {text}
   </div>
 </section>
 """
-    cls = "hero hero-photo" if variant == "image" and photo else "hero"
+    cls = ("hero hero-photo" if variant == "image" and photo else "hero") + vcls
     return f"""
 <section class="{cls}"{style}>
+  {video_html}
   <div class="container">
     {text}
     {mini_quote_form()}
@@ -302,9 +326,31 @@ DEFAULT_HOME = [("services", False), ("local", False), ("gallery", True), ("why"
                 ("pricing", True), ("commercial", False), ("diy", True), ("reviews", False), ("areas", True), ("faq", False)]
 
 
+def photo_band(img, alt, title, text):
+    return f"""
+<section class="photo-band">
+  <img src="/assets/images/{img}" alt="{alt}" loading="lazy" decoding="async" width="1600" height="686">
+  <div class="container">
+    <div class="photo-band-text">
+      <h2>{title}</h2>
+      <p>{text}</p>
+      <a class="btn btn-red" href="contact-us.html">{T("home.hero.cta", "Get a Free Estimate")}</a>
+    </div>
+  </div>
+</section>
+"""
+
+
 def build_home():
-    body = "".join(HOME_SECTIONS[name](alt) for name, alt in THEME.get("home_sections", DEFAULT_HOME))
-    content = home_hero() + body + f"\n{cta_banner()}\n"
+    parts = [HOME_SECTIONS[name](alt) for name, alt in THEME.get("home_sections", DEFAULT_HOME)]
+    # Photo bands break up the page: one after the second section, one before the last two.
+    bands = THEME.get("bands", [])[:2]
+    if len(bands) == 2:
+        parts.insert(len(parts) - 2, photo_band(*bands[1]))
+    if bands:
+        parts.insert(2, photo_band(*bands[0]))
+    body = "".join(parts)
+    content = home_hero() + trust_strip() + body + f"\n{cta_banner()}\n"
     write("index.html", page(
         T("home.meta_title", f"{SITE['full_brand']} | Fence Company in {SITE['city']}, {SITE['state']}"),
         T("home.meta_description", f"{SITE['full_brand']} installs and repairs vinyl, wood, aluminum, chain link, composite, and steel fencing for homes and businesses in {SITE['city']}, FL and the greater {SITE['region']} area. Free estimates — call {SITE['phone']}."),
@@ -617,6 +663,101 @@ def build_warranty():
     write("warranty.html", page(f"{W['name']} | {W['issuer']}",
         f"Every fence installed by {SITE['full_brand']} is backed by the {W['issuer']} {W['name']}. See what's covered, what's not, and how to request warranty service.",
         "warranty.html", content))
+
+
+# ---------------------------------------------------------------- REVIEWS
+def build_reviews():
+    quotes = T("reviews.quotes", [])  # real customer reviews only, added with the owner's OK
+    quotes_html = "".join(f'''
+      <figure class="card review-quote"><blockquote>&ldquo;{q}&rdquo;</blockquote><figcaption>— {who}</figcaption></figure>'''
+                          for q, who in quotes)
+    write_review = SITE['google'].rstrip('/') + '/review'
+    content = page_hero("Reviews", T("reviews.title", f"{SITE['full_brand']} Reviews"),
+        T("reviews.lead", f"See what {SITE['city']}-area customers say about working with us — and share your own experience."),
+        [("Home", "index.html"), ("Reviews", None)])
+    content += f'''
+<section class="section">
+  <div class="container" style="max-width:900px">
+    <p class="reviews-intro">{T("reviews.intro", "We're a locally owned, owner-operated company, and reviews are how most of our new customers find us. Our reviews live on Google and Facebook, where you can read them in full and see every rating.")}</p>
+    <div class="grid grid-2 review-links">
+      <a class="card review-link" href="{SITE['google']}" target="_blank" rel="noopener"><h3>Google Reviews</h3><p>Read our reviews and ratings on Google.</p><span class="more">Read on Google &rarr;</span></a>
+      <a class="card review-link" href="{SITE['fb']}" target="_blank" rel="noopener"><h3>Facebook Reviews</h3><p>See recommendations from customers on Facebook.</p><span class="more">Read on Facebook &rarr;</span></a>
+    </div>
+    {f'<div class="grid grid-2 review-quotes">{quotes_html}</div>' if quotes else ''}
+    <div class="card leave-review">
+      <h2>{T("reviews.leave_title", "Had Us Build Your Fence?")}</h2>
+      <p>{T("reviews.leave_text", "We'd be grateful for a review. It takes a minute and helps neighbors find a fence company they can trust.")}</p>
+      <a class="btn btn-red" href="{write_review}" target="_blank" rel="noopener">Leave a Google Review</a>
+    </div>
+  </div>
+</section>
+{cta_banner(T("reviews.cta_title", "Ready to Become Our Next Happy Customer?"), T("reviews.cta_sub", "Get a free, written estimate for your fence."))}
+'''
+    write("reviews.html", page(T("reviews.meta_title", f"Reviews | {SITE['full_brand']}"),
+        T("reviews.meta", f"Read customer reviews of {SITE['full_brand']} on Google and Facebook, and leave a review of your own."),
+        "reviews.html", content))
+
+
+# ---------------------------------------------------------------- FINANCING
+def build_financing():
+    F = FINANCING
+    steps = "".join(f'<div class="card"><h3>{t}</h3><p>{d}</p></div>' for t, d in F["how"])
+    notes = "".join(f"<li>{n}</li>" for n in F["notes"])
+    content = page_hero("Financing", T("financing.title", F["title"]), T("financing.lead", F["lead"]),
+        [("Home", "index.html"), ("Financing", None)])
+    content += f'''
+<section class="section">
+  <div class="container">
+    <div class="hub-intro"><p>{T("financing.intro", F["intro"])}</p></div>
+    <div class="grid grid-4 steps">{steps}</div>
+    <div class="card financing-notes"><h3>Good to Know</h3><ul class="check-list">{notes}</ul></div>
+  </div>
+</section>
+{cta_banner(T("financing.cta_title", "Ask About Financing With Your Estimate"), T("financing.cta_sub", "Request a free estimate and let us know you'd like financing options."))}
+'''
+    write("financing.html", page(T("financing.meta_title", f"Fence Financing | {SITE['full_brand']}"),
+        T("financing.meta", f"Financing options for new fence installation from {SITE['full_brand']}, subject to credit approval."),
+        "financing.html", content))
+
+
+# ---------------------------------------------------------------- FENCE CARE
+def build_care():
+    C = FENCE_CARE
+    local = T("care.local")
+    local_html = f'''
+      <div class="card hoa-local"><h2>{local["title"]}</h2>{"".join(f"<p>{p_}</p>" for p_ in local["paragraphs"])}</div>''' if local else ""
+    mats = "".join(f'''
+      <div class="card"><h3>{m}</h3><ul class="check-list">{"".join(f"<li>{t}</li>" for t in tips)}</ul></div>''' for m, tips in C["materials"])
+    fixes = "".join(f'''
+      <section class="hoa-step"><h2><span class="hoa-num">{n}</span>{t}</h2><p>{d}</p></section>''' for n, (t, d) in enumerate(C["fixes"], 1))
+    call = "".join(f"<li>{c}</li>" for c in C["call_us"])
+    content = page_hero("Fence Care", T("care.title", C["title"]), T("care.lead", C["lead"]),
+        [("Home", "index.html"), ("Fence Care", None)])
+    content += f'''
+<section class="section">
+  <div class="container guide hoa-guide">
+    <article class="guide-main">
+      <p>{T("care.intro", C["intro"])}</p>{local_html}
+      <h2>Care by Material</h2>
+      <div class="grid grid-2 care-grid">{mats}</div>
+      <h2>Easy Fixes You Can Do</h2>
+      {fixes}
+    </article>
+    <aside class="guide-side">
+      <div class="card glance">
+        <h3>When to Call Us</h3>
+        <ul class="check-list">{call}</ul>
+        <a class="btn btn-red btn-block" href="fence-repair.html">Fence Repair Service</a>
+        <a class="glance-phone" href="tel:{SITE['phone_tel']}">{T("labels.or_call", "or call")} {SITE['phone']}</a>
+      </div>
+    </aside>
+  </div>
+</section>
+{cta_banner(T("care.cta_title", "Need a Repair Instead?"), T("care.cta_sub", "We fix posts, gates, and storm damage on most fence types — even if we didn't build it."))}
+'''
+    write("fence-care.html", page(T("care.meta_title", f"Fence Care & Easy Fixes | {SITE['full_brand']}"),
+        T("care.meta", f"How to clean and maintain vinyl, aluminum, wood, and chain link fences, fix a sagging gate or misaligned latch, and when to call {SITE['full_brand']}."),
+        "fence-care.html", content))
 
 
 # ---------------------------------------------------------------- HOA GUIDE

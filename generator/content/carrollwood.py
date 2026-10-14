@@ -23,6 +23,9 @@ THEME = dict(
         "--section-pad": "70px",
     },
     hero="split",
+    hero_image="hero/carrollwood-hero.webp",
+    hero_video="carrollwood-hero.mp4",
+    bands=[("hero/carrollwood-detail.webp", "Tan vinyl privacy fence under a live oak with azaleas at its base", "Made for established neighborhoods", "Fences that fit mature trees, older lot lines, and Carrollwood's deed restrictions."), ("hero/carrollwood-dusk.webp", "Lakeside Florida backyard at sunset with a tan vinyl privacy fence", "Privacy without losing the lake", "Privacy on the sides and open views to the water, the way lakefront lots should be fenced.")],
     home_sections=[
         ("services", False), ("local", True), ("neighborhoods", False), ("why", True),
         ("gallery", False), ("warranty", True), ("pricing", False), ("faq", True),
@@ -37,6 +40,13 @@ CONTENT = {
     "labels": {"estimate": "Request a Free Estimate", "glance": "What You Get", "or_call": "or call", "read_more": "Read more &rarr;",
                "related_materials": "Other Materials Worth a Look", "related_styles": "Similar Styles",
                "related_commercial": "Other Commercial Services", "related_other": "Related Services"},
+    "reviews": {"title": "Carrollwood Fence Reviews", "lead": "What Carrollwood and Northdale homeowners say about their new fences.",
+                "intro": "A lot of our Carrollwood work comes from neighbors who saw a fence we replaced down the street. You can read our reviews on Google and Facebook."},
+    "financing": {"title": "Financing a Fence Replacement", "lead": "Replace your old fence now and pay over time.",
+                  "intro": "Replacing an entire backyard fence is a bigger project than a repair. If monthly payments would help, ask about financing when we give you your replacement quote."},
+    "care": {"title": "Fence Care for Carrollwood Homes", "local": {"title": "Living With Big Oaks", "paragraphs": [
+        "Mature oaks drop leaves, acorns, and branches along fence lines. Clear debris from the base of the fence and trim limbs that rub against it before they cause damage.",
+        "Roots can lift posts over time. If you notice a section starting to lean or a gate that suddenly drags, call us before the problem spreads."]}},
     "footer_about": "Carrollwood Fence (carrollwoodfence.com) is the Carrollwood and Northdale website of 76 FENCE Tampa, replacing and installing residential fencing in Carrollwood, Carrollwood Village, Northdale, and Lake Magdalene.",
     "cta": {"title": "Time for a New Fence?", "sub": "We'll come out, measure, and give you a written price — including hauling away the old one."},
     "warranty_box": {
