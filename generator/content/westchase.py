@@ -29,8 +29,8 @@ THEME = dict(
     hero_video="westchase-hero.mp4",
     bands=[("hero/westchase-detail.webp", "Modern horizontal composite fence with black posts above a boxwood hedge", "Clean lines, low upkeep", "Horizontal composite and aluminum designs that suit Westchase's newer architecture."), ("hero/westchase-dusk.webp", "Modern Florida home at dusk with a horizontal fence and royal palms", "Designed to pass review", "We prepare the drawings and specs your HOA's architectural committee asks for.")],
     home_sections=[
-        ("local", False), ("process", True), ("services", False), ("styles", True),
-        ("why", False), ("budget", True), ("warranty", False), ("areas", True), ("faq", False),
+        ("local", False), ("process", True), ("services", False), ("styles", True), ("why", False),
+        ("budget", True), ("warranty", False), ("reviews", True), ("areas", False), ("faq", True),
     ],
     detail_layout="guide",
     town_sections=["intro", "faq", "nearby", "materials"],
@@ -43,10 +43,10 @@ CONTENT = {
                "related_materials": "Compare Materials", "related_styles": "More Styles",
                "related_commercial": "Commercial Services", "related_other": "Also Available",
                "modal_title": "Start Your Fence Project"},
-    "reviews": {"title": "Westchase Fence Reviews", "lead": "Customer reviews from Westchase and northwest Tampa.",
-                "intro": "Clear proposals, clean installs, and approval-ready paperwork — read what customers say on Google and Facebook."},
+    "reviews": {"picks": ['angel', 'mark_l', 'craig', 'mik', 'michael_c', 'bethany'], "title": "Westchase Fence Reviews", "lead": "Customer reviews from our 5-star Google profiles.",
+                "intro": "Clear proposals, clean installs, and approval-ready paperwork. Here's what customers say on Google, where both of our offices are rated 5.0 stars."},
     "financing": {"title": "Fence Financing", "lead": "Monthly payment options for your Westchase fence project.",
-                  "intro": "Ask about financing during your design consultation. We'll share current options once your proposal is ready."},
+                  "intro": "Ask about Wisetack financing during your design consultation, and we'll send you the application link with your proposal."},
     "care": {"title": "Fence Care &amp; Maintenance", "local": {"title": "Keeping Up Appearances", "paragraphs": [
         "Planned communities expect fences to stay clean and in good repair. A spring and fall wash and a quick check of gates and post caps keeps your fence looking like the day it was installed.",
         "Before repainting, staining, or changing anything about your fence's appearance, check whether your association requires approval."]}},
@@ -112,7 +112,7 @@ CONTENT = {
                 ("76-Week Workmanship Warranty", "Every install includes our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a> plus manufacturer coverage."),
                 ("Owner-Operated", "You deal directly with the owners — not a call center."),
                 ("Permits Handled", "We confirm whether your address falls under Hillsborough County or the City of Tampa and file the permit."),
-                ("Financing Available", "Ask about financing options for your project."),
+                ("Financing Available", "Pay over time with <a href=\"financing.html\">Wisetack financing</a>, plans up to 24 months."),
             ],
         },
         "budget": {

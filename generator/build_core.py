@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Builds: homepage, about, service-areas, contact, faq, gallery, pricing, privacy-policy"""
 from pathlib import Path
-from data import SITE, TOWNS, COPY, CURRENT, THEME, T, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, PRICING_TABLE, WARRANTY, HOA_GUIDE, FENCE_CARE, FINANCING
+from data import SITE, TOWNS, COPY, CURRENT, THEME, T, MATERIALS, STYLES, COMMERCIAL, OTHER_SERVICES, FAQS, PRICING_TABLE, WARRANTY, HOA_GUIDE, FENCE_CARE, FINANCING, GOOGLE_REVIEWS
 from templates import write_page, write_404, page, page_hero, faq_accordion, mini_quote_form, contact_form_card, map_section, town_chips, cta_banner, fence_illustration, warranty_seal, warranty_callout
 
 
@@ -151,7 +151,7 @@ def home_why(alt=False):
         ("76-Week Workmanship Warranty", "Every installation is backed by our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a>, plus the manufacturer's warranty on materials."),
         COPY['why_local'],
         ("We Handle Your Permit", "In most cases we manage the local permitting process for you, included in your price."),
-        ("Flexible Financing", "Ask about flexible financing options to make your project fit your budget."),
+        ("Financing with Wisetack", "Pay over time with <a href=\"financing.html\">Wisetack financing</a>: plans up to 24 months, including 0% APR for qualified customers."),
     ])
     cards = "".join(f"""
 <div class="card">
@@ -225,14 +225,29 @@ def home_diy(alt=True):
         + '\n    <div class="center" style="margin-top:24px"><a class="btn btn-blue" href="diy-fence.html">Ask About DIY</a></div>', alt)
 
 
+DEFAULT_REVIEW_PICKS = ["jacqueline", "gooch", "elizabeth_h", "angel", "michael_c", "kelsey"]
+
+
+def review_quotes():
+    return [GOOGLE_REVIEWS[k] for k in T("reviews.picks", DEFAULT_REVIEW_PICKS)]
+
+
+def review_card(q):
+    text, who, job, office = q
+    return f'''
+      <figure class="card review-quote"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote>&ldquo;{text}&rdquo;</blockquote><figcaption><strong>{who}</strong><span>{job} · Google review, {office} office</span></figcaption></figure>'''
+
+
 def home_reviews(alt=False):
+    cards = "".join(review_card(q) for q in review_quotes()[:3])
     return section(sec_head(T("home.reviews.eyebrow", "Reviews"),
         T("home.reviews.title", f"See What {SITE['city']}-Area Customers Are Saying"),
-        T("home.reviews.intro", "Read our latest reviews on Google and Facebook, or leave us one of your own after your project."))
+        T("home.reviews.intro", "Rated 5.0 stars on Google by customers of both our Lutz and Tampa offices."))
         + f"""
+    <div class="grid grid-3 review-quotes">{cards}</div>
     <div class="cta-row" style="justify-content:center">
-      <a class="btn btn-navy-outline" href="{SITE['google']}" target="_blank" rel="noopener">Read Our Google Reviews</a>
-      <a class="btn btn-navy-outline" href="{SITE['fb']}" target="_blank" rel="noopener">Read Our Facebook Reviews</a>
+      <a class="btn btn-navy-outline" href="reviews.html">More Reviews</a>
+      <a class="btn btn-navy-outline" href="{SITE['google']}" target="_blank" rel="noopener">Read Them on Google</a>
     </div>""", alt)
 
 
@@ -667,56 +682,64 @@ def build_warranty():
 
 # ---------------------------------------------------------------- REVIEWS
 def build_reviews():
-    quotes = T("reviews.quotes", [])  # real customer reviews only, added with the owner's OK
-    quotes_html = "".join(f'''
-      <figure class="card review-quote"><blockquote>&ldquo;{q}&rdquo;</blockquote><figcaption>— {who}</figcaption></figure>'''
-                          for q, who in quotes)
-    write_review = SITE['google'].rstrip('/') + '/review'
+    quotes_html = "".join(review_card(q) for q in review_quotes())
+    profiles = "".join(f'''
+      <a class="card review-link" href="{url}" target="_blank" rel="noopener"><div class="stars">★★★★★ <b>5.0</b></div><h3>Google: {office} Office</h3><p>{addr}</p><span class="more">Read our reviews &rarr;</span></a>'''
+                       for office, addr, url in SITE['google_profiles'])
     content = page_hero("Reviews", T("reviews.title", f"{SITE['full_brand']} Reviews"),
         T("reviews.lead", f"See what {SITE['city']}-area customers say about working with us — and share your own experience."),
         [("Home", "index.html"), ("Reviews", None)])
     content += f'''
 <section class="section">
-  <div class="container" style="max-width:900px">
-    <p class="reviews-intro">{T("reviews.intro", "We're a locally owned, owner-operated company, and reviews are how most of our new customers find us. Our reviews live on Google and Facebook, where you can read them in full and see every rating.")}</p>
-    <div class="grid grid-2 review-links">
-      <a class="card review-link" href="{SITE['google']}" target="_blank" rel="noopener"><h3>Google Reviews</h3><p>Read our reviews and ratings on Google.</p><span class="more">Read on Google &rarr;</span></a>
-      <a class="card review-link" href="{SITE['fb']}" target="_blank" rel="noopener"><h3>Facebook Reviews</h3><p>See recommendations from customers on Facebook.</p><span class="more">Read on Facebook &rarr;</span></a>
+  <div class="container" style="max-width:1000px">
+    <p class="reviews-intro">{T("reviews.intro", f"{SITE['parent']} has two Google Business Profiles, one for our Lutz office and one for our Tampa office. Both are rated 5.0 stars. Here's a selection of what customers have written, and you can read every review in full on Google.")}</p>
+    <div class="grid grid-3 review-links">{profiles}
+      <a class="card review-link" href="{SITE['fb']}" target="_blank" rel="noopener"><div class="stars fb-mark">Recommended</div><h3>Facebook</h3><p>See recommendations and project photos.</p><span class="more">Visit our page &rarr;</span></a>
     </div>
-    {f'<div class="grid grid-2 review-quotes">{quotes_html}</div>' if quotes else ''}
+    <div class="grid grid-2 review-quotes">{quotes_html}</div>
+    <p class="review-note">Excerpts are lightly trimmed for length (… marks a cut). Read the full reviews on Google.</p>
     <div class="card leave-review">
       <h2>{T("reviews.leave_title", "Had Us Build Your Fence?")}</h2>
       <p>{T("reviews.leave_text", "We'd be grateful for a review. It takes a minute and helps neighbors find a fence company they can trust.")}</p>
-      <a class="btn btn-red" href="{write_review}" target="_blank" rel="noopener">Leave a Google Review</a>
+      <a class="btn btn-red" href="{SITE['google_review']}" target="_blank" rel="noopener">Leave a Google Review</a>
     </div>
   </div>
 </section>
 {cta_banner(T("reviews.cta_title", "Ready to Become Our Next Happy Customer?"), T("reviews.cta_sub", "Get a free, written estimate for your fence."))}
 '''
     write("reviews.html", page(T("reviews.meta_title", f"Reviews | {SITE['full_brand']}"),
-        T("reviews.meta", f"Read customer reviews of {SITE['full_brand']} on Google and Facebook, and leave a review of your own."),
+        T("reviews.meta", f"Read 5-star Google reviews of {SITE['full_brand']} from customers in {SITE['city']} and the Tampa Bay area, and leave a review of your own."),
         "reviews.html", content))
 
 
 # ---------------------------------------------------------------- FINANCING
 def build_financing():
     F = FINANCING
+    facts = "".join(f'<div class="card fin-fact"><div class="fin-big">{t}</div><p>{d}</p></div>' for t, d in F["facts"])
     steps = "".join(f'<div class="card"><h3>{t}</h3><p>{d}</p></div>' for t, d in F["how"])
     notes = "".join(f"<li>{n}</li>" for n in F["notes"])
+    links = " · ".join(f'<a href="{u}" target="_blank" rel="noopener">{t}</a>' for t, u in F["links"])
     content = page_hero("Financing", T("financing.title", F["title"]), T("financing.lead", F["lead"]),
         [("Home", "index.html"), ("Financing", None)])
     content += f'''
 <section class="section">
   <div class="container">
     <div class="hub-intro"><p>{T("financing.intro", F["intro"])}</p></div>
-    <div class="grid grid-4 steps">{steps}</div>
-    <div class="card financing-notes"><h3>Good to Know</h3><ul class="check-list">{notes}</ul></div>
+    <div class="grid grid-4 fin-facts">{facts}</div>
+    <p class="fin-example">{F["example"]}</p>
   </div>
 </section>
-{cta_banner(T("financing.cta_title", "Ask About Financing With Your Estimate"), T("financing.cta_sub", "Request a free estimate and let us know you'd like financing options."))}
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head"><div class="eyebrow">How It Works</div><h2>Four Simple Steps</h2></div>
+    <div class="grid grid-4 steps">{steps}</div>
+    <div class="card financing-notes"><h3>The Fine Print</h3><ul class="check-list">{notes}</ul><p class="fin-links">{links}</p></div>
+  </div>
+</section>
+{cta_banner(T("financing.cta_title", "Ask About Wisetack Financing With Your Estimate"), T("financing.cta_sub", "Request a free estimate and let us know you'd like to pay over time."))}
 '''
-    write("financing.html", page(T("financing.meta_title", f"Fence Financing | {SITE['full_brand']}"),
-        T("financing.meta", f"Financing options for new fence installation from {SITE['full_brand']}, subject to credit approval."),
+    write("financing.html", page(T("financing.meta_title", f"Fence Financing with Wisetack | {SITE['full_brand']}"),
+        T("financing.meta", f"Finance your new fence with Wisetack: projects from $500 to $25,000, plans up to 24 months, 0% APR options for qualified customers. Subject to credit approval."),
         "financing.html", content))
 
 

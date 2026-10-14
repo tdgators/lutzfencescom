@@ -156,7 +156,7 @@ FAQS = [
     ("What is your warranty or guarantee for fence installation?",
      "Every fence we install is backed by our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a>. If there's a defect in our installation or assembly within 76 weeks of your installation date, we'll inspect it and make it right at no charge. Materials are covered separately by the manufacturer's warranty."),
     ("Do you offer financing or payment options?",
-     "Yes — we offer flexible financing options in addition to standard payment terms."),
+     "Yes. We offer <a href=\"financing.html\">financing through Wisetack</a> on projects from $500 to $25,000, with plans up to 24 months and 0% APR options for qualified customers (subject to credit approval)."),
     ("How do you handle issues or disputes after installation?",
      "If anything comes up, we address it directly with a site visit — we'd rather fix it than argue about it."),
     ("Can you provide a timeline for fence installation?",
@@ -342,20 +342,53 @@ FENCE_CARE = dict(
     ],
 )
 
-# Financing page (/financing/). Kept general on purpose: no lender name, rates, or terms are stated
-# until the owner confirms them (sites.py COMMON can add a provider later).
+# Financing page (/financing/): Wisetack, terms as published on 76fence.com/tampa/about/financing.
 FINANCING = dict(
-    title="Fence Financing",
-    lead="Spread the cost of your new fence into monthly payments.",
-    intro="A quality fence is an investment in your home. If you'd rather not pay all at once, ask about financing when we give you your estimate.",
+    title="Fence Financing with Wisetack",
+    lead="Pay for your new fence over time, with plans from 3 to 24 months through our financing partner Wisetack.",
+    intro="A quality fence is an investment in your home. If you'd rather not pay all at once, ask for Wisetack financing with your estimate. The application takes about a minute, and you choose the monthly payment that fits your budget.",
+    facts=[
+        ("$500 to $25,000", "Finance a fence, gate, or repair project in this range."),
+        ("Up to 24 months", "Choose the plan length and monthly payment that work for you."),
+        ("0% to 35.9% APR", "Your rate depends on creditworthiness, and 0% APR plans are available to qualified customers."),
+        ("No hidden fees", "No prepayment penalties, participation fees, or compounding interest."),
+    ],
+    example="For example, a $1,200 purchase could cost $104.89 a month for 12 months at 8.9% APR, or $400 a month for 3 months at 0% APR.",
     how=[
         ("Get your estimate", "We measure your property and give you a written price for the fence you want."),
-        ("Ask about financing", "Let us know you're interested, and we'll share the current financing options and how to apply."),
-        ("Apply and get a decision", "Financing is provided through a third-party lender and is subject to credit approval."),
-        ("Schedule your install", "Once you're approved and your project is signed, we schedule your installation."),
+        ("Ask for financing", "Tell us you'd like to pay over time, and we'll send you a Wisetack application link."),
+        ("Apply in about a minute", "Fill out the short application and see the plans you qualify for."),
+        ("Pick a plan and schedule", "Choose your monthly payment, sign your project, and we put your install on the calendar."),
     ],
     notes=[
-        "Financing is offered through a third-party lender and is subject to credit approval. Terms, rates, and availability vary and can change.",
-        "Applying for financing doesn't obligate you to buy, and asking about it costs nothing.",
+        "All financing is subject to credit approval. Your terms may vary.",
+        "Payment options through Wisetack are provided by our lending partners. Rates range from 0% to 35.9% APR based on creditworthiness. State interest rate caps may apply.",
+        "No other financing charges or participation fees, and applying doesn't obligate you to buy.",
     ],
+    links=[("How Wisetack works", "https://www.wisetack.com/consumers"), ("Wisetack FAQs", "https://www.wisetack.com/faqs")],
 )
+
+
+# Customer reviews from our Google Business Profiles (Lutz and Tampa offices), lightly trimmed (… marks a cut).
+# Excludes reviews from people who say they know the owners personally, and reviews with no text.
+GOOGLE_REVIEWS = {
+    "jacqueline": ("76 Fence installed a vinyl privacy fence in just one day. There were a couple of challenging issues and 76 Fence remedied those on their initial visit… I now have the privacy I wanted and a beautiful fence.", "Jacqueline D.", "Vinyl privacy fence &amp; gates", "Lutz"),
+    "craig": ("I just had a new vinyl fence gate installed by 76 Fence and it looks great!! The installation was done professionally and I'm very happy with the quality of the work and the finished result.", "Craig W.", "Vinyl gate", "Lutz"),
+    "michael_c": ("Prior to this project, I got a quote from several fence companies. I could not be happier with the fact that I went with 76 fence. They truly take care of your project as if it were their own.", "Michael C.", "Vinyl privacy fence", "Lutz"),
+    "elizabeth_c": ("The team was professional, showed up on time, and did a fantastic job installing our fence. They're also just great people to work with—friendly, honest, and easy to communicate with.", "Elizabeth C.", "Vinyl fence", "Lutz"),
+    "margarita": ("76 Fence did an amazing job with our fence! Will totally recommend them to my friends and family!", "Margarita F.", "Vinyl fence", "Lutz"),
+    "kelsey": ("Tom and the team at 76 Fence Tampa provide an exceptional experience from the moment of first contact to the finished product… I wouldn't choose anyone else for my fencing needs.", "Kelsey P.", "Fence installation", "Lutz"),
+    "janet": ("Great work, fast dependable. If I could give them more than five stars, I would.", "Janet M.", "Fence installation", "Lutz"),
+    "mike_w": ("Tom, the owner, is truly the heart and soul of this outstanding business… With great work and excellent value, they are the only way to go in my opinion.", "Mike W.", "Fence installation", "Lutz"),
+    "angel": ("After receiving quotes from three different fence companies, I chose 76 Fence, and I'm glad I did… The finished fence looks amazing, and I highly recommend 76 Fence to anyone considering a new fence installation.", "Angel B.", "Chain link fence", "Lutz"),
+    "delores": ("There was one oversized gate that had to be fabricated and the gate was perfect. I would definitely recommend 76Fence for your fencing needs.", "Delores T.", "Aluminum fence &amp; custom gate", "Lutz"),
+    "gooch": ("I hired 76 FENCE to re-design my vinyl fence due to an overgrown oak tree bowing out the fence… Tom and his staff took great care to analyze the problem and gave me 3 solution options… The fence looks better and is stronger than the original version.", "G. Gutierrez", "Vinyl fence redesign", "Lutz"),
+    "elizabeth_h": ("My parents added an additional fence gate to our existing fence… this addition was a God send for my service dog and myself… [The owner] promised the fence would be completed that day—despite the rain, he kept his promise.", "Elizabeth H.", "New gate", "Lutz"),
+    "michael_g": ("My wife and I were very pleased with the work and the price that 76 Fence provided. They were on time and did great work.", "Michael G.", "Wood privacy fence", "Lutz"),
+    "daniel": ("Called 76 Fence Tampa for a wood privacy fence and got the full red carpet treatment. 6-foot in the back, 4-foot up front, solid craftsmanship… Highly recommend for anyone needing fence installation in the area.", "Daniel H.", "Wood privacy fence", "Tampa"),
+    "bethany": ("We had a 6 ft tan vinyl privacy fence… installed by 76 Fence Tampa, and we couldn't be happier. True white glove service from the free estimate to the final walkthrough, every detail was handled with care.", "Bethany", "Tan vinyl privacy fence &amp; gates", "Tampa"),
+    "mark_i": ("Working with their team seems like we have been neighbors for years. True professionals, highly recommend.", "Mark I.", "Vinyl fence", "Tampa"),
+    "mik": ("Excellent communication and great to work with.", "Mik M.", "Fence project", "Tampa"),
+    "mark_l": ("The communication through the whole process was excellent. They were professional through the job and took the time to handle the tiny details… If you are in need of a fence this is who you should call.", "Mark L.", "Vinyl privacy fence", "Tampa"),
+    "miguel": ("Awesome work, has done multiple work for me and will continue to do business… Can't complain with excellent service.", "Miguel M.", "Vinyl fence &amp; gate repair", "Tampa"),
+}

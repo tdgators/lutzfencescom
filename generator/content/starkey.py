@@ -28,8 +28,8 @@ THEME = dict(
     hero_video="starkey-hero.mp4",
     bands=[("hero/starkey-detail.webp", "Black aluminum puppy-picket fence along a green lawn with pines behind", "Safe for kids and pets", "Puppy-picket aluminum and no-gap privacy fence keep little ones and pets in the yard."), ("hero/starkey-dusk.webp", "Backyard with a wooden play set and black aluminum fence at golden hour", "Room to play", "A fenced backyard that fits Starkey Ranch's guidelines, from plans to approval to install.")],
     home_sections=[
-        ("neighborhoods", False), ("services", True), ("process", False), ("why", True),
-        ("styles", False), ("warranty", True), ("budget", False), ("areas", True), ("faq", False),
+        ("neighborhoods", False), ("services", True), ("process", False), ("why", True), ("styles", False),
+        ("warranty", True), ("reviews", False), ("budget", True), ("areas", False), ("faq", True),
     ],
     detail_layout="guide",
     town_sections=["intro", "materials", "faq", "nearby"],
@@ -41,10 +41,10 @@ CONTENT = {
     "labels": {"estimate": "Get My Free Quote", "glance": "Good to Know", "or_call": "or call", "read_more": "Learn more &rarr;",
                "related_materials": "More Materials to Explore", "related_styles": "More Fence Styles",
                "related_commercial": "Other Commercial Services", "related_other": "Other Services"},
-    "reviews": {"title": "What Families Say About Starkey Fence", "lead": "Reviews from Starkey Ranch, Odessa, and Trinity customers.",
-                "intro": "Families trust us with their kids' and pets' backyard safety. Read our reviews on Google and Facebook."},
+    "reviews": {"picks": ['elizabeth_h', 'jacqueline', 'bethany', 'margarita', 'michael_g', 'mark_l'], "title": "What Families Say About Starkey Fence", "lead": "5-star Google reviews from the families we've built fences for.",
+                "intro": "Families trust us with their kids' and pets' backyard safety. Both of our offices are rated 5.0 stars on Google."},
     "financing": {"title": "Fence Financing for Families", "lead": "Get the backyard fence your family needs and pay over time.",
-                  "intro": "A safe backyard shouldn't have to wait. Ask about financing when we come out for your free quote."},
+                  "intro": "A safe backyard shouldn't have to wait. Ask about Wisetack financing when we come out for your free quote, and pick a monthly payment that fits your family's budget."},
     "care": {"title": "Fence Care for Busy Families", "local": {"title": "Pets, Kids &amp; Pools", "paragraphs": [
         "Dogs dig and kids lean on gates. Every few months, check the bottom of the fence for gaps and make sure gates latch firmly every time.",
         "If you have a pool, test that the pool gate closes and latches on its own from any open position. If it doesn't, call us right away."]}},
@@ -98,7 +98,7 @@ CONTENT = {
                 ("76-Week Workmanship Warranty", "Every install comes with our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a> and the manufacturer's warranty."),
                 ("HOA Help", "We prepare the fence details your HOA's review committee asks for."),
                 ("Permits Handled", "Pasco or Hillsborough — we check which applies to your address and file it."),
-                ("Financing Available", "Ask about financing options."),
+                ("Financing Available", "Monthly payments through <a href=\"financing.html\">Wisetack financing</a>."),
             ],
         },
         "styles": {

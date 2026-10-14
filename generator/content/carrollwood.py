@@ -27,8 +27,8 @@ THEME = dict(
     hero_video="carrollwood-hero.mp4",
     bands=[("hero/carrollwood-detail.webp", "Tan vinyl privacy fence under a live oak with azaleas at its base", "Made for established neighborhoods", "Fences that fit mature trees, older lot lines, and Carrollwood's deed restrictions."), ("hero/carrollwood-dusk.webp", "Lakeside Florida backyard at sunset with a tan vinyl privacy fence", "Privacy without losing the lake", "Privacy on the sides and open views to the water, the way lakefront lots should be fenced.")],
     home_sections=[
-        ("services", False), ("local", True), ("neighborhoods", False), ("why", True),
-        ("gallery", False), ("warranty", True), ("pricing", False), ("faq", True),
+        ("services", False), ("local", True), ("neighborhoods", False), ("why", True), ("gallery", False),
+        ("warranty", True), ("reviews", False), ("pricing", True), ("faq", False),
     ],
     detail_layout="cards",
     town_sections=["intro", "nearby", "materials", "faq"],
@@ -40,10 +40,10 @@ CONTENT = {
     "labels": {"estimate": "Request a Free Estimate", "glance": "What You Get", "or_call": "or call", "read_more": "Read more &rarr;",
                "related_materials": "Other Materials Worth a Look", "related_styles": "Similar Styles",
                "related_commercial": "Other Commercial Services", "related_other": "Related Services"},
-    "reviews": {"title": "Carrollwood Fence Reviews", "lead": "What Carrollwood and Northdale homeowners say about their new fences.",
-                "intro": "A lot of our Carrollwood work comes from neighbors who saw a fence we replaced down the street. You can read our reviews on Google and Facebook."},
+    "reviews": {"picks": ['gooch', 'bethany', 'elizabeth_c', 'mark_l', 'janet', 'daniel'], "title": "Carrollwood Fence Reviews", "lead": "What our customers say about their new fences, from 5-star Google reviews.",
+                "intro": "A lot of our Carrollwood work comes from neighbors who saw a fence we replaced down the street. Both of our offices are rated 5.0 stars on Google. Here's some of what customers have written."},
     "financing": {"title": "Financing a Fence Replacement", "lead": "Replace your old fence now and pay over time.",
-                  "intro": "Replacing an entire backyard fence is a bigger project than a repair. If monthly payments would help, ask about financing when we give you your replacement quote."},
+                  "intro": "Replacing an entire backyard fence is a bigger project than a repair. If monthly payments would help, ask for Wisetack financing when we give you your replacement quote. The application takes about a minute."},
     "care": {"title": "Fence Care for Carrollwood Homes", "local": {"title": "Living With Big Oaks", "paragraphs": [
         "Mature oaks drop leaves, acorns, and branches along fence lines. Clear debris from the base of the fence and trim limbs that rub against it before they cause damage.",
         "Roots can lift posts over time. If you notice a section starting to lean or a gate that suddenly drags, call us before the problem spreads."]}},
@@ -186,7 +186,7 @@ CONTENT = {
         ("Do you repair fences too?",
          "Yes. If your fence just needs a few posts or a gate fixed, we can repair it — and we'll tell you honestly if replacement makes more sense."),
         ("Is financing available?",
-         "Yes — ask about financing options when we give you your estimate."),
+         "Yes. We offer <a href=\"financing.html\">Wisetack financing</a> on projects from $500 to $25,000, with plans up to 24 months. Ask for it with your estimate."),
     ],
     "gallery": {
         "title": "Fence Types for Carrollwood Homes",

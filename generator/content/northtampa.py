@@ -27,7 +27,8 @@ THEME = dict(
     bands=[("hero/northtampa-dusk.webp", "Black aluminum pool fence around a lit pool overlooking a pond at twilight", "Pool fencing that passes inspection", "Code-compliant aluminum around the pool, with nothing blocking the preserve view.")],
     home_sections=[
         ("local", False), ("styles", True), ("services", False), ("estimate", True), ("why", False),
-        ("budget", True), ("warranty", False), ("gallery", True), ("areas", False), ("faq", True),
+        ("budget", True), ("warranty", False), ("reviews", True), ("gallery", False), ("areas", True),
+        ("faq", False),
     ],
     detail_layout="guide",
     town_sections=["intro", "materials", "faq", "nearby"],
@@ -52,10 +53,10 @@ CONTENT = {
         "cta_title": "Let's Get Your Fence Approved",
         "cta_sub": "Book a free consultation — we'll design to your community's standards and prepare your submission details.",
     },
-    "reviews": {"title": "What North Tampa Homeowners Say", "lead": "Reviews from New Tampa, Tampa Palms, and Temple Terrace customers.",
-                "intro": "We're an owner-run team, and our reputation in North Tampa's neighborhoods matters to us. Read our reviews on Google and Facebook."},
+    "reviews": {"picks": ['michael_c', 'bethany', 'mark_l', 'craig', 'elizabeth_c', 'mike_w'], "title": "What North Tampa Homeowners Say", "lead": "5-star Google reviews from homeowners who chose 76 FENCE Tampa.",
+                "intro": "We're an owner-run team, and our reputation in North Tampa's neighborhoods matters to us. Both of our offices are rated 5.0 stars on Google."},
     "financing": {"title": "Financing Your New Fence", "lead": "Flexible monthly payment options for New Tampa and North Tampa homeowners.",
-                  "intro": "Upgrading to aluminum around the pool or vinyl privacy across the backyard? Ask about financing during your free consultation."},
+                  "intro": "Upgrading to aluminum around the pool or vinyl privacy across the backyard? Ask about Wisetack financing during your free consultation."},
     "care": {"title": "Caring for Your Fence in North Tampa", "local": {"title": "Pond, Preserve &amp; HOA Tips", "paragraphs": [
         "Homes on ponds and preserves see more moisture and mildew. A gentle wash in spring and fall keeps vinyl and aluminum looking new — and keeps you in line with HOA appearance standards.",
         "Many associations expect fences to stay clean and in good repair. A quick seasonal check of gates, latches, and post caps saves a reminder letter."]}},
@@ -220,7 +221,7 @@ CONTENT = {
         ("Do you repair fences?",
          "Yes. We repair damaged panels, leaning posts, and gates on most fence types, even if another company installed them."),
         ("Is financing available?",
-         "Yes — ask about financing options during your consultation."),
+         "Yes. We offer <a href=\"financing.html\">Wisetack financing</a>, with plans up to 24 months and 0% APR options for qualified customers. Ask during your consultation."),
     ],
     "gallery": {
         "label": "{cat} fencing",

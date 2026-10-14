@@ -28,8 +28,8 @@ THEME = dict(
     hero_video="southtampa-hero.mp4",
     bands=[("hero/southtampa-detail.webp", "White wood picket fence in front of ferns and bromeliads beside a brick sidewalk", "Classic fences for historic streets", "Picket, iron-look aluminum, and wood styles that suit Hyde Park and Palma Ceia homes."), ("hero/southtampa-dusk.webp", "Palm-lined bayside walkway with a white balustrade at dusk", "Built for the bay air", "Salt air is hard on fencing, so we recommend materials and hardware that hold up to it.")],
     home_sections=[
-        ("local", False), ("estimate", True), ("styles", False), ("neighborhoods", True),
-        ("why", False), ("gallery", True), ("warranty", False), ("pricing", True), ("faq", False),
+        ("local", False), ("estimate", True), ("styles", False), ("neighborhoods", True), ("why", False),
+        ("gallery", True), ("warranty", False), ("reviews", True), ("pricing", False), ("faq", True),
     ],
     detail_layout="longform",
     town_sections=["intro", "nearby", "faq", "materials"],
@@ -41,10 +41,10 @@ CONTENT = {
     "labels": {"estimate": "Request an Estimate", "glance": "In Brief", "or_call": "or call", "read_more": "Continue reading &rarr;",
                "related_materials": "Other Materials", "related_styles": "Related Styles",
                "related_commercial": "Related Services", "related_other": "More Ways We Help"},
-    "reviews": {"title": "South Tampa Fence Reviews", "lead": "Reviews from Hyde Park, Palma Ceia, Davis Islands, and South Tampa customers.",
-                "intro": "We take care with older homes and tight lots, and our customers notice. Read their reviews on Google and Facebook."},
+    "reviews": {"picks": ['jacqueline', 'miguel', 'gooch', 'kelsey', 'mark_i', 'daniel'], "title": "South Tampa Fence Reviews", "lead": "5-star Google reviews from customers of our Tampa and Lutz offices.",
+                "intro": "We take care with older homes and tight lots, and our customers notice. Both of our offices are rated 5.0 stars on Google."},
     "financing": {"title": "Financing Your Fence", "lead": "Monthly payment options for South Tampa homeowners.",
-                  "intro": "Ask about financing during your in-home estimate — we'll share the current options."},
+                  "intro": "Ask about Wisetack financing during your in-home estimate. The application takes about a minute."},
     "care": {"title": "Fence Care Near the Bay", "local": {"title": "Salt Air &amp; Humidity", "paragraphs": [
         "Close to the bay, salt settles on fences and hardware. Rinse aluminum, vinyl, and gate hardware with fresh water every month or two to slow corrosion.",
         "Check hinges and latches for rust and replace corroded fasteners with stainless steel before they fail."]}},
@@ -106,7 +106,7 @@ CONTENT = {
                 ("76-Week Workmanship Warranty", "Every fence carries our <a href=\"warranty.html\">76-Week Limited Workmanship Warranty</a> and the manufacturer's warranty."),
                 ("Owner-Operated", "You work directly with the owners, from estimate to final walkthrough."),
                 ("Careful on Tight Sites", "We plan access, protect landscaping, and keep a tidy site on close-set lots."),
-                ("Financing Available", "Ask about financing options."),
+                ("Financing Available", "Plans up to 24 months through <a href=\"financing.html\">Wisetack financing</a>."),
             ],
         },
         "gallery": {
