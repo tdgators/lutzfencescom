@@ -1,9 +1,9 @@
-// Builds a seamless hero-banner loop from short clips: each clip plays forward then in
-// reverse (a "boomerang"), clips are joined with crossfades, and the end crossfades back
-// into the start so the loop has no visible jump.
+// Builds a seamless hero-banner loop from short clips: each clip plays forward once, clips
+// are joined with crossfades, and the end crossfades back into the start so the loop has no
+// visible jump. Six 5s clips make a ~28s loop.
 //
 // Usage: swift tools/hero_loop.swift out.mp4 clipA.mp4 [clipB.mp4 ...]
-// Output plays at 0.9x speed, H.264 at the first clip's size (use the 960x540 compressed clips), ~1.2 Mbps, no audio.
+// Output plays at 0.9x speed, H.264 at the first clip's size (use the 960x540 compressed clips), ~1.0 Mbps, no audio.
 import AVFoundation
 import CoreImage
 
@@ -11,8 +11,8 @@ let args = CommandLine.arguments
 guard args.count >= 3 else { print("usage: hero_loop out.mp4 clip1.mp4 [clip2.mp4 ...]"); exit(1) }
 let outURL = URL(fileURLWithPath: args[1])
 let clipURLs = args.dropFirst(2).map { URL(fileURLWithPath: $0) }
-let fadeFrames = 14  // ~0.6s at 24fps
-let speed = 0.9     // play slightly slower: calmer motion, and two 5s clips make a 20s+ loop
+let fadeFrames = 18  // ~0.8s at 24fps
+let speed = 0.9     // play slightly slower: calmer motion, and a longer loop
 let ctx = CIContext()
 
 func readFrames(_ url: URL) -> ([CGImage], CMTime, CGSize) {
@@ -50,7 +50,7 @@ func blend(_ a: CGImage, _ b: CGImage, _ t: Double) -> CGImage {
     return ctx.createCGImage(o, from: CGRect(x: 0, y: 0, width: a.width, height: a.height))!
 }
 
-// Join boomeranged clips, crossfading each scene change.
+// Join the clips, crossfading each scene change.
 var seq: [CGImage] = []
 var frameDur = CMTime(value: 1, timescale: 24)
 var size = CGSize.zero
@@ -58,12 +58,11 @@ for (i, url) in clipURLs.enumerated() {
     let (f, d, s) = readFrames(url)
     if i == 0 { frameDur = CMTimeMultiplyByFloat64(d, multiplier: 1 / speed); size = s }
     let fit = cover(f, size)
-    let boom = fit + fit.reversed().dropFirst()
-    if seq.isEmpty { seq = boom; continue }
-    let k = min(fadeFrames, seq.count, boom.count)
+    if seq.isEmpty { seq = fit; continue }
+    let k = min(fadeFrames, seq.count, fit.count)
     let tail = seq.count - k
-    for j in 0..<k { seq[tail + j] = blend(seq[tail + j], boom[j], Double(j + 1) / Double(k + 1)) }
-    seq += boom.dropFirst(k)
+    for j in 0..<k { seq[tail + j] = blend(seq[tail + j], fit[j], Double(j + 1) / Double(k + 1)) }
+    seq += fit.dropFirst(k)
 }
 // Close the loop: fade the last frames into the opening frames, then start after them.
 let k = min(fadeFrames, seq.count / 4)
@@ -76,7 +75,7 @@ let writer = try! AVAssetWriter(outputURL: outURL, fileType: .mp4)
 let w = Int(size.width), h = Int(size.height)
 let input = AVAssetWriterInput(mediaType: .video, outputSettings: [
     AVVideoCodecKey: AVVideoCodecType.h264, AVVideoWidthKey: w, AVVideoHeightKey: h,
-    AVVideoCompressionPropertiesKey: [AVVideoAverageBitRateKey: 1_200_000, AVVideoProfileLevelKey: AVVideoProfileLevelH264HighAutoLevel],
+    AVVideoCompressionPropertiesKey: [AVVideoAverageBitRateKey: 1_000_000, AVVideoProfileLevelKey: AVVideoProfileLevelH264HighAutoLevel],
 ])
 let adaptor = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: input, sourcePixelBufferAttributes: [
     kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA, kCVPixelBufferWidthKey as String: w, kCVPixelBufferHeightKey as String: h,
