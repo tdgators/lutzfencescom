@@ -22,13 +22,18 @@ def nav_html(active=""):
       {materials_links}
       <div class="dd-head">Fence Styles</div>
       {styles_links}
+      <div class="dd-head">Pools, Pets &amp; Gates</div>
+      <a href="pool-fence.html">Pool Fences</a>
+      <a href="dog-fence.html">Dog &amp; Pet Fences</a>
+      <a href="fence-gates.html">Fence Gates</a>
+      <a href="driveway-gates.html">Driveway Gates</a>
       <div class="dd-head">More</div>
       <a href="fence-gallery.html">Fence Gallery</a>
       <a href="fence-pricing.html">Pricing</a>
     '''
     commercial_dd = "".join(f'<a href="{c["slug"]}.html">{c["name"]}</a>' for c in COMMERCIAL)
     commercial_dd = f'<a href="commercial-fencing.html">Commercial Fencing (All)</a>' + commercial_dd
-    other_dd = "".join(f'<a href="{o["slug"]}.html">{o["name"]}</a>' for o in OTHER_SERVICES) + '<a href="fence-care.html">Fence Care &amp; Easy Fixes</a>'
+    other_dd = "".join(f'<a href="{o["slug"]}.html">{o["name"]}</a>' for o in OTHER_SERVICES) + '<a href="fence-replacement.html">Fence Replacement</a><a href="hurricane-fence-repair.html">Storm &amp; Hurricane Repair</a><a href="fence-care.html">Fence Care &amp; Easy Fixes</a><a href="pool-fence-inspection-florida.html">Pool Inspection Guide</a>'
     about_dd = '<a href="about-us.html">Meet the Team</a><a href="warranty.html">Our Warranty</a><a href="hoa-fence-approval-guide.html">HOA Approval Guide</a><a href="reviews.html">Reviews</a><a href="financing.html">Financing</a><a href="service-areas.html">Service Areas</a>'
     contact_dd = '<a href="contact-us.html">Contact Us</a><a href="faq.html">FAQs</a>'
 
@@ -560,7 +565,10 @@ _PHOTO_KINDS = {
 }
 
 
-def fence_illustration(kind):
+def fence_illustration(kind, alt=None):
+    if kind.endswith(".webp"):  # page photo in assets/images/pages/
+        return (f'<img src="assets/images/pages/{kind}" alt="{alt or ''}" '
+                f'loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">')
     photo = _PHOTO_KINDS.get(kind)
     if photo:
         return (f'<img src="assets/images/materials/{photo}" alt="{kind.replace("-", " ").title()} fence" '

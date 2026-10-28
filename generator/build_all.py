@@ -8,6 +8,7 @@ import shutil
 from pathlib import Path
 
 import build_core, build_services, build_towns, build_pdf, build_sitemap
+import build_new
 from data import CURRENT, THEME, use_site
 from sites import SITES
 from templates import WRITTEN_PAGES
@@ -62,6 +63,7 @@ def build_site(domain):
     build_core.build_pricing(); build_core.build_privacy(); build_core.build_warranty(); build_core.build_hoa_guide(); build_core.build_reviews(); build_core.build_financing(); build_core.build_care(); build_core.build_404()
     build_services.build_materials(); build_services.build_styles()
     build_services.build_commercial(); build_services.build_other_services()
+    build_new.build_new_pages()
     build_towns.build_towns()
     build_pdf.build_warranty_pdf()
     build_sitemap.build_sitemap()

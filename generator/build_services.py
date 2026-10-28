@@ -29,6 +29,13 @@ def guide_page(path, crumbs, kicker, name, tagline, c, img_kind, related_title, 
   <span class="more">{T("labels.read_more", "Read more &rarr;")}</span>
 </a>""" for title, href, blurb in related)
     content = page_hero(kicker, name, tagline, crumbs)
+    faq_html = (f"""
+<section class="section">
+  <div class="container" style="max-width:860px">
+    <div class="section-head"><h2>{T("labels.page_faq", "Common Questions")}</h2></div>
+    {faq_accordion(c["faqs"])}
+  </div>
+</section>""" if c.get("faqs") else "")
     glance_title = c.get("glance_title", T("labels.glance", "At a Glance"))
     if layout == "cards":  # intro, highlight tiles, each topic as its own card
         tiles = "".join(f'<div class="hl-tile"><span>✓</span>{g}</div>' for g in c.get("glance", []))
@@ -45,7 +52,7 @@ def guide_page(path, crumbs, kicker, name, tagline, c, img_kind, related_title, 
   </div>
 </section>
 <section class="guide-photo">
-  <div class="container"><div class="tile-img wide">{fence_illustration(img_kind)}</div></div>
+  <div class="container"><div class="tile-img wide">{fence_illustration(img_kind, c.get('photo_alt'))}</div></div>
 </section>"""
     elif layout == "longform":  # one centered article: highlights strip, photo after the intro
         chips = "".join(f'<li>{g}</li>' for g in c.get("glance", []))
@@ -54,7 +61,7 @@ def guide_page(path, crumbs, kicker, name, tagline, c, img_kind, related_title, 
   <div class="container">
     <div class="lf-highlights"><strong>{glance_title}</strong><ul>{chips}</ul></div>
     <article class="lf-article">{intro}
-      <div class="tile-img lf-photo">{fence_illustration(img_kind)}</div>
+      <div class="tile-img lf-photo">{fence_illustration(img_kind, c.get('photo_alt'))}</div>
       {sections}
       <p class="lf-cta"><a class="btn btn-red" href="contact-us.html">{T("labels.estimate", "Get a Free Estimate")}</a>
         <a class="glance-phone" href="tel:{SITE['phone_tel']}">{T("labels.or_call", "or call")} {SITE['phone']}</a></p>
@@ -65,6 +72,7 @@ def guide_page(path, crumbs, kicker, name, tagline, c, img_kind, related_title, 
         body = None
     if body:
         content += body + f"""
+{faq_html}
 <section class="section section-alt">
   <div class="container">
     <div class="section-head"><h2>{related_title}</h2></div>
@@ -91,8 +99,9 @@ def guide_page(path, crumbs, kicker, name, tagline, c, img_kind, related_title, 
   </div>
 </section>
 <section class="guide-photo">
-  <div class="container"><div class="tile-img wide">{fence_illustration(img_kind)}</div></div>
+  <div class="container"><div class="tile-img wide">{fence_illustration(img_kind, c.get('photo_alt'))}</div></div>
 </section>
+{faq_html}
 <section class="section section-alt">
   <div class="container">
     <div class="section-head"><h2>{related_title}</h2></div>

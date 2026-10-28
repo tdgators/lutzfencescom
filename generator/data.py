@@ -18,7 +18,7 @@ def use_site(domain):
     SITE.clear(); SITE.update(COMMON); SITE.update(cfg["site"])
     TOWNS[:] = cfg["towns"]
     COPY.clear(); COPY.update(cfg["copy"])
-    CURRENT.clear(); CURRENT.update(out_dir=Path(cfg["out_dir"]), domain=domain)
+    CURRENT.clear(); CURRENT.update(out_dir=Path(cfg["out_dir"]), domain=domain, content=cfg.get("content"))
     CONTENT.clear(); THEME.clear()
     if cfg.get("content"):
         mod = importlib.import_module(f"content.{cfg['content']}")

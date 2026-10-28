@@ -1,166 +1,194 @@
 {
  "/": {
-  "hash": "d0979516ff4c353b9b42780b5a0d4ce9571f4cbe1ed7768c2065d8c149daa178",
-  "lastmod": "2026-10-14"
+  "hash": "7693b38e02eb65cac1255ae3525041578388e18075ab118a01926ce7d4c69d53",
+  "lastmod": "2026-10-28"
  },
  "/about-us/": {
-  "hash": "9ab130a274298cbff677e7f6dfb084dd0e7d14f4644c6a348b8e1a1c75b43c1c",
-  "lastmod": "2026-10-14"
+  "hash": "7bde8c28351f27559058e6a56da8fc49c71b6e1bad053089de54967155fccf22",
+  "lastmod": "2026-10-28"
  },
  "/aluminum-fence/": {
-  "hash": "0a1a0d0ccb89093f9966446b57ff2cbf11868a3c3e4baa444856907eb34a4b2d",
-  "lastmod": "2026-10-14"
+  "hash": "a9aef319f0cf54ac56d6a845af55e06ce4f2c165cd224e4e435ca56a8209e0c8",
+  "lastmod": "2026-10-28"
  },
  "/artificial-grass/": {
-  "hash": "a13fe73624836238d40556d391e60231326f8aa6e0c6804f3b2b01b8f4fee58a",
-  "lastmod": "2026-10-14"
+  "hash": "8adabfa11f30e07586f94b1bb9ce007e6210de3af294f67dca599e75fa5f47b1",
+  "lastmod": "2026-10-28"
  },
  "/chain-link-fence/": {
-  "hash": "def53c19ed2f1bab8224145eef44d9c92ded6d08dac18ef0cb809ae176f9fd3e",
-  "lastmod": "2026-10-14"
+  "hash": "b068e2e55cbe8ed097be676e89f7a37ddb1148db1954b74f648de15892a6335c",
+  "lastmod": "2026-10-28"
  },
  "/commercial-fencing/": {
-  "hash": "8a6cd2f67b24ad0e322941cc356f22c41fc2eb32df874441b5cee1d5e7cbb25d",
-  "lastmod": "2026-10-14"
+  "hash": "11741ef21e69aaf5e9848cd3094478a6a3f1fbae46c41a4b99c9229c23f3f24d",
+  "lastmod": "2026-10-28"
  },
  "/composite-fence/": {
-  "hash": "43edc6f6680928119ad29a20d81276f8adfb28497ed6c1b9d678e6967ce2527c",
-  "lastmod": "2026-10-14"
+  "hash": "ca2b64f1525c0644ffc26df9250190e8204b06254c2e062a6afd3483f4e17039",
+  "lastmod": "2026-10-28"
  },
  "/contact-us/": {
-  "hash": "b393999c92c7fb851e94966fe97914e30d1de8dcb350621ef5a657875c751084",
-  "lastmod": "2026-10-14"
+  "hash": "83cc7f6b81a877bb5ede81454ca62d85f8ad50e612e842e3f17c731f49671160",
+  "lastmod": "2026-10-28"
  },
  "/deck-railing/": {
-  "hash": "cd8d00f08b86bee90bab0c500e3dc74955810a485c788b6e56539dc2c51d349c",
-  "lastmod": "2026-10-14"
+  "hash": "4d58161aa387b59ba46431c675380a45c3903ef9719b6a33915658a20ff2cfaa",
+  "lastmod": "2026-10-28"
  },
  "/diy-fence/": {
-  "hash": "9561d9c8016ebbfc001445d3f7a11e3b9f089fd22f31ff72d18c6265172a222b",
-  "lastmod": "2026-10-14"
+  "hash": "a14385a674d5d54ca499d59e23854d8ec3af1c7bb107d14eaafb837728cda6ee",
+  "lastmod": "2026-10-28"
+ },
+ "/dog-fence/": {
+  "hash": "acb58230cae5a6acc0352bc49a1e0981c7511de40fe609e3db8b7f50072ad681",
+  "lastmod": "2026-10-28"
+ },
+ "/driveway-gates/": {
+  "hash": "2722c3e38bf0cc739f76babd0c8c149a6361fc868404be934abd9b99fa178e3c",
+  "lastmod": "2026-10-28"
  },
  "/dumpster-enclosures/": {
-  "hash": "82543e675c6c3e937f66da25a0b3f7ee4db2e0605d72afeafaa138776e5f406d",
-  "lastmod": "2026-10-14"
+  "hash": "01100b4c620809b109d88d91fdea7ef47a492ed2446f2e17cc3e5f6e18ffecd3",
+  "lastmod": "2026-10-28"
  },
  "/faq/": {
-  "hash": "b864ae26bf27b392e4813dd4ae6583281d0d59cdd2ba41d696bc4da444def57d",
-  "lastmod": "2026-10-14"
+  "hash": "6713c3955669117900260a566cad87e57cd97ff1892c758c99fe43df1545e620",
+  "lastmod": "2026-10-28"
  },
  "/fence-care/": {
-  "hash": "aa4156c849586d558abe0488a4757de499df77d53481bfb1696d20b96d17d3d2",
-  "lastmod": "2026-10-14"
+  "hash": "9860d5f5381624889bb35be950d4f8eeaa51afad7356220936d82a7111615cbb",
+  "lastmod": "2026-10-28"
  },
  "/fence-company-citrus-park-fl/": {
-  "hash": "3010119cb62d987cb2f8cbc28c7310dccc07ac552c9c42b20239e9fe47388763",
-  "lastmod": "2026-10-14"
+  "hash": "006fff3334c05bb99d0758ed86fbbb18cca55ab361985de2835e94df098f265b",
+  "lastmod": "2026-10-28"
  },
  "/fence-company-egypt-lake-leto-fl/": {
-  "hash": "53ca6d5867cce40a0f0b6fcc9129a4d784b52c948e5de45696bd44732fa94013",
-  "lastmod": "2026-10-14"
+  "hash": "2aac6dff01370254c73e64809e04b289074577fb596762c0740fd4cee7dc5f68",
+  "lastmod": "2026-10-28"
  },
  "/fence-company-town-n-country-fl/": {
-  "hash": "d85e9f48260e610b64c2c1824e96dc00fb8cb294c4756c0e9af64972eaea4ed6",
-  "lastmod": "2026-10-14"
+  "hash": "a18729441e4fe05c81e44d80f26dbafa65f57d18d31f08cf44ebe11d505e1f52",
+  "lastmod": "2026-10-28"
  },
  "/fence-company-westchase-fl/": {
-  "hash": "7f3cd3592ff9ec3803ced823efca9380d663534b08f04baa89f14203bfd0cd85",
-  "lastmod": "2026-10-14"
+  "hash": "0933ea39c9894bde95af71ec1b5b30a095209cd42f64237e7b43da84648aa0d8",
+  "lastmod": "2026-10-28"
  },
  "/fence-gallery/": {
-  "hash": "a7c797919a7d2ecbff62f37ce16120b1af983ec92a1cc0e70fa290e8a351b283",
-  "lastmod": "2026-10-14"
+  "hash": "eb37580efc6bfaf01a79dee2b4ef42ea444a6b728e5cc784f1c7807af1ffc54c",
+  "lastmod": "2026-10-28"
+ },
+ "/fence-gates/": {
+  "hash": "a222c7575a46846875ae4dd50e4a2fef0d20ea67e91534c1eba8f34bc126c0ec",
+  "lastmod": "2026-10-28"
  },
  "/fence-materials/": {
-  "hash": "6c4e2b43b09fb0dca4b566cc02723cb810637cfb02cd1608ab5148861f57f3ff",
-  "lastmod": "2026-10-14"
+  "hash": "d5033c6f1f97955e8c4a309701c772359033814ff36dd2e64d21a73317fcc977",
+  "lastmod": "2026-10-28"
  },
  "/fence-pricing/": {
-  "hash": "314dc1405306ddd1519a5f50c70af147cfca0a063dc568d5ec09ce4979998716",
-  "lastmod": "2026-10-14"
+  "hash": "b8e7a74700f78e73dfebfe8d85fd67bd881a357a625d3f22cec0cd2b8946a533",
+  "lastmod": "2026-10-28"
  },
  "/fence-repair/": {
-  "hash": "6e1017572ddcb1ef28c448b414b3bb64f6a4a8f72a7ce720e1775705b853df68",
-  "lastmod": "2026-10-14"
+  "hash": "a399850958eecf5dc5a2ef3c6d299fbf422f19c220801968df91596133eebe02",
+  "lastmod": "2026-10-28"
+ },
+ "/fence-replacement/": {
+  "hash": "235877107b99a9034dc0910b97cc313ba2d3535ff3a95160c9f53802236457cb",
+  "lastmod": "2026-10-28"
  },
  "/fence-staining/": {
-  "hash": "ce59f2aff1de28e1b96814d74e501e4fbfd7ba9a60ac3a1c10cb61aa698e7195",
-  "lastmod": "2026-10-14"
+  "hash": "dafd7464278c88c7b94ae6e72fc6ad4741661451309c3a1c4f52ff2f8a764eb6",
+  "lastmod": "2026-10-28"
  },
  "/fence-styles/": {
-  "hash": "8bb0918713c9d4f9d459aca14ee6b60d8351bab824bff9e5ff5cd7e78858e849",
-  "lastmod": "2026-10-14"
+  "hash": "b9e8b23de55946ec1caf63a03c252c028aab5fb6b3d35aaf5fd83520a7ddad8f",
+  "lastmod": "2026-10-28"
  },
  "/financing/": {
-  "hash": "03a487114e3a4f8754a508ef157871ffc704961b9f8d29de26b805418a33663c",
-  "lastmod": "2026-10-14"
+  "hash": "e2cdc53e27b02d59430d43ec9e9449c97fb525e088d9c9fb04a5c54aaa393f34",
+  "lastmod": "2026-10-28"
  },
  "/hoa-fence-approval-guide/": {
-  "hash": "c1eb7a347e98461356bce512234ba9b3edd69f3f8b74ded7e31afbe3fec46176",
-  "lastmod": "2026-10-14"
+  "hash": "37617272b2dbe42103229dd6c8573aa1e86c0e1eda00be4c83ef1e613f9dcdf0",
+  "lastmod": "2026-10-28"
  },
  "/hoa-fencing/": {
-  "hash": "22508c29ef49dac14e5654d7def2097a6a6e122df0ff38e528fbe0e0b56a605a",
-  "lastmod": "2026-10-14"
+  "hash": "8678560f213c9046c3befa675314994b3e81a1add4b54da3f289c5ba88f14778",
+  "lastmod": "2026-10-28"
  },
  "/horizontal-fence/": {
-  "hash": "dfa0d7c59f01456dce003a5b0a0ff3b3035b71b742895fb8af90c4c4af3bbd9e",
-  "lastmod": "2026-10-14"
+  "hash": "72445b45c0b8929fff52cc3e4a3e340cf51150077b58a0f5f8d2b9f28b71fd8b",
+  "lastmod": "2026-10-28"
+ },
+ "/hurricane-fence-repair/": {
+  "hash": "79099e0bd7694149485472411abe019731e1e6728da9a1046899f0fd4fb7feba",
+  "lastmod": "2026-10-28"
  },
  "/industrial-fencing/": {
-  "hash": "36a20b3ae888a85cca7a03e581c737099e75dcdd9bc001580fb8b37479736ce2",
-  "lastmod": "2026-10-14"
+  "hash": "07e5c393d433e2a809df84f1aa85f666b77335f254285649b1d4e89b8a64674b",
+  "lastmod": "2026-10-28"
  },
  "/picket-fence/": {
-  "hash": "3d320ea3580efec830980ad94665ed06f32f19ee2931d4067ad88c985ffb14fa",
-  "lastmod": "2026-10-14"
+  "hash": "36b03adc100192bc3b470a32eb333a01a2859dfd3b20c1f4bb63898a08aeac32",
+  "lastmod": "2026-10-28"
+ },
+ "/pool-fence-inspection-florida/": {
+  "hash": "4d28fed0f308c3c338054881ba00fdd13181aa43075e298cd40a678d7bc41af9",
+  "lastmod": "2026-10-28"
+ },
+ "/pool-fence/": {
+  "hash": "19813af206bf924dc87a57ed4a2ded09bfee7a3979cc5db1d3fbdb1488c84045",
+  "lastmod": "2026-10-28"
  },
  "/privacy-fence/": {
-  "hash": "e786b4ace75e9362500087a3ca4c379c49cff87cedecc7762750ee23b386f55c",
-  "lastmod": "2026-10-14"
+  "hash": "f0cb4b699b75e1a7a179af8e3396752b4058bbbda5c5fe9dcff9d9d7d66fc431",
+  "lastmod": "2026-10-28"
  },
  "/privacy-policy/": {
-  "hash": "fc78f4ccccecf9838f5b9611971a274a2f24e4718d7336c2741b471c83c4162e",
-  "lastmod": "2026-10-14"
+  "hash": "92eed0bc7453c1cd48f313bbae6ddc792f42fa84f2af42d7b168a181ae7d9369",
+  "lastmod": "2026-10-28"
  },
  "/retaining-walls/": {
-  "hash": "408033654dc97f68ac2e147b0520fd16528339e695599b8e86f2111e6131b959",
-  "lastmod": "2026-10-14"
+  "hash": "729225ee65b7346afcafa2521cdbf422da8cf8ada4b5083a5a7ff11b5045f0d4",
+  "lastmod": "2026-10-28"
  },
  "/reviews/": {
-  "hash": "6e6b8c1df661595e58d622d6528f8b45a3b30b9f889fda1af5675732ac53caba",
-  "lastmod": "2026-10-14"
+  "hash": "3c1656bb4866ca9fbad40e3dd6303e5a4cb30d2fd0a6fbfec7c669a1d2e8dd9d",
+  "lastmod": "2026-10-28"
  },
  "/security-fencing/": {
-  "hash": "76bad348b876db1e8b046a3e30fe30fb2c1f6fb30107bbbc5a3ba826276c5d67",
-  "lastmod": "2026-10-14"
+  "hash": "d9e7f72bea72dd0837a9888d836183aec92f463e5cb236a8398d892e3fd10104",
+  "lastmod": "2026-10-28"
  },
  "/semi-privacy-fence/": {
-  "hash": "d8a1b47c964dc3fa50f07a8c9f7e4b7ccfa2e9f9891580f122eaf9725a83e6e3",
-  "lastmod": "2026-10-14"
+  "hash": "771f097c5bbd6894843210fef90ca4d1be61776fb1edb3357a9cf39f3b1c38f1",
+  "lastmod": "2026-10-28"
  },
  "/service-areas/": {
-  "hash": "566bde5af1e70c07a5ec1c44c794a68cc2bf5ba06caaef0b1e1eefc06ab7ec90",
-  "lastmod": "2026-10-14"
+  "hash": "e4eaf57d879eb7fd8e0559c837b4bd1bf8c3176c59d9556af3e01a960f6f06bf",
+  "lastmod": "2026-10-28"
  },
  "/split-rail-fence/": {
-  "hash": "8978686bc06b5e18d75d318a8ccfa81ec6674acfbf54ba203b2d84e7ebe4b31d",
-  "lastmod": "2026-10-14"
+  "hash": "dbb7992b5d2dd6f744f7563b5836efef19695c916803bc66f4ec7f50ae541a5e",
+  "lastmod": "2026-10-28"
  },
  "/steel-wrought-iron-fence/": {
-  "hash": "ad584b5812673258d689d232830da723a93131edb5d2d58ef52fda89915c00b0",
-  "lastmod": "2026-10-14"
+  "hash": "1ed6ebe27e85f7ea7c6953c4aaeb32ff4d9f7b35dd3b93da33747682a3b46021",
+  "lastmod": "2026-10-28"
  },
  "/vinyl-fence/": {
-  "hash": "28634bfb465ec5f8dd7a97df1ec944a1f44a8348db8d4cd7efe2323ee147e4f3",
-  "lastmod": "2026-10-14"
+  "hash": "ee56ad1308d4dc2a16b2d765c32040c7463b8186131f732b0eb45f23cfb64ff3",
+  "lastmod": "2026-10-28"
  },
  "/warranty/": {
-  "hash": "c0614db89491ac90219b2cc38a84dc6810431dd6d1b52a7a909634a78c1c467d",
-  "lastmod": "2026-10-14"
+  "hash": "dacbcff8f42ff7542571a748e00c4b0885e69dd2537da12b4f39279afd90bcd3",
+  "lastmod": "2026-10-28"
  },
  "/wood-fence/": {
-  "hash": "9303d73d6c9d74a621fcf7298724c897df508418f3b290e5aa2b9f1bb51f8a6f",
-  "lastmod": "2026-10-14"
+  "hash": "d34bfdb325f570cab8435c28d47a51f6dea49a87eca6a34cfef1b29a208f5f66",
+  "lastmod": "2026-10-28"
  }
 }
