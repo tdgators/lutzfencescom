@@ -5,6 +5,7 @@ Run: python3 build_all.py                      # all sites
 """
 import argparse
 import shutil
+import sys
 from pathlib import Path
 
 import build_core, build_services, build_towns, build_pdf, build_sitemap
@@ -70,9 +71,29 @@ def build_site(domain):
     print(f"{domain}: built {len(WRITTEN_PAGES)} pages -> {out_dir}")
 
 
+def core_pages(out_dir):
+    """Every page on disk except the per-site town pages (fence-company-<town>-fl/)."""
+    return {str(p.relative_to(out_dir)) for p in out_dir.rglob("*.html")
+            if p.relative_to(out_dir).parts[0] not in ("generator", "assets", ".git")
+            and not p.relative_to(out_dir).parts[0].startswith("fence-company-")}
+
+
+def check_core_pages():
+    """Fail if any site is missing a core page another site has (towns are meant to differ)."""
+    pages = {d: core_pages(cfg["out_dir"]) for d, cfg in SITES.items() if cfg["out_dir"].exists()}
+    every = set().union(*pages.values())
+    gaps = {d: sorted(every - have) for d, have in pages.items() if every - have}
+    for d, missing in gaps.items():
+        print(f"CORE PAGE CHECK: {d} is missing {len(missing)}: {', '.join(missing)}")
+    if gaps:
+        sys.exit("core pages differ between sites; build those sites, or delete stale pages")
+    print(f"core page check: all {len(pages)} sites have the same {len(every)} core pages")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--site", choices=sorted(SITES), help="build only this site")
     args = parser.parse_args()
     for domain in ([args.site] if args.site else SITES):
         build_site(domain)
+    check_core_pages()
