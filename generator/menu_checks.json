@@ -1,0 +1,725 @@
+{
+  "websites": [
+    {
+      "site": "lutzfences.com",
+      "url": "https://lutzfences.com/",
+      "menuItems": [
+        {
+          "menu": "Residential",
+          "submenu": "Pool Fences",
+          "onPageChecks": [
+            "What Florida law requires",
+            "Pool fences on Lutz-area lots",
+            "Choosing a pool fence material",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Pool Inspection Guide",
+          "onPageChecks": [
+            "Before you start",
+            "Common issues we see around Lutz",
+            "1. Height, measured from the outside",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Fence Gates",
+          "onPageChecks": [
+            "Pick the gate by what has to fit through it",
+            "Gates for bigger Lutz lots",
+            "Swing or slide",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Driveway Gates",
+          "onPageChecks": [
+            "Swing gates vs. slide gates",
+            "Long drives and rural setbacks",
+            "Materials",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Dog & Pet Fences",
+          "onPageChecks": [
+            "Height: match the fence to the dog",
+            "Lakes, wildlife and dogs",
+            "Gaps, digging and gates",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Fence Replacement",
+          "onPageChecks": [
+            "Repair or replace?",
+            "What we replace most around Lutz",
+            "How a replacement works",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Storm & Hurricane Repair",
+          "onPageChecks": [
+            "Right after the storm",
+            "Storm damage in tree-heavy Lutz yards",
+            "Repair or replace?",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Fence Care & Easy Fixes",
+          "onPageChecks": [
+            "Fence Care in Lutz & Pasco",
+            "Care by Material",
+            "Easy Fixes You Can Do"
+          ]
+        },
+        {
+          "menu": "About",
+          "submenu": "Reviews",
+          "onPageChecks": [
+            "Google: Lutz Office",
+            "Google: Tampa Office",
+            "Facebook"
+          ]
+        },
+        {
+          "menu": "About",
+          "submenu": "Financing",
+          "onPageChecks": [
+            "Wisetack",
+            "Four Simple Steps",
+            "The Fine Print"
+          ]
+        }
+      ]
+    },
+    {
+      "site": "brooksvillefence.com",
+      "url": "https://brooksvillefence.com/",
+      "menuItems": [
+        {
+          "menu": "Residential",
+          "submenu": "Pool Fences",
+          "onPageChecks": [
+            "The rules every pool barrier follows",
+            "Pool barriers on rural properties",
+            "Materials that hold up out here",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Pool Inspection Guide",
+          "onPageChecks": [
+            "Walk the barrier like an inspector",
+            "What trips people up in Hernando County",
+            "Height and gaps",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Fence Gates",
+          "onPageChecks": [
+            "Size it for the biggest thing that passes through",
+            "Gates for country properties",
+            "Swing, slide or ride on a wheel",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Driveway Gates",
+          "onPageChecks": [
+            "Swinging or sliding entrance gates",
+            "Gates at the end of a long drive",
+            "Choosing the material",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Dog & Pet Fences",
+          "onPageChecks": [
+            "How high is high enough",
+            "Wildlife and wide open space",
+            "Keeping them from going under or through",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Fence Replacement",
+          "onPageChecks": [
+            "Time to repair or time to replace",
+            "What wears out in Hernando County",
+            "What replacement day looks like",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Storm & Hurricane Repair",
+          "onPageChecks": [
+            "The first few hours",
+            "Storm damage on rural properties",
+            "Fix it or replace it",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Fence Care & Easy Fixes",
+          "onPageChecks": [
+            "Brooksville-Area Tips",
+            "Care by Material",
+            "Easy Fixes You Can Do"
+          ]
+        },
+        {
+          "menu": "About",
+          "submenu": "Reviews",
+          "onPageChecks": [
+            "Google: Lutz Office",
+            "Google: Tampa Office",
+            "Facebook"
+          ]
+        },
+        {
+          "menu": "About",
+          "submenu": "Financing",
+          "onPageChecks": [
+            "Wisetack",
+            "Four Simple Steps",
+            "The Fine Print"
+          ]
+        }
+      ]
+    },
+    {
+      "site": "northtampafencing.com",
+      "url": "https://northtampafencing.com/",
+      "menuItems": [
+        {
+          "menu": "Residential",
+          "submenu": "Pool Fences",
+          "onPageChecks": [
+            "Florida's pool barrier requirements",
+            "Pond and preserve views",
+            "Aluminum, vinyl or something else",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Pool Inspection Guide",
+          "onPageChecks": [
+            "How to use this checklist",
+            "Watch the lanai doors",
+            "Gate and latch",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Fence Gates",
+          "onPageChecks": [
+            "Choosing the right width",
+            "HOA-friendly gates",
+            "When a slide gate makes sense",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Driveway Gates",
+          "onPageChecks": [
+            "Swing vs. slide",
+            "Gates and HOA review",
+            "Matching your home",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Dog & Pet Fences",
+          "onPageChecks": [
+            "Pick the height for the dog",
+            "Ponds and preserves",
+            "Close the gaps",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Fence Replacement",
+          "onPageChecks": [
+            "Replace or keep repairing?",
+            "Replacing in an HOA community",
+            "Our replacement process",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Storm & Hurricane Repair",
+          "onPageChecks": [
+            "After the wind dies down",
+            "Exposed fence lines",
+            "Should it be repaired or replaced?",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Fence Care & Easy Fixes",
+          "onPageChecks": [
+            "Pond, Preserve & HOA Tips",
+            "Care by Material",
+            "Easy Fixes You Can Do"
+          ]
+        },
+        {
+          "menu": "About",
+          "submenu": "Reviews",
+          "onPageChecks": [
+            "Google: Lutz Office",
+            "Google: Tampa Office",
+            "Facebook"
+          ]
+        },
+        {
+          "menu": "About",
+          "submenu": "Financing",
+          "onPageChecks": [
+            "Wisetack",
+            "Four Simple Steps",
+            "The Fine Print"
+          ]
+        }
+      ]
+    },
+    {
+      "site": "carrollwoodfence.com",
+      "url": "https://carrollwoodfence.com/",
+      "menuItems": [
+        {
+          "menu": "Residential",
+          "submenu": "Pool Fences",
+          "onPageChecks": [
+            "What You Get",
+            "What a Florida pool barrier must do",
+            "Older pools, newer rules",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Pool Inspection Guide",
+          "onPageChecks": [
+            "What You Get",
+            "A quick pre-check",
+            "Roots and old fences",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Fence Gates",
+          "onPageChecks": [
+            "What You Get",
+            "Sizing for your yard",
+            "Replacing the gate, not the whole fence",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Driveway Gates",
+          "onPageChecks": [
+            "What You Get",
+            "Which style fits",
+            "Working with mature landscaping",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Dog & Pet Fences",
+          "onPageChecks": [
+            "What You Get",
+            "Height",
+            "Old fences, new dogs",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Fence Replacement",
+          "onPageChecks": [
+            "What You Get",
+            "Is it time?",
+            "Fences under big oaks",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Storm & Hurricane Repair",
+          "onPageChecks": [
+            "What You Get",
+            "Right away",
+            "When the tree comes down",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Fence Care & Easy Fixes",
+          "onPageChecks": [
+            "Living With Big Oaks",
+            "Care by Material",
+            "Easy Fixes You Can Do"
+          ]
+        },
+        {
+          "menu": "About",
+          "submenu": "Reviews",
+          "onPageChecks": [
+            "Google: Lutz Office",
+            "Google: Tampa Office",
+            "Facebook"
+          ]
+        },
+        {
+          "menu": "About",
+          "submenu": "Financing",
+          "onPageChecks": [
+            "Wisetack",
+            "Four Simple Steps",
+            "The Fine Print"
+          ]
+        }
+      ]
+    },
+    {
+      "site": "westchasefence.com",
+      "url": "https://westchasefence.com/",
+      "menuItems": [
+        {
+          "menu": "Residential",
+          "submenu": "Pool Fences",
+          "onPageChecks": [
+            "Florida's barrier rules",
+            "Designing for review",
+            "Design that passes review",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Pool Inspection Guide",
+          "onPageChecks": [
+            "Using this list",
+            "Approved style, compliant details",
+            "Gate and latch",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Fence Gates",
+          "onPageChecks": [
+            "Gate sizes",
+            "Modern gates for newer homes",
+            "Modern gates stay level",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Driveway Gates",
+          "onPageChecks": [
+            "Design first",
+            "Modern design, approval-ready",
+            "Swing or slide",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Dog & Pet Fences",
+          "onPageChecks": [
+            "Height and type",
+            "Small yards, smart design",
+            "Gaps and digging",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Fence Replacement",
+          "onPageChecks": [
+            "When to replace",
+            "Replacing to today's standard",
+            "The process",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Storm & Hurricane Repair",
+          "onPageChecks": [
+            "Immediately after",
+            "HOA rules still apply after a storm",
+            "Repair or replace",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Fence Care & Easy Fixes",
+          "onPageChecks": [
+            "Keeping Up Appearances",
+            "Care by Material",
+            "Easy Fixes You Can Do"
+          ]
+        },
+        {
+          "menu": "About",
+          "submenu": "Reviews",
+          "onPageChecks": [
+            "Google: Lutz Office",
+            "Google: Tampa Office",
+            "Facebook"
+          ]
+        },
+        {
+          "menu": "About",
+          "submenu": "Financing",
+          "onPageChecks": [
+            "Wisetack",
+            "Four Simple Steps",
+            "The Fine Print"
+          ]
+        }
+      ]
+    },
+    {
+      "site": "southtampafence.com",
+      "url": "https://southtampafence.com/",
+      "menuItems": [
+        {
+          "menu": "Residential",
+          "submenu": "Pool Fences",
+          "onPageChecks": [
+            "What Florida requires",
+            "Tight lots, historic homes",
+            "Doors and windows count",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Pool Inspection Guide",
+          "onPageChecks": [
+            "Start here",
+            "Doors onto the pool",
+            "Doors and windows",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Fence Gates",
+          "onPageChecks": [
+            "Gates that suit the house",
+            "Gates that suit older homes",
+            "Sizes",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Driveway Gates",
+          "onPageChecks": [
+            "Fitting the space",
+            "Narrow drives and alleys",
+            "Style",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Dog & Pet Fences",
+          "onPageChecks": [
+            "Height",
+            "Busy sidewalks",
+            "Front yards and sidewalks",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Fence Replacement",
+          "onPageChecks": [
+            "Repair or replace",
+            "Salt air and humidity",
+            "How it works",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Storm & Hurricane Repair",
+          "onPageChecks": [
+            "First steps",
+            "Wind, water and debris",
+            "After flooding",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Fence Care & Easy Fixes",
+          "onPageChecks": [
+            "Salt Air & Humidity",
+            "Care by Material",
+            "Easy Fixes You Can Do"
+          ]
+        },
+        {
+          "menu": "About",
+          "submenu": "Reviews",
+          "onPageChecks": [
+            "Google: Lutz Office",
+            "Google: Tampa Office",
+            "Facebook"
+          ]
+        },
+        {
+          "menu": "About",
+          "submenu": "Financing",
+          "onPageChecks": [
+            "Wisetack",
+            "Four Simple Steps",
+            "The Fine Print"
+          ]
+        }
+      ]
+    },
+    {
+      "site": "starkeyfence.com",
+      "url": "https://starkeyfence.com/",
+      "menuItems": [
+        {
+          "menu": "Residential",
+          "submenu": "Pool Fences",
+          "onPageChecks": [
+            "Florida's pool barrier basics",
+            "New pools in new communities",
+            "Coordinating with your pool builder",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Pool Inspection Guide",
+          "onPageChecks": [
+            "Before the inspector arrives",
+            "Kids' gear as climbing aids",
+            "The gate",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Fence Gates",
+          "onPageChecks": [
+            "Sizes for family yards",
+            "Self-closing gates for families",
+            "Gates that close themselves",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Driveway Gates",
+          "onPageChecks": [
+            "Choosing a style",
+            "Acreage and long drives",
+            "Acreage and long drives",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
+          "submenu": "Dog & Pet Fences",
+          "onPageChecks": [
+            "Height",
+            "Puppies and preserve lots",
+            "Puppies and preserves",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Fence Replacement",
+          "onPageChecks": [
+            "Signs it's time",
+            "Upgrading builder fences",
+            "The process",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Storm & Hurricane Repair",
+          "onPageChecks": [
+            "Right after the storm",
+            "Open lots, newer fences",
+            "Repair or replace",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Other Services",
+          "submenu": "Fence Care & Easy Fixes",
+          "onPageChecks": [
+            "Pets, Kids & Pools",
+            "Care by Material",
+            "Easy Fixes You Can Do"
+          ]
+        },
+        {
+          "menu": "About",
+          "submenu": "Reviews",
+          "onPageChecks": [
+            "Google: Lutz Office",
+            "Google: Tampa Office",
+            "Facebook"
+          ]
+        },
+        {
+          "menu": "About",
+          "submenu": "Financing",
+          "onPageChecks": [
+            "Wisetack",
+            "Four Simple Steps",
+            "The Fine Print"
+          ]
+        }
+      ]
+    }
+  ]
+}
