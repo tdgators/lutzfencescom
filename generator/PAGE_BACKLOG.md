@@ -44,7 +44,7 @@ details from memory.
 | Fence permits in Oldsmar | /fence-permits-oldsmar/ | Westchase, Starkey | City code (Pinellas) |
 | Fence permits in Zephyrhills / Dade City / New Port Richey | one page each | Lutz | City codes |
 
-### P1: Missing fence types and services (every site, written per site): BUILT Oct 28, not yet deployed
+### P1: Missing fence types and services (every site, written per site): BUILT and live on all 7 sites
 
 | Page | Slug | Notes |
 |---|---|---|
@@ -79,6 +79,29 @@ duplicate itself. Suggested homes in brackets.
 | Best time of year to install a fence in Florida | /fence-guides/best-time-to-install-fence-florida/ | Starkey |
 | Historic district fences (Hyde Park, Seminole Heights) | /fence-guides/historic-district-fences-tampa/ | South Tampa. Verify |
 
+### P2: Article ideas from Tom (Nov 2026): LIVE Nov 18 with the /fence-guides/ hub
+
+These are articles, so they follow the guide rule: one or two sites each, not all seven.
+The first two are angles on pages every site already has, and should link to those pages.
+
+| Article | Slug | Home | Notes |
+|---|---|---|---|
+| Choosing a commercial fence | /fence-guides/choosing-commercial-fence/ | North Tampa, Westchase | Links to /commercial-fencing/. Buying guide, not a repeat of the service page |
+| Keeping a dog in the yard: common fence problems | /fence-guides/dog-fence-problems/ | Starkey, Carrollwood | Links to /dog-fence/. Diggers, jumpers, gaps |
+| Horse and pasture fences (overview) | /horse-pasture-fence/ | Brooksville, Lutz | Replaces the P3 horse and farm item. Overview of styles by use: 3-rail and 4-rail black, fences that match a stable, vinyl or wood, sheep and goat. Detail pages follow later |
+| Fencing around ground-mounted solar | /fence-guides/ground-mounted-solar-fence/ | Lutz, Brooksville | Photovoltaic racking installed on the ground rather than a roof. Verify any code or utility access rules |
+| Garbage bin enclosures | /fence-guides/garbage-bin-enclosures/ | South Tampa, Westchase | Home trash cans. Different from the commercial /dumpster-enclosures/ page. Check HOA and city rules on screening. Verify |
+
+Later detail pages under the horse and pasture overview (add once the overview is live):
+3-rail black fence, 4-rail black fence, matching a stable, vinyl horse fence, wood board
+horse fence, sheep and goat fence.
+
+### Puppy Picket Aluminum Fence (every site): LIVE Nov 18
+
+/puppy-picket-fence/, written per site (content/puppy_picket.py), linked from the Residential
+menu and the Dog &amp; Pet Fences page. Uses the existing dog-fence photo; swap in a dedicated
+puppy picket photo when Story Hero has credits again.
+
 ### P2: Trust pages (every site)
 
 | Page | Slug | Needs from Tom |
@@ -89,7 +112,7 @@ duplicate itself. Suggested homes in brackets.
 
 ### P3
 
-- Horse and farm fencing (Brooksville only)
+- Farm fencing beyond the horse article (Brooksville only)
 - Deer and wildlife fencing (Brooksville only)
 - A blog index once there are 6+ guides per site (guides can serve as the blog)
 

@@ -6,6 +6,16 @@
       "menuItems": [
         {
           "menu": "Residential",
+          "submenu": "Puppy Picket Fence",
+          "onPageChecks": [
+            "How puppy picket works",
+            "Lake lots and open backyards",
+            "Is it right for your pet?",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
           "submenu": "Pool Fences",
           "onPageChecks": [
             "What Florida law requires",
@@ -107,6 +117,16 @@
       "site": "brooksvillefence.com",
       "url": "https://brooksvillefence.com/",
       "menuItems": [
+        {
+          "menu": "Residential",
+          "submenu": "Puppy Picket Fence",
+          "onPageChecks": [
+            "What makes it different",
+            "A safe yard inside the bigger property",
+            "Who it's for",
+            "Common Questions"
+          ]
+        },
         {
           "menu": "Residential",
           "submenu": "Pool Fences",
@@ -212,6 +232,16 @@
       "menuItems": [
         {
           "menu": "Residential",
+          "submenu": "Puppy Picket Fence",
+          "onPageChecks": [
+            "How puppy picket works",
+            "Ponds, preserves and HOA rules",
+            "Is it right for your dog?",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
           "submenu": "Pool Fences",
           "onPageChecks": [
             "Florida's pool barrier requirements",
@@ -313,6 +343,16 @@
       "site": "carrollwoodfence.com",
       "url": "https://carrollwoodfence.com/",
       "menuItems": [
+        {
+          "menu": "Residential",
+          "submenu": "Puppy Picket Fence",
+          "onPageChecks": [
+            "What You Get",
+            "A tighter bottom on a familiar fence",
+            "Replacing an aging fence for a new dog",
+            "Common Questions"
+          ]
+        },
         {
           "menu": "Residential",
           "submenu": "Pool Fences",
@@ -418,6 +458,16 @@
       "menuItems": [
         {
           "menu": "Residential",
+          "submenu": "Puppy Picket Fence",
+          "onPageChecks": [
+            "The difference is at the bottom",
+            "Matching the neighborhood",
+            "Picking the right height",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
           "submenu": "Pool Fences",
           "onPageChecks": [
             "Florida's barrier rules",
@@ -521,6 +571,16 @@
       "menuItems": [
         {
           "menu": "Residential",
+          "submenu": "Puppy Picket Fence",
+          "onPageChecks": [
+            "Small gaps, same style",
+            "Front gardens and courtyards",
+            "Good near salt air",
+            "Common Questions"
+          ]
+        },
+        {
+          "menu": "Residential",
           "submenu": "Pool Fences",
           "onPageChecks": [
             "What Florida requires",
@@ -622,6 +682,16 @@
       "site": "starkeyfence.com",
       "url": "https://starkeyfence.com/",
       "menuItems": [
+        {
+          "menu": "Residential",
+          "submenu": "Puppy Picket Fence",
+          "onPageChecks": [
+            "What you're getting",
+            "Preserve views and new-build lots",
+            "Planning for the grown-up dog",
+            "Common Questions"
+          ]
+        },
         {
           "menu": "Residential",
           "submenu": "Pool Fences",

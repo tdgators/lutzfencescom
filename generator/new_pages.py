@@ -155,7 +155,33 @@ BASE = {
             ("What is a puppy-picket fence?", "An aluminum fence with extra pickets along the bottom so small dogs, puppies and cats can't slip through."),
             ("How do I stop my dog from digging under the fence?", "A dig guard: galvanized wire buried along the bottom of the fence, or a concrete mow strip. We can add either during installation."),
         ],
-        related=["aluminum-fence", "privacy-fence", "vinyl-fence", "chain-link-fence", "fence-gates", "semi-privacy-fence"],
+        related=["puppy-picket-fence", "aluminum-fence", "privacy-fence", "vinyl-fence", "chain-link-fence", "fence-gates"],
+    ),
+
+    "puppy-picket-fence": dict(
+        name="Puppy Picket Aluminum Fence", kicker="Fence Types", photo="dog-fence.webp",
+        photo_alt="Black aluminum puppy picket fence along a green lawn",
+        meta_title="Puppy Picket Aluminum Fence in {city}, FL | {brand}",
+        meta="Puppy picket aluminum fences in {city}, FL: extra pickets along the bottom close the gaps small dogs and puppies squeeze through, with matching self-closing gates.",
+        glance=["Extra pickets along the bottom", "Gaps about half as wide down low", "Same open look as aluminum", "Matching self-closing gates", "No rust, no painting"],
+        sections=[
+            ("How puppy picket works", [
+                "On a standard aluminum fence, the pickets sit just under 4 inches apart. That stops most dogs, but a toy breed or a young puppy can walk right through. A puppy picket panel adds a short picket between each pair along the bottom, usually the lowest 12 to 18 inches, which brings the gap there down to about 2 inches. Above that section, it's the same open aluminum fence.",
+            ]),
+            ("Is it right for your pet?", [
+                "Puppy picket is made for small dogs and puppies. If you have a big dog as well, choose the height for the big dog, and let the puppy pickets take care of the small one. It won't contain a cat that climbs, and it isn't the answer for a dog that jumps or climbs, which usually needs more height or a solid fence. Our <a href=\"dog-fence.html\">dog and pet fence guide</a> covers those cases.",
+            ]),
+            ("Finishing a pet-safe yard", [
+                "Most escapes happen at the gate, so make the gates puppy picket too, hung to close and latch on their own. Keep the bottom of the fence close to the ground. If your dog digs, a buried wire dig guard along the fence line stops tunneling.",
+            ]),
+        ],
+        faqs=[
+            ("What is a puppy picket fence?", "An aluminum fence with extra short pickets along the bottom of each panel, so small dogs and puppies can't squeeze through the gaps."),
+            ("Can puppy pickets be added to my existing fence?", "On some aluminum fences, yes. It depends on the style, so send us a photo and we'll check."),
+            ("Does puppy picket cost more than standard aluminum?", "A little, because each panel has more pickets. We'll price both so you can compare."),
+            ("Will it keep my cat in?", "No. Cats can climb aluminum. Puppy picket is made for small dogs."),
+        ],
+        related=["dog-fence", "aluminum-fence", "fence-gates", "pool-fence", "hoa-fence-approval-guide", "financing"],
     ),
 
     "fence-replacement": dict(

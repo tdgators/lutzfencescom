@@ -25,6 +25,7 @@ def nav_html(active=""):
       <div class="dd-head">Pools, Pets &amp; Gates</div>
       <a href="pool-fence.html">Pool Fences</a>
       <a href="dog-fence.html">Dog &amp; Pet Fences</a>
+      <a href="puppy-picket-fence.html">Puppy Picket Fence</a>
       <a href="fence-gates.html">Fence Gates</a>
       <a href="driveway-gates.html">Driveway Gates</a>
       <div class="dd-head">More</div>
@@ -34,7 +35,7 @@ def nav_html(active=""):
     commercial_dd = "".join(f'<a href="{c["slug"]}.html">{c["name"]}</a>' for c in COMMERCIAL)
     commercial_dd = f'<a href="commercial-fencing.html">Commercial Fencing (All)</a>' + commercial_dd
     other_dd = "".join(f'<a href="{o["slug"]}.html">{o["name"]}</a>' for o in OTHER_SERVICES) + '<a href="fence-replacement.html">Fence Replacement</a><a href="hurricane-fence-repair.html">Storm &amp; Hurricane Repair</a><a href="fence-care.html">Fence Care &amp; Easy Fixes</a><a href="pool-fence-inspection-florida.html">Pool Inspection Guide</a>'
-    about_dd = '<a href="about-us.html">Meet the Team</a><a href="warranty.html">Our Warranty</a><a href="hoa-fence-approval-guide.html">HOA Approval Guide</a><a href="reviews.html">Reviews</a><a href="financing.html">Financing</a><a href="service-areas.html">Service Areas</a>'
+    about_dd = '<a href="about-us.html">Meet the Team</a><a href="warranty.html">Our Warranty</a><a href="hoa-fence-approval-guide.html">HOA Approval Guide</a><a href="fence-guides.html">Fence Guides</a><a href="reviews.html">Reviews</a><a href="financing.html">Financing</a><a href="service-areas.html">Service Areas</a>'
     contact_dd = '<a href="contact-us.html">Contact Us</a><a href="faq.html">FAQs</a>'
 
     items = [
@@ -148,7 +149,7 @@ def pretty_url(path):
     return "/" if slug == "index" else f"/{slug}/"
 
 
-_PAGE_LINK = re.compile(r'(href)="([a-z0-9-]+)\.html(#[^"]*)?"')
+_PAGE_LINK = re.compile(r'(href)="([a-z0-9/-]+)\.html(#[^"]*)?"')
 _ASSET_LINK = re.compile(r'(href|src|content)="assets/')
 
 

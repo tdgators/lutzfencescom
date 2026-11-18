@@ -12,7 +12,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from sites import SITES
 
-PAGES = ["pool-fence", "pool-fence-inspection-florida", "fence-gates", "driveway-gates", "dog-fence",
+PAGES = ["puppy-picket-fence", "pool-fence", "pool-fence-inspection-florida", "fence-gates", "driveway-gates", "dog-fence",
          "fence-replacement", "hurricane-fence-repair", "fence-care", "reviews", "financing"]
 BOILERPLATE = ("Common Questions", "Related Pages", "Ready to", "Warranty", "Had Us Build")
 FIXED = {  # pages whose headings come from shared templates

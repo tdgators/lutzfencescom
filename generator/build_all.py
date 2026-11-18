@@ -10,6 +10,7 @@ from pathlib import Path
 
 import build_core, build_services, build_towns, build_pdf, build_sitemap
 import build_new
+from articles import ARTICLES
 from data import CURRENT, THEME, use_site
 from sites import SITES
 from templates import WRITTEN_PAGES
@@ -65,6 +66,7 @@ def build_site(domain):
     build_services.build_materials(); build_services.build_styles()
     build_services.build_commercial(); build_services.build_other_services()
     build_new.build_new_pages()
+    build_new.build_articles()
     build_towns.build_towns()
     build_pdf.build_warranty_pdf()
     build_sitemap.build_sitemap()
@@ -72,14 +74,16 @@ def build_site(domain):
 
 
 def core_pages(out_dir):
-    """Every page on disk except the per-site town pages (fence-company-<town>-fl/)."""
+    """Every page on disk except town pages (fence-company-<town>-fl/) and articles, which are per-site."""
+    articles = {f"{slug}/index.html" for slug in ARTICLES}
     return {str(p.relative_to(out_dir)) for p in out_dir.rglob("*.html")
             if p.relative_to(out_dir).parts[0] not in ("generator", "assets", ".git")
-            and not p.relative_to(out_dir).parts[0].startswith("fence-company-")}
+            and not p.relative_to(out_dir).parts[0].startswith("fence-company-")
+            and str(p.relative_to(out_dir)) not in articles}
 
 
 def check_core_pages():
-    """Fail if any site is missing a core page another site has (towns are meant to differ)."""
+    """Fail if any site is missing a core page another site has (towns and articles are meant to differ)."""
     pages = {d: core_pages(cfg["out_dir"]) for d, cfg in SITES.items() if cfg["out_dir"].exists()}
     every = set().union(*pages.values())
     gaps = {d: sorted(every - have) for d, have in pages.items() if every - have}
